@@ -60,7 +60,7 @@ public class aiAgent {
 	private long m_mb_null_susp;
 
 	private static int CompareMoves(final Object elem1, final Object elem2) {
-		// TODO To be done by ...
+		// TODO To be done by P___65 Todor Balabanov
 
 		return (0);
 	}
@@ -97,7 +97,7 @@ public class aiAgent {
 	}
 
 	private boolean OrderMoves(gmEngine node, aiMove moves, int count) {
-		// TODO To be done by ...
+		// TODO To be done by P___65 Todor Balabanov
 
 		return (false);
 	}
@@ -116,7 +116,7 @@ public class aiAgent {
 	}
 
 	private int EstimateHeuristic(gmEngine state) {
-		// TODO To be done by ...
+		// TODO To be done by P___65 Todor Balabanov
 
 		return (0);
 	}
@@ -253,19 +253,19 @@ public class aiAgent {
 	}
 
 	public boolean SetClockwise(boolean flag) {
-		// TODO To be done by ...
+		// TODO To be done by P___65 Todor Balabanov
 
 		return (false);
 	}
 
 	public boolean GetClockwise() {
-		// TODO To be done by ...
+		// TODO To be done by P___65 Todor Balabanov
 
 		return (false);
 	}
 
 	public boolean AbandonGame(boolean flag) {
-		// TODO To be done by ...
+		// TODO To be done by P___65 Todor Balabanov
 
 		return (false);
 	}

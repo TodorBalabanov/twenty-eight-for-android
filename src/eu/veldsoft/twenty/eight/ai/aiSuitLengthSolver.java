@@ -24,14 +24,14 @@
 package eu.veldsoft.twenty.eight.ai;
 
 public class aiSuitLengthSolver {
-	public static final int slLENGTH_MAX =8;
-	
-	public static final int slTOTAL_HANDS =4;
-	
-	public static final int slTOTAL_SUITS =4;
-	
-	public static final int slVACANT =-1;
-	
+	public static final int slLENGTH_MAX = 8;
+
+	public static final int slTOTAL_HANDS = 4;
+
+	public static final int slTOTAL_SUITS = 4;
+
+	public static final int slVACANT = -1;
+
 	private slProblem m_problem;
 
 	private slData m_saved, m_working;
@@ -44,122 +44,122 @@ public class aiSuitLengthSolver {
 
 	// Disallow copy finalructor/assignment operators
 	private aiSuitLengthSolver(final aiSuitLengthSolver object) {
-		//TODO To be done by ...
+		// TODO To be done by ...
 	}
 
 	private aiSuitLengthSolver assign(final aiSuitLengthSolver object) {
-		//TODO To be done by ...
-		
-		return( this );
+		// TODO To be done by ...
+
+		return (this);
 	}
 
 	private void InitializeWorkingData(slData data) {
-		//TODO To be done by ...
+		// TODO To be done by P___65 Todor Balabanov
 	}
 
 	private boolean RecalcCellMax(slData data, int hand, int suit) {
-		//TODO To be done by ...
-		
-		return( false );
+		// TODO To be done by ...
+
+		return (false);
 	}
 
 	private boolean SetCell(slData data, int hand, int suit, int suit_length) {
-		//TODO To be done by ...
-		
-		return( false );
+		// TODO To be done by ...
+
+		return (false);
 	}
 
 	private boolean RecalcMaxForImpactedCells(slData data, int hand, int suit) {
-		//TODO To be done by ...
-		
-		return( false );
+		// TODO To be done by ...
+
+		return (false);
 	}
 
 	private boolean RecalcMinForImpactedCells(slData data, int hand, int suit) {
-		//TODO To be done by ...
-		
-		return( false );
+		// TODO To be done by ...
+
+		return (false);
 	}
 
 	private boolean RecalcCellMin(slData data, int hand, int suit) {
-		//TODO To be done by ...
-		
-		return( false );
+		// TODO To be done by ...
+
+		return (false);
 	}
 
 	private boolean RecalcMinForAllCells(slData data) {
 		RecalcMinForAllCells(data, false);
-		
-		return( false );
+
+		return (false);
 	}
 
 	private boolean RecalcMinForAllCells(slData data, boolean changed) {
-		//TODO To be done by ...
-		
-		return( false );
+		// TODO To be done by ...
+
+		return (false);
 	}
 
 	private boolean RecalcMaxForAllCells(slData data) {
-		//TODO To be done by ...
-		
-		return( false );
+		// TODO To be done by ...
+
+		return (false);
 	}
 
 	private int GenerateRandomFill(int min, int max) {
-		//TODO To be done by ...
-		
-		return( 0 );
+		// TODO To be done by ...
+
+		return (0);
 	}
 
 	public static String PrintData(slData data) {
-		//TODO To be done by ...
-		
-		return( "" );
+		// TODO To be done by ...
+
+		return ("");
 	}
 
 	public static String PrintMatrix(int[][] matrix) {
-		//TODO To be done by ...
-		
-		return( "" );
+		// TODO To be done by ...
+
+		return ("");
 	}
 
 	public static void InitializeProblem(slProblem problem) {
-		//TODO To be done by ...
+		// TODO To be done by P___65 Todor Balabanov
 	}
 
 	public static void InitializePlayed(int[][] played) {
-		//TODO To be done by ...
+		// TODO To be done by P___65 Todor Balabanov
 	}
 
 	public aiSuitLengthSolver() {
-		//TODO To be done by ...
+		// TODO To be done by ...
 	}
 
 	protected void finalize() {
-		//TODO To be done by ...
+		// TODO To be done by ...
 	}
 
 	public boolean SetProblem(slProblem problem, int[][] played) {
-		//TODO To be done by ...
-		
-		return( false );
+		// TODO To be done by ...
+
+		return (false);
 	}
 
 	public boolean GenerateRandomSolution(int[][] solution) {
-		//TODO To be done by ...
-		
-		return( false );
+		// TODO To be done by ...
+
+		return (false);
 	}
 
 	public String PrintSavedData() {
-		//TODO To be done by ...
-		
-		return( "" );
+		// TODO To be done by ...
+
+		return ("");
 	}
 
 	public String PrintWorkingData() {
-		//TODO To be done by ...
-		
-		return( "" );
+		// TODO To be done by ...
+
+		return ("");
 	}
 }
