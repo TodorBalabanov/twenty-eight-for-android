@@ -37,11 +37,11 @@ public class raConfig {
 	private raConfData m_data;
 
 	private static void Create() {
-		// TODO To be done by ...
+		// TODO To be done by Venci
 	}
 
 	private static void SetDefaultValues(raConfData data) {
-		// TODO To be done by ...
+		// TODO To be done by Venci
 	}
 
 	// Disallow copy finalructor/assignment operators
@@ -78,7 +78,8 @@ public class raConfig {
 	}
 
 	public void GetData(raConfData data) {
-		// TODO To be done by ...
+		// TODO To be done by Venci
+		
 	}
 
 	public boolean SetData(raConfData data) {

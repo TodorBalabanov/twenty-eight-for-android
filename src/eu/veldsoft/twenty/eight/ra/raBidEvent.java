@@ -44,6 +44,7 @@ public class raBidEvent extends wxEvent {
 
 	public raBidEvent(final raBidEvent evt) {
 		// TODO To be done by ...
+		
 	}
 
 	public wxEvent Clone() {
@@ -51,11 +52,11 @@ public class raBidEvent extends wxEvent {
 	}
 
 	public void SetBid(int bid) {
-		// TODO To be done by ...
+		// TODO To be done by Venci
 	}
 
 	public int GetBid() {
-		// TODO To be done by ...
+		// TODO To be done by Venci
 
 		return (0);
 	}
