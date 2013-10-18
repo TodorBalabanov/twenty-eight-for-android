@@ -36,12 +36,49 @@ public class raConfig {
 
 	private raConfData m_data;
 
+	private static final int raCONFIG_PREFS_PLAYCARDON_SCLICK = 0;
+
+	private static final int raCONFIG_PREFS_CARDBACK_BLUE = 0;
+
+	/**
+	 * Constructor
+	 * 
+	 * @author Vencislav Medarov
+	 * @email venci932@gmail.com
+	 * @date 18 Oct 2013
+	 */
 	private static void Create() {
-		// TODO To be done by Venci
+		raConfig the_instance = null;
+		s_instance = the_instance;
 	}
 
+	/**
+	 * Set value.
+	 * 
+	 * @param data
+	 *            ...
+	 * @author Vencislav Medarov
+	 * @email venci932@gmail.com
+	 * @date 18 Oct 2013
+	 */
 	private static void SetDefaultValues(raConfData data) {
-		// TODO To be done by Venci
+		data.app_data.x = -1;
+		data.app_data.y = -1;
+		data.app_data.width = -1;
+		data.app_data.height = -1;
+		data.app_data.maximized = false;
+
+		data.game_data.clockwise = true;
+		data.game_data.min_bid3 = 23;
+		data.game_data.waive_rule4 = false;
+		data.game_data.sluff_jacks = true;
+
+		data.prefs_data.play_card_on = raCONFIG_PREFS_PLAYCARDON_SCLICK;
+		data.prefs_data.card_back = raCONFIG_PREFS_CARDBACK_BLUE;
+		data.prefs_data.auto_play_single = true;
+		data.prefs_data.show_bid_bubbles = true;
+
+		return;
 	}
 
 	// Disallow copy finalructor/assignment operators
@@ -55,7 +92,7 @@ public class raConfig {
 		return (this);
 	}
 
-	private raConfig() {
+	private void raConfig() {
 		// TODO To be done by ...
 	}
 
@@ -78,8 +115,7 @@ public class raConfig {
 	}
 
 	public void GetData(raConfData data) {
-		// TODO To be done by Venci
-		
+		// TODO To be done by ...
 	}
 
 	public boolean SetData(raConfData data) {

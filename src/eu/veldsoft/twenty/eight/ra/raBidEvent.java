@@ -30,9 +30,9 @@ public class raBidEvent extends wxEvent {
 
 	// Disallow copy assignment operator
 	private raBidEvent assign(final raBidEvent object) {
-		//TODO To be done by INFM042 F___52 Mihail Stankov ...
-		//TODO To be done by INFM032 F___81 Marina Rangelova ...
-		//TODO To be done by INFM032 F___14 Petya Atanasova ...
+		// TODO To be done by INFM042 F___52 Mihail Stankov ...
+		// TODO To be done by INFM032 F___81 Marina Rangelova ...
+		// TODO To be done by INFM032 F___14 Petya Atanasova ...
 
 		return (this);
 	}
@@ -44,19 +44,35 @@ public class raBidEvent extends wxEvent {
 
 	public raBidEvent(final raBidEvent evt) {
 		// TODO To be done by ...
-		
+
 	}
 
 	public wxEvent Clone() {
 		return new raBidEvent(this);
 	}
 
+	/**
+	 * Setter.
+	 * 
+	 * @param bid
+	 * 
+	 * @author Vencislav Medarov
+	 * @email venci932@gmail.com
+	 * @date 18 Oct 2013
+	 */
 	public void SetBid(int bid) {
-		// TODO To be done by Venci
+		m_bid = bid;
 	}
 
+	/**
+	 * Constructor.
+	 * 
+	 * @author Vencislav Medarov
+	 * @email venci932@gmail.com
+	 * @date 18 Oct 2013
+	 */
 	public int GetBid() {
-		// TODO To be done by Venci
+		return (m_bid);
 
 		return (0);
 	}
