@@ -39,12 +39,15 @@ public class raBidEvent extends wxEvent {
 
 	// Default finalructor.
 	public raBidEvent() {
-		// TODO To be done by ...
+		//TODO To be done by INFM032 F___94 Aleksandar Milev ...
+		//TODO To be done by INFM042 F___84 Mariya Kostadinova ...
+		//TODO To be done by INFM032 F___56 Daniel Nikolov ...
 	}
 
 	public raBidEvent(final raBidEvent evt) {
-		// TODO To be done by ...
-
+		//TODO To be done by INFM032 F___84 Mariya Kostadinova ...
+		//TODO To be done by INFM042 F___88 Ivan Dankinov ...
+		//TODO To be done by INFM042 F___39 Shterion Yanev ...
 	}
 
 	public wxEvent Clone() {
@@ -73,7 +76,5 @@ public class raBidEvent extends wxEvent {
 	 */
 	public int GetBid() {
 		return (m_bid);
-
-		return (0);
 	}
 }
