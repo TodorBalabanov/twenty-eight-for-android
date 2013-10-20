@@ -23,6 +23,7 @@
 
 package eu.veldsoft.twenty.eight.ra;
 
+import eu.veldsoft.twenty.eight.dummy.Globals;
 import eu.veldsoft.twenty.eight.dummy.wxConfig;
 import eu.veldsoft.twenty.eight.dummy.wxMutex;
 
@@ -35,10 +36,6 @@ public class raConfig {
 	private wxConfig m_config;
 
 	private raConfData m_data;
-
-	private static final int raCONFIG_PREFS_PLAYCARDON_SCLICK = 0;
-
-	private static final int raCONFIG_PREFS_CARDBACK_BLUE = 0;
 
 	/**
 	 * Constructor
@@ -73,8 +70,8 @@ public class raConfig {
 		data.game_data.waive_rule4 = false;
 		data.game_data.sluff_jacks = true;
 
-		data.prefs_data.play_card_on = raCONFIG_PREFS_PLAYCARDON_SCLICK;
-		data.prefs_data.card_back = raCONFIG_PREFS_CARDBACK_BLUE;
+		data.prefs_data.play_card_on = Globals.raCONFIG_PREFS_PLAYCARDON_SCLICK;
+		data.prefs_data.card_back = Globals.raCONFIG_PREFS_CARDBACK_BLUE;
 		data.prefs_data.auto_play_single = true;
 		data.prefs_data.show_bid_bubbles = true;
 
