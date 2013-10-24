@@ -39,4 +39,7 @@ public class Globals {
 	public static final int raCONFIG_PREFS_CARDBACK_BLUE = 0;
 	
 	public static final int raCONFIG_PREFS_CARDBACK_RED = 1;
+	
+	
+	
 }
