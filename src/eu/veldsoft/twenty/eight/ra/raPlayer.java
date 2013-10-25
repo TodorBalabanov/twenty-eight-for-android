@@ -37,7 +37,7 @@ public class raPlayer {
 	private int m_trump;
 
 	public raPlayer() {
-		// TODO To be done by Venci
+		// TODO To be done by Venci ...
 	}
 
 	protected void finalize() {
@@ -45,30 +45,31 @@ public class raPlayer {
 	}
 
 	public void SetLocation(int loc) {
-		// TODO To be done by Venci
+		// TODO To be done by Venci ...
 	}
+
 	public int GetLocation() {
-		// TODO To be done by Venci
+		// TODO To be done by Venci ...
 
 		return (0);
 	}
 
 	public int GetType() {
-		// TODO To be done by Venci
+		// TODO To be done by Venci ...
 
 		return (0);
 	}
 
 	public void SetType(int type) {
-		// TODO To be done by Venci
+		// TODO To be done by Venci ...
 	}
 
 	public void SetRuleEngineData(gmEngineData data) {
-		// TODO To be done by Venci
+		// TODO To be done by Venci ...
 	}
 
 	public boolean GetBid(int bid, int trump, int min, boolean force_bid) {
-		// TODO To be done by Venci
+		// TODO To be done by Venci ...
 
 		return (false);
 	}
