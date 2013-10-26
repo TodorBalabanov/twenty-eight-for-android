@@ -25,21 +25,25 @@ package eu.veldsoft.twenty.eight.dummy;
 
 public class Globals {
 	public static final int wxCOPY = 0;
-	
+
 	public static final wxFont wxNullFont = null;
-	
+
 	public static final wxColour wxNullColour = null;
 
 	public static final int N32 = 32;
 
 	public static final int raCONFIG_PREFS_PLAYCARDON_SCLICK = 0;
-	
+
 	public static final int raCONFIG_PREFS_PLAYCARDON_DCLICK = 1;
 
 	public static final int raCONFIG_PREFS_CARDBACK_BLUE = 0;
-	
+
 	public static final int raCONFIG_PREFS_CARDBACK_RED = 1;
+
+	public static final int raPLAYER_TYPE_HUMAN = 0;
+
+	public static final int gmSUIT_INVALID = -1;
 	
-	
-	
+	public static final int gmTOTAL_PLAYERS = 4;
+
 }

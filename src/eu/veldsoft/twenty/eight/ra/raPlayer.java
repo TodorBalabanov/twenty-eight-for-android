@@ -24,8 +24,10 @@
 package eu.veldsoft.twenty.eight.ra;
 
 import eu.veldsoft.twenty.eight.ai.aiAgent;
+
 import eu.veldsoft.twenty.eight.gm.gmEngineData;
 import eu.veldsoft.twenty.eight.gm.gmRules;
+import eu.veldsoft.twenty.eight.dummy.Globals;
 
 public class raPlayer {
 	private aiAgent m_agent;
@@ -36,8 +38,20 @@ public class raPlayer {
 
 	private int m_trump;
 
+	/**
+	 * Constructor
+	 * 
+	 * @author Vencislav Medarov
+	 * @email venci932@gmail.com
+	 * @date 26.10.2013
+	 */
 	public raPlayer() {
-		// TODO To be done by Venci
+		/*
+		 * TODO : Remove hard coding
+		 */
+		m_loc = 0;
+		m_type = Globals.raPLAYER_TYPE_HUMAN;
+		m_trump = Globals.gmSUIT_INVALID;
 	}
 
 	protected void finalize() {
@@ -45,32 +59,71 @@ public class raPlayer {
 	}
 
 	public void SetLocation(int loc) {
-		// TODO To be done by Venci
+		// TODO To be done by Venci...
 	}
+
+	/**
+	 * Get lucation.
+	 * 
+	 * @author Vencislav Medarov
+	 * @email venci932@gmail.com
+	 * @date 26.10.2013
+	 */
 	public int GetLocation() {
-		// TODO To be done by Venci
-
-		return (0);
+		return (m_loc);
 	}
 
+	/**
+	 * Constructor
+	 * 
+	 * @author Vencislav Medarov
+	 * @email venci932@gmail.com
+	 * @date 26.10.2013
+	 */
 	public int GetType() {
-		// TODO To be done by Venci
-
-		return (0);
+		return (m_type);
 	}
 
+	/**
+	 * Set type.
+	 * 
+	 * @param type
+	 *            ...
+	 * 
+	 * @author Vencislav Medarov
+	 * @email venci932@gmail.com
+	 * @date 26.10.2013
+	 */
 	public void SetType(int type) {
-		// TODO To be done by Venci
+		m_type = type;
 	}
 
+	/**
+	 * Constructor
+	 * 
+	 * @param data
+	 *            ...
+	 * @author Vencislav Medarov
+	 * @email venci932@gmail.com
+	 * @date 25.10.2013
+	 */
 	public void SetRuleEngineData(gmEngineData data) {
-		// TODO To be done by Venci
+		m_agent.SetRuleEngineData(data);
 	}
 
+	/**
+	 * Constructor
+	 * 
+	 * 
+	 * @author Vencislav Medarov
+	 * @email venci932@gmail.com
+	 * @date 26.10.2013
+	 */
 	public boolean GetBid(int bid, int trump, int min, boolean force_bid) {
-		// TODO To be done by Venci
-
-		return (false);
+		boolean ret_val = false;
+		ret_val = m_agent.GetBid(bid, trump, min, force_bid);
+		m_trump = m_trump * trump;
+		return (ret_val);
 	}
 
 	public int GetTrump() {
