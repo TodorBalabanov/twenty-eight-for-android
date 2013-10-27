@@ -55,7 +55,7 @@ public class raPlayer {
 	}
 
 	protected void finalize() {
-		// TODO To be done by ...
+		// TODO To be done by Venci...
 	}
 
 	public void SetLocation(int loc) {
@@ -127,31 +127,31 @@ public class raPlayer {
 	}
 
 	public int GetTrump() {
-		// TODO To be done by ...
+		// TODO To be done by Venci...
 
 		return (0);
 	}
 
 	public int GetPlay() {
-		// TODO To be done by ...
+		// TODO To be done by Venci...
 
 		return (0);
 	}
 
 	public boolean PostPlayUpdate(gmEngineData data, int card) {
-		// TODO To be done by ...
+		// TODO To be done by Venci...
 
 		return (false);
 	}
 
 	public boolean CheckAssumptions(gmEngineData data) {
-		// TODO To be done by ...
+		// TODO To be done by Venci...
 
 		return (false);
 	}
 
 	public boolean Reset() {
-		// TODO To be done by ...
+		// TODO To be done by Venci...
 
 		return (false);
 	}
@@ -161,23 +161,23 @@ public class raPlayer {
 	}
 
 	public void SetRules(gmRules rules) {
-		// TODO To be done by ...
+		// TODO To be done by Venci...
 	}
 
 	public boolean SetClockwise(boolean flag) {
-		// TODO To be done by ...
+		// TODO To be done by Venci...
 
 		return (false);
 	}
 
 	public boolean GetClockwise() {
-		// TODO To be done by ...
+		// TODO To be done by Venci...
 
 		return (false);
 	}
 
 	public boolean AbandonGame(boolean flag) {
-		// TODO To be done by ...
+		// TODO To be done by Venci...
 
 		return (false);
 	}
