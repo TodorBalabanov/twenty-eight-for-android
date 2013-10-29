@@ -43,7 +43,7 @@ public class Globals {
 	public static final int raPLAYER_TYPE_HUMAN = 0;
 
 	public static final int gmSUIT_INVALID = -1;
-	
+
 	public static final int gmTOTAL_PLAYERS = 4;
 
 }

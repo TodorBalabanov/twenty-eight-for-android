@@ -42,185 +42,163 @@ public class ggPanel {
 	private boolean m_f_invalid;
 
 	private wxRect m_rect_diff;
-	
+
 	private wxRect m_rect_invalid;
 
 	// Disallow copy finalructor/assignment operators
 	private ggPanel(final ggPanel object) {
-		//TODO To be done by INFM032 F___52 Mihail Stankov ...
-		//TODO To be done by INFM042 F___46 Nadya Nedyalkova ...
-		//TODO To be done by INFM032 F___47 Kostadin Bulakiev ...
+		// TODO To be done by INFM032 F___52 Mihail Stankov ...
+		// TODO To be done by INFM042 F___46 Nadya Nedyalkova ...
+		// TODO To be done by INFM032 F___47 Kostadin Bulakiev ...
 	}
 
 	private ggPanel assign(final ggPanel object) {
-		//TODO To be done by INFM042 F___90 Svetoslav Slavkov ...
-		//TODO To be done by INFM032 F___68 Nikola Vushkov ...
-		//TODO To be done by INFM042 F___00 Tsvetelina Hristova ...
-		
-		return( this );
+		// TODO To be done by INFM042 F___90 Svetoslav Slavkov ...
+		// TODO To be done by INFM032 F___68 Nikola Vushkov ...
+		// TODO To be done by INFM042 F___00 Tsvetelina Hristova ...
+
+		return (this);
 	}
 
 	public ggPanel(final wxWindow parent) {
-		//TODO To be done by INFM032 F___47 Kostadin Bulakiev ...
-		//TODO To be done by INFM042 F___27 Georgi Kostadinov ...
-		//TODO To be done by INFM032 F___94 Aleksandar Milev ...
+		// TODO To be done by INFM032 F___47 Kostadin Bulakiev ...
+		// TODO To be done by INFM042 F___27 Georgi Kostadinov ...
+		// TODO To be done by INFM032 F___94 Aleksandar Milev ...
 	}
 
 	protected void finalize() {
-		//TODO To be done by INFM032 F___94 Aleksandar Milev ...
-		//TODO To be done by INFM042 F___52 Mihail Stankov ...
-		//TODO To be done by INFM032 F___27 Georgi Kostadinov ...
+		// TODO To be done by INFM032 F___94 Aleksandar Milev ...
+		// TODO To be done by INFM042 F___52 Mihail Stankov ...
+		// TODO To be done by INFM032 F___27 Georgi Kostadinov ...
 	}
 
 	public boolean Size() {
-		//TODO To be done by INFM032 F___56 Daniel Nikolov ...
-		//TODO To be done by INFM042 F___47 Kostadin Bulakiev ...
-		//TODO To be done by INFM042 F___00 Tsvetelina Hristova ...
-		
-		return( false );
+		// TODO To be done by INFM032 F___56 Daniel Nikolov ...
+		// TODO To be done by INFM042 F___47 Kostadin Bulakiev ...
+		// TODO To be done by INFM042 F___00 Tsvetelina Hristova ...
+
+		return (false);
 	}
 
 	public boolean Paint() {
-		//TODO To be done by INFM042 F___39 Shterion Yanev ...
-		//TODO To be done by INFM032 F___52 Mihail Stankov ...
-		//TODO To be done by INFM032 F___84 Mariya Kostadinova ...
-		
-		return( false );
+		// TODO To be done by INFM042 F___39 Shterion Yanev ...
+		// TODO To be done by INFM032 F___52 Mihail Stankov ...
+		// TODO To be done by INFM032 F___84 Mariya Kostadinova ...
+
+		return (false);
 	}
 
 	public void OnPaint(wxPaintEvent event) {
-		//TODO To be done by INFM032 F___47 Kostadin Bulakiev ...
-		//TODO To be done by INFM042 F___81 Marina Rangelova ...
-		//TODO To be done by INFM032 F___90 Svetoslav Slavkov ...
+		// TODO To be done by INFM032 F___47 Kostadin Bulakiev ...
+		// TODO To be done by INFM042 F___81 Marina Rangelova ...
+		// TODO To be done by INFM032 F___90 Svetoslav Slavkov ...
 	}
 
 	public boolean RefreshScreen() {
-		//TODO To be done by INFM042 F___14 Petya Atanasova ...
-		//TODO To be done by INFM032 F___94 Aleksandar Milev ...
-		//TODO To be done by INFM042 F___68 Nikola Vushkov ...
-		
-		return( false );
+		// TODO To be done by INFM042 F___14 Petya Atanasova ...
+		// TODO To be done by INFM032 F___94 Aleksandar Milev ...
+		// TODO To be done by INFM042 F___68 Nikola Vushkov ...
+
+		return (false);
 	}
 
-	public boolean BlitToBack(wxCoord xdest, wxCoord ydest,
-							  wxCoord width, wxCoord height, wxDC source, wxCoord xsrc,
-							  wxCoord ysrc) {
-		return( BlitToBack(xdest, ydest,
-				  width, height, source, xsrc,
-				  ysrc, Globals.wxCOPY, false,
-				  null, null) );
+	public boolean BlitToBack(wxCoord xdest, wxCoord ydest, wxCoord width,
+			wxCoord height, wxDC source, wxCoord xsrc, wxCoord ysrc) {
+		return (BlitToBack(xdest, ydest, width, height, source, xsrc, ysrc,
+				Globals.wxCOPY, false, null, null));
 	}
 
-	public boolean BlitToBack(wxCoord xdest, wxCoord ydest,
-							  wxCoord width, wxCoord height, wxDC source, wxCoord xsrc,
-							  wxCoord ysrc, int logicalFunc) {
-		return( BlitToBack(xdest, ydest,
-				  width, height, source, xsrc,
-				  ysrc, logicalFunc, false,
-				  null, null) );
+	public boolean BlitToBack(wxCoord xdest, wxCoord ydest, wxCoord width,
+			wxCoord height, wxDC source, wxCoord xsrc, wxCoord ysrc,
+			int logicalFunc) {
+		return (BlitToBack(xdest, ydest, width, height, source, xsrc, ysrc,
+				logicalFunc, false, null, null));
 	}
 
-	public boolean BlitToBack(wxCoord xdest, wxCoord ydest,
-							  wxCoord width, wxCoord height, wxDC source, wxCoord xsrc,
-							  wxCoord ysrc, int logicalFunc, boolean useMask
-							  ) {
-		return( BlitToBack(xdest, ydest,
-				  width, height, source, xsrc,
-				  ysrc, logicalFunc, useMask,
-				  null, null) );
+	public boolean BlitToBack(wxCoord xdest, wxCoord ydest, wxCoord width,
+			wxCoord height, wxDC source, wxCoord xsrc, wxCoord ysrc,
+			int logicalFunc, boolean useMask) {
+		return (BlitToBack(xdest, ydest, width, height, source, xsrc, ysrc,
+				logicalFunc, useMask, null, null));
 	}
 
-	public boolean BlitToBack(wxCoord xdest, wxCoord ydest,
-							  wxCoord width, wxCoord height, wxDC source, wxCoord xsrc,
-							  wxCoord ysrc, int logicalFunc, boolean useMask,
-							  wxCoord xsrcMask) {
-		return( BlitToBack(xdest, ydest,
-				  width, height, source, xsrc,
-				  ysrc, logicalFunc, useMask,
-				  xsrcMask, null) );
+	public boolean BlitToBack(wxCoord xdest, wxCoord ydest, wxCoord width,
+			wxCoord height, wxDC source, wxCoord xsrc, wxCoord ysrc,
+			int logicalFunc, boolean useMask, wxCoord xsrcMask) {
+		return (BlitToBack(xdest, ydest, width, height, source, xsrc, ysrc,
+				logicalFunc, useMask, xsrcMask, null));
 	}
 
-	public boolean BlitToBack(wxCoord xdest, wxCoord ydest,
-							  wxCoord width, wxCoord height, wxDC source, wxCoord xsrc,
-							  wxCoord ysrc, int logicalFunc, boolean useMask,
-							  wxCoord xsrcMask, wxCoord ysrcMask) {
-		//TODO To be done by INFM042 F___06 Rosen Kaplanov ...
-		//TODO To be done by INFM032 F___67 Nevena Sirakova ...
-		//TODO To be done by INFM042 F___93 Krasimir Chariyski ...
-		
-		return( false );
+	public boolean BlitToBack(wxCoord xdest, wxCoord ydest, wxCoord width,
+			wxCoord height, wxDC source, wxCoord xsrc, wxCoord ysrc,
+			int logicalFunc, boolean useMask, wxCoord xsrcMask, wxCoord ysrcMask) {
+		// TODO To be done by INFM042 F___06 Rosen Kaplanov ...
+		// TODO To be done by INFM032 F___67 Nevena Sirakova ...
+		// TODO To be done by INFM042 F___93 Krasimir Chariyski ...
+
+		return (false);
 	}
 
-	public boolean BlitToFront(wxCoord xdest, wxCoord ydest,
-							   wxCoord width, wxCoord height, wxDC source, wxCoord xsrc,
-							   wxCoord ysrc) {
-		return( BlitToFront(xdest, ydest,
-				   width, height, source, xsrc,
-				   ysrc, Globals.wxCOPY, false,
-				   null, null) );
+	public boolean BlitToFront(wxCoord xdest, wxCoord ydest, wxCoord width,
+			wxCoord height, wxDC source, wxCoord xsrc, wxCoord ysrc) {
+		return (BlitToFront(xdest, ydest, width, height, source, xsrc, ysrc,
+				Globals.wxCOPY, false, null, null));
 	}
 
-	public boolean BlitToFront(wxCoord xdest, wxCoord ydest,
-							   wxCoord width, wxCoord height, wxDC source, wxCoord xsrc,
-							   wxCoord ysrc, int logicalFunc) {
-		return( BlitToFront(xdest, ydest,
-				   width, height, source, xsrc,
-				   ysrc, logicalFunc, false,
-				   null, null) );
+	public boolean BlitToFront(wxCoord xdest, wxCoord ydest, wxCoord width,
+			wxCoord height, wxDC source, wxCoord xsrc, wxCoord ysrc,
+			int logicalFunc) {
+		return (BlitToFront(xdest, ydest, width, height, source, xsrc, ysrc,
+				logicalFunc, false, null, null));
 	}
 
-	public boolean BlitToFront(wxCoord xdest, wxCoord ydest,
-							   wxCoord width, wxCoord height, wxDC source, wxCoord xsrc,
-							   wxCoord ysrc, int logicalFunc, boolean useMask
-							   ) {
-		return( BlitToFront(xdest, ydest,
-				   width, height, source, xsrc,
-				   ysrc, logicalFunc, useMask,
-				   null, null) );
+	public boolean BlitToFront(wxCoord xdest, wxCoord ydest, wxCoord width,
+			wxCoord height, wxDC source, wxCoord xsrc, wxCoord ysrc,
+			int logicalFunc, boolean useMask) {
+		return (BlitToFront(xdest, ydest, width, height, source, xsrc, ysrc,
+				logicalFunc, useMask, null, null));
 	}
 
-	public boolean BlitToFront(wxCoord xdest, wxCoord ydest,
-							   wxCoord width, wxCoord height, wxDC source, wxCoord xsrc,
-							   wxCoord ysrc, int logicalFunc, boolean useMask,
-							   wxCoord xsrcMask) {
-		return( BlitToFront(xdest, ydest,
-				   width, height, source, xsrc,
-				   ysrc, logicalFunc, useMask,
-				   xsrcMask, null) );
+	public boolean BlitToFront(wxCoord xdest, wxCoord ydest, wxCoord width,
+			wxCoord height, wxDC source, wxCoord xsrc, wxCoord ysrc,
+			int logicalFunc, boolean useMask, wxCoord xsrcMask) {
+		return (BlitToFront(xdest, ydest, width, height, source, xsrc, ysrc,
+				logicalFunc, useMask, xsrcMask, null));
 	}
 
-	public boolean BlitToFront(wxCoord xdest, wxCoord ydest,
-							   wxCoord width, wxCoord height, wxDC source, wxCoord xsrc,
-							   wxCoord ysrc, int logicalFunc, boolean useMask,
-							   wxCoord xsrcMask, wxCoord ysrcMask) {
-		//TODO To be done by INFM042 F___68 Georgi Srebrov ...
-		//TODO To be done by INFM032 F___06 Rosen Kaplanov ...
-		//TODO To be done by INFM032 F___00 Tsvetelina Hristova ...
-		
-		return( false );
+	public boolean BlitToFront(wxCoord xdest, wxCoord ydest, wxCoord width,
+			wxCoord height, wxDC source, wxCoord xsrc, wxCoord ysrc,
+			int logicalFunc, boolean useMask, wxCoord xsrcMask, wxCoord ysrcMask) {
+		// TODO To be done by INFM042 F___68 Georgi Srebrov ...
+		// TODO To be done by INFM032 F___06 Rosen Kaplanov ...
+		// TODO To be done by INFM032 F___00 Tsvetelina Hristova ...
+
+		return (false);
 	}
 
 	public boolean DrawTextOnBack(String text, wxPoint pt) {
-		return( DrawTextOnBack(text, pt, Globals.wxNullColour, Globals.wxNullFont) );
+		return (DrawTextOnBack(text, pt, Globals.wxNullColour,
+				Globals.wxNullFont));
 	}
 
 	public boolean DrawTextOnBack(String text, wxPoint pt, wxColour colour) {
-		return( DrawTextOnBack(text, pt, colour, Globals.wxNullFont) );
+		return (DrawTextOnBack(text, pt, colour, Globals.wxNullFont));
 	}
 
-	public boolean DrawTextOnBack(String text, wxPoint pt, wxColour colour, wxFont font) {
-		//TODO To be done by INFM042 F___27 Georgi Kostadinov ...
-		//TODO To be done by INFM032 F___05 Iliya Grozev ...
-		//TODO To be done by INFM042 F___56 Daniel Nikolov ...
-		
-		return( false );
+	public boolean DrawTextOnBack(String text, wxPoint pt, wxColour colour,
+			wxFont font) {
+		// TODO To be done by INFM042 F___27 Georgi Kostadinov ...
+		// TODO To be done by INFM032 F___05 Iliya Grozev ...
+		// TODO To be done by INFM042 F___56 Daniel Nikolov ...
+
+		return (false);
 	}
 
 	public boolean ClearDifference() {
-		//TODO To be done by INFM042 F___88 Ivan Dankinov ...
-		//TODO To be done by INFM042 F___68 Georgi Srebrov ...
-		//TODO To be done by INFM032 F___93 Krasimir Chariyski ...
-		
-		return( false );
+		// TODO To be done by INFM042 F___88 Ivan Dankinov ...
+		// TODO To be done by INFM042 F___68 Georgi Srebrov ...
+		// TODO To be done by INFM032 F___93 Krasimir Chariyski ...
+
+		return (false);
 	}
 }
