@@ -72,7 +72,9 @@ public class raPlayer {
 	 * @date 27.10.2013
 	 */
 	public void SetLocation(int loc) {
-		// TODO To be done by Venci...
+		assert ((loc >= 0) && (loc < gmTOTAL_PLAYERS)) : "Wrong number of players!";
+		m_loc = loc;
+		m_agent.SetLocation(m_loc);
 	}
 
 	/**
