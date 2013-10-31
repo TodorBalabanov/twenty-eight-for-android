@@ -54,10 +54,23 @@ public class raPlayer {
 		m_trump = Globals.gmSUIT_INVALID;
 	}
 
+	/**
+	 * Constructor without parameters.
+	 * 
+	 * @author Vencislav Medarov
+	 * @email venci932@gmail.com
+	 * @date 27.10.2013
+	 */
 	protected void finalize() {
-		// TODO To be done by Venci...
 	}
 
+	/**
+	 * Constructor
+	 * 
+	 * @author Vencislav Medarov
+	 * @email venci932@gmail.com
+	 * @date 27.10.2013
+	 */
 	public void SetLocation(int loc) {
 		// TODO To be done by Venci...
 	}
@@ -126,59 +139,106 @@ public class raPlayer {
 		return (ret_val);
 	}
 
+	/**
+	 * Constructor
+	 * 
+	 * @author Vencislav Medarov
+	 * @email venci932@gmail.com
+	 * @date 27.10.2013
+	 */
 	public int GetTrump() {
-		// TODO To be done by Venci...
-
-		return (0);
+		return (m_agent.GetTrump());
 	}
 
+	/**
+	 * Constructor
+	 * 
+	 * @author Vencislav Medarov
+	 * @email venci932@gmail.com
+	 * @date 27.10.2013
+	 */
 	public int GetPlay() {
-		// TODO To be done by Venci...
-
-		return (0);
+		return (m_agent.GetPlay(0));
 	}
 
+	/**
+	 * Constructor
+	 * 
+	 * @author Vencislav Medarov
+	 * @email venci932@gmail.com
+	 * @date 27.10.2013
+	 */
 	public boolean PostPlayUpdate(gmEngineData data, int card) {
-		// TODO To be done by Venci...
-
-		return (false);
+		return (m_agent.PostPlayUpdate(data, card));
 	}
 
+	/**
+	 * Constructor
+	 * 
+	 * @author Vencislav Medarov
+	 * @email venci932@gmail.com
+	 * @date 27.10.2013
+	 */
 	public boolean CheckAssumptions(gmEngineData data) {
-		// TODO To be done by Venci...
-
-		return (false);
+		return (m_agent.CheckAssumptions(data));
 	}
 
+	/**
+	 * Constructor
+	 * 
+	 * @author Vencislav Medarov
+	 * @email venci932@gmail.com
+	 * @date 27.10.2013
+	 */
 	public boolean Reset() {
-		// TODO To be done by Venci...
-
-		return (false);
+		return (m_agent.Reset());
 	}
 
 	public void SetRules() {
 		SetRules(null);
 	}
 
+	/**
+	 * Constructor
+	 * 
+	 * @author Vencislav Medarov
+	 * @email venci932@gmail.com
+	 * @date 27.10.2013
+	 */
 	public void SetRules(gmRules rules) {
-		// TODO To be done by Venci...
+		m_agent.SetRules(rules);
 	}
 
+	/**
+	 * Constructor
+	 * 
+	 * @author Vencislav Medarov
+	 * @email venci932@gmail.com
+	 * @date 27.10.2013
+	 */
 	public boolean SetClockwise(boolean flag) {
-		// TODO To be done by Venci...
-
-		return (false);
+		return (m_agent.SetClockwise(flag));
 	}
 
+	/**
+	 * Constructor
+	 * 
+	 * @author Vencislav Medarov
+	 * @email venci932@gmail.com
+	 * @date 27.10.2013
+	 */
 	public boolean GetClockwise() {
-		// TODO To be done by Venci...
-
-		return (false);
+		return (m_agent.GetClockwise());
 	}
 
+	/**
+	 * Constructor
+	 * 
+	 * @author Vencislav Medarov
+	 * @email venci932@gmail.com
+	 * @date 27.10.2013
+	 */
 	public boolean AbandonGame(boolean flag) {
-		// TODO To be done by Venci...
-
-		return (false);
+		return (m_agent.AbandonGame(flag));
 	}
 }
