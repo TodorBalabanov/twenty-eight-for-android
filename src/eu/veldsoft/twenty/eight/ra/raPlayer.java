@@ -30,12 +30,20 @@ import eu.veldsoft.twenty.eight.gm.gmRules;
 import eu.veldsoft.twenty.eight.dummy.Globals;
 
 public class raPlayer {
+	/**
+	 */
 	private aiAgent m_agent;
 
+	/**
+	 */
 	private int m_loc;
 
+	/**
+	 */
 	private int m_type;
 
+	/**
+	 */
 	private int m_trump;
 
 	/**
@@ -72,7 +80,7 @@ public class raPlayer {
 	 * @date 27.10.2013
 	 */
 	public void SetLocation(int loc) {
-		assert ((loc >= 0) && (loc < Globals.gmTOTAL_PLAYERS)) : "Wrong number of players!";
+		assert ((loc >= 0) && (loc < Globals.gmTOTAL_PLAYERS));
 		m_loc = loc;
 		m_agent.SetLocation(m_loc);
 	}

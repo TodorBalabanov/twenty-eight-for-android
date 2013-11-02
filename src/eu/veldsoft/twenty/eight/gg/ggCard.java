@@ -23,6 +23,9 @@
 
 package eu.veldsoft.twenty.eight.gg;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import eu.veldsoft.twenty.eight.dummy.Globals;
 import eu.veldsoft.twenty.eight.dummy.wxBitmap;
 import eu.veldsoft.twenty.eight.dummy.wxCoord;
@@ -31,6 +34,15 @@ import eu.veldsoft.twenty.eight.dummy.wxMemoryDC;
 import eu.veldsoft.twenty.eight.dummy.wxMutex;
 
 public class ggCard {
+	/**
+	 * Logger for debug.
+	 */
+	private final static Logger LOGGER = Logger.getLogger(ggCard.class
+			.getName());
+	static {
+		LOGGER.setLevel(Level.INFO);
+	}
+
 	public static final int GG_CARD_CARD_COUNT = 52;
 
 	public static final int GG_CARD_SPADES = 3;
@@ -110,10 +122,30 @@ public class ggCard {
 		// TODO To be done by INFM032 F___84 Mariya Kostadinova ...
 	}
 
+	/**
+	 * This is a constructor.
+	 * 
+	 * @param suit
+	 *            This is a card suit.
+	 * @param value
+	 *            This is the rank value.
+	 *            
+	 * @author INFM042 F___05 Iliya Grozev
+	 * @author INFM042 F___00 Tsvetelina Hristova
+	 * @author INFM032 F___93 Krasimir Chariyski
+	 */
 	public ggCard(int suit, int value) {
-		// TODO To be done by INFM042 F___05 Iliya Grozev ...
-		// TODO To be done by INFM042 F___00 Tsvetelina Hristova ...
-		// TODO To be done by INFM032 F___93 Krasimir Chariyski ...
+		this();
+
+		assert ((suit >= 0) && (suit < GG_CARD_TOTAL_SUITS));
+		assert ((value >= 0) && (suit < GG_CARD_TOTAL_VALUES));
+
+		if (LoadFace("face_" + (suit * GG_CARD_TOTAL_VALUES + value)) == false) {
+			LOGGER.info("LoadFace failed.");
+		}
+
+		assert (m_face != null);
+		return;
 	}
 
 	public ggCard(int other) {
