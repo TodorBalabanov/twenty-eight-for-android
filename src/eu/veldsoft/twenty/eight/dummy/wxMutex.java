@@ -32,13 +32,13 @@ public class wxMutex implements Lock {
 	@Override
 	public void lock() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void lockInterruptibly() throws InterruptedException {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -63,7 +63,7 @@ public class wxMutex implements Lock {
 	@Override
 	public void unlock() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

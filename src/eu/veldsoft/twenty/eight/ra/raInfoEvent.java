@@ -46,7 +46,7 @@ public class raInfoEvent extends wxEvent {
 
 	public wxEvent Clone() {
 		// TODO To be done by ...
-		
+
 		return new raInfoEvent(this);
 	}
 
@@ -56,7 +56,7 @@ public class raInfoEvent extends wxEvent {
 
 	public int GetCommand() {
 		// TODO To be done by ...
-		
+
 		return (0);
 	}
 }
