@@ -51,7 +51,7 @@ public class raUpdate {
 
 	public Object Entry() {
 		// TODO To be done by ...
-		
-		return(null);
+
+		return (null);
 	}
 }
