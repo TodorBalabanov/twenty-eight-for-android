@@ -41,7 +41,7 @@ public class raInfoEvent extends wxEvent {
 	}
 
 	public raInfoEvent(final raInfoEvent evt) {
-		// TODO To be done by ...
+		// TODO To be done by Venci...
 	}
 
 	public wxEvent Clone() {
@@ -51,11 +51,11 @@ public class raInfoEvent extends wxEvent {
 	}
 
 	public void SetCommand(int cmd) {
-		// TODO To be done by ...
+		// TODO To be done by Venci...
 	}
 
 	public int GetCommand() {
-		// TODO To be done by ...
+		// TODO To be done by Venci...
 
 		return (0);
 	}
