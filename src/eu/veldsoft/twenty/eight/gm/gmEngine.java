@@ -217,19 +217,23 @@ public class gmEngine {
 
 		return (false);
 	}
+	
 	/**
 	 * Set Feedback
 	 * 
 	 * @param feedback
 	 *            boolean type
+	 *            
 	 * @author INFM042 F___93 Krasimir Chariyski
 	 * @author INFM042 F___56 Daniel Nikolov
 	 * @author INFM032 F___14 Petya Atanasova
 	 */
 	public void SetFeedback(boolean feedback) {
 		m_data.feedback = feedback;
-		if (m_data.feedback == false)
+		
+		if (m_data.feedback == false) {
 			m_data.output_pending = false;
+		}
 	}
 
 	public void GetRules(gmRules rules) {
