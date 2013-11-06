@@ -24,6 +24,7 @@
 package eu.veldsoft.twenty.eight.ra;
 
 import eu.veldsoft.twenty.eight.dummy.wxEvent;
+import eu.veldsoft.twenty.eight.dummy.Globals;
 
 public class raInfoEvent extends wxEvent {
 	private int m_cmd;
@@ -50,13 +51,29 @@ public class raInfoEvent extends wxEvent {
 		return new raInfoEvent(this);
 	}
 
+	/**
+	 * Set command.
+	 * 
+	 * @param cmd
+	 * 
+	 * @author Vencislav Medarov
+	 * @email venci932@gmail.com
+	 * @date 02.11.2013
+	 */
 	public void SetCommand(int cmd) {
-		// TODO To be done by Venci...
+		m_cmd = cmd;
 	}
 
+	/**
+	 * Get chosen command.
+	 * 
+	 * @param cmd
+	 * 
+	 * @author Vencislav Medarov
+	 * @email venci932@gmail.com
+	 * @date 02.11.2013
+	 */
 	public int GetCommand() {
-		// TODO To be done by Venci...
-
-		return (0);
+		return (m_cmd);
 	}
 }
