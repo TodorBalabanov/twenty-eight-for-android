@@ -47,7 +47,7 @@ public class raPlayer {
 	private int m_trump;
 
 	/**
-	 * Constructor
+	 * Constructor.
 	 * 
 	 * @author Vencislav Medarov
 	 * @email venci932@gmail.com
@@ -73,7 +73,7 @@ public class raPlayer {
 	}
 
 	/**
-	 * Constructor
+	 * Set location.
 	 * 
 	 * @author Vencislav Medarov
 	 * @email venci932@gmail.com
@@ -97,7 +97,7 @@ public class raPlayer {
 	}
 
 	/**
-	 * Constructor
+	 * Return the corresponding type.
 	 * 
 	 * @author Vencislav Medarov
 	 * @email venci932@gmail.com
@@ -122,7 +122,7 @@ public class raPlayer {
 	}
 
 	/**
-	 * Constructor
+	 * Setting the rules of engine data.
 	 * 
 	 * @param data
 	 *            ...
@@ -135,7 +135,7 @@ public class raPlayer {
 	}
 
 	/**
-	 * Constructor
+	 * Get bid level.
 	 * 
 	 * 
 	 * @author Vencislav Medarov
@@ -150,7 +150,7 @@ public class raPlayer {
 	}
 
 	/**
-	 * Constructor
+	 * Get trump.
 	 * 
 	 * @author Vencislav Medarov
 	 * @email venci932@gmail.com
@@ -161,7 +161,7 @@ public class raPlayer {
 	}
 
 	/**
-	 * Constructor
+	 * Get playing.
 	 * 
 	 * @author Vencislav Medarov
 	 * @email venci932@gmail.com
@@ -172,7 +172,7 @@ public class raPlayer {
 	}
 
 	/**
-	 * Constructor
+	 * Updating of post play.
 	 * 
 	 * @author Vencislav Medarov
 	 * @email venci932@gmail.com
@@ -183,7 +183,7 @@ public class raPlayer {
 	}
 
 	/**
-	 * Constructor
+	 * Checking assumptions.
 	 * 
 	 * @author Vencislav Medarov
 	 * @email venci932@gmail.com
@@ -194,7 +194,7 @@ public class raPlayer {
 	}
 
 	/**
-	 * Constructor
+	 * Method for reset.
 	 * 
 	 * @author Vencislav Medarov
 	 * @email venci932@gmail.com
@@ -209,7 +209,7 @@ public class raPlayer {
 	}
 
 	/**
-	 * Constructor
+	 * Rule setter.
 	 * 
 	 * @author Vencislav Medarov
 	 * @email venci932@gmail.com
@@ -220,7 +220,7 @@ public class raPlayer {
 	}
 
 	/**
-	 * Constructor
+	 * Clockwise setter.
 	 * 
 	 * @author Vencislav Medarov
 	 * @email venci932@gmail.com
@@ -231,7 +231,7 @@ public class raPlayer {
 	}
 
 	/**
-	 * Constructor
+	 * Return a clockwise.
 	 * 
 	 * @author Vencislav Medarov
 	 * @email venci932@gmail.com
@@ -242,7 +242,7 @@ public class raPlayer {
 	}
 
 	/**
-	 * Constructor
+	 * Constructor.
 	 * 
 	 * @author Vencislav Medarov
 	 * @email venci932@gmail.com
