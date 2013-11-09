@@ -177,10 +177,15 @@ public class aiAgent {
 		// TODO To be done by INFM032 F___14 Petya Atanasova ...
 	}
 
+	/**
+	 * @author INFM032 F___06 Rosen Kaplanov
+	 * @author INFM042 F___46 Nadya Nedyalkova
+	 * @author INFM042 F___68 Georgi Srebrov
+	 */
 	public aiAgent() {
-		// TODO To be done by INFM032 F___06 Rosen Kaplanov ...
-		// TODO To be done by INFM042 F___46 Nadya Nedyalkova ...
-		// TODO To be done by INFM042 F___68 Georgi Srebrov ...
+		// TODO : Remove hardcoding
+		m_loc = 0;
+		Reset();
 	}
 
 	/**
