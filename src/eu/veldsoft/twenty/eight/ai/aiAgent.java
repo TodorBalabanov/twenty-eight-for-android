@@ -187,11 +187,13 @@ public class aiAgent {
 	 * Set location.
 	 * 
 	 * @param loc
+	 * 
+	 * @author INFM032 F___00 Tsvetelina Hristova
+	 * @author INFM042 F___94 Aleksandar Milev
+	 * @author INFM042 F___90 Svetoslav Slavkov
 	 */
 	public void SetLocation(int loc) {
-		// TODO To be done by INFM042 F___94 Aleksandar Milev ...
-		// TODO To be done by INFM042 F___90 Svetoslav Slavkov ...
-		// TODO To be done by INFM032 F___00 Tsvetelina Hristova ...
+		m_loc = loc;
 	}
 
 	public int GetLocation() {
