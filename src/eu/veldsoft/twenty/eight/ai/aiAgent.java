@@ -59,12 +59,27 @@ public class aiAgent {
 
 	private long m_mb_null_susp;
 
+	/**
+	 * 
+	 * @param elem1
+	 * @param elem2
+	 * @return
+	 * 
+	 * @author INFM042 F___00 Tsvetelina Hristova
+	 * @author INFM032 F___45 Valentin Popov
+	 * @author INFM042 F___48 Georgi Ivanov
+	 */
 	private static int CompareMoves(final Object elem1, final Object elem2) {
-		// TODO To be done by INFM042 F___00 Tsvetelina Hristova ...
-		// TODO To be done by INFM032 F___45 Valentin Popov ...
-		// TODO To be done by INFM042 F___48 Georgi Ivanov ...
-
-		return (0);
+		aiMove move1, move2;
+		move1 = (aiMove) elem1;
+		move2 = (aiMove) elem2;
+		if (move1.rank > move2.rank) {
+			return -1;
+		} else if (move1.rank == move2.rank) {
+			return 0;
+		} else {
+			return 1;
+		}
 	}
 
 	// Disallow copy finalructor/assignment operators
