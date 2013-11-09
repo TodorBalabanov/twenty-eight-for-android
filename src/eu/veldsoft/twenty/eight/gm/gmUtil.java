@@ -23,6 +23,10 @@
 
 package eu.veldsoft.twenty.eight.gm;
 
+import eu.veldsoft.twenty.eight.dummy.wxFrame;
+import eu.veldsoft.twenty.eight.dummy.wxStatusBar;
+import eu.veldsoft.twenty.eight.dummy.wxTheApp;
+
 public class gmUtil {
 	public static final int gmTOTAL_CARDS = 32;
 
@@ -102,12 +106,33 @@ public class gmUtil {
 		return (SetStatusText(text, 0));
 	}
 
+	/**
+	 * 
+	 * @param text
+	 * @param i
+	 * @return
+	 * @author INFM032 F___81 Marina Rangelova
+	 * @author INFM032 F___06 Rosen Kaplanov
+	 * @author INFM042 F___39 Shterion Yanev
+	 */
 	public static boolean SetStatusText(final String text, int i) {
-		// TODO To be done by INFM032 F___81 Marina Rangelova ...
-		// TODO To be done by INFM032 F___06 Rosen Kaplanov ...
-		// TODO To be done by INFM042 F___39 Shterion Yanev ...
+		wxFrame main_frame;
+		wxStatusBar status_bar;
 
-		return (false);
+		main_frame = null;
+		main_frame = (wxFrame) wxTheApp.GetTopWindow();
+		if (main_frame == null) {
+			return false;
+		}
+		status_bar = null;
+		status_bar = main_frame.GetStatusBar();
+		if (status_bar == null) {
+			return false;
+		}
+		status_bar.SetStatusText(text, i);
+		status_bar.Update();
+
+		return true;
 	}
 
 	public static int BitsSetTable256[];
