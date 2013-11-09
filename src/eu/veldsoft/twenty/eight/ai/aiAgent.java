@@ -330,12 +330,25 @@ public class aiAgent {
 		// TODO To be done by INFM032 F___90 Svetoslav Slavkov ...
 	}
 
+	/**
+	 * 
+	 * @param flag
+	 * @return
+	 * @author INFM032 F___00 Tsvetelina Hristova
+	 * @author INFM042 F___45 Valentin Popov
+	 * @author INFM042 F___88 Ivan Dankinov
+	 */
 	public boolean SetClockwise(boolean flag) {
-		// TODO To be done by INFM032 F___00 Tsvetelina Hristova ...
-		// TODO To be done by INFM042 F___45 Valentin Popov ...
-		// TODO To be done by INFM042 F___88 Ivan Dankinov ...
+		gmEngineData data = new gmEngineData();
+		m_engine.GetData(data);
+		if (flag) {
+			data.rules.rot_addn = 1;
+		} else {
+			data.rules.rot_addn = 3;
+		}
+		m_engine.SetData(data, false);
 
-		return (false);
+		return true;
 	}
 
 	public boolean GetClockwise() {
