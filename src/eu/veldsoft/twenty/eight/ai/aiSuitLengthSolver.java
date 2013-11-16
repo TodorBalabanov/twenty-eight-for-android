@@ -42,11 +42,18 @@ public class aiSuitLengthSolver {
 
 	private int m_hand_sum_of_min[] = new int[slTOTAL_HANDS];
 
-	// Disallow copy finalructor/assignment operators
+	/**
+	 * Disallow copy finalructor/assignment operators
+	 * 
+	 * @param object
+	 * @author INFM042 F___84 Mariya Kostadinova
+	 * @author INFM032 F___06 Rosen Kaplanov
+	 * @author INFM032 F___45 Valentin Popov
+	 */
 	private aiSuitLengthSolver(final aiSuitLengthSolver object) {
-		// TODO To be done by INFM042 F___84 Mariya Kostadinova ...
-		// TODO To be done by INFM032 F___06 Rosen Kaplanov ...
-		// TODO To be done by INFM032 F___45 Valentin Popov ...
+		/*
+		 * Empty body constructor.
+		 */
 	}
 
 	private aiSuitLengthSolver assign(final aiSuitLengthSolver object) {
