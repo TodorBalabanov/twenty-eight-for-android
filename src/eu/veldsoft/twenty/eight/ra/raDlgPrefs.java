@@ -34,15 +34,19 @@ public class raDlgPrefs {
 
 	/*
 	 * Disallow copy finalructor/assignment operators
+	 * 
 	 * @author INFM042 F___00 Tsvetelina Hristova
+	 * 
 	 * @author INFM042 F___93 Krasimir Chariyski
+	 * 
 	 * @author INFM032 F___67 Nevena Sirakova
-	 */	
-	private raDlgPrefs(final raDlgPrefs object) {
-	/*
-	 * Empty constructor.
 	 */
+	private raDlgPrefs(final raDlgPrefs object) {
+		/*
+		 * Empty constructor.
+		 */
 	}
+
 	private raDlgPrefs assign(final raDlgPrefs object) {
 		// TODO To be done by INFM032 F___00 Tsvetelina Hristova ...
 		// TODO To be done by INFM032 F___67 Nevena Sirakova ...
@@ -51,10 +55,16 @@ public class raDlgPrefs {
 		return (this);
 	}
 
+	/**
+	 * @author INFM032 F___00 Tsvetelina Hristova
+	 * @author INFM032 F___67 Nevena Sirakova
+	 * @author INFM032 F___56 Daniel Nikolov
+	 */
+
 	public raDlgPrefs() {
-		// TODO To be done by INFM032 F___67 Nevena Sirakova ...
-		// TODO To be done by INFM032 F___00 Tsvetelina Hristova ...
-		// TODO To be done by INFM032 F___56 Daniel Nikolov ...
+		/**
+		 * This is empty constructor.
+		 */
 	}
 
 	public raDlgPrefs(wxWindow parent, wxWindowID id, final String caption,
