@@ -95,12 +95,60 @@ public class aiSuitLengthSolver {
 		return (false);
 	}
 
+	/**
+	 * 
+	 * @param data
+	 * @param hand
+	 * @param suit
+	 * @return
+	 * @author INFM032 F___00 Tsvetelina Hristova
+	 * @author INFM032 F___90 Svetoslav Slavkov
+	 * @author INFM032 F___39 Shterion Yanev
+	 */
 	private boolean RecalcCellMin(slData data, int hand, int suit) {
-		// TODO To be done by INFM032 F___00 Tsvetelina Hristova ...
-		// TODO To be done by INFM032 F___90 Svetoslav Slavkov ...
-		// TODO To be done by INFM032 F___39 Shterion Yanev ...
+		int i = 0;
+		int j = 0;
+		int old_min = 0;
+		int new_min = 0;
 
-		return (false);
+		assert (data != null);
+		assert (hand < slTOTAL_HANDS);
+		assert (suit < slTOTAL_SUITS);
+		assert (data.cells[hand][suit].suit_length == slVACANT);
+		i = data.hand_total_length[hand] - data.hand_sum_of_maxs[hand]
+				+ data.cells[hand][suit].max;
+		if (i < 0) {
+			i = 0;
+		}
+
+		j = data.suit_total_length[suit] - data.suit_sum_of_maxs[suit]
+				+ data.cells[hand][suit].max;
+		if (j < 0) {
+			j = 0;
+		}
+
+		old_min = data.cells[hand][suit].min;
+		new_min = Math.max(i, j);
+
+		/**
+		 * The new minimum should be equal to or more than the old minimum
+		 */
+		assert (new_min >= old_min);
+
+		data.cells[hand][suit].min = new_min;
+
+		/**
+		 * If the new min is different from the old min, correct the sum of
+		 * vacant mins
+		 */
+
+		if (new_min != old_min) {
+			data.hand_sum_of_vacant_mins[hand] += (new_min - old_min);
+			data.suit_sum_of_vacant_mins[suit] += (new_min - old_min);
+			return true;
+		}
+
+		return false;
 	}
 
 	private boolean RecalcMinForAllCells(slData data) {
