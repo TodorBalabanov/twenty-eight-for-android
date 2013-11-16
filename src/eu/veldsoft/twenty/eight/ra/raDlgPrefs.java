@@ -32,13 +32,17 @@ import eu.veldsoft.twenty.eight.dummy.wxWindowID;
 
 public class raDlgPrefs {
 
-	// Disallow copy finalructor/assignment operators
+	/*
+	 * Disallow copy finalructor/assignment operators
+	 * @author INFM042 F___00 Tsvetelina Hristova
+	 * @author INFM042 F___93 Krasimir Chariyski
+	 * @author INFM032 F___67 Nevena Sirakova
+	 */	
 	private raDlgPrefs(final raDlgPrefs object) {
-		// TODO To be done by INFM042 F___00 Tsvetelina Hristova ...
-		// TODO To be done by INFM032 F___67 Nevena Sirakova ...
-		// TODO To be done by INFM042 F___93 Krasimir Chariyski ...
+	/*
+	 * Empty constructor.
+	 */
 	}
-
 	private raDlgPrefs assign(final raDlgPrefs object) {
 		// TODO To be done by INFM032 F___00 Tsvetelina Hristova ...
 		// TODO To be done by INFM032 F___67 Nevena Sirakova ...
