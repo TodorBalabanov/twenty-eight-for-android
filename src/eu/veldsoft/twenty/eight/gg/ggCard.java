@@ -129,7 +129,7 @@ public class ggCard {
 	 *            This is a card suit.
 	 * @param value
 	 *            This is the rank value.
-	 *            
+	 * 
 	 * @author INFM042 F___05 Iliya Grozev
 	 * @author INFM042 F___00 Tsvetelina Hristova
 	 * @author INFM032 F___93 Krasimir Chariyski
@@ -154,10 +154,16 @@ public class ggCard {
 		// TODO To be done by INFM032 F___05 Iliya Grozev ...
 	}
 
+	/**
+	 * @author INFM042 F___00 Tsvetelina Hristova
+	 * @author INFM042 F___05 Iliya Grozev
+	 * @author INFM042 F___48 Georgi Ivanov
+	 */
 	protected void finalize() {
-		// TODO To be done by INFM042 F___48 Georgi Ivanov ...
-		// TODO To be done by INFM042 F___05 Iliya Grozev ...
-		// TODO To be done by INFM042 F___00 Tsvetelina Hristova ...
+		if (m_face != null) {
+
+			m_face = null;
+		}
 	}
 
 	public wxBitmap m_face;
