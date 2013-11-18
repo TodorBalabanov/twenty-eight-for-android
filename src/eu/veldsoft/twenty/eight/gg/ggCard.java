@@ -101,6 +101,8 @@ public class ggCard {
 
 	private static wxBitmap s_mask_bmp;
 
+	public wxBitmap m_face;
+
 	// Disallow copy finalructor/assignment operators
 	private ggCard(final ggCard object) {
 		// TODO To be done by INFM042 F___88 Ivan Dankinov ...
@@ -155,18 +157,16 @@ public class ggCard {
 	}
 
 	/**
+	 * 
 	 * @author INFM042 F___00 Tsvetelina Hristova
 	 * @author INFM042 F___05 Iliya Grozev
 	 * @author INFM042 F___48 Georgi Ivanov
 	 */
 	protected void finalize() {
 		if (m_face != null) {
-
 			m_face = null;
 		}
 	}
-
-	public wxBitmap m_face;
 
 	public boolean BlitTo(wxDC dest, wxCoord xdest, wxCoord ydest) {
 		return (BlitTo(dest, xdest, ydest, Globals.wxCOPY));
