@@ -25,4 +25,18 @@ package eu.veldsoft.twenty.eight.dummy;
 
 public class wxEvent {
 
+	private wxEvent type;
+
+	/**
+	 * Set event type.
+	 * 
+	 * 
+	 * @author Vencislav Medarov
+	 * @email venci932@gmail.com
+	 * @date 20.11.2013
+	 */
+	public void SetEventType(wxEvent type) {
+		this.type = type;
+	}
+
 }

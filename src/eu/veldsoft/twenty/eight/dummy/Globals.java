@@ -47,4 +47,6 @@ public class Globals {
 	public static final int gmTOTAL_PLAYERS = 4;
 
 	public static final wxEvent raINFO_EVT = null;
+
+	public static final String ra_APP_URL = "http://rosanne.sourceforge.net";
 }
