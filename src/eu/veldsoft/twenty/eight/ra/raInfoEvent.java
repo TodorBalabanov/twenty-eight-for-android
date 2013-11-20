@@ -41,8 +41,17 @@ public class raInfoEvent extends wxEvent {
 		// TODO To be done by ...
 	}
 
+	/**
+	 * Constructor.
+	 * 
+	 * 
+	 * @author Vencislav Medarov
+	 * @email venci932@gmail.com
+	 * @date 11.11.2013
+	 */
 	public raInfoEvent(final raInfoEvent evt) {
-		// TODO To be done by Venci...
+		SetEventType(Globals.raINFO_EVT);
+		m_cmd = evt.m_cmd;
 	}
 
 	public wxEvent Clone() {
