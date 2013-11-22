@@ -51,7 +51,7 @@ public class raPlayer {
 	 * 
 	 * @author Vencislav Medarov
 	 * @email venci932@gmail.com
-	 * @date 26.10.2013
+	 * @date 26 Oct 2013
 	 */
 	public raPlayer() {
 		/*
@@ -67,7 +67,7 @@ public class raPlayer {
 	 * 
 	 * @author Vencislav Medarov
 	 * @email venci932@gmail.com
-	 * @date 27.10.2013
+	 * @date 27 Oct 2013
 	 */
 	protected void finalize() {
 	}
@@ -77,7 +77,7 @@ public class raPlayer {
 	 * 
 	 * @author Vencislav Medarov
 	 * @email venci932@gmail.com
-	 * @date 27.10.2013
+	 * @date 27 Oct 2013
 	 */
 	public void SetLocation(int loc) {
 		assert ((loc >= 0) && (loc < Globals.gmTOTAL_PLAYERS));
@@ -90,7 +90,7 @@ public class raPlayer {
 	 * 
 	 * @author Vencislav Medarov
 	 * @email venci932@gmail.com
-	 * @date 26.10.2013
+	 * @date 26 Oct 2013
 	 */
 	public int GetLocation() {
 		return (m_loc);
@@ -101,7 +101,7 @@ public class raPlayer {
 	 * 
 	 * @author Vencislav Medarov
 	 * @email venci932@gmail.com
-	 * @date 26.10.2013
+	 * @date 26 Oct 2013
 	 */
 	public int GetType() {
 		return (m_type);
@@ -115,7 +115,7 @@ public class raPlayer {
 	 * 
 	 * @author Vencislav Medarov
 	 * @email venci932@gmail.com
-	 * @date 26.10.2013
+	 * @date 26 Oct 2013
 	 */
 	public void SetType(int type) {
 		m_type = type;
@@ -128,7 +128,7 @@ public class raPlayer {
 	 *            ...
 	 * @author Vencislav Medarov
 	 * @email venci932@gmail.com
-	 * @date 25.10.2013
+	 * @date 25 Oct 2013
 	 */
 	public void SetRuleEngineData(gmEngineData data) {
 		m_agent.SetRuleEngineData(data);
@@ -140,7 +140,7 @@ public class raPlayer {
 	 * 
 	 * @author Vencislav Medarov
 	 * @email venci932@gmail.com
-	 * @date 26.10.2013
+	 * @date 26 Oct 2013
 	 */
 	public boolean GetBid(int bid, int trump, int min, boolean force_bid) {
 		boolean ret_val = false;
@@ -154,7 +154,7 @@ public class raPlayer {
 	 * 
 	 * @author Vencislav Medarov
 	 * @email venci932@gmail.com
-	 * @date 27.10.2013
+	 * @date 27 Oct 2013
 	 */
 	public int GetTrump() {
 		return (m_agent.GetTrump());
@@ -165,7 +165,7 @@ public class raPlayer {
 	 * 
 	 * @author Vencislav Medarov
 	 * @email venci932@gmail.com
-	 * @date 27.10.2013
+	 * @date 27 Oct 2013
 	 */
 	public int GetPlay() {
 		return (m_agent.GetPlay(0));
@@ -176,7 +176,7 @@ public class raPlayer {
 	 * 
 	 * @author Vencislav Medarov
 	 * @email venci932@gmail.com
-	 * @date 27.10.2013
+	 * @date 27 Oct 2013
 	 */
 	public boolean PostPlayUpdate(gmEngineData data, int card) {
 		return (m_agent.PostPlayUpdate(data, card));
@@ -187,7 +187,7 @@ public class raPlayer {
 	 * 
 	 * @author Vencislav Medarov
 	 * @email venci932@gmail.com
-	 * @date 27.10.2013
+	 * @date 27 Oct 2013
 	 */
 	public boolean CheckAssumptions(gmEngineData data) {
 		return (m_agent.CheckAssumptions(data));
@@ -198,7 +198,7 @@ public class raPlayer {
 	 * 
 	 * @author Vencislav Medarov
 	 * @email venci932@gmail.com
-	 * @date 27.10.2013
+	 * @date 27 Oct 2013
 	 */
 	public boolean Reset() {
 		return (m_agent.Reset());
@@ -213,7 +213,7 @@ public class raPlayer {
 	 * 
 	 * @author Vencislav Medarov
 	 * @email venci932@gmail.com
-	 * @date 27.10.2013
+	 * @date 27 Oct 2013
 	 */
 	public void SetRules(gmRules rules) {
 		m_agent.SetRules(rules);
@@ -224,7 +224,7 @@ public class raPlayer {
 	 * 
 	 * @author Vencislav Medarov
 	 * @email venci932@gmail.com
-	 * @date 27.10.2013
+	 * @date 27 Oct 2013
 	 */
 	public boolean SetClockwise(boolean flag) {
 		return (m_agent.SetClockwise(flag));
@@ -235,7 +235,7 @@ public class raPlayer {
 	 * 
 	 * @author Vencislav Medarov
 	 * @email venci932@gmail.com
-	 * @date 27.10.2013
+	 * @date 27 Oct 2013
 	 */
 	public boolean GetClockwise() {
 		return (m_agent.GetClockwise());
@@ -246,7 +246,7 @@ public class raPlayer {
 	 * 
 	 * @author Vencislav Medarov
 	 * @email venci932@gmail.com
-	 * @date 27.10.2013
+	 * @date 27 Oct 2013
 	 */
 	public boolean AbandonGame(boolean flag) {
 		return (m_agent.AbandonGame(flag));

@@ -26,11 +26,23 @@ package eu.veldsoft.twenty.eight.ra;
 import eu.veldsoft.twenty.eight.dummy.Globals;
 import eu.veldsoft.twenty.eight.dummy.wxFrame;
 import eu.veldsoft.twenty.eight.dummy.wxTheApp;
-import eu.veldsoft.twenty.eight.gg.ggCard;
 
 public class raUpdate {
-	private int CheckForUpdate() {
+	/**
+	 * Dummy values.
+	 */
+	private static final String __FILE__ = "";
 
+	/**
+	 * Dummy values.
+	 */
+	private static final int __LINE__ = 0;
+
+	/**
+	 * 
+	 * @return
+	 */
+	private int CheckForUpdate() {
 		return (CheckForUpdate(null));
 	}
 
@@ -58,30 +70,22 @@ public class raUpdate {
 	/**
 	 * Entry method which is checks for updates.
 	 * 
-	 * 
 	 * @author Vencislav Medarov
 	 * @email venci932@gmail.com
-	 * @date 05.11.2013
+	 * @date 05 Nov 2013
 	 */
 	public Object Entry() {
-		int ret_val = 0;
-		String new_var = new String();
-		StringBuffer msg = new StringBuffer();
-
-		new_var = ("");
-
-		ret_val = CheckForUpdate(new_var);
+		String new_var = "";
+		int ret_val = CheckForUpdate(new_var);
 		assert (ret_val <= 2);
 
 		if (ret_val < 0) {
-			// TODO
-			// LOGGER.info(String.format(("addr.GetError() returned error. %s:%d"),(__FILE__),
-			// __LINE__));
+			Globals.wxLogError("addr.GetError() returned error. %s:%d",
+					__FILE__, __LINE__);
 		} else if (ret_val == 0) {
-			// TODO
-			// wxLogMessage(wxT("Check for update done successfully"));
+			Globals.wxLogMessage("Check for update done successfully");
 		} else if (ret_val > 0) {
-			msg = wait("");
+			StringBuffer msg = new StringBuffer();
 			msg.append("A new version ");
 			if (new_var.isEmpty() == false) {
 				msg.append(new_var);
@@ -94,26 +98,17 @@ public class raUpdate {
 			msg.append(Globals.ra_APP_URL);
 			msg.append(".");
 
-			wxFrame main_frame = new wxFrame();
-			main_frame = null;
-			main_frame = (wxFrame) wxTheApp.GetTopWindow();
+			wxFrame main_frame = (wxFrame) wxTheApp.GetTopWindow();
 			if (main_frame != null) {
 				raUpdateEvent update_event = new raUpdateEvent();
 				update_event.SetMessage(msg.toString());
-				// TODO
-				// wxLogMessage(update_event.GetMessage());
-				// main_frame.GetEventHandler().AddPendingEvent(update_event);
+				Globals.wxLogMessage(update_event.GetMessage());
+				main_frame.GetEventHandler().AddPendingEvent(update_event);
 			} else {
-				// TODO
-				// LOGGER.info(String.format("main_frame is null. %s:%d"),
-				// wxT(__FILE__), __LINE__));
+				Globals.wxLogError("main_frame is null. %s:%d", __FILE__,
+						__LINE__);
 			}
 		}
 		return (null);
-	}
-
-	private StringBuffer wait(String string) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }

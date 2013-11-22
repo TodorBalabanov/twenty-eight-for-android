@@ -49,4 +49,10 @@ public class Globals {
 	public static final wxEvent raINFO_EVT = null;
 
 	public static final String ra_APP_URL = "http://rosanne.sourceforge.net";
+
+	public static void wxLogError(String string, String file, int line) {
+	}
+
+	public static void wxLogMessage(String string) {
+	}
 }
