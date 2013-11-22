@@ -44,10 +44,9 @@ public class raInfoEvent extends wxEvent {
 	/**
 	 * Constructor.
 	 * 
-	 * 
 	 * @author Vencislav Medarov
 	 * @email venci932@gmail.com
-	 * @date 11.11.2013
+	 * @date 11 Nov 2013
 	 */
 	public raInfoEvent(final raInfoEvent evt) {
 		SetEventType(Globals.raINFO_EVT);
@@ -67,7 +66,7 @@ public class raInfoEvent extends wxEvent {
 	 * 
 	 * @author Vencislav Medarov
 	 * @email venci932@gmail.com
-	 * @date 02.11.2013
+	 * @date 02 Nov 2013
 	 */
 	public void SetCommand(int cmd) {
 		m_cmd = cmd;
@@ -80,7 +79,7 @@ public class raInfoEvent extends wxEvent {
 	 * 
 	 * @author Vencislav Medarov
 	 * @email venci932@gmail.com
-	 * @date 02.11.2013
+	 * @date 02 Nov 2013
 	 */
 	public int GetCommand() {
 		return (m_cmd);

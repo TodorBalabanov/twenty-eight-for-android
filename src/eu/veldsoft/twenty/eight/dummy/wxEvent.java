@@ -30,10 +30,9 @@ public class wxEvent {
 	/**
 	 * Set event type.
 	 * 
-	 * 
 	 * @author Vencislav Medarov
 	 * @email venci932@gmail.com
-	 * @date 20.11.2013
+	 * @date 20 Nov 2013
 	 */
 	public void SetEventType(wxEvent type) {
 		this.type = type;
