@@ -25,4 +25,7 @@ package eu.veldsoft.twenty.eight.dummy;
 
 public class wxMemoryDC {
 
+	public void SelectObject(wxBitmap m_face) {		
+	}
+
 }

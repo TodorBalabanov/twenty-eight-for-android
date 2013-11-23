@@ -189,10 +189,15 @@ public class ggCard {
 		return (null);
 	}
 
+	/**
+	 * @param mdc
+	 * @author INFM032 F___84 Mariya Kostadinova
+	 * @author INFM032 F___93 Krasimir Chariyski
+	 * @author INFM032 F___39 Shterion Yanev
+	 */
 	public void SelectToDC(wxMemoryDC mdc) {
-		// TODO To be done by INFM032 F___84 Mariya Kostadinova ...
-		// TODO To be done by INFM032 F___93 Krasimir Chariyski ...
-		// TODO To be done by INFM032 F___39 Shterion Yanev ...
+		assert (mdc != null);
+		mdc.SelectObject(m_face);
 	}
 
 	public ggCard assign(final ggCard object) {
