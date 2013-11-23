@@ -50,9 +50,22 @@ public class Globals {
 
 	public static final String ra_APP_URL = "http://rosanne.sourceforge.net";
 
+	public static final int raPREFS_PLAYCARDON_SCLICK = 0;
+
+	public static final int raPREFS_PLAYCARDON_DCLICK = 1;
+
+	public static final int raPREFS_CARDBACK_BLUE = 0;
+
+	public static final int raPREFS_CARDBACK_RED = 1;	
+	
 	public static void wxLogError(String string, String file, int line) {
 	}
 
 	public static void wxLogMessage(String string) {
+	}
+
+	public static Object XRCCTRL(Object arg1, String arg2,
+			Class arg3) {
+		return null;
 	}
 }
