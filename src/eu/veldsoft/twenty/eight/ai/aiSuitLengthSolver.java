@@ -23,6 +23,8 @@
 
 package eu.veldsoft.twenty.eight.ai;
 
+import eu.veldsoft.twenty.eight.dummy.Globals;
+
 public class aiSuitLengthSolver {
 	public static final int slLENGTH_MAX = 8;
 
@@ -79,12 +81,86 @@ public class aiSuitLengthSolver {
 		return (false);
 	}
 
+	/**
+	 * 
+	 * @param data
+	 * @param hand
+	 * @param suit
+	 * @param suit_length
+	 * @return
+	 * 
+	 * @autor INFM042 F___45 Valentin Popov
+	 * @autor INFM032 F___67 Nevena Sirakova
+	 * @autor INFM042 F___39 Shterion Yanev
+	 */
 	private boolean SetCell(slData data, int hand, int suit, int suit_length) {
-		// TODO To be done by INFM042 F___45 Valentin Popov ...
-		// TODO To be done by INFM032 F___67 Nevena Sirakova ...
-		// TODO To be done by INFM042 F___39 Shterion Yanev ...
 
-		return (false);
+		if (Globals.slLOG_DEBUG_SETCELL == true) {
+			// wxLogDebug(wxString::Format(wxT("Entering aiSuitLengthSolver::SetCell (%d, %d) = %d"),
+			// hand, suit, val));
+		}
+
+		assert (data != null);
+		assert (hand < Globals.slTOTAL_HANDS);
+		assert (suit < Globals.slTOTAL_SUITS);
+
+		assert ((suit_length >= 0) || (suit_length <= Globals.slLENGTH_MAX));
+
+		/*
+		 * SetCell should be recalculated only for vacant slots
+		 */
+
+		assert (data.cells[hand][suit].suit_length == Globals.slVACANT);
+
+		/*
+		 * Fix the suit length for the cell
+		 */
+
+		data.cells[hand][suit].suit_length = suit_length;
+
+		/*
+		 * As the max value for the cell is changing, correct the sum of maxes
+		 * beforehand
+		 */
+
+		data.hand_sum_of_maxs[hand] -= (data.cells[hand][suit].max - suit_length);
+		data.suit_sum_of_maxs[suit] -= (data.cells[hand][suit].max - suit_length);
+
+		/*
+		 * As the min value for the cell is changing, correct the sum of mins
+		 * beforehand
+		 */
+
+		if (data.cells[hand][suit].min > 0) {
+			data.hand_sum_of_vacant_mins[hand] -= data.cells[hand][suit].min;
+			data.suit_sum_of_vacant_mins[suit] -= data.cells[hand][suit].min;
+		}
+
+		/*
+		 * Fix the max and min as the same as the suit length
+		 */
+
+		data.cells[hand][suit].max = suit_length;
+		data.cells[hand][suit].min = suit_length;
+
+		/*
+		 * val number of cards have been allocated from the hand and from the
+		 * suit
+		 */
+
+		data.hand_allocated[hand] += suit_length;
+		data.suit_allocated[suit] += suit_length;
+		assert (data.hand_allocated[hand] <= data.hand_total_length[hand]);
+		assert (data.suit_allocated[suit] <= data.suit_total_length[suit]);
+
+		/*
+		 * Recalculate the max for all the affected cells
+		 */
+
+		RecalcMaxForImpactedCells(data, hand, suit);
+		RecalcMinForImpactedCells(data, hand, suit);
+
+		return true;
 	}
 
 	private boolean RecalcMaxForImpactedCells(slData data, int hand, int suit) {
@@ -92,7 +168,48 @@ public class aiSuitLengthSolver {
 		// TODO To be done by INFM042 F___90 Svetoslav Slavkov ...
 		// TODO To be done by INFM042 F___68 Nikola Vushkov ...
 
-		return (false);
+		assert (data != null);
+		assert (hand < Globals.slTOTAL_HANDS);
+		assert (suit < Globals.slTOTAL_SUITS);
+
+		if (Globals.slLOG_DEBUG_SETIMPCELLS == true) {
+			// wxLogDebug("Entering aiSuitLengthSolver::RecalcMaxForImpactedCells for (%d, %d)",
+			// hand, suit);
+			// wxLogDebug("Data : %s", PrintData(data).c_str());
+		}
+
+		/*
+		 * Recalculate the max for all the affected cells Recalculate the max
+		 * for all cell in hand
+		 */
+		for (int i = 0; i < Globals.slTOTAL_SUITS; i++) {
+			/*
+			 * Avoid recalculating for the cell for which data is being set and
+			 * for non-vacant cells.
+			 */
+			if (data.cells[hand][i].suit_length == Globals.slVACANT) {
+				if (RecalcCellMax(data, hand, i) == true) {
+					RecalcMinForImpactedCells(data, hand, i);
+				}
+			}
+		}
+
+		/*
+		 * Recalculate the max for all cell in suit
+		 */
+		for (int i = 0; i < Globals.slTOTAL_HANDS; i++) {
+			/*
+			 * Avoid recalculating for the cell for which data is being set and
+			 * for non-vacant cells.
+			 */
+			if (data.cells[i][suit].suit_length == Globals.slVACANT) {
+				if (RecalcCellMax(data, i, suit) == true) {
+					RecalcMinForImpactedCells(data, i, suit);
+				}
+			}
+		}
+
+		return true;
 	}
 
 	private boolean RecalcMinForImpactedCells(slData data, int hand, int suit) {
