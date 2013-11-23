@@ -56,16 +56,27 @@ public class Globals {
 
 	public static final int raPREFS_CARDBACK_BLUE = 0;
 
-	public static final int raPREFS_CARDBACK_RED = 1;	
-	
+	public static final int raPREFS_CARDBACK_RED = 1;
+
+	public static final boolean slLOG_DEBUG_SETIMPCELLS = false;
+
+	public static final int slTOTAL_SUITS = 4;
+
+	public static final int slVACANT = -1;
+
+	public static final int slTOTAL_HANDS = 4;
+
+	public static final boolean slLOG_DEBUG_SETCELL = false;
+
+	public static final int slLENGTH_MAX = 8;
+
 	public static void wxLogError(String string, String file, int line) {
 	}
 
 	public static void wxLogMessage(String string) {
 	}
 
-	public static Object XRCCTRL(Object arg1, String arg2,
-			Class arg3) {
+	public static Object XRCCTRL(Object arg1, String arg2, Class arg3) {
 		return null;
 	}
 }
