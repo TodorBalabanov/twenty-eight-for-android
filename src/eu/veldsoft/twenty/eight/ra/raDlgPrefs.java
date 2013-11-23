@@ -23,6 +23,9 @@
 
 package eu.veldsoft.twenty.eight.ra;
 
+import eu.veldsoft.twenty.eight.dummy.Globals;
+import eu.veldsoft.twenty.eight.dummy.wxCheckBox;
+import eu.veldsoft.twenty.eight.dummy.wxComboBox;
 import eu.veldsoft.twenty.eight.dummy.wxCommandEvent;
 import eu.veldsoft.twenty.eight.dummy.wxInitDialogEvent;
 import eu.veldsoft.twenty.eight.dummy.wxPoint;
@@ -31,8 +34,23 @@ import eu.veldsoft.twenty.eight.dummy.wxWindow;
 import eu.veldsoft.twenty.eight.dummy.wxWindowID;
 
 public class raDlgPrefs {
+	/**
+	 * Dummy values.
+	 */
+	private static final String __FILE__ = "";
 
-	/*
+	/**
+	 * Dummy values.
+	 */
+	private static final int __LINE__ = 0;
+
+	/**
+	 * Dummy function from wxWidgets.
+	 */
+	private void Destroy() {
+	}
+
+	/**
 	 * Disallow copy finalructor/assignment operators.
 	 * 
 	 * @author INFM042 F___00 Tsvetelina Hristova
@@ -78,9 +96,61 @@ public class raDlgPrefs {
 		// TODO To be done by INFM042 F___39 Shterion Yanev ...
 	}
 
+	/**
+	 * @param event
+	 * 
+	 * @author INFM032 F___00 Tsvetelina Hristova
+	 * @author INFM032 F___93 Krasimir Chariyski
+	 * @author INFM032 F___14 Petya Atanasova
+	 */
 	public void OnPrefsBtnApplyClick(wxCommandEvent event) {
-		// TODO To be done by INFM032 F___00 Tsvetelina Hristova ...
-		// TODO To be done by INFM032 F___93 Krasimir Chariyski ...
-		// TODO To be done by INFM032 F___14 Petya Atanasova ...
+		wxComboBox combo_playcardon;
+		wxComboBox combo_cardback;
+		wxCheckBox check_autoplay;
+		wxCheckBox check_bidbubbles;
+
+		raConfData new_conf=null;
+		raConfig.GetInstance().GetData(new_conf);
+		combo_playcardon = (wxComboBox) Globals.XRCCTRL(this,
+				"m_radlgprefs_playcardon", wxComboBox.class);
+
+		switch (combo_playcardon.GetSelection()) {
+		case Globals.raPREFS_PLAYCARDON_SCLICK:
+			new_conf.prefs_data.play_card_on = Globals.raCONFIG_PREFS_PLAYCARDON_SCLICK;
+			break;
+		case Globals.raPREFS_PLAYCARDON_DCLICK:
+			new_conf.prefs_data.play_card_on = Globals.raCONFIG_PREFS_PLAYCARDON_DCLICK;
+			break;
+		default:
+			Globals.wxLogError("Unexpected value. %s:%d", __FILE__, __LINE__);
+			break;
+		}
+
+		combo_cardback = (wxComboBox) Globals.XRCCTRL(this,
+				"m_radlgprefs_cardback", wxComboBox.class);
+
+		switch (combo_cardback.GetSelection()) {
+		case Globals.raPREFS_CARDBACK_BLUE:
+			new_conf.prefs_data.card_back = Globals.raCONFIG_PREFS_CARDBACK_BLUE;
+			break;
+		case Globals.raPREFS_CARDBACK_RED:
+			new_conf.prefs_data.card_back = Globals.raCONFIG_PREFS_CARDBACK_RED;
+			break;
+		default:
+			Globals.wxLogError("Unexpected value. %s:%d", __FILE__, __LINE__);
+			break;
+		}
+
+		check_autoplay = (wxCheckBox) Globals.XRCCTRL(this,
+				"m_radlgprefs_playsingauto", wxCheckBox.class);
+		new_conf.prefs_data.auto_play_single = check_autoplay.GetValue();
+		check_bidbubbles = (wxCheckBox) Globals.XRCCTRL(this,
+				"m_radlgprefs_showbidbubb", wxCheckBox.class);
+		new_conf.prefs_data.show_bid_bubbles = check_bidbubbles.GetValue();
+
+		raConfig.GetInstance().SetData(new_conf);
+		event.Skip();
+
+		Destroy();
 	}
 }
