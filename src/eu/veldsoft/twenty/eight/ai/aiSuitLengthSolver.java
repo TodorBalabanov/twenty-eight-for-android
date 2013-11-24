@@ -94,10 +94,10 @@ public class aiSuitLengthSolver {
 	 * @autor INFM042 F___39 Shterion Yanev
 	 */
 	private boolean SetCell(slData data, int hand, int suit, int suit_length) {
-
 		if (Globals.slLOG_DEBUG_SETCELL == true) {
-			// wxLogDebug(wxString::Format(wxT("Entering aiSuitLengthSolver::SetCell (%d, %d) = %d"),
-			// hand, suit, val));
+			Globals.wxLogDebug(
+					"Entering aiSuitLengthSolver::SetCell (%d, %d) = %d", hand,
+					suit, suit_length);
 		}
 
 		assert (data != null);
@@ -109,20 +109,17 @@ public class aiSuitLengthSolver {
 		/*
 		 * SetCell should be recalculated only for vacant slots
 		 */
-
 		assert (data.cells[hand][suit].suit_length == Globals.slVACANT);
 
 		/*
 		 * Fix the suit length for the cell
 		 */
-
 		data.cells[hand][suit].suit_length = suit_length;
 
 		/*
 		 * As the max value for the cell is changing, correct the sum of maxes
 		 * beforehand
 		 */
-
 		data.hand_sum_of_maxs[hand] -= (data.cells[hand][suit].max - suit_length);
 		data.suit_sum_of_maxs[suit] -= (data.cells[hand][suit].max - suit_length);
 
@@ -130,7 +127,6 @@ public class aiSuitLengthSolver {
 		 * As the min value for the cell is changing, correct the sum of mins
 		 * beforehand
 		 */
-
 		if (data.cells[hand][suit].min > 0) {
 			data.hand_sum_of_vacant_mins[hand] -= data.cells[hand][suit].min;
 			data.suit_sum_of_vacant_mins[suit] -= data.cells[hand][suit].min;
@@ -139,7 +135,6 @@ public class aiSuitLengthSolver {
 		/*
 		 * Fix the max and min as the same as the suit length
 		 */
-
 		data.cells[hand][suit].max = suit_length;
 		data.cells[hand][suit].min = suit_length;
 
@@ -147,7 +142,6 @@ public class aiSuitLengthSolver {
 		 * val number of cards have been allocated from the hand and from the
 		 * suit
 		 */
-
 		data.hand_allocated[hand] += suit_length;
 		data.suit_allocated[suit] += suit_length;
 		assert (data.hand_allocated[hand] <= data.hand_total_length[hand]);
@@ -156,7 +150,6 @@ public class aiSuitLengthSolver {
 		/*
 		 * Recalculate the max for all the affected cells
 		 */
-
 		RecalcMaxForImpactedCells(data, hand, suit);
 		RecalcMinForImpactedCells(data, hand, suit);
 
@@ -173,9 +166,10 @@ public class aiSuitLengthSolver {
 		assert (suit < Globals.slTOTAL_SUITS);
 
 		if (Globals.slLOG_DEBUG_SETIMPCELLS == true) {
-			// wxLogDebug("Entering aiSuitLengthSolver::RecalcMaxForImpactedCells for (%d, %d)",
-			// hand, suit);
-			// wxLogDebug("Data : %s", PrintData(data).c_str());
+			Globals.wxLogDebug(
+					"Entering aiSuitLengthSolver::RecalcMaxForImpactedCells for (%d, %d)",
+					hand, suit);
+			Globals.wxLogDebug("Data : %s", (String) PrintData(data));
 		}
 
 		/*
