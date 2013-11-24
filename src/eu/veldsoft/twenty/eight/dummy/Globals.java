@@ -79,4 +79,14 @@ public class Globals {
 	public static Object XRCCTRL(Object arg1, String arg2, Class arg3) {
 		return null;
 	}
+
+	public static void wxLogDebug(String arg1, int arg2, int arg3,
+			int arg4) {
+	}
+
+	public static void wxLogDebug(String arg1, int arg2, int arg3) {
+	}
+
+	public static void wxLogDebug(String arg1, String arg2) {
+	}
 }
