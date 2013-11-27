@@ -23,6 +23,8 @@
 
 package eu.veldsoft.twenty.eight.gm;
 
+import eu.veldsoft.twenty.eight.dummy.Globals;
+
 public class gmEngine {
 
 	// Initialization of the gmEngineData structure used by each gmEngine
@@ -57,12 +59,65 @@ public class gmEngine {
 		return (GenerateMask(0));
 	}
 
+	/**
+	 * 
+	 * @param rules
+	 * @return
+	 * 
+	 * @author INFM042 F___06 Rosen Kaplanov
+	 * @author INFM042 F___81 Marina Rangelova
+	 * @author INFM042 F___05 Iliya Grozev
+	 */
 	private long GenerateMask(long rules) {
-		// TODO To be done by INFM042 F___06 Rosen Kaplanov ...
-		// TODO To be done by INFM042 F___81 Marina Rangelova ...
-		// TODO To be done by INFM042 F___05 Iliya Grozev ...
+		long mask = Globals.gmALL_CARDS;
+		long temp = 0;
 
-		return (0);
+		/*
+		 * Rule 1 : If the first card to be played in the round and if trump is
+		 * not shown, the player who set the trump cannot lead a trump.
+		 */
+		if (m_data.tricks[m_data.trick_round].count != 0
+				&& m_data.trump_shown == false
+				&& (((m_data.tricks[m_data.trick_round].lead_loc + (m_data.tricks[m_data.trick_round].count * m_data.rules.rot_addn)) % 4) == m_data.curr_max_bidder)) {
+			assert (m_data.trump_suit != Globals.gmSUIT_INVALID);
+			mask = ~(gmUtil.m_suit_mask[m_data.trump_suit]);
+			temp |= Globals.gmRULE_1;
+		}
+		/*
+		 * Rule 4 : If the max bidder asked for trump to be shown he/she must
+		 * play the very same card
+		 */
+		else if (m_data.should_play_trump_card && (!m_data.rules.waive_rule_4)) {
+			assert (m_data.trump_card != Globals.gmCARD_INVALID);
+			mask = 1 << m_data.trump_card;
+			temp |= Globals.gmRULE_4;
+		}
+		/*
+		 * Rule 2 : If trump was asked to be shown, then trump must be played
+		 */
+		else if (m_data.should_trump) {
+			assert (m_data.trump_suit != Globals.gmSUIT_INVALID);
+			mask = gmUtil.m_suit_mask[m_data.trump_suit];
+			temp |= Globals.gmRULE_2;
+		}
+		/*
+		 * Rule 3 : Should follow suit
+		 */
+		else if (m_data.tricks[m_data.trick_round].count != 0) {
+			assert (m_data.tricks[m_data.trick_round].lead_suit != Globals.gmSUIT_INVALID);
+			mask = gmUtil.m_suit_mask[m_data.tricks[m_data.trick_round].lead_suit];
+			temp |= Globals.gmRULE_3;
+		}
+		assert (mask != 0);
+
+		/*
+		 * Set the rules which were considered
+		 */
+		if (rules != 0) {
+			rules = temp;
+		}
+
+		return mask;
 	}
 
 	private boolean SetDealEndOutput() {
@@ -217,35 +272,53 @@ public class gmEngine {
 
 		return (false);
 	}
-	
+
 	/**
 	 * Set Feedback
 	 * 
 	 * @param feedback
 	 *            boolean type
-	 *            
+	 * 
 	 * @author INFM042 F___93 Krasimir Chariyski
 	 * @author INFM042 F___56 Daniel Nikolov
 	 * @author INFM032 F___14 Petya Atanasova
 	 */
 	public void SetFeedback(boolean feedback) {
 		m_data.feedback = feedback;
-		
+
 		if (m_data.feedback == false) {
 			m_data.output_pending = false;
 		}
 	}
 
+	/**
+	 * 
+	 * @param rules
+	 * 
+	 * @author INFM042 F___81 Marina Rangelova
+	 * @author INFM042 F___39 Shterion Yanev
+	 * @author INFM042 F___47 Kostadin Bulakiev
+	 */
 	public void GetRules(gmRules rules) {
-		// TODO To be done by INFM042 F___81 Marina Rangelova ...
-		// TODO To be done by INFM042 F___39 Shterion Yanev ...
-		// TODO To be done by INFM042 F___47 Kostadin Bulakiev ...
+		try {
+			rules = (gmRules) m_data.rules.clone();
+		} catch (CloneNotSupportedException e) {
+		}
 	}
 
+	/**
+	 * 
+	 * @param rules
+	 * 
+	 * @author INFM032 F___27 Georgi Kostadinov
+	 * @author INFM032 F___81 Marina Rangelova
+	 * @author INFM042 F___06 Rosen Kaplanov
+	 */
 	public void SetRules(gmRules rules) {
-		// TODO To be done by INFM032 F___27 Georgi Kostadinov ...
-		// TODO To be done by INFM032 F___81 Marina Rangelova ...
-		// TODO To be done by INFM042 F___06 Rosen Kaplanov ...
+		try {
+			m_data.rules = (gmRules) rules.clone();
+		} catch (CloneNotSupportedException e) {
+		}
 	}
 
 	public void GetHands(long hands) {

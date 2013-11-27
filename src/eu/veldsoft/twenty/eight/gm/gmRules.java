@@ -23,7 +23,7 @@
 
 package eu.veldsoft.twenty.eight.gm;
 
-public class gmRules {
+public class gmRules implements Cloneable {
 	public int rot_addn;
 
 	public int min_bid_1;
@@ -35,4 +35,8 @@ public class gmRules {
 	public boolean waive_rule_4;
 
 	public boolean sluff_jacks;
+	
+	public Object clone() throws CloneNotSupportedException {
+	    throw new CloneNotSupportedException(); 
+	}
 }

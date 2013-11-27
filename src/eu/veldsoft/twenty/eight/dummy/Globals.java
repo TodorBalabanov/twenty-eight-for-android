@@ -70,6 +70,20 @@ public class Globals {
 
 	public static final int slLENGTH_MAX = 8;
 
+	public static final long gmALL_CARDS = 0xFFFFFFFF;
+
+	public static final long gmRULE_1 = 1;
+	
+	public static final long gmRULE_2 = 2;
+	
+	public static final long gmRULE_3 = 4;
+	
+	public static final long gmRULE_4 = 8;
+	
+	public static final long gmRULE_5 = 16;
+
+	public static final int gmCARD_INVALID = -1;
+
 	public static void wxLogError(String string, String file, int line) {
 	}
 
