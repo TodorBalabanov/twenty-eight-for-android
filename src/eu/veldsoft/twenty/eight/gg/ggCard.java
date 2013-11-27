@@ -103,11 +103,16 @@ public class ggCard {
 
 	public wxBitmap m_face;
 
-	// Disallow copy finalructor/assignment operators
+	/**
+	 * Disallow copy finalructor/assignment operators
+	 * 
+	 * @param object
+	 * 
+	 * @author INFM042 F___88 Ivan Dankinov
+	 * @author INFM032 F___90 Svetoslav Slavkov
+	 * @author INFM032 F___81 Marina Rangelova
+	 */
 	private ggCard(final ggCard object) {
-		// TODO To be done by INFM042 F___88 Ivan Dankinov ...
-		// TODO To be done by INFM032 F___90 Svetoslav Slavkov ...
-		// TODO To be done by INFM032 F___81 Marina Rangelova ...
 	}
 
 	private boolean LoadFace(String res_name) {
