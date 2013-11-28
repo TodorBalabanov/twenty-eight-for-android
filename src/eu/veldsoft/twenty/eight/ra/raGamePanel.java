@@ -421,7 +421,7 @@ public class raGamePanel {
 	}
 
 	private int CheckOppTrumps() {
-		// TODO To be done by ...
+		// TODO To be done by Venci.
 
 		return (0);
 	}
