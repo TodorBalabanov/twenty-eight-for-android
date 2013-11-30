@@ -52,7 +52,52 @@ public class gmUtil {
 
 	public static final int gmTOTAL_TEAMS = 2;
 
-	public static int m_value_trans[];
+	public static int m_value_trans[] = {6, 7, 11, 12, 9, 0, 8, 10};
+
+	public static int BitsSetTable256[] = { 0, 1, 1, 2, 1, 2, 2, 3, 1, 2, 2, 3,
+			2, 3, 3, 4, 1, 2, 2, 3, 2, 3, 3, 4, 2, 3, 3, 4, 3, 4, 4, 5, 1, 2,
+			2, 3, 2, 3, 3, 4, 2, 3, 3, 4, 3, 4, 4, 5, 2, 3, 3, 4, 3, 4, 4, 5,
+			3, 4, 4, 5, 4, 5, 5, 6, 1, 2, 2, 3, 2, 3, 3, 4, 2, 3, 3, 4, 3, 4,
+			4, 5, 2, 3, 3, 4, 3, 4, 4, 5, 3, 4, 4, 5, 4, 5, 5, 6, 2, 3, 3, 4,
+			3, 4, 4, 5, 3, 4, 4, 5, 4, 5, 5, 6, 3, 4, 4, 5, 4, 5, 5, 6, 4, 5,
+			5, 6, 5, 6, 6, 7, 1, 2, 2, 3, 2, 3, 3, 4, 2, 3, 3, 4, 3, 4, 4, 5,
+			2, 3, 3, 4, 3, 4, 4, 5, 3, 4, 4, 5, 4, 5, 5, 6, 2, 3, 3, 4, 3, 4,
+			4, 5, 3, 4, 4, 5, 4, 5, 5, 6, 3, 4, 4, 5, 4, 5, 5, 6, 4, 5, 5, 6,
+			5, 6, 6, 7, 2, 3, 3, 4, 3, 4, 4, 5, 3, 4, 4, 5, 4, 5, 5, 6, 3, 4,
+			4, 5, 4, 5, 5, 6, 4, 5, 5, 6, 5, 6, 6, 7, 3, 4, 4, 5, 4, 5, 5, 6,
+			4, 5, 5, 6, 5, 6, 6, 7, 4, 5, 5, 6, 5, 6, 6, 7, 5, 6, 6, 7, 6, 7,
+			7, 8 };
+
+	public static int LogTable256[] = { 0, 0, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 3,
+			3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 5, 5, 5,
+			5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
+			5, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6,
+			6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6,
+			6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6,
+			6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7,
+			7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7,
+			7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7,
+			7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7,
+			7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7,
+			7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7 };
+
+	public static String m_suits[];
+
+	public static String m_values[];
+
+	public static String m_short_locs[];
+
+	public static String m_long_locs[];
+
+	public static long m_suit_mask[];
+
+	public static long m_suit_rs[];
+
+	public static int m_points[];
+
+	public static int m_total_points[];
+
+	public static String m_short_teams[];
 
 	public static void ShuffleArray(int array, long n) {
 		// TODO To be done by INFM032 F___39 Shterion Yanev ...
@@ -75,24 +120,6 @@ public class gmUtil {
 
 		return ("");
 	}
-
-	public static String m_suits[];
-
-	public static String m_values[];
-
-	public static String m_short_locs[];
-
-	public static String m_long_locs[];
-
-	public static long m_suit_mask[];
-
-	public static long m_suit_rs[];
-
-	public static int m_points[];
-
-	public static int m_total_points[];
-
-	public static String m_short_teams[];
 
 	public static int GetCardIndex(String text) {
 		// TODO To be done by INFM032 F___68 Nikola Vushkov ...
@@ -135,16 +162,20 @@ public class gmUtil {
 		return true;
 	}
 
-	public static int BitsSetTable256[];
-
-	public static int LogTable256[];
-
+	/**
+	 * 
+	 * @param v
+	 * @return
+	 * 
+	 * @author INFM042 F___52 Mihail Stankov
+	 * @author INFM042 F___93 Krasimir Chariyski
+	 * @author INFM032 F___39 Shterion Yanev
+	 */
 	public static long CountBitsSet(long v) {
-		// TODO To be done by INFM042 F___52 Mihail Stankov ...
-		// TODO To be done by INFM042 F___93 Krasimir Chariyski ...
-		// TODO To be done by INFM032 F___39 Shterion Yanev ...
-
-		return (0);
+		return BitsSetTable256[(int) (v & 0xff)]
+				+ BitsSetTable256[(int) ((v >> 8) & 0xff)]
+				+ BitsSetTable256[(int) ((v >> 16) & 0xff)]
+				+ BitsSetTable256[(int) (v >> 24)];
 	}
 
 	public static long HighestBitSet(long v) {
