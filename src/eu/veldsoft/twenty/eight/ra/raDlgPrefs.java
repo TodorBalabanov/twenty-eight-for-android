@@ -109,7 +109,7 @@ public class raDlgPrefs {
 		wxCheckBox check_autoplay;
 		wxCheckBox check_bidbubbles;
 
-		raConfData new_conf=null;
+		raConfData new_conf = null;
 		raConfig.GetInstance().GetData(new_conf);
 		combo_playcardon = (wxComboBox) Globals.XRCCTRL(this,
 				"m_radlgprefs_playcardon", wxComboBox.class);
