@@ -25,7 +25,7 @@ package eu.veldsoft.twenty.eight.dummy;
 
 public class wxRect {
 	public int x;
-	
+
 	public int y;
 
 	public wxRect(int x, int y, int w, int h) {
