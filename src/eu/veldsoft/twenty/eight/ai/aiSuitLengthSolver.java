@@ -268,12 +268,62 @@ public class aiSuitLengthSolver {
 		return true;
 	}
 
+	/**
+	 * 
+	 * @param data
+	 * @param hand
+	 * @param suit
+	 * @return
+	 * @author INFM032 F___06 Rosen Kaplanov
+	 * @author INFM032 F___52 Mihail Stankov
+	 * @author INFM032 F___46 Nadya Nedyalkova
+	 */
 	private boolean RecalcMinForImpactedCells(slData data, int hand, int suit) {
-		// TODO To be done by INFM032 F___06 Rosen Kaplanov ...
-		// TODO To be done by INFM032 F___52 Mihail Stankov ...
-		// TODO To be done by INFM032 F___46 Nadya Nedyalkova ...
+		int i = 0;
 
-		return (false);
+		assert (data != null);
+		assert (hand < slTOTAL_HANDS);
+		assert (suit < slTOTAL_SUITS);
+
+		if (Globals.slLOG_DEBUG_SETIMPCELLS == true) {
+			Globals.wxLogDebug(
+					"Entering aiSuitLengthSolver::RecalcMinForImpactedCells for (%d, %d)",
+					hand, suit);
+			Globals.wxLogDebug("Data : %s", PrintData(data));
+		}
+
+		/*
+		 * Recalculate the min for all the affected cells Recalculate the min
+		 * for all cell in hand
+		 */
+		for (i = 0; i < Globals.slTOTAL_SUITS; i++) {
+			/*
+			 * Avoid recalculating for the cell for which data is being set and
+			 * for non-vacant cells.
+			 */
+			if (data.cells[hand][i].suit_length == Globals.slVACANT) {
+				if (RecalcCellMin(data, hand, i) == true) {
+					RecalcMaxForImpactedCells(data, hand, i);
+				}
+			}
+		}
+
+		/*
+		 * Recalculate the max for all cell in suit
+		 */
+		for (i = 0; i < Globals.slTOTAL_HANDS; i++) {
+			/*
+			 * Avoid recalculating for the cell for which data is being set and
+			 * for non-vacant cells.
+			 */
+			if (data.cells[i][suit].suit_length == Globals.slVACANT) {
+				if (RecalcCellMin(data, i, suit) == true) {
+					RecalcMaxForImpactedCells(data, i, suit);
+				}
+			}
+		}
+
+		return (true);
 	}
 
 	/**
