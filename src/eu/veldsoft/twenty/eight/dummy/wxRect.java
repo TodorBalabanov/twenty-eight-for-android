@@ -24,5 +24,21 @@
 package eu.veldsoft.twenty.eight.dummy;
 
 public class wxRect {
+	public int x;
+	
+	public int y;
 
+	public wxRect(int x, int y, int w, int h) {
+	}
+
+	public int GetWidth() {
+		return 0;
+	}
+
+	public int GetHeight() {
+		return 0;
+	}
+
+	public void Union(wxRect m_rect_diff) {
+	}
 }
