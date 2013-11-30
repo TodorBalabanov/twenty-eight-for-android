@@ -75,19 +75,21 @@ public class Globals {
 	public static final long gmALL_CARDS = 0xFFFFFFFF;
 
 	public static final long gmRULE_1 = 1;
-	
+
 	public static final long gmRULE_2 = 2;
-	
+
 	public static final long gmRULE_3 = 4;
-	
+
 	public static final long gmRULE_4 = 8;
-	
+
 	public static final long gmRULE_5 = 16;
 
 	public static final int gmCARD_INVALID = -1;
 
 	public static final Random PRNG = new Random();
-	
+
+	public static final int gmTOTAL_VALUES = 8;
+
 	public static void wxLogError(String string, String file, int line) {
 	}
 
@@ -98,13 +100,20 @@ public class Globals {
 		return null;
 	}
 
-	public static void wxLogDebug(String arg1, int arg2, int arg3,
-			int arg4) {
+	public static void wxLogDebug(String arg1, int arg2, int arg3, int arg4) {
 	}
 
 	public static void wxLogDebug(String arg1, int arg2, int arg3) {
 	}
 
 	public static void wxLogDebug(String arg1, String arg2) {
+	}
+
+	public static int gmGetSuit(int arg1) {
+		return (arg1 / gmTOTAL_VALUES);
+	}
+
+	public static int gmGetValue(int arg1) {
+		return (arg1 % gmTOTAL_VALUES);
 	}
 }
