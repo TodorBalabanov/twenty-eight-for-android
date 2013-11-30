@@ -28,4 +28,13 @@ public class wxMemoryDC {
 	public void SelectObject(wxBitmap m_face) {		
 	}
 
+	public boolean Ok() {
+		return false;
+	}
+
+	public boolean Blit(int x, int y, int getWidth, int getHeight,
+			wxMemoryDC bdc, int x2, int y2) {
+		return false;
+	}
+
 }

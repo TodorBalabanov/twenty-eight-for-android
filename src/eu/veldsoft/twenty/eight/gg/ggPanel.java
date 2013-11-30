@@ -29,6 +29,7 @@ import eu.veldsoft.twenty.eight.dummy.wxColour;
 import eu.veldsoft.twenty.eight.dummy.wxCoord;
 import eu.veldsoft.twenty.eight.dummy.wxDC;
 import eu.veldsoft.twenty.eight.dummy.wxFont;
+import eu.veldsoft.twenty.eight.dummy.wxMemoryDC;
 import eu.veldsoft.twenty.eight.dummy.wxPaintEvent;
 import eu.veldsoft.twenty.eight.dummy.wxPoint;
 import eu.veldsoft.twenty.eight.dummy.wxRect;
@@ -194,11 +195,36 @@ public class ggPanel {
 		return (false);
 	}
 
+	/**
+	 * 
+	 * @return
+	 * 
+	 * @author INFM042 F___88 Ivan Dankinov ...
+	 * @author INFM042 F___68 Georgi Srebrov ...
+	 * @author INFM032 F___93 Krasimir Chariyski ...
+	 */
 	public boolean ClearDifference() {
-		// TODO To be done by INFM042 F___88 Ivan Dankinov ...
-		// TODO To be done by INFM042 F___68 Georgi Srebrov ...
-		// TODO To be done by INFM032 F___93 Krasimir Chariyski ...
+		wxMemoryDC bdc = null, wdc = null;
+		bdc.SelectObject(m_back);
+		wdc.SelectObject(m_work);
 
-		return (false);
+		if (!bdc.Ok()) {
+			return false;
+		}
+
+		if (!wdc.Ok()) {
+			return false;
+		}
+
+		if (!wdc.Blit(m_rect_diff.x, m_rect_diff.y, m_rect_diff.GetWidth(),
+				m_rect_diff.GetHeight(), bdc, m_rect_diff.x, m_rect_diff.y)) {
+			return false;
+		}
+
+		m_rect_invalid.Union(m_rect_diff);
+		m_rect_diff = new wxRect(0, 0, 0, 0);
+		m_f_invalid = true;
+
+		return true;
 	}
 }
