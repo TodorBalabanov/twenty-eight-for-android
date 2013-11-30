@@ -52,7 +52,7 @@ public class gmUtil {
 
 	public static final int gmTOTAL_TEAMS = 2;
 
-	public static int m_value_trans[] = {6, 7, 11, 12, 9, 0, 8, 10};
+	public static int m_value_trans[] = { 6, 7, 11, 12, 9, 0, 8, 10 };
 
 	public static int BitsSetTable256[] = { 0, 1, 1, 2, 1, 2, 2, 3, 1, 2, 2, 3,
 			2, 3, 3, 4, 1, 2, 2, 3, 2, 3, 3, 4, 2, 3, 3, 4, 3, 4, 4, 5, 1, 2,

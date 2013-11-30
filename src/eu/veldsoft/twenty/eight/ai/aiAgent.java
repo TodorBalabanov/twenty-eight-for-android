@@ -379,7 +379,6 @@ public class aiAgent {
 		return (false);
 	}
 
-
 	/**
 	 * 
 	 * @param flag
@@ -389,7 +388,7 @@ public class aiAgent {
 	 * @author INFM042 F___90 Svetoslav Slavkov ...
 	 */
 	public boolean AbandonGame(boolean flag) {
-		assert(flag);
+		assert (flag);
 		flag = true;
 		return true;
 	}

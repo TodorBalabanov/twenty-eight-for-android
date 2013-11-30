@@ -32,6 +32,7 @@ import eu.veldsoft.twenty.eight.dummy.wxCoord;
 import eu.veldsoft.twenty.eight.dummy.wxDC;
 import eu.veldsoft.twenty.eight.dummy.wxMemoryDC;
 import eu.veldsoft.twenty.eight.dummy.wxMutex;
+import eu.veldsoft.twenty.eight.dummy.wxString;
 
 public class ggCard {
 	/**
@@ -177,13 +178,40 @@ public class ggCard {
 		return (BlitTo(dest, xdest, ydest, Globals.wxCOPY));
 	}
 
+	/**
+	 * 
+	 * @param dest
+	 * @param xdest
+	 * @param ydest
+	 * @param logicalFunc
+	 * @return
+	 * @author INFM032 F___93 Krasimir Chariyski
+	 * @author INFM032 F___68 Georgi Srebrov
+	 * @author INFM042 F___46 Nadya Nedyalkova
+	 */
 	public boolean BlitTo(wxDC dest, wxCoord xdest, wxCoord ydest,
 			int logicalFunc) {
-		// TODO To be done by INFM032 F___93 Krasimir Chariyski ...
-		// TODO To be done by INFM032 F___68 Georgi Srebrov ...
-		// TODO To be done by INFM042 F___46 Nadya Nedyalkova ...
+		
+		/**
+		*  Dummy values.
+		*/
+		final String __FILE__ = "";
+		
+		/**
+		* Dummy values.
+		*/
+		final int __LINE__ = 0;
+				
+		wxMemoryDC mdc = null;
 
-		return (false);
+		assert (dest) != null;
+
+		mdc.SelectObject(m_face);
+		if(dest.Blit(xdest, ydest, GG_CARD_WIDTH, GG_CARD_HEIGHT, mdc, 0, 0, logicalFunc, true)!=true){
+			Globals.wxLogError("Blit failed. %s:%d", __FILE__, __LINE__);
+			return false;
+		}
+		return true;
 	}
 
 	public wxBitmap GetFace() {

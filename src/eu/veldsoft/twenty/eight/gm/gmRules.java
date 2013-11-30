@@ -35,8 +35,8 @@ public class gmRules implements Cloneable {
 	public boolean waive_rule_4;
 
 	public boolean sluff_jacks;
-	
+
 	public Object clone() throws CloneNotSupportedException {
-	    throw new CloneNotSupportedException(); 
+		throw new CloneNotSupportedException();
 	}
 }
