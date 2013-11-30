@@ -291,12 +291,36 @@ public class aiAgent {
 		return (false);
 	}
 
-	public static String PrintMoves(aiMove moves, int move_count) {
-		// TODO To be done by INFM042 F___47 Kostadin Bulakiev ...
-		// TODO To be done by INFM042 F___90 Svetoslav Slavkov ...
-		// TODO To be done by INFM042 F___88 Ivan Dankinov ...
+	/**
+	 * 
+	 * @param moves
+	 * @param move_count
+	 * @return
+	 * 
+	 * @author INFM042 F___47 Kostadin Bulakiev ...
+	 * @author INFM042 F___90 Svetoslav Slavkov ...
+	 * @author INFM042 F___88 Ivan Dankinov ...
+	 */
+	public static String PrintMoves(aiMove moves[], int move_count) {
+		assert (move_count >= 0);
+		
+		StringBuffer out = new StringBuffer();
+		out.append("" + move_count + " moves - ");
+		for (int i = 0; i < move_count; i++) {
+			if (moves[i].ask_trump) {
+				out.append("?"
+						+ gmUtil.m_suits[Globals.gmGetSuit(moves[i].card)]
+						+ gmUtil.m_values[Globals.gmGetValue(moves[i].card)]
+						+ "(" + moves[i].rank + "),");
+			} else {
+				out.append(""
+						+ gmUtil.m_suits[Globals.gmGetSuit(moves[i].card)]
+						+ gmUtil.m_values[Globals.gmGetValue(moves[i].card)]
+						+ "(" + moves[i].rank + "),");
+			}
+		}
 
-		return ("");
+		return out.toString();
 	}
 
 	public boolean PostPlayUpdate(gmEngineData data) {
@@ -379,7 +403,6 @@ public class aiAgent {
 		return (false);
 	}
 
-
 	/**
 	 * 
 	 * @param flag
@@ -389,7 +412,7 @@ public class aiAgent {
 	 * @author INFM042 F___90 Svetoslav Slavkov ...
 	 */
 	public boolean AbandonGame(boolean flag) {
-		assert(flag);
+		assert (flag);
 		flag = true;
 		return true;
 	}
