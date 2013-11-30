@@ -91,11 +91,16 @@ public class raBid {
 		// TODO To be done by INFM042 F___81 Marina Rangelova ...
 	}
 
+	/**
+	 * 
+	 * @param object
+	 * @return
+	 * 
+	 * @author INFM042 F___39 Shterion Yanev
+	 * @author INFM042 F___93 Krasimir Chariyski
+	 * @author INFM042 F___81 Marina Rangelova
+	 */
 	private raBid assign(final raBid object) {
-		// TODO To be done by INFM042 F___39 Shterion Yanev ...
-		// TODO To be done by INFM042 F___93 Krasimir Chariyski ...
-		// TODO To be done by INFM042 F___81 Marina Rangelova ...
-
 		return (this);
 	}
 
@@ -125,6 +130,10 @@ public class raBid {
 		return (false);
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public boolean SetPassable() {
 		return (SetPassable(true));
 	}
