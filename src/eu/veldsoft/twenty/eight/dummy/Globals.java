@@ -23,6 +23,8 @@
 
 package eu.veldsoft.twenty.eight.dummy;
 
+import java.util.Random;
+
 public class Globals {
 	public static final int wxCOPY = 0;
 
@@ -84,6 +86,8 @@ public class Globals {
 
 	public static final int gmCARD_INVALID = -1;
 
+	public static final Random PRNG = new Random();
+	
 	public static void wxLogError(String string, String file, int line) {
 	}
 

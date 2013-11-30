@@ -23,6 +23,7 @@
 
 package eu.veldsoft.twenty.eight.gm;
 
+import eu.veldsoft.twenty.eight.dummy.Globals;
 import eu.veldsoft.twenty.eight.dummy.wxFrame;
 import eu.veldsoft.twenty.eight.dummy.wxStatusBar;
 import eu.veldsoft.twenty.eight.dummy.wxTheApp;
@@ -52,7 +53,7 @@ public class gmUtil {
 
 	public static final int gmTOTAL_TEAMS = 2;
 
-	public static int m_value_trans[] = {6, 7, 11, 12, 9, 0, 8, 10};
+	public static int m_value_trans[] = { 6, 7, 11, 12, 9, 0, 8, 10 };
 
 	public static int BitsSetTable256[] = { 0, 1, 1, 2, 1, 2, 2, 3, 1, 2, 2, 3,
 			2, 3, 3, 4, 1, 2, 2, 3, 2, 3, 3, 4, 2, 3, 3, 4, 3, 4, 4, 5, 1, 2,
@@ -99,10 +100,26 @@ public class gmUtil {
 
 	public static String m_short_teams[];
 
-	public static void ShuffleArray(int array, long n) {
-		// TODO To be done by INFM032 F___39 Shterion Yanev ...
-		// TODO To be done by INFM042 F___68 Georgi Srebrov ...
-		// TODO To be done by INFM042 F___81 Marina Rangelova ...
+	/**
+	 * 
+	 * @param array
+	 * @param n
+	 * @author INFM032 F___39 Shterion Yanev
+	 * @author INFM042 F___68 Georgi Srebrov
+	 * @author INFM042 F___81 Marina Rangelova
+	 */
+	public static void ShuffleArray(int array[], long n) {
+		if (n <= 1) {
+			return;
+		}
+
+		for (int i = (int) (n - 1); i >= 1; i--) {
+			// TODO Non linear distribution. To be corrected.
+			int j = Globals.PRNG.nextInt(i + 1);
+			int t = array[j];
+			array[j] = array[i];
+			array[i] = t;
+		}
 	}
 
 	public static String PrintLong(long cards) {
