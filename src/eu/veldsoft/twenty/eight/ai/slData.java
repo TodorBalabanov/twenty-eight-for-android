@@ -38,8 +38,10 @@ public class slData {
 
 	public int hand_sum_of_maxs[] = new int[aiSuitLengthSolver.slTOTAL_HANDS];
 
-	// This is not really the sum of min values.
-	// It is the sum of min values of vacant cells
+	/**
+	 * This is not really the sum of min values. It is the sum of min values of
+	 * vacant cells
+	 */
 	public int suit_sum_of_vacant_mins[] = new int[aiSuitLengthSolver.slTOTAL_SUITS];
 
 	public int hand_sum_of_vacant_mins[] = new int[aiSuitLengthSolver.slTOTAL_HANDS];

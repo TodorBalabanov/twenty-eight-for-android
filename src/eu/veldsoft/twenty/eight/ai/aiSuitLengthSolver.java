@@ -67,18 +67,80 @@ public class aiSuitLengthSolver {
 		return (this);
 	}
 
+	/**
+	 * 
+	 * @param data
+	 * @author INFM042 F___94 Aleksandar Milev ...
+	 * @author INFM032 F___46 Nadya Nedyalkova ...
+	 * @author INFM032 F___88 Ivan Dankinov ...
+	 */
 	private void InitializeWorkingData(slData data) {
-		// TODO To be done by INFM042 F___94 Aleksandar Milev ...
-		// TODO To be done by INFM032 F___46 Nadya Nedyalkova ...
-		// TODO To be done by INFM032 F___88 Ivan Dankinov ...
+		int i = 0;
+		int j = 0;
+
+		/*
+		 * Problem is initialized by setting suit lengths for all spots as
+		 * vacant and setting the total length for all hands and suits as zero.
+		 */
+		// TODO Set all data fields to zero.
+
+		for (i = 0; i < slTOTAL_HANDS; i++) {
+			for (j = 0; j < slTOTAL_SUITS; j++) {
+				data.cells[i][j].suit_length = slVACANT;
+			}
+		}
+
+		return;
 	}
 
+	/**
+	 * 
+	 * @param data
+	 * @param hand
+	 * @param suit
+	 * @return
+	 * @author INFM032 F___88 Ivan Dankinov ...
+	 * @author INFM042 F___46 Nadya Nedyalkova ...
+	 * @author INFM042 F___68 Georgi Srebrov ...
+	 */
 	private boolean RecalcCellMax(slData data, int hand, int suit) {
-		// TODO To be done by INFM032 F___88 Ivan Dankinov ...
-		// TODO To be done by INFM042 F___46 Nadya Nedyalkova ...
-		// TODO To be done by INFM042 F___68 Georgi Srebrov ...
+		int old_max = 0;
+		int new_max = 0;
 
-		return (false);
+		assert (data != null);
+		assert (hand < slTOTAL_HANDS);
+		assert (suit < slTOTAL_SUITS);
+		assert (data.cells[hand][suit].suit_length == slVACANT);
+
+		int h = (data.hand_total_length[hand] - data.hand_allocated[hand]
+				- data.hand_sum_of_vacant_mins[hand] + data.cells[hand][suit].min);
+		assert (h >= 0);
+		int s = (data.suit_total_length[suit] - data.suit_allocated[suit]
+				- data.suit_sum_of_vacant_mins[suit] + data.cells[hand][suit].min);
+		assert (s >= 0);
+
+		// Store the old max value
+
+		old_max = data.cells[hand][suit].max;
+
+		// Compute the new max value
+
+		new_max = Math.min(h, s);
+		assert ((new_max <= old_max) || (old_max == 0));
+
+		data.cells[hand][suit].max = new_max;
+
+		// If the new max value is different from the older one,
+		// then the sum of max values for the hand and the suit has to be
+		// corrected
+
+		if (new_max != old_max) {
+			data.hand_sum_of_maxs[hand] -= (old_max - new_max);
+			data.suit_sum_of_maxs[suit] -= (old_max - new_max);
+			return true;
+		}
+
+		return false;
 	}
 
 	/**
@@ -317,22 +379,63 @@ public class aiSuitLengthSolver {
 		return ("");
 	}
 
+	/**
+	 * 
+	 * @param problem
+	 * @author INFM042 F___67 Nevena Sirakova ...
+	 * @author INFM032 F___88 Ivan Dankinov ...
+	 * @author INFM042 F___84 Mariya Kostadinova ...
+	 */
 	public static void InitializeProblem(slProblem problem) {
-		// TODO To be done by INFM042 F___67 Nevena Sirakova ...
-		// TODO To be done by INFM032 F___88 Ivan Dankinov ...
-		// TODO To be done by INFM042 F___84 Mariya Kostadinova ...
+		int i = 0;
+		int j = 0;
+
+		/*
+		 * Problem is initialized by setting suit lengths for all spots as
+		 * vacant and setting the total length for all hands and suits as zero.
+		 */
+		// TODO Set problem fields to zero.
+
+		for (i = 0; i < slTOTAL_HANDS; i++) {
+			for (j = 0; j < slTOTAL_SUITS; j++) {
+				problem.suit_length[i][j] = slVACANT;
+			}
+		}
+
+		return;
 	}
 
+	/**
+	 * 
+	 * @param played
+	 * @author INFM042 F___81 Marina Rangelova ...
+	 * @author INFM042 F___88 Ivan Dankinov ...
+	 * @author INFM032 F___67 Nevena Sirakova ...
+	 * 
+	 * 
+	 */
 	public static void InitializePlayed(int[][] played) {
-		// TODO To be done by INFM042 F___81 Marina Rangelova ...
-		// TODO To be done by INFM042 F___88 Ivan Dankinov ...
-		// TODO To be done by INFM032 F___67 Nevena Sirakova ...
+		/*
+		 * Played is initialized by setting suit lengths for all spots as zero
+		 * and setting the total length for all hands and suits also as zero.
+		 */
+		for (int i = 0; i < played.length; i++) {
+			for (int j = 0; j < played[i].length; j++) {
+				played[i][j] = 0;
+			}
+		}
+
+		return;
 	}
 
+	/**
+	 * 
+	 * @author INFM042 F___06 Rosen Kaplanov
+	 * @author INFM032 F___88 Ivan Dankinov
+	 * @author INFM042 F___46 Nadya Nedyalkova
+	 */
 	public aiSuitLengthSolver() {
-		// TODO To be done by INFM042 F___06 Rosen Kaplanov ...
-		// TODO To be done by INFM032 F___88 Ivan Dankinov ...
-		// TODO To be done by INFM042 F___46 Nadya Nedyalkova ...
+		return;
 	}
 
 	protected void finalize() {

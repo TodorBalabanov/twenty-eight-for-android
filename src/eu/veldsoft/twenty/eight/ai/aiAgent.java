@@ -23,6 +23,7 @@
 
 package eu.veldsoft.twenty.eight.ai;
 
+import eu.veldsoft.twenty.eight.dummy.Globals;
 import eu.veldsoft.twenty.eight.gm.gmEngine;
 import eu.veldsoft.twenty.eight.gm.gmEngineData;
 import eu.veldsoft.twenty.eight.gm.gmRules;
@@ -83,10 +84,18 @@ public class aiAgent {
 	}
 
 	// Disallow copy finalructor/assignment operators
+	/**
+	 * @param elem1
+	 * @param elem2
+	 * @return
+	 * @author To be done by INFM032 F___90 Svetoslav Slavkov ...
+	 * @author To be done by INFM042 F___88 Ivan Dankinov ...
+	 * @author To be done by INFM042 F___81 Marina Rangelova ...
+	 */
 	private aiAgent(final aiAgent object) {
-		// TODO To be done by INFM032 F___90 Svetoslav Slavkov ...
-		// TODO To be done by INFM042 F___88 Ivan Dankinov ...
-		// TODO To be done by INFM042 F___81 Marina Rangelova ...
+		/*
+		 * Empty body of private constructor.
+		 */
 	}
 
 	private boolean EstimateTricks(long p_hands, int trump, int eval) {
@@ -312,12 +321,23 @@ public class aiAgent {
 		return (false);
 	}
 
+	/**
+	 * @param moves
+	 * @param move_count
+	 * @return
+	 * @author INFM032 F___88 Ivan Dankinov ...
+	 * @author INFM032 F___46 Nadya Nedyalkova ...
+	 * @author INFM042 F___68 Nikola Vushkov ...
+	 */
 	public boolean Reset() {
-		// TODO To be done by INFM032 F___88 Ivan Dankinov ...
-		// TODO To be done by INFM032 F___46 Nadya Nedyalkova ...
-		// TODO To be done by INFM042 F___68 Nikola Vushkov ...
-
-		return (false);
+		int i;
+		m_engine.Reset();
+		m_trump_cards = 0x0000000F;
+		for (i = 0; i < Globals.gmTOTAL_PLAYERS; i++)
+			m_nulls[i] = 0;
+		m_notrump_suspects = 0;
+		m_mb_null_susp = 0;
+		return true;
 	}
 
 	public void SetRules() {
@@ -359,11 +379,18 @@ public class aiAgent {
 		return (false);
 	}
 
-	public boolean AbandonGame(boolean flag) {
-		// TODO To be done by INFM042 F___88 Ivan Dankinov ...
-		// TODO To be done by INFM032 F___84 Mariya Kostadinova ...
-		// TODO To be done by INFM042 F___90 Svetoslav Slavkov ...
 
-		return (false);
+	/**
+	 * 
+	 * @param flag
+	 * @return
+	 * @author INFM042 F___88 Ivan Dankinov ...
+	 * @author INFM032 F___84 Mariya Kostadinova ...
+	 * @author INFM042 F___90 Svetoslav Slavkov ...
+	 */
+	public boolean AbandonGame(boolean flag) {
+		assert(flag);
+		flag = true;
+		return true;
 	}
 }
