@@ -389,12 +389,44 @@ public class aiSuitLengthSolver {
 		return (false);
 	}
 
+	/**
+	 * 
+	 * @param data
+	 * @param changed
+	 * @return
+	 * @author INFM042 F___45 Valentin Popov
+	 * @author INFM042 F___14 Petya Atanasova
+	 * @author INFM042 F___06 Rosen Kaplanov
+	 */
 	private boolean RecalcMinForAllCells(slData data, boolean changed) {
-		// TODO To be done by INFM042 F___45 Valentin Popov ...
-		// TODO To be done by INFM042 F___14 Petya Atanasova ...
-		// TODO To be done by INFM042 F___06 Rosen Kaplanov ...
+		int i = 0;
+		int j = 0;
+		assert (data != null);
 
-		return (false);
+		/*
+		 * Reset the sum of min values for all hands and suits Calculate min for
+		 * all cells At the same time, calculate the sum of mins for the hand
+		 */
+		for (i = 0; i < Globals.slTOTAL_HANDS; i++) {
+			for (j = 0; j < Globals.slTOTAL_SUITS; j++) {
+
+				/*
+				 * If the suit length for a cell is fixed, then min has already
+				 * been calculated.
+				 */
+				if (data.cells[i][j].suit_length == Globals.slVACANT) {
+					RecalcCellMin(data, i, j);
+					assert ((data.cells[i][j].min >= 0) && (data.cells[i][j].min <= Globals.slLENGTH_MAX));
+
+					/*
+					 * If the min for a vacant cell is not zero, add that to the
+					 * sum of mins for vacant cells
+					 */
+				}
+			}
+		}
+
+		return (true);
 	}
 
 	private boolean RecalcMaxForAllCells(slData data) {
