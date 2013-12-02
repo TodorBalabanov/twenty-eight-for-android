@@ -83,11 +83,14 @@ public class aiAgent {
 		}
 	}
 
-	// Disallow copy finalructor/assignment operators
 	/**
+	 * Disallow copy finalructor/assignment operators.
+	 * 
 	 * @param elem1
 	 * @param elem2
+	 * 
 	 * @return
+	 * 
 	 * @author To be done by INFM032 F___90 Svetoslav Slavkov ...
 	 * @author To be done by INFM042 F___88 Ivan Dankinov ...
 	 * @author To be done by INFM042 F___81 Marina Rangelova ...
@@ -295,6 +298,7 @@ public class aiAgent {
 	 * 
 	 * @param moves
 	 * @param move_count
+	 * 
 	 * @return
 	 * 
 	 * @author INFM042 F___47 Kostadin Bulakiev ...
@@ -303,7 +307,7 @@ public class aiAgent {
 	 */
 	public static String PrintMoves(aiMove moves[], int move_count) {
 		assert (move_count >= 0);
-		
+
 		StringBuffer out = new StringBuffer();
 		out.append("" + move_count + " moves - ");
 		for (int i = 0; i < move_count; i++) {
@@ -348,19 +352,24 @@ public class aiAgent {
 	/**
 	 * @param moves
 	 * @param move_count
+	 * 
 	 * @return
+	 * 
 	 * @author INFM032 F___88 Ivan Dankinov ...
 	 * @author INFM032 F___46 Nadya Nedyalkova ...
 	 * @author INFM042 F___68 Nikola Vushkov ...
 	 */
 	public boolean Reset() {
-		int i;
 		m_engine.Reset();
 		m_trump_cards = 0x0000000F;
-		for (i = 0; i < Globals.gmTOTAL_PLAYERS; i++)
+
+		for (int i = 0; i < Globals.gmTOTAL_PLAYERS; i++) {
 			m_nulls[i] = 0;
+		}
+
 		m_notrump_suspects = 0;
 		m_mb_null_susp = 0;
+
 		return true;
 	}
 
@@ -406,7 +415,9 @@ public class aiAgent {
 	/**
 	 * 
 	 * @param flag
+	 * 
 	 * @return
+	 * 
 	 * @author INFM042 F___88 Ivan Dankinov ...
 	 * @author INFM032 F___84 Mariya Kostadinova ...
 	 * @author INFM042 F___90 Svetoslav Slavkov ...

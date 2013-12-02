@@ -23,10 +23,22 @@
 
 package eu.veldsoft.twenty.eight.ai;
 
+import java.util.Arrays;
+
 public class slProblem {
 	public int[][] suit_length;
 
 	public int suit_total_length[] = new int[aiSuitLengthSolver.slTOTAL_SUITS];
 
 	public int hand_total_length[] = new int[aiSuitLengthSolver.slTOTAL_HANDS];
+
+	public void setToZero() {
+		for (int i = 0; i < suit_length.length; i++) {
+			for (int j = 0; j < suit_length[i].length; j++) {
+				suit_length[i][j] = 0;
+			}
+		}
+		Arrays.fill(suit_total_length, 0);
+		Arrays.fill(hand_total_length, 0);
+	}
 }
