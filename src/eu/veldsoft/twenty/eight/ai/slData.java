@@ -23,6 +23,8 @@
 
 package eu.veldsoft.twenty.eight.ai;
 
+import java.util.Arrays;
+
 public class slData {
 	public slCell cells[][] = new slCell[aiSuitLengthSolver.slTOTAL_HANDS][aiSuitLengthSolver.slTOTAL_SUITS];
 
@@ -45,4 +47,23 @@ public class slData {
 	public int suit_sum_of_vacant_mins[] = new int[aiSuitLengthSolver.slTOTAL_SUITS];
 
 	public int hand_sum_of_vacant_mins[] = new int[aiSuitLengthSolver.slTOTAL_HANDS];
+
+	public void setToZero() {
+		for (int i = 0; i < cells.length; i++) {
+			for (int j = 0; j < cells[i].length; j++) {
+				cells[i][j].min = 0;
+				cells[i][j].max = 0;
+				cells[i][j].suit_length = 0;
+			}
+		}
+
+		Arrays.fill(suit_total_length, 0);
+		Arrays.fill(hand_total_length, 0);
+		Arrays.fill(suit_allocated, 0);
+		Arrays.fill(hand_allocated, 0);
+		Arrays.fill(suit_sum_of_maxs, 0);
+		Arrays.fill(hand_sum_of_maxs, 0);
+		Arrays.fill(suit_sum_of_vacant_mins, 0);
+		Arrays.fill(hand_sum_of_vacant_mins, 0);
+	}
 }

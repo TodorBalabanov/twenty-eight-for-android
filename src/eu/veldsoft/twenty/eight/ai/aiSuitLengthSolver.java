@@ -70,22 +70,20 @@ public class aiSuitLengthSolver {
 	/**
 	 * 
 	 * @param data
+	 * 
 	 * @author INFM042 F___94 Aleksandar Milev ...
 	 * @author INFM032 F___46 Nadya Nedyalkova ...
 	 * @author INFM032 F___88 Ivan Dankinov ...
 	 */
 	private void InitializeWorkingData(slData data) {
-		int i = 0;
-		int j = 0;
-
 		/*
 		 * Problem is initialized by setting suit lengths for all spots as
 		 * vacant and setting the total length for all hands and suits as zero.
 		 */
-		// TODO Set all data fields to zero.
+		data.setToZero();
 
-		for (i = 0; i < slTOTAL_HANDS; i++) {
-			for (j = 0; j < slTOTAL_SUITS; j++) {
+		for (int i = 0; i < slTOTAL_HANDS; i++) {
+			for (int j = 0; j < slTOTAL_SUITS; j++) {
 				data.cells[i][j].suit_length = slVACANT;
 			}
 		}
@@ -98,15 +96,14 @@ public class aiSuitLengthSolver {
 	 * @param data
 	 * @param hand
 	 * @param suit
+	 * 
 	 * @return
+	 * 
 	 * @author INFM032 F___88 Ivan Dankinov ...
 	 * @author INFM042 F___46 Nadya Nedyalkova ...
 	 * @author INFM042 F___68 Georgi Srebrov ...
 	 */
 	private boolean RecalcCellMax(slData data, int hand, int suit) {
-		int old_max = 0;
-		int new_max = 0;
-
 		assert (data != null);
 		assert (hand < slTOTAL_HANDS);
 		assert (suit < slTOTAL_SUITS);
@@ -119,21 +116,23 @@ public class aiSuitLengthSolver {
 				- data.suit_sum_of_vacant_mins[suit] + data.cells[hand][suit].min);
 		assert (s >= 0);
 
-		// Store the old max value
+		/*
+		 * Store the old max value.
+		 */
+		int old_max = data.cells[hand][suit].max;
 
-		old_max = data.cells[hand][suit].max;
-
-		// Compute the new max value
-
-		new_max = Math.min(h, s);
+		/*
+		 * Compute the new max value.
+		 */
+		int new_max = Math.min(h, s);
 		assert ((new_max <= old_max) || (old_max == 0));
 
 		data.cells[hand][suit].max = new_max;
 
-		// If the new max value is different from the older one,
-		// then the sum of max values for the hand and the suit has to be
-		// corrected
-
+		/*
+		 * If the new max value is different from the older one, then the sum of
+		 * max values for the hand and the suit has to be corrected
+		 */
 		if (new_max != old_max) {
 			data.hand_sum_of_maxs[hand] -= (old_max - new_max);
 			data.suit_sum_of_maxs[suit] -= (old_max - new_max);
@@ -218,11 +217,19 @@ public class aiSuitLengthSolver {
 		return true;
 	}
 
+	/**
+	 * 
+	 * @param data
+	 * @param hand
+	 * @param suit
+	 * 
+	 * @return
+	 * 
+	 * @author INFM032 F___94 Aleksandar Milev
+	 * @author INFM042 F___90 Svetoslav Slavkov
+	 * @author INFM042 F___68 Nikola Vushkov
+	 */
 	private boolean RecalcMaxForImpactedCells(slData data, int hand, int suit) {
-		// TODO To be done by INFM032 F___94 Aleksandar Milev ...
-		// TODO To be done by INFM042 F___90 Svetoslav Slavkov ...
-		// TODO To be done by INFM042 F___68 Nikola Vushkov ...
-
 		assert (data != null);
 		assert (hand < Globals.slTOTAL_HANDS);
 		assert (suit < Globals.slTOTAL_SUITS);
@@ -236,7 +243,7 @@ public class aiSuitLengthSolver {
 
 		/*
 		 * Recalculate the max for all the affected cells Recalculate the max
-		 * for all cell in hand
+		 * for all cell in hand.
 		 */
 		for (int i = 0; i < Globals.slTOTAL_SUITS; i++) {
 			/*
@@ -251,7 +258,7 @@ public class aiSuitLengthSolver {
 		}
 
 		/*
-		 * Recalculate the max for all cell in suit
+		 * Recalculate the max for all cell in suit.
 		 */
 		for (int i = 0; i < Globals.slTOTAL_HANDS; i++) {
 			/*
@@ -273,14 +280,14 @@ public class aiSuitLengthSolver {
 	 * @param data
 	 * @param hand
 	 * @param suit
+	 * 
 	 * @return
+	 * 
 	 * @author INFM032 F___06 Rosen Kaplanov
 	 * @author INFM032 F___52 Mihail Stankov
 	 * @author INFM032 F___46 Nadya Nedyalkova
 	 */
 	private boolean RecalcMinForImpactedCells(slData data, int hand, int suit) {
-		int i = 0;
-
 		assert (data != null);
 		assert (hand < slTOTAL_HANDS);
 		assert (suit < slTOTAL_SUITS);
@@ -296,7 +303,7 @@ public class aiSuitLengthSolver {
 		 * Recalculate the min for all the affected cells Recalculate the min
 		 * for all cell in hand
 		 */
-		for (i = 0; i < Globals.slTOTAL_SUITS; i++) {
+		for (int i = 0; i < Globals.slTOTAL_SUITS; i++) {
 			/*
 			 * Avoid recalculating for the cell for which data is being set and
 			 * for non-vacant cells.
@@ -311,7 +318,7 @@ public class aiSuitLengthSolver {
 		/*
 		 * Recalculate the max for all cell in suit
 		 */
-		for (i = 0; i < Globals.slTOTAL_HANDS; i++) {
+		for (int i = 0; i < Globals.slTOTAL_HANDS; i++) {
 			/*
 			 * Avoid recalculating for the cell for which data is being set and
 			 * for non-vacant cells.
@@ -399,16 +406,14 @@ public class aiSuitLengthSolver {
 	 * @author INFM042 F___06 Rosen Kaplanov
 	 */
 	private boolean RecalcMinForAllCells(slData data, boolean changed) {
-		int i = 0;
-		int j = 0;
 		assert (data != null);
 
 		/*
 		 * Reset the sum of min values for all hands and suits Calculate min for
 		 * all cells At the same time, calculate the sum of mins for the hand
 		 */
-		for (i = 0; i < Globals.slTOTAL_HANDS; i++) {
-			for (j = 0; j < Globals.slTOTAL_SUITS; j++) {
+		for (int i = 0; i < Globals.slTOTAL_HANDS; i++) {
+			for (int j = 0; j < Globals.slTOTAL_SUITS; j++) {
 
 				/*
 				 * If the suit length for a cell is fixed, then min has already
@@ -417,7 +422,6 @@ public class aiSuitLengthSolver {
 				if (data.cells[i][j].suit_length == Globals.slVACANT) {
 					RecalcCellMin(data, i, j);
 					assert ((data.cells[i][j].min >= 0) && (data.cells[i][j].min <= Globals.slLENGTH_MAX));
-
 					/*
 					 * If the min for a vacant cell is not zero, add that to the
 					 * sum of mins for vacant cells
@@ -469,32 +473,26 @@ public class aiSuitLengthSolver {
 	 * @author INFM042 F___84 Mariya Kostadinova ...
 	 */
 	public static void InitializeProblem(slProblem problem) {
-		int i = 0;
-		int j = 0;
-
 		/*
 		 * Problem is initialized by setting suit lengths for all spots as
 		 * vacant and setting the total length for all hands and suits as zero.
 		 */
-		// TODO Set problem fields to zero.
+		problem.setToZero();
 
-		for (i = 0; i < slTOTAL_HANDS; i++) {
-			for (j = 0; j < slTOTAL_SUITS; j++) {
+		for (int i = 0; i < slTOTAL_HANDS; i++) {
+			for (int j = 0; j < slTOTAL_SUITS; j++) {
 				problem.suit_length[i][j] = slVACANT;
 			}
 		}
-
-		return;
 	}
 
 	/**
 	 * 
 	 * @param played
+	 * 
 	 * @author INFM042 F___81 Marina Rangelova ...
 	 * @author INFM042 F___88 Ivan Dankinov ...
 	 * @author INFM032 F___67 Nevena Sirakova ...
-	 * 
-	 * 
 	 */
 	public static void InitializePlayed(int[][] played) {
 		/*
@@ -506,8 +504,6 @@ public class aiSuitLengthSolver {
 				played[i][j] = 0;
 			}
 		}
-
-		return;
 	}
 
 	/**
@@ -517,7 +513,6 @@ public class aiSuitLengthSolver {
 	 * @author INFM042 F___46 Nadya Nedyalkova
 	 */
 	public aiSuitLengthSolver() {
-		return;
 	}
 
 	protected void finalize() {
