@@ -25,6 +25,10 @@ package eu.veldsoft.twenty.eight.dummy;
 
 public class wxConfig {
 
+	public wxConfig(Object rA_APP_NAME) {
+		// TODO Auto-generated constructor stub
+	}
+
 	public boolean Read(String raconfpathAppDataX, int x) {
 		// TODO Auto-generated method stub
 		return false;
