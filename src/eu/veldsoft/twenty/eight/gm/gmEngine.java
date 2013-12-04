@@ -267,13 +267,17 @@ public class gmEngine {
 
 		return (0);
 	}
-
+/**
+ * Get Feedback
+ * @return
+ * boolean type
+ * @author INFM042 F___05 Iliya Grozev
+ * @author INFM042 F___06 Rosen Kaplanov
+ * @author INFM042 F___93 Krasimir Chariyski
+ */
 	public boolean GetFeedback() {
-		// TODO To be done by INFM042 F___05 Iliya Grozev ...
-		// TODO To be done by INFM042 F___06 Rosen Kaplanov ...
-		// TODO To be done by INFM042 F___93 Krasimir Chariyski ...
-
-		return (false);
+		
+		return m_data.feedback;
 	}
 
 	/**
