@@ -149,10 +149,27 @@ public class gmEngine {
 		// TODO To be done by INFM042 F___90 Svetoslav Slavkov ...
 	}
 
+	/**
+	 * @author INFM032 F___46 Nadya Nedyalkova
+	 * @author INFM042 F___06 Rosen Kaplanov
+	 * @author INFM032 F___52 Mihail Stankov
+	 */
 	public gmEngine() {
-		// TODO To be done by INFM032 F___46 Nadya Nedyalkova ...
-		// TODO To be done by INFM042 F___06 Rosen Kaplanov ...
-		// TODO To be done by INFM032 F___52 Mihail Stankov ...
+
+		if (m_init_ok == false) {
+			gmEngine.InitCache();
+			m_init_ok = true;
+		}
+		m_data.ok = Reset(m_data);
+		m_data.feedback = true;
+
+		// Set the rules
+		m_data.rules.rot_addn = 1;
+		m_data.rules.min_bid_1 = 14;
+		m_data.rules.min_bid_2 = 20;
+		m_data.rules.min_bid_3 = 23;
+		m_data.rules.waive_rule_4 = false;
+		m_data.rules.sluff_jacks = true;
 	}
 
 	protected void finalize() {
@@ -267,16 +284,17 @@ public class gmEngine {
 
 		return (0);
 	}
-/**
- * Get Feedback
- * @return
- * boolean type
- * @author INFM042 F___05 Iliya Grozev
- * @author INFM042 F___06 Rosen Kaplanov
- * @author INFM042 F___93 Krasimir Chariyski
- */
+
+	/**
+	 * Get Feedback
+	 * 
+	 * @return boolean type
+	 * @author INFM042 F___05 Iliya Grozev
+	 * @author INFM042 F___06 Rosen Kaplanov
+	 * @author INFM042 F___93 Krasimir Chariyski
+	 */
 	public boolean GetFeedback() {
-		
+
 		return m_data.feedback;
 	}
 
