@@ -45,6 +45,8 @@ public class raConfig {
 
 	private raConfData m_data;
 
+	private Object RA_APP_NAME;
+
 	/**
 	 * Constructor
 	 * 
@@ -101,10 +103,41 @@ public class raConfig {
 		return (this);
 	}
 
+	/**
+	 * This is a constructor
+	 * 
+	 * @author INFM042 F___67 Nevena Sirakova
+	 * @author INFM032 F___94 Aleksandar Milev
+	 * @author INFM032 F___06 Rosen Kaplanov
+	 */
 	private raConfig() {
-		// TODO To be done by INFM042 F___67 Nevena Sirakova ...
-		// TODO To be done by INFM032 F___94 Aleksandar Milev ...
-		// TODO To be done by INFM032 F___06 Rosen Kaplanov ...
+		memset(m_data, 0, sizeof(m_data));
+		m_config = new wxConfig(RA_APP_NAME);
+
+			/*
+			 * If the application is being run for the first time, configuration
+			 * data may not be present. Create it. Attempt to load the data from the
+			 * configuration repository
+			 */
+		if (!Load()) {
+
+			/*
+			 * If load failed, the application is being run for the first time
+			 * Save default settings
+			 */
+			SetDefaultValues(m_data);
+			Save();
+		}
+	}
+
+	private void memset(raConfData m_data2, int i, Object sizeof) {
+		// TODO Auto-generated method stub
+
+	}
+
+	private Object sizeof(raConfData m_data2) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	/**

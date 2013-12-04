@@ -116,6 +116,8 @@ public class Globals {
 
 	public static final String raCONFPATH_PREFS_BIDBUBBLES = null;
 
+	public static final String RA_APP_NAME = null;
+
 	public static void wxLogError(String string, String file, int line) {
 	}
 
