@@ -90,6 +90,32 @@ public class Globals {
 
 	public static final int gmTOTAL_VALUES = 8;
 
+	public static final String raCONFPATH_APP_DATA_X = null;
+
+	public static final String raCONFPATH_APP_DATA_Y = null;
+
+	public static final String raCONFPATH_APP_DATA_WIDTH = null;
+
+	public static final String raCONFPATH_APP_DATA_HEIGHT = null;
+
+	public static final String raCONFPATH_APP_DATA_MAX = null;
+
+	public static final String raCONFPATH_GAME_DATA_CLOCK = null;
+
+	public static final String raCONFPATH_GAME_DATA_MINBID3 = null;
+
+	public static final String raCONFPATH_GAME_DATA_WAIVERULE4 = null;
+
+	public static final String raCONFPATH_GAME_DATA_SLUFFJACKS = null;
+
+	public static final String raCONFPATH_PREFS_PLAYCARDON = null;
+
+	public static final String raCONFPATH_PREFS_CARDBACK = null;
+
+	public static final String raCONFPATH_PREFS_AUTOPLAYSINGLE = null;
+
+	public static final String raCONFPATH_PREFS_BIDBUBBLES = null;
+
 	public static void wxLogError(String string, String file, int line) {
 	}
 

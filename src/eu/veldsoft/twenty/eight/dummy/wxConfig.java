@@ -25,4 +25,14 @@ package eu.veldsoft.twenty.eight.dummy;
 
 public class wxConfig {
 
+	public boolean Read(String raconfpathAppDataX, int x) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean Read(String raconfpathAppDataMax, boolean maximized) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }
