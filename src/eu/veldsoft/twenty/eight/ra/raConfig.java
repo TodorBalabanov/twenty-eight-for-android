@@ -28,7 +28,15 @@ import eu.veldsoft.twenty.eight.dummy.wxConfig;
 import eu.veldsoft.twenty.eight.dummy.wxMutex;
 
 public class raConfig {
+	/**
+	 * Dummy values.
+	 */
+	private static final String __FILE__ = "";
 
+	/**
+	 * Dummy values.
+	 */
+	private static final int __LINE__ = 0;
 	private static raConfig s_instance;
 
 	private static wxMutex s_mutex;
@@ -99,12 +107,100 @@ public class raConfig {
 		// TODO To be done by INFM032 F___06 Rosen Kaplanov ...
 	}
 
+	/**
+	 * @author INFM042 F___00 Tsvetelina Hristova
+	 * @author INFM042 F___94 Aleksandar Milev
+	 * @author INFM042 F___06 Rosen Kaplanov
+	 * @return
+	 */
 	private boolean Load() {
-		// TODO To be done by INFM042 F___00 Tsvetelina Hristova ...
-		// TODO To be done by INFM042 F___94 Aleksandar Milev ...
-		// TODO To be done by INFM042 F___06 Rosen Kaplanov ...
 
-		return (false);
+		if (!m_config.Read(Globals.raCONFPATH_APP_DATA_X, m_data.app_data.x)) {
+			Globals.wxLogError("m_config->Read failed. %s:%d", __FILE__,
+					__LINE__);
+			return false;
+		}
+
+		if (!m_config.Read(Globals.raCONFPATH_APP_DATA_Y, m_data.app_data.y)) {
+			Globals.wxLogError("m_config->Read failed. %s:%d", __FILE__,
+					__LINE__);
+			return false;
+		}
+
+		if (!m_config.Read(Globals.raCONFPATH_APP_DATA_WIDTH,
+				m_data.app_data.width)) {
+			Globals.wxLogError("m_config->Read failed. %s:%d", __FILE__,
+					__LINE__);
+			return false;
+		}
+
+		if (!m_config.Read(Globals.raCONFPATH_APP_DATA_HEIGHT,
+				m_data.app_data.height)) {
+			Globals.wxLogError("m_config->Read failed. %s:%d", __FILE__,
+					__LINE__);
+			return false;
+		}
+
+		if (!m_config.Read(Globals.raCONFPATH_APP_DATA_MAX,
+				m_data.app_data.maximized)) {
+			Globals.wxLogError("m_config->Read failed. %s:%d", __FILE__,
+					__LINE__);
+			return false;
+		}
+
+		if (!m_config.Read(Globals.raCONFPATH_GAME_DATA_CLOCK,
+				m_data.game_data.clockwise)) {
+			Globals.wxLogError("m_config->Read failed. %s:%d", __FILE__,
+					__LINE__);
+			return false;
+		}
+
+		if (!m_config.Read(Globals.raCONFPATH_GAME_DATA_MINBID3,
+				m_data.game_data.min_bid3)) {
+			Globals.wxLogError("m_config->Read failed. %s:%d", __FILE__,
+					__LINE__);
+			return false;
+		}
+
+		if (!m_config.Read(Globals.raCONFPATH_GAME_DATA_WAIVERULE4,
+				m_data.game_data.waive_rule4)) {
+			Globals.wxLogError("m_config->Read failed. %s:%d", __FILE__,
+					__LINE__);
+			return false;
+		}
+
+		if (!m_config.Read(Globals.raCONFPATH_GAME_DATA_SLUFFJACKS,
+				m_data.game_data.sluff_jacks)) {
+			Globals.wxLogError("m_config->Read failed. %s:%d", __FILE__,
+					__LINE__);
+			return false;
+		}
+
+		if (!m_config.Read(Globals.raCONFPATH_PREFS_PLAYCARDON,
+				m_data.prefs_data.play_card_on)) {
+			Globals.wxLogError("m_config->Read failed. %s:%d", __FILE__,
+					__LINE__);
+			return false;
+		}
+		if (!m_config.Read(Globals.raCONFPATH_PREFS_CARDBACK,
+				m_data.prefs_data.card_back)) {
+			Globals.wxLogError("m_config->Read failed. %s:%d", __FILE__,
+					__LINE__);
+			return false;
+		}
+		if (!m_config.Read(Globals.raCONFPATH_PREFS_AUTOPLAYSINGLE,
+				m_data.prefs_data.auto_play_single)) {
+			Globals.wxLogError("m_config->Read failed. %s:%d", __FILE__,
+					__LINE__);
+			return false;
+		}
+		if (!m_config.Read(Globals.raCONFPATH_PREFS_BIDBUBBLES,
+				m_data.prefs_data.show_bid_bubbles)) {
+			Globals.wxLogError("m_config->Read failed. %s:%d", __FILE__,
+					__LINE__);
+			return false;
+		}
+		return true;
 	}
 
 	public static raConfig GetInstance() {
