@@ -29,4 +29,10 @@ public class raConfData {
 	public raConfGameData game_data;
 
 	public raConfPrefsData prefs_data;
+
+	public void setToZeros() {
+		app_data.setToZeros();
+		game_data.setToZeros();
+		prefs_data.setToZeros();
+	}
 }

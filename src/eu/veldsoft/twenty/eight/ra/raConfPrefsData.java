@@ -31,4 +31,11 @@ public class raConfPrefsData {
 	public boolean auto_play_single;
 
 	public boolean show_bid_bubbles;
+
+	public void setToZeros() {
+		play_card_on = 0;
+		card_back = 0;
+		auto_play_single = false;
+		show_bid_bubbles = false;
+	}
 }

@@ -33,4 +33,11 @@ public class raConfAppData {
 	public int height;
 
 	public boolean maximized;
+
+	public void setToZeros() {
+		x = 0;
+		y = 0;
+		width = 0;
+		height = 0;
+	}
 }
