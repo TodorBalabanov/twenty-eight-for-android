@@ -90,33 +90,43 @@ public class Globals {
 
 	public static final int gmTOTAL_VALUES = 8;
 
-	public static final String raCONFPATH_APP_DATA_X = null;
+	public static final String raCONFPATH_APP_DATA_X = "application/x";
 
-	public static final String raCONFPATH_APP_DATA_Y = null;
+	public static final String raCONFPATH_APP_DATA_Y = "application/y";
 
-	public static final String raCONFPATH_APP_DATA_WIDTH = null;
+	public static final String raCONFPATH_APP_DATA_WIDTH = "application/width";
 
-	public static final String raCONFPATH_APP_DATA_HEIGHT = null;
+	public static final String raCONFPATH_APP_DATA_HEIGHT = "application/height";
 
-	public static final String raCONFPATH_APP_DATA_MAX = null;
+	public static final String raCONFPATH_APP_DATA_MAX = "application/maximized";
 
-	public static final String raCONFPATH_GAME_DATA_CLOCK = null;
+	public static final String raCONFPATH_GAME_DATA_CLOCK = "game/clockwise";
 
-	public static final String raCONFPATH_GAME_DATA_MINBID3 = null;
+	public static final String raCONFPATH_GAME_DATA_MINBID3 = "game/minbid3";
 
-	public static final String raCONFPATH_GAME_DATA_WAIVERULE4 = null;
+	public static final String raCONFPATH_GAME_DATA_WAIVERULE4 = "game/waiverule4";
 
-	public static final String raCONFPATH_GAME_DATA_SLUFFJACKS = null;
+	public static final String raCONFPATH_GAME_DATA_SLUFFJACKS = "game/sluffjacks";
 
-	public static final String raCONFPATH_PREFS_PLAYCARDON = null;
+	public static final String raCONFPATH_PREFS_PLAYCARDON = "preferences/playcardon";
 
-	public static final String raCONFPATH_PREFS_CARDBACK = null;
+	public static final String raCONFPATH_PREFS_CARDBACK = "preferences/cardback";
 
-	public static final String raCONFPATH_PREFS_AUTOPLAYSINGLE = null;
+	public static final String raCONFPATH_PREFS_AUTOPLAYSINGLE = "preferences/autoplaysingle";
 
-	public static final String raCONFPATH_PREFS_BIDBUBBLES = null;
+	public static final String raCONFPATH_PREFS_BIDBUBBLES = "preferences/bidbubbles";
 
-	public static final String RA_APP_NAME = null;
+	public static final String RA_APP_MAJOR_VER = "1";
+
+	public static final String RA_APP_MINOR_VER = "0";
+
+	public static final String RA_APP_REL_TYPE = "b";
+
+	public static final String RA_APP_REL_TYPE_VER = "1";
+
+	public static final String RA_APP_NAME = "Rosanne";
+
+	public static final String RA_APP_AUTHOR = "Todor Balabanov";
 
 	public static void wxLogError(String string, String file, int line) {
 	}

@@ -37,6 +37,7 @@ public class raConfig {
 	 * Dummy values.
 	 */
 	private static final int __LINE__ = 0;
+
 	private static raConfig s_instance;
 
 	private static wxMutex s_mutex;
@@ -44,8 +45,6 @@ public class raConfig {
 	private wxConfig m_config;
 
 	private raConfData m_data;
-
-	private Object RA_APP_NAME;
 
 	/**
 	 * Constructor
@@ -84,8 +83,6 @@ public class raConfig {
 		data.prefs_data.card_back = Globals.raCONFIG_PREFS_CARDBACK_BLUE;
 		data.prefs_data.auto_play_single = true;
 		data.prefs_data.show_bid_bubbles = true;
-
-		return;
 	}
 
 	// Disallow copy finalructor/assignment operators
@@ -111,43 +108,34 @@ public class raConfig {
 	 * @author INFM032 F___06 Rosen Kaplanov
 	 */
 	private raConfig() {
-		memset(m_data, 0, sizeof(m_data));
-		m_config = new wxConfig(RA_APP_NAME);
+		m_data.setToZeros();
+		m_config = new wxConfig(Globals.RA_APP_NAME);
 
-			/*
-			 * If the application is being run for the first time, configuration
-			 * data may not be present. Create it. Attempt to load the data from the
-			 * configuration repository
-			 */
-		if (!Load()) {
-
-			/*
-			 * If load failed, the application is being run for the first time
-			 * Save default settings
-			 */
-			SetDefaultValues(m_data);
-			Save();
+		/*
+		 * If the application is being run for the first time, configuration
+		 * data may not be present. Create it. Attempt to load the data from the
+		 * configuration repository
+		 */
+		if (Load() == true) {
+			return;
 		}
-	}
 
-	private void memset(raConfData m_data2, int i, Object sizeof) {
-		// TODO Auto-generated method stub
-
-	}
-
-	private Object sizeof(raConfData m_data2) {
-		// TODO Auto-generated method stub
-		return null;
+		/*
+		 * If load failed, the application is being run for the first time Save
+		 * default settings
+		 */
+		SetDefaultValues(m_data);
+		Save();
 	}
 
 	/**
+	 * @return
+	 * 
 	 * @author INFM042 F___00 Tsvetelina Hristova
 	 * @author INFM042 F___94 Aleksandar Milev
 	 * @author INFM042 F___06 Rosen Kaplanov
-	 * @return
 	 */
 	private boolean Load() {
-
 		if (!m_config.Read(Globals.raCONFPATH_APP_DATA_X, m_data.app_data.x)) {
 			Globals.wxLogError("m_config->Read failed. %s:%d", __FILE__,
 					__LINE__);

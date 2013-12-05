@@ -25,17 +25,14 @@ package eu.veldsoft.twenty.eight.dummy;
 
 public class wxConfig {
 
-	public wxConfig(Object rA_APP_NAME) {
-		// TODO Auto-generated constructor stub
+	public wxConfig(Object arg0) {
 	}
 
-	public boolean Read(String raconfpathAppDataX, int x) {
-		// TODO Auto-generated method stub
+	public boolean Read(String arg0, int arg1) {
 		return false;
 	}
 
-	public boolean Read(String raconfpathAppDataMax, boolean maximized) {
-		// TODO Auto-generated method stub
+	public boolean Read(String arg0, boolean arg1) {
 		return false;
 	}
 

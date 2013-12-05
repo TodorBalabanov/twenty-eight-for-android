@@ -31,4 +31,11 @@ public class raConfGameData {
 	public boolean waive_rule4;
 
 	public boolean sluff_jacks;
+
+	public void setToZeros() {
+		clockwise = false;
+		min_bid3 = 0;
+		waive_rule4 = false;
+		sluff_jacks = false;
+	}
 }

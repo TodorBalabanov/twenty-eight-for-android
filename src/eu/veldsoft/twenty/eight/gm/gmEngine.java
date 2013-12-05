@@ -26,17 +26,16 @@ package eu.veldsoft.twenty.eight.gm;
 import eu.veldsoft.twenty.eight.dummy.Globals;
 
 public class gmEngine {
-
-	// Initialization of the gmEngineData structure used by each gmEngine
-	// instance (m_data) is a costly affair
-	// because 1) the structure is huge 2) there are multiple loops to be run to
-	// initiate certian data elements.
-	// At one point of time, approx 30% of the entire run time was taken by
-	// gmEntine.Reset. To speed things up,
-	// a static m_init of type gmEngineData is created and is initiated manually
-	// when the first instance of gmEngine is
-	// called. Once this is done, all further initializations of this struct is
-	// done be a memcpy from m_init.
+	/**
+	 * Initialization of the gmEngineData structure used by each gmEngine
+	 * instance (m_data) is a costly affair because 1) the structure is huge 2)
+	 * there are multiple loops to be run to initiate certian data elements. At
+	 * one point of time, approx 30% of the entire run time was taken by
+	 * gmEntine.Reset. To speed things up, a static m_init of type gmEngineData
+	 * is created and is initiated manually when the first instance of gmEngine
+	 * is called. Once this is done, all further initializations of this struct
+	 * is done be a memcpy from m_init.
+	 */
 	public static gmEngineData m_init;
 
 	public static boolean m_init_ok;
@@ -62,6 +61,7 @@ public class gmEngine {
 	/**
 	 * 
 	 * @param rules
+	 * 
 	 * @return
 	 * 
 	 * @author INFM042 F___06 Rosen Kaplanov
@@ -150,20 +150,23 @@ public class gmEngine {
 	}
 
 	/**
+	 * 
 	 * @author INFM032 F___46 Nadya Nedyalkova
 	 * @author INFM042 F___06 Rosen Kaplanov
 	 * @author INFM032 F___52 Mihail Stankov
 	 */
 	public gmEngine() {
-
 		if (m_init_ok == false) {
 			gmEngine.InitCache();
 			m_init_ok = true;
 		}
+
 		m_data.ok = Reset(m_data);
 		m_data.feedback = true;
 
-		// Set the rules
+		/*
+		 * Set the rules.
+		 */
 		m_data.rules.rot_addn = 1;
 		m_data.rules.min_bid_1 = 14;
 		m_data.rules.min_bid_2 = 20;
@@ -289,12 +292,12 @@ public class gmEngine {
 	 * Get Feedback
 	 * 
 	 * @return boolean type
+	 * 
 	 * @author INFM042 F___05 Iliya Grozev
 	 * @author INFM042 F___06 Rosen Kaplanov
 	 * @author INFM042 F___93 Krasimir Chariyski
 	 */
 	public boolean GetFeedback() {
-
 		return m_data.feedback;
 	}
 
