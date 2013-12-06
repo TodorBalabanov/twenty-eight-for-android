@@ -23,10 +23,12 @@
 
 package eu.veldsoft.twenty.eight.ra;
 
+import eu.veldsoft.twenty.eight.dummy.Globals;
+
 public class raHand {
 	public long cards;
 
 	public int count;
 
-	public int card_indexes[] = new int[raGamePanel.raMAX_CARDS_PER_HAND];
+	public int card_indexes[] = new int[Globals.raMAX_CARDS_PER_HAND];
 }
