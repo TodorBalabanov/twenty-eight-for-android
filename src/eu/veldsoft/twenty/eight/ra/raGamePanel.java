@@ -36,35 +36,18 @@ import eu.veldsoft.twenty.eight.gm.gmEngineData;
 import eu.veldsoft.twenty.eight.gm.gmRules;
 import eu.veldsoft.twenty.eight.gm.gmTrick;
 import eu.veldsoft.twenty.eight.gm.gmUtil;
+import eu.veldsoft.twenty.eight.dummy.Globals;
 
 public class raGamePanel {
-	public static final int raHAND_VERTICAL = 0;
+	/**
+	 * Dummy values.
+	 */
+	private static final String __FILE__ = "";
 
-	public static final int raHAND_HORIZONTAL = 1;
-
-	public static final int raGAME_ORIENT_ALL_HORZ = 0;
-
-	public static final int raGAME_ORIENT_MIXED = 1;
-
-	public static final int raTOTAL_CARD_BACKS = 2;
-
-	public static final int raMAX_CARDS_PER_HAND = 8;
-
-	public static final int raCARD_VERT_RELIEF = (12);
-
-	public static final int raCARD_HORZ_RELIEF = (ggCard.GG_CARD_WIDTH / 4);
-
-	public static final int raCARD_PANEL_RELIEF = 20;
-
-	public static final int raGAME_CARD_BACK_SEL = 0;
-
-	public static final int raGAME_ARROW_RELIEF = 8;
-
-	public static final int raGAME_FOUR_JACKS = (0x80808080);
-
-	public static final int raGAME_ALL_LOW_CARDS = (0x0F0F0F0F);
-
-	public static final int raGAME_ALL_HIGH_CARDS = (0xF0F0F0F0);
+	/**
+	 * Dummy values.
+	 */
+	private static final int __LINE__ = 0;
 
 	private wxBitmap m_tile;
 
@@ -85,7 +68,7 @@ public class raGamePanel {
 
 	private wxBitmap m_card_faces[] = new wxBitmap[gmUtil.gmTOTAL_CARDS];
 
-	private wxBitmap m_card_backs[] = new wxBitmap[raTOTAL_CARD_BACKS];
+	private wxBitmap m_card_backs[] = new wxBitmap[Globals.raTOTAL_CARD_BACKS];
 
 	private gmEngine m_engine;
 
@@ -98,7 +81,7 @@ public class raGamePanel {
 
 	private wxRect m_hand_rects[] = new wxRect[gmUtil.gmTOTAL_PLAYERS];
 
-	private wxRect m_hand_card_rects[][] = new wxRect[gmUtil.gmTOTAL_PLAYERS][raMAX_CARDS_PER_HAND];
+	private wxRect m_hand_card_rects[][] = new wxRect[gmUtil.gmTOTAL_PLAYERS][Globals.raMAX_CARDS_PER_HAND];
 
 	private int m_hand_rot;
 
@@ -209,7 +192,7 @@ public class raGamePanel {
 	}
 
 	private boolean DrawHand(int loc, int x, int y) {
-		return (DrawHand(loc, x, y, raGamePanel.raHAND_HORIZONTAL));
+		return (DrawHand(loc, x, y, Globals.raHAND_HORIZONTAL));
 	}
 
 	private boolean DrawHand(int loc, int x, int y, int orientation) {
@@ -420,8 +403,59 @@ public class raGamePanel {
 		return (false);
 	}
 
+	/**
+	 * ...
+	 * 
+	 * @author Vencislav Medarov
+	 * @email venci932@gmail.com
+	 * @date 01 Dec 2013
+	 */
 	private int CheckOppTrumps() {
-		// TODO To be done by Venci.
+		gmEngineData data = new gmEngineData();
+		StringBuffer msg = new StringBuffer();
+		int i = 0;
+		long opp_hands = 0;
+
+		if (m_engine.GetStatus() == Globals.gmSTATUS_TRICKS) {
+			m_engine.GetData(data);
+			assert ((data.curr_max_bidder >= 0) && (data.curr_max_bidder < Globals.gmTOTAL_PLAYERS));
+
+			/*
+			 * Combine the hands of opponents of the max bidder
+			 */
+			opp_hands = 0;
+			// i = gmGetOpponentOne(data.curr_max_bidder);
+			opp_hands |= data.hands[i] | data.played_cards[i];
+			// i = gmGetOpponentTwo(data.curr_max_bidder);
+			opp_hands |= data.hands[i] | data.played_cards[i];
+
+			/*
+			 If the opponents of the max bidder does not
+			 a single trump card among them, abandon deal
+			 and show appropriate message
+			 */
+			if ((opp_hands & gmUtil.m_suit_mask[data.trump_suit]) == 0) {
+				// msg.Empty();
+				msg.append("The trump selected for the deal is ");
+				msg.append(gmUtil.m_suits[data.trump_suit]);
+				msg.append(("\n"));
+				msg.append(("Team "));
+				// msg.append(gmUtil.m_short_teams[gmGetOpponent(data.curr_max_bidder)]);
+				msg.append(" does not have any card of this suit");
+				msg.append("\n\n");
+				msg.append("This deal has been abandoned");
+				// wxMessageBox(msg, ("Deal abandoned"), wxOK |
+				// wxICON_INFORMATION);
+
+				if (EndDeal(true) == false) {
+					Globals.wxLogError("EndDeal failed. %s:%d", __FILE__,
+							__LINE__);
+					return (-1);
+				}
+
+				return (1);
+			}
+		}
 
 		return (0);
 	}

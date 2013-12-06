@@ -25,7 +25,12 @@ package eu.veldsoft.twenty.eight.dummy;
 
 import java.util.Random;
 
+import eu.veldsoft.twenty.eight.gg.ggCard;
+
 public class Globals {
+
+	public static final Random PRNG = new Random();
+	
 	public static final int wxCOPY = 0;
 
 	public static final wxFont wxNullFont = null;
@@ -86,47 +91,37 @@ public class Globals {
 
 	public static final int gmCARD_INVALID = -1;
 
-	public static final Random PRNG = new Random();
-
 	public static final int gmTOTAL_VALUES = 8;
 
-	public static final String raCONFPATH_APP_DATA_X = "application/x";
+	public static final int gmSTATUS_TRICKS = 0;
 
-	public static final String raCONFPATH_APP_DATA_Y = "application/y";
+	public static final int raHAND_VERTICAL = 0;
 
-	public static final String raCONFPATH_APP_DATA_WIDTH = "application/width";
+	public static final int raHAND_HORIZONTAL = 1;
 
-	public static final String raCONFPATH_APP_DATA_HEIGHT = "application/height";
+	public static final int raGAME_ORIENT_ALL_HORZ = 0;
 
-	public static final String raCONFPATH_APP_DATA_MAX = "application/maximized";
+	public static final int raGAME_ORIENT_MIXED = 1;
 
-	public static final String raCONFPATH_GAME_DATA_CLOCK = "game/clockwise";
+	public static final int raTOTAL_CARD_BACKS = 2;
 
-	public static final String raCONFPATH_GAME_DATA_MINBID3 = "game/minbid3";
+	public static final int raMAX_CARDS_PER_HAND = 8;
 
-	public static final String raCONFPATH_GAME_DATA_WAIVERULE4 = "game/waiverule4";
+	public static final int raCARD_VERT_RELIEF = (12);
 
-	public static final String raCONFPATH_GAME_DATA_SLUFFJACKS = "game/sluffjacks";
+	public static final int raCARD_HORZ_RELIEF = (ggCard.GG_CARD_WIDTH / 4);
 
-	public static final String raCONFPATH_PREFS_PLAYCARDON = "preferences/playcardon";
+	public static final int raCARD_PANEL_RELIEF = 20;
 
-	public static final String raCONFPATH_PREFS_CARDBACK = "preferences/cardback";
+	public static final int raGAME_CARD_BACK_SEL = 0;
 
-	public static final String raCONFPATH_PREFS_AUTOPLAYSINGLE = "preferences/autoplaysingle";
+	public static final int raGAME_ARROW_RELIEF = 8;
 
-	public static final String raCONFPATH_PREFS_BIDBUBBLES = "preferences/bidbubbles";
+	public static final int raGAME_FOUR_JACKS = (0x80808080);
 
-	public static final String RA_APP_MAJOR_VER = "1";
+	public static final int raGAME_ALL_LOW_CARDS = (0x0F0F0F0F);
 
-	public static final String RA_APP_MINOR_VER = "0";
-
-	public static final String RA_APP_REL_TYPE = "b";
-
-	public static final String RA_APP_REL_TYPE_VER = "1";
-
-	public static final String RA_APP_NAME = "Rosanne";
-
-	public static final String RA_APP_AUTHOR = "Todor Balabanov";
+	public static final int raGAME_ALL_HIGH_CARDS = (0xF0F0F0F0);
 
 	public static void wxLogError(String string, String file, int line) {
 	}

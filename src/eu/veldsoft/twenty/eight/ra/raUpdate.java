@@ -63,8 +63,17 @@ public class raUpdate {
 		return (this);
 	}
 
+	/**
+	 * Empty constructor.
+	 * 
+	 * @author Vencislav Medarov
+	 * @email venci932@gmail.com
+	 * @date 01 Dec 2013
+	 */
 	public raUpdate() {
-		// TODO To be done by Venci.
+		/*
+		 * Empty body of public constructor.
+		 */
 	}
 
 	/**
