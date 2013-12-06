@@ -413,39 +413,34 @@ public class raGamePanel {
 	private int CheckOppTrumps() {
 		gmEngineData data = new gmEngineData();
 		StringBuffer msg = new StringBuffer();
-		int i = 0;
-		long opp_hands = 0;
 
 		if (m_engine.GetStatus() == Globals.gmSTATUS_TRICKS) {
 			m_engine.GetData(data);
 			assert ((data.curr_max_bidder >= 0) && (data.curr_max_bidder < Globals.gmTOTAL_PLAYERS));
 
 			/*
-			 * Combine the hands of opponents of the max bidder
+			 * Combine the hands of opponents of the max bidder.
 			 */
-			opp_hands = 0;
-			// i = gmGetOpponentOne(data.curr_max_bidder);
-			opp_hands |= data.hands[i] | data.played_cards[i];
-			// i = gmGetOpponentTwo(data.curr_max_bidder);
-			opp_hands |= data.hands[i] | data.played_cards[i];
+			int i = Globals.gmGetOpponentOne(data.curr_max_bidder);
+			long opp_hands = data.hands[i] | data.played_cards[i];
+			int j = Globals.gmGetOpponentTwo(data.curr_max_bidder);
+			opp_hands |= data.hands[j] | data.played_cards[j];
 
 			/*
-			 If the opponents of the max bidder does not
-			 a single trump card among them, abandon deal
-			 and show appropriate message
+			 * If the opponents of the max bidder does not a single trump card
+			 * among them, abandon deal and show appropriate message.
 			 */
 			if ((opp_hands & gmUtil.m_suit_mask[data.trump_suit]) == 0) {
-				// msg.Empty();
+				msg = new StringBuffer();
 				msg.append("The trump selected for the deal is ");
 				msg.append(gmUtil.m_suits[data.trump_suit]);
 				msg.append(("\n"));
 				msg.append(("Team "));
-				// msg.append(gmUtil.m_short_teams[gmGetOpponent(data.curr_max_bidder)]);
+				msg.append(gmUtil.m_short_teams[Globals.gmGetOpponent(data.curr_max_bidder)]);
 				msg.append(" does not have any card of this suit");
 				msg.append("\n\n");
 				msg.append("This deal has been abandoned");
-				// wxMessageBox(msg, ("Deal abandoned"), wxOK |
-				// wxICON_INFORMATION);
+				Globals.wxMessageBox(msg.toString(), ("Deal abandoned"), Globals.wxOK | Globals.wxICON_INFORMATION);
 
 				if (EndDeal(true) == false) {
 					Globals.wxLogError("EndDeal failed. %s:%d", __FILE__,

@@ -30,7 +30,7 @@ import eu.veldsoft.twenty.eight.gg.ggCard;
 public class Globals {
 
 	public static final Random PRNG = new Random();
-	
+
 	public static final int wxCOPY = 0;
 
 	public static final wxFont wxNullFont = null;
@@ -91,8 +91,6 @@ public class Globals {
 
 	public static final int gmCARD_INVALID = -1;
 
-	public static final int gmTOTAL_VALUES = 8;
-
 	public static final int gmSTATUS_TRICKS = 0;
 
 	public static final int raHAND_VERTICAL = 0;
@@ -123,6 +121,60 @@ public class Globals {
 
 	public static final int raGAME_ALL_HIGH_CARDS = (0xF0F0F0F0);
 
+	public static final String raCONFPATH_APP_DATA_X = "application/x";
+
+	public static final String raCONFPATH_APP_DATA_Y = "application/y";
+
+	public static final String raCONFPATH_APP_DATA_WIDTH = "application/width";
+
+	public static final String raCONFPATH_APP_DATA_HEIGHT = "application/height";
+
+	public static final String raCONFPATH_APP_DATA_MAX = "application/maximized";
+
+	public static final String raCONFPATH_GAME_DATA_CLOCK = "game/clockwise";
+
+	public static final String raCONFPATH_GAME_DATA_MINBID3 = "game/minbid3";
+
+	public static final String raCONFPATH_GAME_DATA_WAIVERULE4 = "game/waiverule4";
+
+	public static final String raCONFPATH_GAME_DATA_SLUFFJACKS = "game/sluffjacks";
+
+	public static final String raCONFPATH_PREFS_PLAYCARDON = "preferences/playcardon";
+
+	public static final String raCONFPATH_PREFS_CARDBACK = "preferences/cardback";
+
+	public static final String raCONFPATH_PREFS_AUTOPLAYSINGLE = "preferences/autoplaysingle";
+
+	public static final String raCONFPATH_PREFS_BIDBUBBLES = "preferences/bidbubbles";
+
+	public static final String RA_APP_MAJOR_VER = "1";
+
+	public static final String RA_APP_MINOR_VER = "0";
+
+	public static final String RA_APP_REL_TYPE = "b";
+
+	public static final String RA_APP_REL_TYPE_VER = "1";
+
+	public static final String RA_APP_NAME = "Rosanne";
+
+	public static final String RA_APP_AUTHOR = "Todor Balabanov";
+	
+	public static final int gmBID_PASS = 0;
+	
+	public static final int gmBID_ALL = 1000;
+	
+	public static final int gmTOTAL_SUITS = 4;
+	
+	public static final int gmTOTAL_VALUES = 8;
+	
+	public static final int gmTOTAL_TRICKS = 8;
+	
+	public static final int gmTOTAL_TEAMS = 2;
+
+	public static final int wxOK = 0x00000004;
+
+	public static final int wxICON_INFORMATION = 0x00000800;
+	
 	public static void wxLogError(String string, String file, int line) {
 	}
 
@@ -142,11 +194,26 @@ public class Globals {
 	public static void wxLogDebug(String arg1, String arg2) {
 	}
 
+	public static void wxMessageBox(String arg0, String arg1, int arg2) {
+	}
+
 	public static int gmGetSuit(int arg1) {
 		return (arg1 / gmTOTAL_VALUES);
 	}
 
 	public static int gmGetValue(int arg1) {
 		return (arg1 % gmTOTAL_VALUES);
+	}
+
+	public static int gmGetOpponent(int x) {
+		return ((x + 1) % gmTOTAL_TEAMS);
+	}
+
+	public static int gmGetOpponentOne(int x) {
+		return ((x + 1) % gmTOTAL_PLAYERS);
+	}
+
+	public static int gmGetOpponentTwo(int x) {
+		return ((x + 3) % gmTOTAL_PLAYERS);
 	}
 }
