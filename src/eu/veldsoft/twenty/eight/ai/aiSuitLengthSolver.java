@@ -432,13 +432,40 @@ public class aiSuitLengthSolver {
 
 		return (true);
 	}
-
+	/**
+	 * 
+	 * @param data
+	 * 
+	 * @return
+	 * 
+	 * @author INFM032 F___67 Nevena Sirakova
+	 * @author INFM032 F___05 Iliya Grozev
+	 * @author INFM032 F___93 Krasimir Chariyski
+	 */
 	private boolean RecalcMaxForAllCells(slData data) {
-		// TODO To be done by INFM032 F___67 Nevena Sirakova ...
-		// TODO To be done by INFM032 F___05 Iliya Grozev ...
-		// TODO To be done by INFM032 F___93 Krasimir Chariyski ...
+		int i = 0;
+	    int j = 0;
 
-		return (false);
+	    assert(data != null);
+
+	    /*
+	     * Calculate max for each cell 
+	     * This also calculates the sum of maxes for all hands and suits internally
+	     */
+		for(i = 0; i < slTOTAL_HANDS; i++){
+		    for(j = 0; j < slTOTAL_SUITS; j++){
+		        /*
+		         * If the suit length for a cell is fixed, then max
+		         * has already been calculated.
+		         */
+
+		        if(data.cells[i][j].suit_length == slVACANT){
+	                RecalcCellMax(data, i, j);
+		        }
+		    }
+		}
+
+	    return true;
 	}
 
 	private int GenerateRandomFill(int min, int max) {
