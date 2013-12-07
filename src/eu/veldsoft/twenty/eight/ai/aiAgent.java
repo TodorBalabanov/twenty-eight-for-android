@@ -23,6 +23,8 @@
 
 package eu.veldsoft.twenty.eight.ai;
 
+import java.util.Arrays;
+
 import eu.veldsoft.twenty.eight.dummy.Globals;
 import eu.veldsoft.twenty.eight.gm.gmEngine;
 import eu.veldsoft.twenty.eight.gm.gmEngineData;
@@ -70,7 +72,7 @@ public class aiAgent {
 	 * @author INFM032 F___45 Valentin Popov
 	 * @author INFM042 F___48 Georgi Ivanov
 	 */
-	private static int CompareMoves(final Object elem1, final Object elem2) {
+	public static int CompareMoves(final Object elem1, final Object elem2) {
 		aiMove move1, move2;
 		move1 = (aiMove) elem1;
 		move2 = (aiMove) elem2;
@@ -133,12 +135,30 @@ public class aiAgent {
 		return (false);
 	}
 
-	private boolean OrderMoves(gmEngine node, aiMove moves, int count) {
-		// TODO To be done by INFM042 F___45 Valentin Popov ...
-		// TODO To be done by INFM032 F___00 Tsvetelina Hristova ...
-		// TODO To be done by INFM032 F___05 Iliya Grozev ...
+	/**
+	 * 
+	 * @param node
+	 * @param moves
+	 * @param count
+	 * @return
+	 * @author INFM032 F___00 Tsvetelina Hristova
+	 * @author INFM042 F___45 Valentin Popov
+	 * @author INFM032 F___05 Iliya Grozev
+	 */
+	private boolean OrderMoves(gmEngine node, aiMove moves[], int count) {
+		gmEngineData data = new gmEngineData();
+		node.GetData(data);
 
-		return (false);
+		/*
+		 * Rank each move.
+		 */
+		for (int i = 0; i < count; i++) {
+			RankMove(data, moves[i]);
+		}
+
+		Arrays.sort(moves);
+
+		return true;
 	}
 
 	private boolean RankMove(gmEngineData data, aiMove move) {
@@ -506,12 +526,42 @@ public class aiAgent {
 		return true;
 	}
 
+	/**
+	 * 
+	 * @param data
+	 * @return
+	 * @author INFM032 F___00 Tsvetelina Hristova
+	 * @author INFM042 F___94 Aleksandar Milev
+	 * @author INFM042 F___48 Georgi Ivanov
+	 */
 	public boolean CheckAssumptions(gmEngineData data) {
-		// TODO To be done by INFM042 F___48 Georgi Ivanov ...
-		// TODO To be done by INFM032 F___00 Tsvetelina Hristova ...
-		// TODO To be done by INFM042 F___94 Aleksandar Milev ...
+		if (Globals.raAI_LOG_CHECKASSUMPTIONS == true) {
+		}
 
-		return (false);
+		for (int i = 0; i < Globals.gmTOTAL_SUITS; i++) {
+			if ((m_trump_cards & (1 << i)) != 0) {
+				continue;
+			}
+
+			if (data.trump_suit == i) {
+				Globals.wxLogDebug("Dummy");
+			}
+
+			assert (data.trump_suit != i);
+		}
+
+		for (int j = 0; j < Globals.gmTOTAL_PLAYERS; j++) {
+			for (int i = 0; i < Globals.gmTOTAL_SUITS; i++) {
+				if ((m_nulls[j] & (1 << i)) == 0) {
+					continue;
+				}
+
+				assert ((data.hands[j] & gmUtil.m_suit_mask[i]) == 0);
+			}
+		}
+
+		return true;
+
 	}
 
 	/**

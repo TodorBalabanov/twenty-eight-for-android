@@ -181,6 +181,8 @@ public class Globals {
 
 	public static final wxEventType raUPDATE_EVT = new wxNewEventType();
 
+	public static final boolean raAI_LOG_CHECKASSUMPTIONS = false;
+
 	public static final String RA_APP_FULL_NAME = "";
 
 	public static final String __DATE__ = "";
@@ -190,7 +192,7 @@ public class Globals {
 	public static final String __GNUC__ = "";
 
 	public static final String __GNUC_MINOR__ = "";
-
+	
 	public static void wxLogError(String string, String file, int line) {
 	}
 
@@ -234,6 +236,9 @@ public class Globals {
 
 	public static int gmGetOpponentTwo(int x) {
 		return ((x + 3) % gmTOTAL_PLAYERS);
+	}
+
+	public static void wxLogDebug(String string) {
 	}
 
 	public static String wxGetOsDescription() {
