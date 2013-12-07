@@ -181,6 +181,8 @@ public class Globals {
 
 	public static final wxEventType raUPDATE_EVT = new wxNewEventType();
 
+	public static final boolean raAI_LOG_CHECKASSUMPTIONS = false;
+
 	public static void wxLogError(String string, String file, int line) {
 	}
 
@@ -224,5 +226,8 @@ public class Globals {
 
 	public static int gmGetOpponentTwo(int x) {
 		return ((x + 3) % gmTOTAL_PLAYERS);
+	}
+
+	public static void wxLogDebug(String string) {
 	}
 }

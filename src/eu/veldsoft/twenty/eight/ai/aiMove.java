@@ -23,10 +23,15 @@
 
 package eu.veldsoft.twenty.eight.ai;
 
-public class aiMove {
+public class aiMove implements Comparable {
 	public int card;
 
 	public boolean ask_trump;
 
 	public int rank;
+
+	@Override
+	public int compareTo(Object object) {
+		return aiAgent.CompareMoves(this, object);
+	}
 }
