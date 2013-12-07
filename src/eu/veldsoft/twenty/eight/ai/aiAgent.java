@@ -290,13 +290,172 @@ public class aiAgent {
 		return (0);
 	}
 
+	/**
+	 * Given the game engine data, generate the suit length problem. This suit
+	 * length problem is later on solved to create random deals staisfying the
+	 * existing constraints for Monte Carlo
+	 * 
+	 * @param data
+	 * @param problem
+	 * @param played
+	 * @param trump
+	 * @param add_trump
+	 * @return
+	 * 
+	 * @author INFM032 F___27 Georgi Kostadinov
+	 * @author INFM042 F___06 Rosen Kaplanov
+	 * @author INFM042 F___45 Valentin Popov
+	 */
 	public boolean GenerateSLProblem(gmEngineData data, slProblem problem,
 			int played[][], int trump, boolean add_trump) {
-		// TODO To be done by INFM032 F___27 Georgi Kostadinov ...
-		// TODO To be done by INFM042 F___06 Rosen Kaplanov ...
-		// TODO To be done by INFM042 F___45 Valentin Popov ...
+		long cards_played = 0;
+		int i, j;
+		int sum_hands = 0, sum_suits = 0;
 
-		return (false);
+		if (Globals.aiLOG_GENERATESLPROBLEM == true) {
+			Globals.wxLogDebug("Inside GenerateSLProblem");
+			Globals.wxLogDebug("m_loc - %s", gmUtil.m_short_locs[m_loc]);
+		}
+
+		assert (data != null);
+		assert (problem != null);
+		assert (played != null);
+
+		add_trump = false;
+
+		// TODO Provide an appropriate comment.
+		if ((!data.trump_shown) && (data.curr_max_bidder != m_loc)) {
+			assert (trump != Globals.gmSUIT_INVALID);
+		}
+
+		// TODO Provide an appropriate comment.
+		if ((data.trump_shown) || (data.curr_max_bidder == m_loc)) {
+			trump = data.trump_suit;
+		}
+
+		// TODO Implement the case where the opponents of the max bidder should
+		// have at least one trump Initialize the problem. This will set all
+		// slots vacant and would default hand and suit total lengths
+		aiSuitLengthSolver.InitializeProblem(problem);
+		aiSuitLengthSolver.InitializePlayed(played);
+
+		/*
+		 * Set the data for played
+		 */
+		for (i = 0; i < Globals.gmTOTAL_PLAYERS; i++) {
+			for (j = 0; j < Globals.gmTOTAL_SUITS; j++) {
+				played[i][j] = (int) gmUtil.CountBitsSet(data.played_cards[i]
+						& gmUtil.m_suit_mask[j]);
+			}
+		}
+
+		/*
+		 * Set the hand lengths
+		 */
+		for (i = 0; i < Globals.gmTOTAL_PLAYERS; i++) {
+			problem.hand_total_length[i] = (int) (8 - (gmUtil
+					.CountBitsSet(data.played_cards[i])));
+			sum_hands += problem.hand_total_length[i];
+			cards_played |= data.played_cards[i];
+		}
+
+		/*
+		 * Set suit lengths
+		 */
+		for (i = 0; i < Globals.gmTOTAL_SUITS; i++) {
+			problem.suit_total_length[i] = (int) (8 - gmUtil
+					.CountBitsSet(cards_played & gmUtil.m_suit_mask[i]));
+			sum_suits += problem.suit_total_length[i];
+		}
+
+		/*
+		 * This is applicable only if self is not the max bidder. If the trump
+		 * is not shown, max bidder should have at least one trump. This is
+		 * fixed. Hence remove this from the total suit length for the max
+		 * bidder and the trump suit. The suit length should be incremented
+		 * manually for all solutions for the slot [max bidder][trump].
+		 */
+		if ((!data.trump_shown) && (m_loc != data.curr_max_bidder)) {
+			--(problem.hand_total_length[data.curr_max_bidder]);
+			--(problem.suit_total_length[trump]);
+			++(played[data.curr_max_bidder][trump]);
+			add_trump = true;
+
+		}
+
+		/*
+		 * This is applicable only if self is not the player who bid the
+		 * contract (curr_max_bidder). If the trump is shown, but if the max
+		 * bidder is yet to play the card that was set as the trump then, max
+		 * bidder has at least one trump. This is fixed. Hence remove this from
+		 * the total suit length for the max bidder and the trump suit. The suit
+		 * length should be incremented manually for all solutions for the slot
+		 * [max bidder][trump].
+		 */
+		if ((data.trump_shown) && (m_loc != data.curr_max_bidder)) {
+			if ((data.played_cards[data.curr_max_bidder] & (1 << data.trump_card)) == 0) {
+				--(problem.hand_total_length[data.curr_max_bidder]);
+				--(problem.suit_total_length[trump]);
+				++(played[data.curr_max_bidder][trump]);
+				add_trump = true;
+			}
+		}
+
+		/*
+		 * Set the cases where the suit length is null
+		 */
+		for (i = 0; i < Globals.gmTOTAL_PLAYERS; i++) {
+			for (j = 0; j < Globals.gmTOTAL_SUITS; j++) {
+				if ((m_nulls[i] & (1 << j)) != 0) {
+					problem.suit_length[i][j] = 0;
+				}
+			}
+		}
+
+		/*
+		 * Set the cells for self
+		 */
+		for (i = 0; i < Globals.gmTOTAL_SUITS; i++) {
+			problem.suit_length[m_loc][i] = (int) gmUtil
+					.CountBitsSet(data.hands[m_loc] & gmUtil.m_suit_mask[i]);
+		}
+
+		/*
+		 * If self is the max bidder and if trump is not shown, add one to the
+		 * suit length to accommodate the card kept as trump
+		 */
+		if ((!data.trump_shown) && (m_loc == data.curr_max_bidder)) {
+			++(problem.suit_length[m_loc][trump]);
+		}
+
+		/*
+		 * All cards of self are known.
+		 */
+		problem.hand_total_length[m_loc] = 0;
+
+		assert (sum_suits == sum_hands);
+
+		if (Globals.aiLOG_GENERATESLPROBLEM == true) {
+			for (i = 0; i < Globals.gmTOTAL_PLAYERS; i++) {
+				String out = "";
+				out += "" + gmUtil.m_short_locs[i] + " - ";
+				for (j = 0; j < Globals.gmTOTAL_SUITS; j++)
+
+				{
+					if (problem.suit_length[i][j] == Globals.slVACANT) {
+						out += "x ";
+					} else {
+						out += problem.suit_length[i][j] + " ";
+					}
+
+				}
+				Globals.wxLogDebug(out);
+			}
+			Globals.wxLogDebug("Exiting GenerateSLProblem");
+		}
+
+		return (true);
+
 	}
 
 	public boolean GenerateDeals(gmEngineData data, long deals, int count) {
