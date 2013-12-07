@@ -333,12 +333,177 @@ public class aiAgent {
 		return (false);
 	}
 
+	/**
+	 * 
+	 * @param data
+	 * @param card
+	 * 
+	 * @return
+	 * 
+	 * @author INFM032 F___45 Valentin Popov
+	 * @author INFM042 F___93 Krasimir Chariyski
+	 * @author INFM032 F___39 Shterion Yanev
+	 */
 	public boolean PostPlayUpdate(gmEngineData data, int card) {
-		// TODO To be done by INFM032 F___45 Valentin Popov ...
-		// TODO To be done by INFM042 F___93 Krasimir Chariyski ...
-		// TODO To be done by INFM032 F___39 Shterion Yanev ...
+		assert (card != Globals.gmCARD_INVALID);
+		assert (data.status == Globals.gmSTATUS_TRICKS);
 
-		return (false);
+		/*
+		 * If the input card is valid
+		 */
+		if (card != Globals.gmCARD_INVALID) {
+			int suit = Globals.gmGetSuit(card);
+
+			/*
+			 * If trump is not shown and if the player is the max bidder and if
+			 * it is the first card in the trick then the suit is not trump,
+			 * provided the max bidder has a choice of another suit
+			 */
+			if (!data.trump_shown
+					&& (data.in_trick_info.player == data.curr_max_bidder)) {
+				if (data.tricks[data.trick_round].count == 0) {
+
+					/*
+					 * Get the count of cards belonging to the suit already
+					 * played
+					 */
+					int cards_left = 0;
+					for (int i = 0; i < Globals.gmTOTAL_PLAYERS; i++) {
+						cards_left += gmUtil.CountBitsSet(data.played_cards[i]
+								& gmUtil.m_suit_mask[suit]);
+					}
+
+					/*
+					 * Add to that the number of cards held by the AI player
+					 * belonging to the suit
+					 */
+					cards_left += gmUtil.CountBitsSet(data.hands[m_loc]
+							& gmUtil.m_suit_mask[suit]);
+
+					/*
+					 * Consider the card being played
+					 */
+					cards_left++;
+
+					/*
+					 * Check whether the number of cards left in the suit is
+					 * less than the number of cards left in max bidders hand
+					 * after the play (8 - data->trick_round) > (8 - cards_left)
+					 */
+					if (data.trick_round < cards_left) {
+
+						/*
+						 * wxLogDebug(wxString::Format("%s is not the trump",
+						 * gmUtil::m_suits[suit].c_str()));
+						 */
+						m_trump_cards &= ~(1 << suit);
+					} else {
+						m_notrump_suspects |= (1 << suit);
+					}
+				}
+
+				/*
+				 * Check each of the suspects, if the max bidder has played a
+				 * card which is not any of the suspects, the suspicion is valid
+				 */
+				if (m_notrump_suspects != 0) {
+					for (int i = 0; i < Globals.gmTOTAL_SUITS; i++) {
+						/*
+						 * if((m_notrump_suspects & (1 << suit)) && (i != suit))
+						 */
+						if ((m_notrump_suspects & (1 << i)) != 0 && (i != suit)) {
+							/*
+							 * Remove the suit from the list of possible trump
+							 * suits
+							 */
+							m_trump_cards &= ~(1 << i);
+							/*
+							 * Remove the suit from the list of suspects
+							 */
+							m_notrump_suspects &= ~(1 << i);
+						}
+					}
+				}
+			}
+
+			assert (m_trump_cards != 0);
+
+			/*
+			 * Check the cases where a player is unable to follow suit
+			 */
+			if ((data.tricks[data.trick_round].count > 0)
+					&& (data.tricks[data.trick_round].lead_suit != suit)) {
+				/*
+				 * If the current player is the max bidder we can safely assume
+				 * that either the suit is the trump and the max bidder has only
+				 * one card of the suit left and that is kept as the trump.
+				 * Otherwise the suit length is zero. This can be confirmed only
+				 * after the trump is shown
+				 */
+				if ((data.in_trick_info.player == data.curr_max_bidder)
+						&& (!data.trump_shown)) {
+					m_mb_null_susp |= (1 << data.tricks[data.trick_round].lead_suit);
+				}
+				/*
+				 * If the player playing the card is not the max bidder we can
+				 * safely assume that the suit length for the player
+				 */
+				else {
+					m_nulls[data.in_trick_info.player] |= (1 << data.tricks[data.trick_round].lead_suit);
+				}
+			}
+		}
+
+		/*
+		 * If trump is shown and if any of the null suspects is not the trump
+		 * set the suit length in max bidders hand to zero for those
+		 */
+		if (data.trump_shown && (m_mb_null_susp != 0)) {
+			for (int i = 0; i < Globals.gmTOTAL_SUITS; i++) {
+				if ((m_mb_null_susp & (1 << i)) != 0 && (i != data.trump_suit)) {
+					m_nulls[data.curr_max_bidder] |= (1 << i);
+					/*
+					 * Remove from the suspect list
+					 */
+					m_mb_null_susp &= ~(1 << i);
+				}
+			}
+		}
+
+		/*
+		 * If self is not the max bidder and trump is not shown, For any suit if
+		 * the sum of the cards played(including the the cards played in the
+		 * current trick) and cards held by self is 8, then the suit is not the
+		 * trump. This is because max bidder cannot have any card of the suit.
+		 */
+		if ((m_loc != data.curr_max_bidder) && (!data.trump_shown)) {
+			long cards_played = 0;
+
+			/*
+			 * Add the card that is being played first
+			 */
+			if (card != Globals.gmCARD_INVALID) {
+				cards_played |= (1 << card);
+			}
+
+			/*
+			 * Add the cards played so far (previous tricks and the current one)
+			 */
+			for (int i = 0; i < Globals.gmTOTAL_PLAYERS; i++) {
+				cards_played |= data.played_cards[i];
+				if (data.tricks[data.trick_round].cards[i] != Globals.gmCARD_INVALID)
+					cards_played |= (1 << data.tricks[data.trick_round].cards[i]);
+			}
+
+			for (int i = 0; i < Globals.gmTOTAL_SUITS; i++) {
+				if (gmUtil.CountBitsSet((cards_played | data.hands[m_loc])
+						& gmUtil.m_suit_mask[i]) >= Globals.gmTOTAL_VALUES) {
+					m_trump_cards &= ~(1 << i);
+				}
+			}
+		}
+
+		return true;
 	}
 
 	public boolean CheckAssumptions(gmEngineData data) {
