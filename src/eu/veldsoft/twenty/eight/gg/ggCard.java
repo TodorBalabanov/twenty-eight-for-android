@@ -235,12 +235,16 @@ public class ggCard {
 		assert (mdc != null);
 		mdc.SelectObject(m_face);
 	}
-
+/**
+ * 
+ * @param object
+ * @return
+ * @author INFM032 F___00 Tsvetelina Hristova
+ * @author INFM042 F___52 Mihail Stankov
+ * @author INFM042 F___05 Iliya Grozev
+ */
 	public ggCard assign(final ggCard object) {
-		// TODO To be done by INFM042 F___05 Iliya Grozev ...
-		// TODO To be done by INFM042 F___52 Mihail Stankov ...
-		// TODO To be done by INFM032 F___00 Tsvetelina Hristova ...
-
+		
 		return (this);
 	}
 }

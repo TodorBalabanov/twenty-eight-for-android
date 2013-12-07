@@ -90,12 +90,16 @@ public class raInfo extends wxPanel {
 		// TODO To be done by INFM032 F___52 Mihail Stankov ...
 		// TODO To be done by INFM042 F___67 Nevena Sirakova ...
 	}
-
+/**
+ * 
+ * @param object
+ * @return
+ * @author INFM032 F___00 Tsvetelina Hristova
+ * @author INFM042 F___94 Aleksandar Milev
+ * @author INFM032 F___68 Georgi Srebrov
+ */
 	private raInfo assign(final raInfo object) {
-		// TODO To be done by INFM042 F___94 Aleksandar Milev ...
-		// TODO To be done by INFM032 F___00 Tsvetelina Hristova ...
-		// TODO To be done by INFM032 F___68 Georgi Srebrov ...
-
+	
 		return (this);
 	}
 
