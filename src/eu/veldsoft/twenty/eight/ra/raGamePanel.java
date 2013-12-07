@@ -347,12 +347,68 @@ public class raGamePanel extends ggPanel {
 		return true;
 	}
 
+	/**
+	 * 
+	 * @return
+	 * 
+	 * @author INFM032 F___45 Valentin Popov
+	 * @author INFM032 F___94 Aleksandar Milev
+	 * @author INFM032 F___67 Nevena Sirakova
+	 */
 	private boolean ResetGame() {
-		// TODO To be done by INFM032 F___45 Valentin Popov ...
-		// TODO To be done by INFM032 F___94 Aleksandar Milev ...
-		// TODO To be done by INFM032 F___67 Nevena Sirakova ...
+		int i;
+		raConfData data = new raConfData();
 
-		return (false);
+		m_saved_rules.setToZeros();
+
+		raConfig.GetInstance().GetData(data);
+
+		m_orientation = Globals.raGAME_ORIENT_MIXED;
+
+		ResetDeal();
+
+		SetClockwise(data.game_data.clockwise);
+
+		/*
+		 * Update status bar with details.
+		 */
+		if (data.game_data.clockwise) {
+			gmUtil.SetStatusText(Globals.raTEXT_CLOCKWISE,
+					Globals.raSBARPOS_CLOCK);
+		} else {
+			gmUtil.SetStatusText(Globals.raTEXT_ANTICLOCKWISE,
+					Globals.raSBARPOS_CLOCK);
+		}
+
+		m_engine.SetDealer(0);
+
+		m_engine.SetMinBid(Globals.raBID_ROUND_3, data.game_data.min_bid3);
+		m_engine.SetWaiveRuleFour(data.game_data.waive_rule4);
+		m_engine.SetSluffJacks(data.game_data.sluff_jacks);
+
+		/*
+		 * Save the rules
+		 */
+		m_saved_rules.min_bid_3 = data.game_data.min_bid3;
+		if (data.game_data.clockwise) {
+			m_saved_rules.rot_addn = 1;
+		} else {
+			m_saved_rules.rot_addn = 3;
+		}
+		m_saved_rules.sluff_jacks = data.game_data.sluff_jacks;
+		m_saved_rules.waive_rule_4 = data.game_data.waive_rule4;
+
+		for (i = 0; i < Globals.gmTOTAL_TEAMS; i++) {
+			m_game_pts[i] = 5;
+		}
+
+		for (i = 0; i < Globals.gmTOTAL_PLAYERS; i++) {
+			m_pnlties[i] = 0;
+			m_players[i].Reset();
+			m_players[i].SetRules(m_saved_rules);
+		}
+
+		return true;
 	}
 
 	private boolean UpdateHands(long hands) {
