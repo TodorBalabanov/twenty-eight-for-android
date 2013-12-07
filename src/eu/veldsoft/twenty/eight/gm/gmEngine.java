@@ -261,13 +261,16 @@ public class gmEngine {
 
 		return (false);
 	}
-
+	
+	/**
+	 * 
+	 * @return
+	 * @author INFM042 F___93 Krasimir Chariyski
+	 * @author INFM032 F___45 Valentin Popov
+	 * @author INFM032 F___27 Georgi Kostadinov
+	 */
 	public boolean IsOutputPending() {
-		// TODO To be done by INFM042 F___93 Krasimir Chariyski ...
-		// TODO To be done by INFM032 F___45 Valentin Popov ...
-		// TODO To be done by INFM032 F___27 Georgi Kostadinov ...
-
-		return (false);
+		return m_data.input_pending;
 	}
 
 	public int GetPendingOutputType() {
