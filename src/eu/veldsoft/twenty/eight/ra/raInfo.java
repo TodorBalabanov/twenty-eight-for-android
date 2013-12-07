@@ -314,16 +314,21 @@ public class raInfo extends wxPanel {
 		m_details.bidder = Globals.gmPLAYER_INVALID;
 		m_details.dealer = Globals.gmPLAYER_INVALID;
 		m_details.deal_no = 1;
+		
 		for (int i = 0; i < Globals.gmTOTAL_TEAMS; i++) {
 			m_details.points[i] = 5;
 		}
+		
 		for (int i = 0; i < Globals.gmTOTAL_PLAYERS; i++) {
 			m_details.pnlties[i] = 0;
 		}
+		
 		m_details.trump = Globals.gmSUIT_INVALID;
+		
 		if (refresh == true) {
 			SetDetails(m_details);
 		}
+		
 		return true;
 	}
 }
