@@ -59,10 +59,15 @@ public class aiSuitLengthSolver {
 		 */
 	}
 
+	/**
+	 * 
+	 * @param object
+	 * @return
+	 * @author INFM032 F___00 Tsvetelina Hristova
+	 * @author INFM032 F___06 Rosen Kaplanov
+	 * @author INFM032 F___90 Svetoslav Slavkov
+	 */
 	private aiSuitLengthSolver assign(final aiSuitLengthSolver object) {
-		// TODO To be done by INFM032 F___00 Tsvetelina Hristova ...
-		// TODO To be done by INFM032 F___06 Rosen Kaplanov ...
-		// TODO To be done by INFM032 F___90 Svetoslav Slavkov ...
 
 		return (this);
 	}
@@ -432,6 +437,7 @@ public class aiSuitLengthSolver {
 
 		return (true);
 	}
+
 	/**
 	 * 
 	 * @param data
@@ -444,28 +450,28 @@ public class aiSuitLengthSolver {
 	 */
 	private boolean RecalcMaxForAllCells(slData data) {
 		int i = 0;
-	    int j = 0;
+		int j = 0;
 
-	    assert(data != null);
+		assert (data != null);
 
-	    /*
-	     * Calculate max for each cell 
-	     * This also calculates the sum of maxes for all hands and suits internally
-	     */
-		for(i = 0; i < slTOTAL_HANDS; i++){
-		    for(j = 0; j < slTOTAL_SUITS; j++){
-		        /*
-		         * If the suit length for a cell is fixed, then max
-		         * has already been calculated.
-		         */
+		/*
+		 * Calculate max for each cell This also calculates the sum of maxes for
+		 * all hands and suits internally
+		 */
+		for (i = 0; i < slTOTAL_HANDS; i++) {
+			for (j = 0; j < slTOTAL_SUITS; j++) {
+				/*
+				 * If the suit length for a cell is fixed, then max has already
+				 * been calculated.
+				 */
 
-		        if(data.cells[i][j].suit_length == slVACANT){
-	                RecalcCellMax(data, i, j);
-		        }
-		    }
+				if (data.cells[i][j].suit_length == slVACANT) {
+					RecalcCellMax(data, i, j);
+				}
+			}
 		}
 
-	    return true;
+		return true;
 	}
 
 	private int GenerateRandomFill(int min, int max) {
