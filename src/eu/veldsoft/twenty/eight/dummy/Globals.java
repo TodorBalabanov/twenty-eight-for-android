@@ -192,6 +192,8 @@ public class Globals {
 	public static final String __GNUC__ = "";
 
 	public static final String __GNUC_MINOR__ = "";
+
+	public static final boolean aiLOG_GENERATESLPROBLEM = false;
 	
 	public static void wxLogError(String string, String file, int line) {
 	}
