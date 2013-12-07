@@ -24,6 +24,7 @@
 package eu.veldsoft.twenty.eight.ra;
 
 import eu.veldsoft.twenty.eight.dummy.FILE;
+import eu.veldsoft.twenty.eight.dummy.Globals;
 import eu.veldsoft.twenty.eight.dummy.wxLog;
 import eu.veldsoft.twenty.eight.dummy.wxLogStderr;
 
@@ -55,10 +56,43 @@ public class raApp {
 		return ("");
 	}
 
+	/**
+	 * 
+	 * @author INFM032 F___14 Petya Atanasova
+	 * @author INFM032 F___39 Shterion Yanev
+	 * @author INFM042 F___06 Rosen Kaplanov
+	 */
 	public static void LogDetailsForDebug() {
-		// TODO To be done by INFM032 F___14 Petya Atanasova ...
-		// TODO To be done by INFM032 F___39 Shterion Yanev ...
-		// TODO To be done by INFM042 F___06 Rosen Kaplanov ...
+		String out = "";
+		Globals.wxLogMessage("Program              : "
+				+ Globals.RA_APP_FULL_NAME);
+		Globals.wxLogMessage("Date of compilation  : " + Globals.__DATE__
+				+ Globals.__TIME__);
+
+		if (Globals.__GNUC__ != null) {
+			out = "";
+			out += "Compiler             : GNU C/C++ ";
+			out += "" + Globals.__GNUC__ + "." + Globals.__GNUC_MINOR__ + "";
+			Globals.wxLogMessage(out);
+		}
+
+		out = "";
+		out += "Operating System     : ";
+		out += Globals.wxGetOsDescription();
+		if (Globals.wxIsPlatform64Bit() == true) {
+			out += "(64 bit)";
+		}
+		Globals.wxLogMessage(out);
+
+		out = "";
+		out += "Endianness           : ";
+		if (Globals.wxIsPlatform64Bit() == true) {
+			out += "Little Endian";
+		} else {
+			out += "Big Endian";
+		}
+		Globals.wxLogMessage(out);
+		Globals.wxLogMessage("");
 	}
 
 	// Called on application startup

@@ -23,7 +23,7 @@
 
 package eu.veldsoft.twenty.eight.gm;
 
-public class gmEngineData {
+public class gmEngineData implements Cloneable {
 	public boolean ok;
 
 	public boolean feedback;
@@ -92,4 +92,8 @@ public class gmEngineData {
 	public gmInputTrumpselInfo in_trumpsel_info;
 
 	public gmInputTrickInfo in_trick_info;
+
+	public Object clone() throws CloneNotSupportedException {
+		return super.clone();
+	}
 }

@@ -365,11 +365,12 @@ public class gmEngine {
 		// TODO To be done by INFM032 F___56 Daniel Nikolov ...
 	}
 
-	// TODO : Try to implement one method with trick_round as default variable
 	public void GetTrick(int trick_round, gmTrick trick) {
 		// TODO To be done by INFM032 F___68 Nikola Vushkov ...
 		// TODO To be done by INFM032 F___52 Mihail Stankov ...
 		// TODO To be done by INFM042 F___39 Shterion Yanev ...
+		
+		// TODO Try to implement one method with trick_round as default variable.
 	}
 
 	public void GetTrick(gmTrick trick) {
@@ -424,10 +425,17 @@ public class gmEngine {
 		return (0);
 	}
 
+	/**
+	 * 
+	 * @param dealer
+	 * 
+	 * @author INFM032 F___39 Shterion Yanev
+	 * @author INFM042 F___47 Kostadin Bulakiev
+	 * @author INFM042 F___48 Georgi Ivanov
+	 */
 	public void SetDealer(int dealer) {
-		// TODO To be done by INFM032 F___39 Shterion Yanev ...
-		// TODO To be done by INFM042 F___47 Kostadin Bulakiev ...
-		// TODO To be done by INFM042 F___48 Georgi Ivanov ...
+		assert ((dealer >= 0) && (dealer < Globals.gmTOTAL_PLAYERS));
+		m_data.dealer = dealer;
 	}
 
 	public static void ResetTrick(gmTrick trick) {
@@ -436,10 +444,21 @@ public class gmEngine {
 		// TODO To be done by INFM042 F___68 Georgi Srebrov ...
 	}
 
+	/**
+	 * 
+	 * @param data
+	 * 
+	 * @return
+	 * 
+	 * @author INFM032 F___68 Georgi Srebrov
+	 * @author INFM032 F___39 Shterion Yanev
+	 * @author INFM032 F___52 Mihail Stankov
+	 */
 	public boolean GetData(gmEngineData data) {
-		// TODO To be done by INFM032 F___68 Georgi Srebrov ...
-		// TODO To be done by INFM032 F___39 Shterion Yanev ...
-		// TODO To be done by INFM032 F___52 Mihail Stankov ...
+		try {
+			data = (gmEngineData) m_data.clone();
+		} catch (CloneNotSupportedException e) {
+		}
 
 		return (false);
 	}
