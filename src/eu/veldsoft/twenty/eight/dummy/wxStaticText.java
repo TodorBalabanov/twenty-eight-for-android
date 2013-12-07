@@ -25,4 +25,28 @@ package eu.veldsoft.twenty.eight.dummy;
 
 public class wxStaticText {
 
+	public void SetLabel(String string) {
+	}
+
+	public void Update() {
+	}
+
+	public void Refresh() {
+	}
+
+	public void Wrap(int arg0) {
+	}
+
+	public void SetLabel(String string, int i) {
+	}
+
+	public void SetLabel(String string, String string2, int i) {
+	}
+
+	public void SetLabel(String string, String string2) {
+	}
+
+	public void SetLabel(String string, int bid, String string2) {
+	}
+
 }

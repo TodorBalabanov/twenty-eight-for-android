@@ -31,4 +31,12 @@ public class raHand {
 	public int count;
 
 	public int card_indexes[] = new int[Globals.raMAX_CARDS_PER_HAND];
+
+	public void setToZeros() {
+		cards = 0;
+		count = 0;
+		for (int i = 0; i < card_indexes.length; i++) {
+			card_indexes[i] = 0;
+		}
+	}
 }

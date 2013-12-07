@@ -6,4 +6,9 @@ public class wxComboBox {
 		return 0;
 	}
 
+	public void SetSelection(int raprefsPlaycardonSclick) {
+		// TODO Auto-generated method stub
+
+	}
+
 }

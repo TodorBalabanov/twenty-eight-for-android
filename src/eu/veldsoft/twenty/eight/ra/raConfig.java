@@ -26,6 +26,7 @@ package eu.veldsoft.twenty.eight.ra;
 import eu.veldsoft.twenty.eight.dummy.Globals;
 import eu.veldsoft.twenty.eight.dummy.wxConfig;
 import eu.veldsoft.twenty.eight.dummy.wxMutex;
+import eu.veldsoft.twenty.eight.dummy.wxMutexLocker;
 
 public class raConfig {
 	/**
@@ -38,13 +39,41 @@ public class raConfig {
 	 */
 	private static final int __LINE__ = 0;
 
-	private static raConfig s_instance;
+	private static raConfig s_instance = null;
 
-	private static wxMutex s_mutex;
+	private static wxMutex s_mutex = null;
 
-	private wxConfig m_config;
+	private wxConfig m_config = null;
 
-	private raConfData m_data;
+	private raConfData m_data = null;
+
+	private static final int raCONFIG_PREFS_PLAYCARDON_DCLICK = 1;
+
+	private String raCONFPATH_APP_DATA_X = "application/x";
+
+	private String raCONFPATH_APP_DATA_Y = "application/y";
+
+	private String raCONFPATH_APP_DATA_WIDTH = "application/width";
+
+	private String raCONFPATH_APP_DATA_HEIGHT = "application/height";
+
+	private String raCONFPATH_APP_DATA_MAX = "application/maximized";
+
+	private String raCONFPATH_GAME_DATA_CLOCK = "game/clockwise";
+
+	private String raCONFPATH_GAME_DATA_MINBID3 = "game/minbid3";
+
+	private String raCONFPATH_GAME_DATA_WAIVERULE4 = "game/waiverule4";
+
+	private String raCONFPATH_GAME_DATA_SLUFFJACKS = "game/sluffjacks";
+
+	private String raCONFPATH_PREFS_PLAYCARDON = "preferences/playcardon";
+
+	private String raCONFPATH_PREFS_CARDBACK = "preferences/cardback";
+
+	private String raCONFPATH_PREFS_AUTOPLAYSINGLE = "preferences/autoplaysingle";
+
+	private String raCONFPATH_PREFS_BIDBUBBLES = "preferences/bidbubbles";
 
 	/**
 	 * Constructor
@@ -86,17 +115,43 @@ public class raConfig {
 	}
 
 	// Disallow copy finalructor/assignment operators
+	/**
+	 * 
+	 * @param object
+	 * @author INFM042 F___88 Ivan Dankinov ...
+	 * @author INFM042 F___84 Mariya Kostadinova ...
+	 * @author INFM032 F___05 Iliya Grozev ...
+	 */
 	private raConfig(final raConfig object) {
-		// TODO To be done by INFM042 F___88 Ivan Dankinov ...
-		// TODO To be done by INFM042 F___84 Mariya Kostadinova ...
-		// TODO To be done by INFM032 F___05 Iliya Grozev ...
+		m_data.setToZeros();
+		m_config = new wxConfig(Globals.RA_APP_NAME);
+
+		/**
+		 * If the application is being run for the first time, configuration
+		 * data may not be present. Create it.
+		 */
+		/**
+		 * Attempt to load the data from the configuration repository
+		 */
+		if (!Load()) {
+			/**
+			 * If load failed, the application is being run for the first time
+			 * Save default settings
+			 */
+			SetDefaultValues(m_data);
+			Save();
+		}
 	}
 
+	/**
+	 * 
+	 * @param object
+	 * @return
+	 * @author INFM042 F___84 Mariya Kostadinova ...
+	 * @author INFM032 F___88 Ivan Dankinov ...
+	 * @author INFM032 F___39 Shterion Yanev ...
+	 */
 	private raConfig assign(final raConfig object) {
-		// TODO To be done by INFM042 F___84 Mariya Kostadinova ...
-		// TODO To be done by INFM032 F___88 Ivan Dankinov ...
-		// TODO To be done by INFM032 F___39 Shterion Yanev ...
-
 		return (this);
 	}
 
@@ -232,18 +287,113 @@ public class raConfig {
 		return (null);
 	}
 
+	/**
+	 * 
+	 * @return
+	 * @author INFM032 F___88 Ivan Dankinov ...
+	 * @author INFM042 F___93 Krasimir Chariyski ...
+	 * @author INFM032 F___84 Mariya Kostadinova ...
+	 */
 	public boolean Save() {
-		// TODO To be done by INFM032 F___88 Ivan Dankinov ...
-		// TODO To be done by INFM042 F___93 Krasimir Chariyski ...
-		// TODO To be done by INFM032 F___84 Mariya Kostadinova ...
+		if (!m_config.Write(raCONFPATH_APP_DATA_X, m_data.app_data.x)) {
+			Globals.wxLogError("m_config->Write() failed. %s:%d", __FILE__,
+					__LINE__);
+			return false;
+		}
 
-		return (false);
+		if (!m_config.Write(raCONFPATH_APP_DATA_Y, m_data.app_data.y)) {
+			Globals.wxLogError("m_config->Write() failed. %s:%d", __FILE__,
+					__LINE__);
+			return false;
+		}
+
+		if (!m_config.Write(raCONFPATH_APP_DATA_WIDTH, m_data.app_data.width)) {
+			Globals.wxLogError("m_config->Write() failed. %s:%d", __FILE__,
+					__LINE__);
+			return false;
+		}
+
+		if (!m_config.Write(raCONFPATH_APP_DATA_HEIGHT, m_data.app_data.height)) {
+			Globals.wxLogError("m_config->Write() failed. %s:%d", __FILE__,
+					__LINE__);
+			return false;
+		}
+
+		if (!m_config.Write(raCONFPATH_APP_DATA_MAX, m_data.app_data.maximized)) {
+			Globals.wxLogError("m_config->Write() failed. %s:%d", __FILE__,
+					__LINE__);
+			return false;
+		}
+
+		if (!m_config.Write(raCONFPATH_GAME_DATA_CLOCK,
+				m_data.game_data.clockwise)) {
+			Globals.wxLogError("m_config->Write() failed. %s:%d", __FILE__,
+					__LINE__);
+			return false;
+		}
+
+		if (!m_config.Write(raCONFPATH_GAME_DATA_MINBID3,
+				m_data.game_data.min_bid3)) {
+			Globals.wxLogError("m_config->Write() failed. %s:%d", __FILE__,
+					__LINE__);
+			return false;
+		}
+
+		if (!m_config.Write(raCONFPATH_GAME_DATA_WAIVERULE4,
+				m_data.game_data.waive_rule4)) {
+			Globals.wxLogError("m_config->Write() failed. %s:%d", __FILE__,
+					__LINE__);
+			return false;
+		}
+
+		if (!m_config.Write(raCONFPATH_GAME_DATA_SLUFFJACKS,
+				m_data.game_data.sluff_jacks)) {
+			Globals.wxLogError("m_config->Write() failed. %s:%d", __FILE__,
+					__LINE__);
+			return false;
+		}
+
+		if (!m_config.Write(raCONFPATH_PREFS_PLAYCARDON,
+				m_data.prefs_data.play_card_on)) {
+			Globals.wxLogError("m_config->Write() failed. %s:%d", __FILE__,
+					__LINE__);
+			return false;
+		}
+		if (!m_config.Write(raCONFPATH_PREFS_CARDBACK,
+				m_data.prefs_data.card_back)) {
+			Globals.wxLogError("m_config->Write() failed. %s:%d", __FILE__,
+					__LINE__);
+			return false;
+		}
+		if (!m_config.Write(raCONFPATH_PREFS_AUTOPLAYSINGLE,
+				m_data.prefs_data.auto_play_single)) {
+			Globals.wxLogError("m_config->Write() failed. %s:%d", __FILE__,
+					__LINE__);
+			return false;
+		}
+		if (!m_config.Write(raCONFPATH_PREFS_BIDBUBBLES,
+				m_data.prefs_data.show_bid_bubbles)) {
+			Globals.wxLogError("m_config->Write() failed. %s:%d", __FILE__,
+					__LINE__);
+			return false;
+		}
+
+		return true;
 	}
 
+	/**
+	 * 
+	 * @param data
+	 * @author INFM042 F___68 Georgi Srebrov ...
+	 * @author INFM042 F___88 Ivan Dankinov ...
+	 * @author INFM032 F___00 Tsvetelina Hristova ...
+	 */
 	public void GetData(raConfData data) {
-		// TODO To be done by INFM042 F___68 Georgi Srebrov ...
-		// TODO To be done by INFM042 F___88 Ivan Dankinov ...
-		// TODO To be done by INFM032 F___00 Tsvetelina Hristova ...
+		wxMutexLocker lock = new wxMutexLocker(s_mutex);
+		try {
+			data = (raConfData) m_data.clone();
+		} catch (CloneNotSupportedException e) {
+		}
 	}
 
 	public boolean SetData(raConfData data) {

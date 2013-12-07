@@ -25,4 +25,11 @@ package eu.veldsoft.twenty.eight.dummy;
 
 public class wxSize {
 
+	public void SetSizeHints(wxDialog arg0) {
+	}
+
+	public int Width() {
+		return 0;
+	}
+
 }

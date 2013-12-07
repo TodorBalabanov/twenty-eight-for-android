@@ -27,13 +27,15 @@ import eu.veldsoft.twenty.eight.dummy.Globals;
 import eu.veldsoft.twenty.eight.dummy.wxCheckBox;
 import eu.veldsoft.twenty.eight.dummy.wxComboBox;
 import eu.veldsoft.twenty.eight.dummy.wxCommandEvent;
+import eu.veldsoft.twenty.eight.dummy.wxDialog;
 import eu.veldsoft.twenty.eight.dummy.wxInitDialogEvent;
 import eu.veldsoft.twenty.eight.dummy.wxPoint;
 import eu.veldsoft.twenty.eight.dummy.wxSize;
 import eu.veldsoft.twenty.eight.dummy.wxWindow;
 import eu.veldsoft.twenty.eight.dummy.wxWindowID;
+import eu.veldsoft.twenty.eight.dummy.wxXmlResource;
 
-public class raDlgPrefs {
+public class raDlgPrefs extends wxDialog {
 	/**
 	 * Dummy values.
 	 */
@@ -83,17 +85,84 @@ public class raDlgPrefs {
 		 */
 	}
 
+	/**
+	 * 
+	 * @param parent
+	 * @param id
+	 * @param caption
+	 * @param pos
+	 * @param size
+	 * @param style
+	 * 
+	 * @author INFM032 F___88 Ivan Dankinov ...
+	 * @author INFM042 F___00 Tsvetelina Hristova ...
+	 * @author INFM042 F___52 Mihail Stankov ...
+	 */
 	public raDlgPrefs(wxWindow parent, wxWindowID id, final String caption,
 			final wxPoint pos, final wxSize size, long style) {
-		// TODO To be done by INFM032 F___88 Ivan Dankinov ...
-		// TODO To be done by INFM042 F___00 Tsvetelina Hristova ...
-		// TODO To be done by INFM042 F___52 Mihail Stankov ...
+		SetParent(parent);
+
+		if (!wxXmlResource.Get().LoadDialog(this, GetParent(), "raDlgPrefs")) {
+			Globals.wxLogError("Missing wxXmlResource::Get()->Load() in OnInit()?");
+		}
+
+		if (GetSizer() != null) {
+			GetSizer().SetSizeHints(this);
+		}
 	}
 
+	/**
+	 * 
+	 * @param event
+	 * @author INFM032 F___67 Nevena Sirakova ...
+	 * @author INFM032 F___88 Ivan Dankinov ...
+	 * @author INFM042 F___39 Shterion Yanev ...
+	 */
 	public void OnInitDialog(wxInitDialogEvent event) {
-		// TODO To be done by INFM032 F___67 Nevena Sirakova ...
-		// TODO To be done by INFM032 F___88 Ivan Dankinov ...
-		// TODO To be done by INFM042 F___39 Shterion Yanev ...
+		wxComboBox combo_playcardon;
+		wxComboBox combo_cardback;
+		wxCheckBox check_autoplay;
+		wxCheckBox check_bidbubbles;
+		raConfData conf_data = null;
+
+		raConfig.GetInstance().GetData(conf_data);
+		combo_playcardon = (wxComboBox) Globals.XRCCTRL(this,
+				"m_radlgprefs_playcardon", wxComboBox.class);
+		switch (conf_data.prefs_data.play_card_on) {
+		case Globals.raCONFIG_PREFS_PLAYCARDON_SCLICK:
+			combo_playcardon.SetSelection(Globals.raPREFS_PLAYCARDON_SCLICK);
+			break;
+		case Globals.raCONFIG_PREFS_PLAYCARDON_DCLICK:
+			combo_playcardon.SetSelection(Globals.raPREFS_PLAYCARDON_DCLICK);
+			break;
+		default:
+			Globals.wxLogError("Unexpected value. %s:%d", __FILE__, __LINE__);
+			break;
+		}
+
+		combo_cardback = (wxComboBox) Globals.XRCCTRL(this,
+				"m_radlgprefs_cardback", wxComboBox.class);
+
+		switch (conf_data.prefs_data.card_back) {
+		case Globals.raCONFIG_PREFS_CARDBACK_BLUE:
+			combo_cardback.SetSelection(Globals.raPREFS_CARDBACK_BLUE);
+			break;
+		case Globals.raCONFIG_PREFS_CARDBACK_RED:
+			combo_cardback.SetSelection(Globals.raPREFS_CARDBACK_RED);
+			break;
+		default:
+			Globals.wxLogError("Unexpected value. %s:%d", __FILE__, __LINE__);
+			break;
+		}
+
+		check_autoplay = (wxCheckBox) Globals.XRCCTRL(this,
+				"m_radlgprefs_playsingauto", wxCheckBox.class);
+		check_autoplay.SetValue(conf_data.prefs_data.auto_play_single);
+		check_bidbubbles = (wxCheckBox) Globals.XRCCTRL(this,
+				"m_radlgprefs_showbidbubb", wxCheckBox.class);
+		check_bidbubbles.SetValue(conf_data.prefs_data.show_bid_bubbles);
+
+		event.Skip();
 	}
 
 	/**

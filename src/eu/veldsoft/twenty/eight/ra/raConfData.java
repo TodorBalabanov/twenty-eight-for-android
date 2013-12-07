@@ -23,7 +23,7 @@
 
 package eu.veldsoft.twenty.eight.ra;
 
-public class raConfData {
+public class raConfData implements Cloneable {
 	public raConfAppData app_data;
 
 	public raConfGameData game_data;
@@ -34,5 +34,9 @@ public class raConfData {
 		app_data.setToZeros();
 		game_data.setToZeros();
 		prefs_data.setToZeros();
+	}
+
+	public Object clone() throws CloneNotSupportedException {
+		return super.clone();
 	}
 }

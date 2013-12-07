@@ -6,4 +6,9 @@ public class wxCheckBox {
 		return false;
 	}
 
+	public void SetValue(boolean auto_play_single) {
+		// TODO Auto-generated method stub
+
+	}
+
 }
