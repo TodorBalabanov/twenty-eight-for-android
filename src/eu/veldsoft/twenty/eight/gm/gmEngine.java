@@ -26,16 +26,17 @@ package eu.veldsoft.twenty.eight.gm;
 import eu.veldsoft.twenty.eight.dummy.Globals;
 
 public class gmEngine {
-	/**
-	 * Initialization of the gmEngineData structure used by each gmEngine
-	 * instance (m_data) is a costly affair because 1) the structure is huge 2)
-	 * there are multiple loops to be run to initiate certian data elements. At
-	 * one point of time, approx 30% of the entire run time was taken by
-	 * gmEntine.Reset. To speed things up, a static m_init of type gmEngineData
-	 * is created and is initiated manually when the first instance of gmEngine
-	 * is called. Once this is done, all further initializations of this struct
-	 * is done be a memcpy from m_init.
-	 */
+
+	// Initialization of the gmEngineData structure used by each gmEngine
+	// instance (m_data) is a costly affair
+	// because 1) the structure is huge 2) there are multiple loops to be run to
+	// initiate certian data elements.
+	// At one point of time, approx 30% of the entire run time was taken by
+	// gmEntine.Reset. To speed things up,
+	// a static m_init of type gmEngineData is created and is initiated manually
+	// when the first instance of gmEngine is
+	// called. Once this is done, all further initializations of this struct is
+	// done be a memcpy from m_init.
 	public static gmEngineData m_init;
 
 	public static boolean m_init_ok;
@@ -61,7 +62,6 @@ public class gmEngine {
 	/**
 	 * 
 	 * @param rules
-	 * 
 	 * @return
 	 * 
 	 * @author INFM042 F___06 Rosen Kaplanov
@@ -135,15 +135,11 @@ public class gmEngine {
 		// TODO To be done by INFM032 F___47 Kostadin Bulakiev ...
 	}
 
-	/**
-	 * 
-	 * @param object
-	 * @return
-	 * @author INFM042 F___45 Valentin Popov ...
-	 * @author INFM042 F___88 Ivan Dankinov ...
-	 * @author INFM042 F___68 Nikola Vushkov ...
-	 */
 	private gmEngine assign(final gmEngine object) {
+		// TODO To be done by INFM042 F___45 Valentin Popov ...
+		// TODO To be done by INFM042 F___88 Ivan Dankinov ...
+		// TODO To be done by INFM042 F___68 Nikola Vushkov ...
+
 		return (this);
 	}
 
@@ -153,30 +149,10 @@ public class gmEngine {
 		// TODO To be done by INFM042 F___90 Svetoslav Slavkov ...
 	}
 
-	/**
-	 * 
-	 * @author INFM032 F___46 Nadya Nedyalkova
-	 * @author INFM042 F___06 Rosen Kaplanov
-	 * @author INFM032 F___52 Mihail Stankov
-	 */
 	public gmEngine() {
-		if (m_init_ok == false) {
-			gmEngine.InitCache();
-			m_init_ok = true;
-		}
-
-		m_data.ok = Reset(m_data);
-		m_data.feedback = true;
-
-		/*
-		 * Set the rules.
-		 */
-		m_data.rules.rot_addn = 1;
-		m_data.rules.min_bid_1 = 14;
-		m_data.rules.min_bid_2 = 20;
-		m_data.rules.min_bid_3 = 23;
-		m_data.rules.waive_rule_4 = false;
-		m_data.rules.sluff_jacks = true;
+		// TODO To be done by INFM032 F___46 Nadya Nedyalkova ...
+		// TODO To be done by INFM042 F___06 Rosen Kaplanov ...
+		// TODO To be done by INFM032 F___52 Mihail Stankov ...
 	}
 
 	protected void finalize() {
@@ -292,17 +268,12 @@ public class gmEngine {
 		return (0);
 	}
 
-	/**
-	 * Get Feedback
-	 * 
-	 * @return boolean type
-	 * 
-	 * @author INFM042 F___05 Iliya Grozev
-	 * @author INFM042 F___06 Rosen Kaplanov
-	 * @author INFM042 F___93 Krasimir Chariyski
-	 */
 	public boolean GetFeedback() {
-		return m_data.feedback;
+		// TODO To be done by INFM042 F___05 Iliya Grozev ...
+		// TODO To be done by INFM042 F___06 Rosen Kaplanov ...
+		// TODO To be done by INFM042 F___93 Krasimir Chariyski ...
+
+		return (false);
 	}
 
 	/**
@@ -365,18 +336,23 @@ public class gmEngine {
 		// TODO To be done by INFM032 F___56 Daniel Nikolov ...
 	}
 
+	// TODO : Try to implement one method with trick_round as default variable
 	public void GetTrick(int trick_round, gmTrick trick) {
 		// TODO To be done by INFM032 F___68 Nikola Vushkov ...
 		// TODO To be done by INFM032 F___52 Mihail Stankov ...
 		// TODO To be done by INFM042 F___39 Shterion Yanev ...
-		
-		// TODO Try to implement one method with trick_round as default variable.
 	}
 
+	/**
+	 *
+	 * @param trick
+	 * 
+	 * @author INFM042 F___81 Marina Rangelova 
+	 * @author INFM032 F___68 Georgi Srebrov
+	 * @author INFM042 F___39 Shterion Yanev
+	 */
 	public void GetTrick(gmTrick trick) {
-		// TODO To be done by INFM042 F___81 Marina Rangelova ...
-		// TODO To be done by INFM032 F___68 Georgi Srebrov ...
-		// TODO To be done by INFM042 F___39 Shterion Yanev ...
+		GetTrick(m_data.trick_round, trick);
 	}
 
 	public int GetTrickRound() {
@@ -425,17 +401,10 @@ public class gmEngine {
 		return (0);
 	}
 
-	/**
-	 * 
-	 * @param dealer
-	 * 
-	 * @author INFM032 F___39 Shterion Yanev
-	 * @author INFM042 F___47 Kostadin Bulakiev
-	 * @author INFM042 F___48 Georgi Ivanov
-	 */
 	public void SetDealer(int dealer) {
-		assert ((dealer >= 0) && (dealer < Globals.gmTOTAL_PLAYERS));
-		m_data.dealer = dealer;
+		// TODO To be done by INFM032 F___39 Shterion Yanev ...
+		// TODO To be done by INFM042 F___47 Kostadin Bulakiev ...
+		// TODO To be done by INFM042 F___48 Georgi Ivanov ...
 	}
 
 	public static void ResetTrick(gmTrick trick) {
@@ -444,21 +413,10 @@ public class gmEngine {
 		// TODO To be done by INFM042 F___68 Georgi Srebrov ...
 	}
 
-	/**
-	 * 
-	 * @param data
-	 * 
-	 * @return
-	 * 
-	 * @author INFM032 F___68 Georgi Srebrov
-	 * @author INFM032 F___39 Shterion Yanev
-	 * @author INFM032 F___52 Mihail Stankov
-	 */
 	public boolean GetData(gmEngineData data) {
-		try {
-			data = (gmEngineData) m_data.clone();
-		} catch (CloneNotSupportedException e) {
-		}
+		// TODO To be done by INFM032 F___68 Georgi Srebrov ...
+		// TODO To be done by INFM032 F___39 Shterion Yanev ...
+		// TODO To be done by INFM032 F___52 Mihail Stankov ...
 
 		return (false);
 	}
