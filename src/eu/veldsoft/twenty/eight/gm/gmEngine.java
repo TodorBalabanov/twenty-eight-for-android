@@ -34,7 +34,7 @@ public class gmEngine {
 	 * gmEntine.Reset. To speed things up, a static m_init of type gmEngineData
 	 * is created and is initiated manually when the first instance of gmEngine
 	 * is called. Once this is done, all further initializations of this struct
-	 * is done be a memcpy from m_init. 
+	 * is done be a memcpy from m_init.
 	 */
 	public static gmEngineData m_init;
 
@@ -369,14 +369,21 @@ public class gmEngine {
 		// TODO To be done by INFM032 F___68 Nikola Vushkov ...
 		// TODO To be done by INFM032 F___52 Mihail Stankov ...
 		// TODO To be done by INFM042 F___39 Shterion Yanev ...
-		
-		// TODO Try to implement one method with trick_round as default variable.
+
+		// TODO Try to implement one method with trick_round as default
+		// variable.
 	}
 
+	/**
+	 * 
+	 * @param trick
+	 * 
+	 * @author INFM042 F___81 Marina Rangelova
+	 * @author INFM032 F___68 Georgi Srebrov
+	 * @author INFM042 F___39 Shterion Yanev
+	 */
 	public void GetTrick(gmTrick trick) {
-		// TODO To be done by INFM042 F___81 Marina Rangelova ...
-		// TODO To be done by INFM032 F___68 Georgi Srebrov ...
-		// TODO To be done by INFM042 F___39 Shterion Yanev ...
+		GetTrick(m_data.trick_round, trick);
 	}
 
 	public int GetTrickRound() {

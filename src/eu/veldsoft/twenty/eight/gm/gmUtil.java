@@ -123,14 +123,32 @@ public class gmUtil {
 		}
 	}
 
-	public static String PrintLong(long cards) {
-		// TODO To be done by INFM032 F___81 Marina Rangelova ...
-		// TODO To be done by INFM042 F___68 Nikola Vushkov ...
-		// TODO To be done by INFM032 F___06 Rosen Kaplanov ...
+    /**
+     * 
+     * @param cards
+     * 
+     * @return
+     * 
+     * @author INFM032 F___81 Marina Rangelova
+     * @author INFM042 F___68 Nikola Vushkov
+     * @author INFM032 F___06 Rosen Kaplanov
+     */
+    public static String PrintLong(long cards) {
+            String out = "";
+            for (int i = 0; i < 32; i++) {
+                    if ((cards & (1 << i)) != 0) {
+                            out = out + m_suits[i / 8] + m_values[i % 8] + (",");
+                    }
+            }
 
-		return ("");
-	}
+            String finish = "";
+            if (out != null && out.equals("") == false) {
+                    finish = out.substring(0, out.length() - 1);
+            }
 
+            return finish;
+    }
+    
 	public static String PrintHands(long hands) {
 		// TODO To be done by INFM032 F___39 Shterion Yanev ...
 		// TODO To be done by INFM042 F___06 Rosen Kaplanov ...
