@@ -165,14 +165,18 @@ public class gmUtil {
 
 		main_frame = null;
 		main_frame = (wxFrame) wxTheApp.GetTopWindow();
+		
 		if (main_frame == null) {
 			return false;
 		}
+		
 		status_bar = null;
 		status_bar = main_frame.GetStatusBar();
+		
 		if (status_bar == null) {
 			return false;
 		}
+		
 		status_bar.SetStatusText(text, i);
 		status_bar.Update();
 
