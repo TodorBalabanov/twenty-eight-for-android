@@ -533,13 +533,15 @@ public class gmEngine {
 
 		return ("");
 	}
-
+	/**
+	 * 
+	 * @return
+	 * @author INFM032 F___52 Mihail Stankov
+	 * @author INFM042 F___68 Nikola Vushkov
+	 * @author INFM032 F___93 Krasimir Chariyski
+	 */
 	public boolean IsTrumpShown() {
-		// TODO To be done by INFM032 F___52 Mihail Stankov ...
-		// TODO To be done by INFM042 F___68 Nikola Vushkov ...
-		// TODO To be done by INFM032 F___93 Krasimir Chariyski ...
-
-		return (false);
+		return m_data.trump_shown;
 	}
 
 	public int GetTrickNextToPlay() {
