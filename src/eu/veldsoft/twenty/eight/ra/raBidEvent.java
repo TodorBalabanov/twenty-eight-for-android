@@ -23,6 +23,7 @@
 
 package eu.veldsoft.twenty.eight.ra;
 
+import eu.veldsoft.twenty.eight.dummy.Globals;
 import eu.veldsoft.twenty.eight.dummy.wxEvent;
 
 public class raBidEvent extends wxEvent {
@@ -44,10 +45,17 @@ public class raBidEvent extends wxEvent {
 		// TODO To be done by INFM032 F___56 Daniel Nikolov ...
 	}
 
+	/**
+	 * 
+	 * @param evt
+	 * 
+	 * @author INFM032 F___84 Mariya Kostadinova ...
+	 * @author INFM042 F___88 Ivan Dankinov ...
+	 * @author INFM042 F___39 Shterion Yanev ...
+	 */
 	public raBidEvent(final raBidEvent evt) {
-		// TODO To be done by INFM032 F___84 Mariya Kostadinova ...
-		// TODO To be done by INFM042 F___88 Ivan Dankinov ...
-		// TODO To be done by INFM042 F___39 Shterion Yanev ...
+		SetEventType(Globals.raBID_EVT);
+		m_bid = evt.m_bid;
 	}
 
 	public wxEvent Clone() {

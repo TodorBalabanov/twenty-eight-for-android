@@ -23,7 +23,9 @@
 
 package eu.veldsoft.twenty.eight.ra;
 
+import eu.veldsoft.twenty.eight.dummy.Globals;
 import eu.veldsoft.twenty.eight.dummy.wxBitmap;
+import eu.veldsoft.twenty.eight.dummy.wxEvent;
 import eu.veldsoft.twenty.eight.dummy.wxFont;
 import eu.veldsoft.twenty.eight.dummy.wxMouseEvent;
 import eu.veldsoft.twenty.eight.dummy.wxPoint;
@@ -31,6 +33,7 @@ import eu.veldsoft.twenty.eight.dummy.wxRect;
 import eu.veldsoft.twenty.eight.dummy.wxSizeEvent;
 import eu.veldsoft.twenty.eight.dummy.wxWindow;
 import eu.veldsoft.twenty.eight.gg.ggCard;
+import eu.veldsoft.twenty.eight.gg.ggPanel;
 import eu.veldsoft.twenty.eight.gm.gmEngine;
 import eu.veldsoft.twenty.eight.gm.gmEngineData;
 import eu.veldsoft.twenty.eight.gm.gmRules;
@@ -38,7 +41,7 @@ import eu.veldsoft.twenty.eight.gm.gmTrick;
 import eu.veldsoft.twenty.eight.gm.gmUtil;
 import eu.veldsoft.twenty.eight.dummy.Globals;
 
-public class raGamePanel {
+public class raGamePanel extends ggPanel {
 	/**
 	 * Dummy values.
 	 */
@@ -50,6 +53,8 @@ public class raGamePanel {
 	private static final int __LINE__ = 0;
 
 	private wxBitmap m_tile;
+
+	private static final int raCONFIG_PREFS_PLAYCARDON_DCLICK = 1;
 
 	// Disallow copy finalructor/assignment operators
 	private raGamePanel(final raGamePanel object) {
@@ -231,10 +236,25 @@ public class raGamePanel {
 		// TODO To be done by INFM032 F___93 Krasimir Chariyski ...
 	}
 
+	/**
+	 * 
+	 * @param event
+	 * @author INFM032 F___45 Valentin Popov ...
+	 * @author INFM032 F___88 Ivan Dankinov ...
+	 * @author INFM042 F___14 Petya Atanasova ...
+	 */
 	private void OnLeftDClick(wxMouseEvent event) {
-		// TODO To be done by INFM032 F___45 Valentin Popov ...
-		// TODO To be done by INFM032 F___88 Ivan Dankinov ...
-		// TODO To be done by INFM042 F___14 Petya Atanasova ...
+		/**
+		 * If card play and trump selection are on double click
+		 */
+		if (m_play_card_on == raCONFIG_PREFS_PLAYCARDON_DCLICK) {
+			if (!OnCardClick(event.GetPosition())) {
+				Globals.wxLogError("OnCardClick failed. %s:%d", __FILE__,
+						__LINE__);
+				return;
+			}
+		}
+		return;
 	}
 
 	private void OnLeftUp(wxMouseEvent event) {
@@ -271,12 +291,60 @@ public class raGamePanel {
 		return (false);
 	}
 
+	/**
+	 * 
+	 * @return
+	 * 
+	 * @author INFM042 F___90 Svetoslav Slavkov ...
+	 * @author INFM042 F___67 Nevena Sirakova ...
+	 * @author INFM032 F___88 Ivan Dankinov ...
+	 */
 	private boolean ResetDeal() {
-		// TODO To be done by INFM042 F___67 Nevena Sirakova ...
-		// TODO To be done by INFM032 F___88 Ivan Dankinov ...
-		// TODO To be done by INFM042 F___90 Svetoslav Slavkov ...
+		int i, j;
 
-		return (false);
+		if (!m_engine.Reset()) {
+			Globals.wxLogError(
+					"Attempt to reset the rule engine failed. %s:%d", __FILE__,
+					__LINE__);
+			return false;
+		}
+
+		m_wait_trick = false;
+		m_deal_ended = false;
+
+		/*
+		 * Initialize the hand information to zeros
+		 */
+		for (raHand hand : m_hands) {
+			hand.setToZeros();
+		}
+
+		/*
+		 * Initialize the trick
+		 */
+		gmEngine.ResetTrick(m_trick);
+
+		/*
+		 * Initialize the position/dimentions of hands and the cards in the
+		 * trick
+		 */
+		for (i = 0; i < Globals.gmTOTAL_PLAYERS; i++) {
+			m_hand_rects[i] = new wxRect(0, 0, 0, 0);
+			m_trick_card_rects[i] = new wxRect(0, 0, 0, 0);
+		}
+
+		/*
+		 * Initialize card positions and dimensions
+		 */
+		for (i = 0; i < Globals.gmTOTAL_PLAYERS; i++)
+			for (j = 0; j < Globals.raMAX_CARDS_PER_HAND; j++)
+				m_hand_card_rects[i][j] = new wxRect(0, 0, 0, 0);
+
+		/*
+		 * Reset bid history
+		 */
+		m_bid_history = "";
+		return true;
 	}
 
 	private boolean ResetGame() {
@@ -436,11 +504,13 @@ public class raGamePanel {
 				msg.append(gmUtil.m_suits[data.trump_suit]);
 				msg.append(("\n"));
 				msg.append(("Team "));
-				msg.append(gmUtil.m_short_teams[Globals.gmGetOpponent(data.curr_max_bidder)]);
+				msg.append(gmUtil.m_short_teams[Globals
+						.gmGetOpponent(data.curr_max_bidder)]);
 				msg.append(" does not have any card of this suit");
 				msg.append("\n\n");
 				msg.append("This deal has been abandoned");
-				Globals.wxMessageBox(msg.toString(), ("Deal abandoned"), Globals.wxOK | Globals.wxICON_INFORMATION);
+				Globals.wxMessageBox(msg.toString(), ("Deal abandoned"),
+						Globals.wxOK | Globals.wxICON_INFORMATION);
 
 				if (EndDeal(true) == false) {
 					Globals.wxLogError("EndDeal failed. %s:%d", __FILE__,

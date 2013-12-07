@@ -25,4 +25,14 @@ package eu.veldsoft.twenty.eight.dummy;
 
 public class wxButton {
 
+	public void Show(boolean b) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void SetLabel(String raINFO_DEAL_TEXT) {
+		// TODO Auto-generated method stub
+
+	}
+
 }

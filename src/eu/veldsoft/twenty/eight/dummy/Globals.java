@@ -53,8 +53,6 @@ public class Globals {
 
 	public static final int gmTOTAL_PLAYERS = 4;
 
-	public static final wxEvent raINFO_EVT = null;
-
 	public static final String ra_APP_URL = "http://rosanne.sourceforge.net";
 
 	public static final int raPREFS_PLAYCARDON_SCLICK = 0;
@@ -158,24 +156,35 @@ public class Globals {
 	public static final String RA_APP_NAME = "Rosanne";
 
 	public static final String RA_APP_AUTHOR = "Todor Balabanov";
-	
+
 	public static final int gmBID_PASS = 0;
-	
+
 	public static final int gmBID_ALL = 1000;
-	
+
 	public static final int gmTOTAL_SUITS = 4;
-	
+
 	public static final int gmTOTAL_VALUES = 8;
-	
+
 	public static final int gmTOTAL_TRICKS = 8;
-	
+
 	public static final int gmTOTAL_TEAMS = 2;
 
 	public static final int wxOK = 0x00000004;
 
+	public static final int gmPLAYER_INVALID = -1;
+
 	public static final int wxICON_INFORMATION = 0x00000800;
-	
+
+	public static final wxEventType raINFO_EVT = new wxNewEventType();
+
+	public static final wxEventType raBID_EVT = new wxNewEventType();
+
+	public static final wxEventType raUPDATE_EVT = new wxNewEventType();
+
 	public static void wxLogError(String string, String file, int line) {
+	}
+
+	public static void wxLogError(String string) {
 	}
 
 	public static void wxLogMessage(String string) {

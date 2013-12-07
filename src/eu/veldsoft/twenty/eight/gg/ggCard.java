@@ -211,7 +211,7 @@ public class ggCard {
 			Globals.wxLogError("Blit failed. %s:%d", __FILE__, __LINE__);
 			return false;
 		}
-		
+
 		return true;
 	}
 

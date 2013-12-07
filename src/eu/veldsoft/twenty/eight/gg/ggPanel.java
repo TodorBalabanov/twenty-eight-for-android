@@ -31,11 +31,12 @@ import eu.veldsoft.twenty.eight.dummy.wxDC;
 import eu.veldsoft.twenty.eight.dummy.wxFont;
 import eu.veldsoft.twenty.eight.dummy.wxMemoryDC;
 import eu.veldsoft.twenty.eight.dummy.wxPaintEvent;
+import eu.veldsoft.twenty.eight.dummy.wxPanel;
 import eu.veldsoft.twenty.eight.dummy.wxPoint;
 import eu.veldsoft.twenty.eight.dummy.wxRect;
 import eu.veldsoft.twenty.eight.dummy.wxWindow;
 
-public class ggPanel {
+public class ggPanel extends wxPanel {
 	private wxBitmap m_back;
 
 	private wxBitmap m_work;
@@ -65,6 +66,9 @@ public class ggPanel {
 		// TODO To be done by INFM032 F___47 Kostadin Bulakiev ...
 		// TODO To be done by INFM042 F___27 Georgi Kostadinov ...
 		// TODO To be done by INFM032 F___94 Aleksandar Milev ...
+	}
+
+	public ggPanel() {
 	}
 
 	protected void finalize() {

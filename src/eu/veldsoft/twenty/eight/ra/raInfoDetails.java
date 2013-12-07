@@ -25,7 +25,7 @@ package eu.veldsoft.twenty.eight.ra;
 
 import eu.veldsoft.twenty.eight.gm.gmUtil;
 
-public class raInfoDetails {
+public class raInfoDetails implements Cloneable {
 	public int deal_no;
 
 	public int dealer;
@@ -39,4 +39,8 @@ public class raInfoDetails {
 	public int points[] = new int[gmUtil.gmTOTAL_TEAMS];
 
 	public int pnlties[] = new int[gmUtil.gmTOTAL_PLAYERS];
+
+	public Object clone() throws CloneNotSupportedException {
+		return super.clone();
+	}
 }

@@ -37,5 +37,4 @@ public class wxEvent {
 	public void SetEventType(wxEvent type) {
 		this.type = type;
 	}
-
 }
