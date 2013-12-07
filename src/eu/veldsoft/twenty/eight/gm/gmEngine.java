@@ -69,8 +69,8 @@ public class gmEngine {
 	 * @author INFM042 F___05 Iliya Grozev
 	 */
 	private long GenerateMask(long rules) {
-		long mask = Globals.gmALL_CARDS;
 		long temp = 0;
+		long mask = Globals.gmALL_CARDS;
 
 		/*
 		 * Rule 1 : If the first card to be played in the round and if trump is
