@@ -205,6 +205,8 @@ public class Globals {
 
 	//TODO Find true value of this constant.
 	public static final int raBID_ROUND_3 = 3;
+
+	public static int gmOUTPUT_DEAL_END = 1;
 	
 	public static void wxLogError(String string, String file, int line) {
 	}

@@ -120,12 +120,30 @@ public class gmEngine {
 		return mask;
 	}
 
+	/**
+	 * 
+	 * @return
+	 * @author INFM042 F___84 Mariya Kostadinova
+	 * @author INFM032 F___93 Krasimir Chariyski
+	 * @author INFM032 F___68 Georgi Srebrov
+	 */
 	private boolean SetDealEndOutput() {
-		// TODO To be done by INFM042 F___84 Mariya Kostadinova ...
-		// TODO To be done by INFM032 F___93 Krasimir Chariyski ...
-		// TODO To be done by INFM032 F___68 Georgi Srebrov ...
-
-		return (false);
+		/**
+		 * Check whether there is a winner?
+		 */
+		if (m_data.pts[m_data.curr_max_bidder % 2] >= m_data.curr_max_bid) {
+			m_data.out_deal_end_info.winner = m_data.curr_max_bidder % 2;
+		}
+		// TODO : Remove hard coding of 28
+		else if (m_data.pts[(m_data.curr_max_bidder + 1) % 2] > (28 - m_data.curr_max_bid)) {
+			m_data.out_deal_end_info.winner = (m_data.curr_max_bidder + 1) % 2;
+		} else {
+			return false;
+		}
+		if (m_data.feedback) {
+			SetOutput(Globals.gmOUTPUT_DEAL_END);
+		}
+		return true;
 	}
 
 	// Disallow copy finalructor/assignment operators
