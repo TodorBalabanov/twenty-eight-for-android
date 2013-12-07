@@ -39,4 +39,8 @@ public class gmRules implements Cloneable {
 	public Object clone() throws CloneNotSupportedException {
 		throw new CloneNotSupportedException();
 	}
+
+	public void setToZeros() {
+		// TODO To be done by ...
+	}
 }

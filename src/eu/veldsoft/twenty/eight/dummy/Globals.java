@@ -193,6 +193,17 @@ public class Globals {
 
 	public static final String __GNUC_MINOR__ = "";
 	
+	public static final String raTEXT_CLOCKWISE = "Clockwise";
+	
+	public static final String raTEXT_ANTICLOCKWISE = "Anti-lockwise";
+	
+	public static final int raSBARPOS_GEN = 0;
+	
+	public static final int raSBARPOS_CLOCK = 1;
+
+	//TODO Find true value of this constant.
+	public static final int raBID_ROUND_3 = 3;
+	
 	public static void wxLogError(String string, String file, int line) {
 	}
 
