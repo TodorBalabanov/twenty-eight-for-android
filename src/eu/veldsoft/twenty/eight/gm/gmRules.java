@@ -23,24 +23,65 @@
 
 package eu.veldsoft.twenty.eight.gm;
 
+/**
+ * 
+ * @author Vencislav Medarov
+ * @email venci932@gmail.com
+ * @date 13 Dec 2013
+ */
 public class gmRules implements Cloneable {
+	/**
+	 * 
+	 */
 	public int rot_addn;
 
+	/**
+	 * 
+	 */
 	public int min_bid_1;
 
+	/**
+	 * 
+	 */
 	public int min_bid_2;
 
+	/**
+	 * 
+	 */
 	public int min_bid_3;
 
+	/**
+	 * 
+	 */
 	public boolean waive_rule_4;
 
+	/**
+	 * 
+	 */
 	public boolean sluff_jacks;
 
+	/**
+	 * 
+	 * @author Vencislav Medarov
+	 * @email venci932@gmail.com
+	 * @date 13 Dec 2013
+	 */
 	public Object clone() throws CloneNotSupportedException {
 		throw new CloneNotSupportedException();
 	}
 
+	/**
+	 * 
+	 * @author Vencislav Medarov
+	 * @email venci932@gmail.com
+	 * @date 13 Dec 2013
+	 */
 	public void setToZeros() {
-		// TODO To be done by ...
+		rot_addn = 0;
+		min_bid_1 = 0;
+		min_bid_2 = 0;
+		min_bid_3 = 0;
+		waive_rule_4 = false;
+		sluff_jacks = false;
 	}
 }
