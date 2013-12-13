@@ -516,13 +516,13 @@ public class raGamePanel extends ggPanel {
 	}
 
 	private boolean BeginBusyState() {
-		// TODO To be done by ...
+		// TODO To be done by Venci ...
 
 		return (false);
 	}
 
 	private boolean EndBusyState() {
-		// TODO To be done by ...
+		// TODO To be done by Venci ...
 
 		return (false);
 	}
@@ -591,8 +591,61 @@ public class raGamePanel extends ggPanel {
 		// TODO To be done by ...
 	}
 
+	/**
+	 * 
+	 * @author Vencislav Medarov
+	 * @email venci932@gmail.com
+	 * @date 13 Dec 2013
+	 */
 	protected void finalize() {
-		// TODO To be done by ...
+		/*
+		 * Delete card faces.
+		 */
+		for (int i = 0; i < Globals.gmTOTAL_SUITS; i++) {
+			for (int j = 0; j < Globals.gmTOTAL_VALUES; j++) {
+				m_card_faces[(i * Globals.gmTOTAL_VALUES) + j] = null;
+			}
+		}
+
+		/*
+		 * Delete card backs
+		 */
+		for (int i = 0; i < Globals.raTOTAL_CARD_BACKS; i++) {
+			m_card_backs[i] = null;
+		}
+
+		/*
+		 * Delete the bitmaps created from xpms
+		 */
+		m_bmp_green_arrow_bottom = null;
+		m_bmp_green_arrow_top = null;
+		m_bmp_green_arrow_right = null;
+		m_bmp_green_arrow_left = null;
+
+		m_bmp_red_arrow_bottom = null;
+		m_bmp_red_arrow_top = null;
+		m_bmp_red_arrow_right = null;
+		m_bmp_red_arrow_left = null;
+
+		m_bmp_bubble_arrow_bottom = null;
+		m_bmp_bubble_arrow_left = null;
+		m_bmp_bubble_arrow_right = null;
+		m_bmp_bubble_arrow_top = null;
+
+		m_bmp_bubble_corner_ne = null;
+		m_bmp_bubble_corner_nw = null;
+		m_bmp_bubble_corner_se = null;
+		m_bmp_bubble_corner_sw = null;
+
+		m_bmp_bubble_edge_bottom = null;
+		m_bmp_bubble_edge_left = null;
+		m_bmp_bubble_edge_right = null;
+		m_bmp_bubble_edge_top = null;
+
+		/*
+		 * Delete tile bitmap
+		 */
+		m_tile = null;
 	}
 
 	public boolean SetTile(wxBitmap tile) {
