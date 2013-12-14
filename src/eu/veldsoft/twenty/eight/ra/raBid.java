@@ -137,21 +137,21 @@ public class raBid {
 	public boolean SetPassable() {
 		return (SetPassable(true));
 	}
-	
-/**
- * 
- * @param passable
- * 
- * @return
- * 
- * @author INFM032 F___06 Rosen Kaplanov
- * @author INFM042 F___52 Mihail Stankov
- * @author INFM032 F___48 Georgi Ivanov
- */
+
+	/**
+	 * 
+	 * @param passable
+	 * 
+	 * @return
+	 * 
+	 * @author INFM032 F___06 Rosen Kaplanov
+	 * @author INFM042 F___52 Mihail Stankov
+	 * @author INFM032 F___48 Georgi Ivanov
+	 */
 	public boolean SetPassable(boolean passable) {
-		
-		/* Enable/disable the pass button
-		 * as per the input criteria*
+
+		/*
+		 * Enable/disable the pass button as per the input criteria*
 		 */
 		m_button_pass.Enable(passable);
 
