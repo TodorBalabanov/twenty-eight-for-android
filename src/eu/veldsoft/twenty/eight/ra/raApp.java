@@ -40,11 +40,16 @@ public class raApp {
 	private raFrame m_frame;
 
 	// Disallow copy finalructor/assignment operators
+	
+	/**
+	 * 
+	 * @param object
+	 * @return
+	 * @author INFM042 F___52 Mihail Stankov
+	 * @author INFM042 F___39 Shterion Yanev
+	 * @author INFM032 F___56 Daniel Nikolov
+	 */
 	private raApp assign(final raApp object) {
-		// TODO To be done by INFM042 F___52 Mihail Stankov ...
-		// TODO To be done by INFM042 F___39 Shterion Yanev ...
-		// TODO To be done by INFM032 F___56 Daniel Nikolov ...
-
 		return (this);
 	}
 

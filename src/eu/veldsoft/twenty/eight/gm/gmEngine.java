@@ -285,7 +285,7 @@ public class gmEngine {
 
 		return (false);
 	}
-	
+
 	/**
 	 * 
 	 * @return
@@ -295,8 +295,7 @@ public class gmEngine {
 	 */
 	public int GetPendingInputType() {
 		/*
-		 *  If no input is pending,
-		 *  return invalid type
+		 * If no input is pending, return invalid type
 		 */
 		if (m_data.input_pending == false) {
 			return Globals.gmINPUT_INVALID;
@@ -393,13 +392,21 @@ public class gmEngine {
 		// TODO To be done by INFM032 F___56 Daniel Nikolov ...
 	}
 
+	/**
+	 * 
+	 * @param trick_round
+	 * @param trick
+	 * @author INFM032 F___68 Nikola Vushkov
+	 * @author INFM032 F___52 Mihail Stankov
+	 * @author INFM042 F___39 Shterion Yanev
+	 */
 	public void GetTrick(int trick_round, gmTrick trick) {
-		// TODO To be done by INFM032 F___68 Nikola Vushkov ...
-		// TODO To be done by INFM032 F___52 Mihail Stankov ...
-		// TODO To be done by INFM042 F___39 Shterion Yanev ...
+		assert ((trick_round >= 0) && (trick_round < Globals.gmTOTAL_TRICKS));
+		try {
+			trick = (gmTrick) m_data.tricks[trick_round].clone();
+		} catch (CloneNotSupportedException e) {
 
-		// TODO Try to implement one method with trick_round as default
-		// variable.
+		}
 	}
 
 	/**
@@ -533,7 +540,7 @@ public class gmEngine {
 
 		return ("");
 	}
-	
+
 	/**
 	 * 
 	 * @return
