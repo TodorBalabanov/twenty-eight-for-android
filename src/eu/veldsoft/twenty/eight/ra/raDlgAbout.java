@@ -38,10 +38,15 @@ public class raDlgAbout {
 		// TODO To be done by INFM042 F___94 Aleksandar Milev ...
 	}
 
+	/**
+	 * 
+	 * @param object
+	 * @return
+	 * @author INFM042 F___67 Nevena Sirakova
+	 * @author INFM042 F___39 Shterion Yanev
+	 * @author INFM032 F___94 Aleksandar Milev
+	 */
 	private raDlgAbout assign(final raDlgAbout object) {
-		// TODO To be done by INFM042 F___67 Nevena Sirakova ...
-		// TODO To be done by INFM042 F___39 Shterion Yanev ...
-		// TODO To be done by INFM032 F___94 Aleksandar Milev ...
 
 		return (this);
 	}
