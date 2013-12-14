@@ -221,14 +221,39 @@ public class gmEngine {
 
 		return (0);
 	}
-
+/**
+ * 
+ * @param data
+ * 
+ * @return
+ * 
+ * @author INFM042 F___06 Rosen Kaplanov
+ * @author INFM032 F___46 Nadya Nedyalkova
+ * @author INFM032 F___68 Nikola Vushkov
+ */
 	public static boolean Reset(gmEngineData data) {
-		// TODO To be done by INFM042 F___06 Rosen Kaplanov ...
-		// TODO To be done by INFM032 F___46 Nadya Nedyalkova ...
-		// TODO To be done by INFM032 F___68 Nikola Vushkov ...
+		
+		boolean feedback;
+	    gmRules rules = null;
+	    feedback = data.feedback;
+	    try {
+			rules = (gmRules) data.rules.clone();
+		} catch (CloneNotSupportedException e) {
+			
+		}
+	    try {
+			data = (gmEngineData) gmEngine.m_init.clone();
+		} catch (CloneNotSupportedException e) {
+			
+		}
+	    data.feedback = feedback;
+	    try {
+			data.rules = (gmRules) rules.clone();
+		} catch (CloneNotSupportedException e) {
 
-		return (false);
-	}
+		}
+	    return true;
+		}
 
 	public boolean Reset() {
 		// TODO To be done by INFM032 F___45 Valentin Popov ...
