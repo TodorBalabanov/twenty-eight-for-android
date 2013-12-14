@@ -10,4 +10,8 @@ public class wxXmlResource {
 		return false;
 	}
 
+	public wxBitmap LoadBitmap(String res_name) {
+		return null;
+	}
+
 }

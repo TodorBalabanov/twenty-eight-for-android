@@ -28,10 +28,13 @@ import java.util.logging.Logger;
 
 import eu.veldsoft.twenty.eight.dummy.Globals;
 import eu.veldsoft.twenty.eight.dummy.wxBitmap;
+import eu.veldsoft.twenty.eight.dummy.wxColour;
 import eu.veldsoft.twenty.eight.dummy.wxCoord;
 import eu.veldsoft.twenty.eight.dummy.wxDC;
+import eu.veldsoft.twenty.eight.dummy.wxImage;
 import eu.veldsoft.twenty.eight.dummy.wxMemoryDC;
 import eu.veldsoft.twenty.eight.dummy.wxMutex;
+import eu.veldsoft.twenty.eight.dummy.wxXmlResource;
 
 public class ggCard {
 	/**
@@ -125,12 +128,75 @@ public class ggCard {
 	private ggCard(final ggCard object) {
 	}
 
+	/**
+	 * 
+	 * @param res_name
+	 * 
+	 * @return
+	 * 
+	 * @author INFM032 F___81 Marina Rangelova
+	 * @author INFM032 F___47 Kostadin Bulakiev
+	 * @author INFM042 F___45 Valentin Popov
+	 */
 	private boolean LoadFace(String res_name) {
-		// TODO To be done by INFM032 F___81 Marina Rangelova ...
-		// TODO To be done by INFM032 F___47 Kostadin Bulakiev ...
-		// TODO To be done by INFM042 F___45 Valentin Popov ...
+		wxBitmap bmp_temp1, bmp_temp2 = new wxBitmap();
+		wxImage img_mask, img_face;
+		wxMemoryDC mdc1 = new wxMemoryDC(), mdc2 = new wxMemoryDC();
+		wxColour col_mask = new wxColour(Globals.wxWHITE);
 
-		return (false);
+		assert (res_name != null || res_name != "");
+
+		/*
+		 * Load the bitmap from the resource file
+		 */
+		bmp_temp1 = wxXmlResource.Get().LoadBitmap(res_name);
+		if (!bmp_temp1.Ok()) {
+			Globals.wxLogError("Failed to load resource %s. %s:%d", res_name,
+					__FILE__, __LINE__);
+			return false;
+		}
+
+		/*
+		 * The widths of mask and the xpm image are differt. Hence create a new
+		 * bitmap with correct dimensions and copy the data to the same.
+		 */
+		if (!bmp_temp2.Create(GG_CARD_WIDTH, GG_CARD_HEIGHT, -1)) {
+			Globals.wxLogError("Failed to create bitmap. %s:%d", __FILE__,
+					__LINE__);
+			return false;
+		}
+
+		mdc1.SelectObject(bmp_temp1);
+		mdc2.SelectObject(bmp_temp2);
+
+		if (!mdc2.Blit(0, 0, GG_CARD_WIDTH, GG_CARD_HEIGHT, mdc1, 0, 0)) {
+			Globals.wxLogError("Blit failed. %s:%d", __FILE__, __LINE__);
+			return false;
+		}
+
+		/*
+		 * Create images of face and mask and set the mask for the face
+		 */
+		img_face = bmp_temp2.ConvertToImage();
+		img_mask = s_mask_bmp.ConvertToImage();
+
+		if (!img_face.SetMaskFromImage(img_mask, col_mask.Red(),
+				col_mask.Green(), col_mask.Blue())) {
+			Globals.wxLogError("Failed to set mask from image. %s:%d",
+					__FILE__, __LINE__);
+		}
+
+		/*
+		 * And then finally create a bitmap from the masked image
+		 */
+		m_face = new wxBitmap(img_face, -1);
+		if (m_face == null) {
+			Globals.wxLogError("Creation of bitmap from image failed. %s:%d",
+					__FILE__, __LINE__);
+			return false;
+		}
+
+		return true;
 	}
 
 	public ggCard() {
@@ -235,16 +301,17 @@ public class ggCard {
 		assert (mdc != null);
 		mdc.SelectObject(m_face);
 	}
-/**
- * 
- * @param object
- * @return
- * @author INFM032 F___00 Tsvetelina Hristova
- * @author INFM042 F___52 Mihail Stankov
- * @author INFM042 F___05 Iliya Grozev
- */
+
+	/**
+	 * 
+	 * @param object
+	 * @return
+	 * @author INFM032 F___00 Tsvetelina Hristova
+	 * @author INFM042 F___52 Mihail Stankov
+	 * @author INFM042 F___05 Iliya Grozev
+	 */
 	public ggCard assign(final ggCard object) {
-		
+
 		return (this);
 	}
 }

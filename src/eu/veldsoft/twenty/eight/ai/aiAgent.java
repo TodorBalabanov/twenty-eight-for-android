@@ -274,12 +274,38 @@ public class aiAgent {
 		return (0);
 	}
 
+	/**
+	 * 
+	 * @param hand
+	 * @param suit
+	 * @return
+	 * @author INFM032 F___81 Marina Rangelova
+	 * @author INFM032 F___46 Nadya Nedyalkova
+	 * @author INFM042 F___05 Iliya Grozev
+	 */
 	public static int GetTrump(long hand, int suit) {
-		// TODO To be done by INFM032 F___81 Marina Rangelova ...
-		// TODO To be done by INFM032 F___46 Nadya Nedyalkova ...
-		// TODO To be done by INFM042 F___05 Iliya Grozev ...
+		assert (hand != 0);
+		assert ((suit > Globals.gmSUIT_INVALID) && (suit <= Globals.gmTOTAL_SUITS));
 
-		return (0);
+		int ret_val = Globals.gmCARD_INVALID;
+		long trump_cards = (hand & gmUtil.m_suit_mask[suit]) >> gmUtil.m_suit_rs[suit];
+		if ((gmUtil.CountBitsSet(trump_cards & 0x0000000F0)) >= 2) {
+			for (int i = 4; i < 8; i++) {
+				if ((trump_cards & (1 << i)) != 0) {
+					ret_val = (suit * 8) + i;
+					break;
+				}
+			}
+		} else if (gmUtil.CountBitsSet(trump_cards & 0x0000000F) > 0) {
+			ret_val = (int) ((suit * 8) + gmUtil
+					.HighestBitSet(trump_cards & 0x0000000F));
+		} else {
+			ret_val = (int) ((suit * 8) + gmUtil.HighestBitSet(trump_cards));
+		}
+
+		assert ((hand & (1 << ret_val)) != 0);
+
+		return ret_val;
 	}
 
 	public int GetPlay(long mask) {
