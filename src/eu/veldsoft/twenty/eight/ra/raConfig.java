@@ -415,13 +415,27 @@ public class raConfig {
 		}
 	}
 
+	/**
+	 * 
+	 * @param data
+	 * @return
+	 * @author INFM032 F___05 Iliya Grozev
+	 * @author INFM032 F___94 Aleksandar Milev
+	 * @author INFM042 F___67 Nevena Sirakova
+	 */
 	public boolean SetData(raConfData data) {
-		// TODO To be done by INFM032 F___05 Iliya Grozev ...
-		// TODO To be done by INFM032 F___94 Aleksandar Milev ...
-		// TODO To be done by INFM042 F___67 Nevena Sirakova ...
+		wxMutexLocker lock = new wxMutexLocker(s_mutex);
 
-		return (false);
+		try {
+			m_data = (raConfData) data.clone();
+		} catch (CloneNotSupportedException e) {
+		}
+		return true;
 	}
+
+	/*
+	 * Private constructor/destructor Private methods
+	 */
 
 	protected void finalize() {
 		// TODO To be done by INFM042 F___94 Aleksandar Milev ...
