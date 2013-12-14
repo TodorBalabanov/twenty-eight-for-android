@@ -137,13 +137,25 @@ public class raBid {
 	public boolean SetPassable() {
 		return (SetPassable(true));
 	}
-
+	
+/**
+ * 
+ * @param passable
+ * 
+ * @return
+ * 
+ * @author INFM032 F___06 Rosen Kaplanov
+ * @author INFM042 F___52 Mihail Stankov
+ * @author INFM032 F___48 Georgi Ivanov
+ */
 	public boolean SetPassable(boolean passable) {
-		// TODO To be done by INFM032 F___06 Rosen Kaplanov ...
-		// TODO To be done by INFM042 F___52 Mihail Stankov ...
-		// TODO To be done by INFM032 F___48 Georgi Ivanov ...
+		
+		/* Enable/disable the pass button
+		 * as per the input criteria*
+		 */
+		m_button_pass.Enable(passable);
 
-		return (false);
+		return true;
 	}
 
 	public boolean SetMinimumBid(int min_bid) {
