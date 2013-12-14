@@ -265,4 +265,7 @@ public class Globals {
 	public static boolean wxIsPlatform64Bit() {
 		return false;
 	}
+
+	public static void GetClientSize(Integer x, Integer y) {
+	}
 }

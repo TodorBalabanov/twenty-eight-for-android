@@ -134,14 +134,59 @@ public class ggPanel extends wxPanel {
 				logicalFunc, useMask, xsrcMask, null));
 	}
 
+	/**
+	 * 
+	 * @param xdest
+	 * @param ydest
+	 * @param width
+	 * @param height
+	 * @param source
+	 * @param xsrc
+	 * @param ysrc
+	 * @param logicalFunc
+	 * @param useMask
+	 * @param xsrcMask
+	 * @param ysrcMask
+	 * @return
+	 * 
+	 * @author INFM042 F___06 Rosen Kaplanov
+	 * @author INFM032 F___67 Nevena Sirakova
+	 * @author INFM042 F___93 Krasimir Chariyski
+	 */
 	public boolean BlitToBack(wxCoord xdest, wxCoord ydest, wxCoord width,
 			wxCoord height, wxDC source, wxCoord xsrc, wxCoord ysrc,
 			int logicalFunc, boolean useMask, wxCoord xsrcMask, wxCoord ysrcMask) {
-		// TODO To be done by INFM042 F___06 Rosen Kaplanov ...
-		// TODO To be done by INFM032 F___67 Nevena Sirakova ...
-		// TODO To be done by INFM042 F___93 Krasimir Chariyski ...
 
-		return (false);
+		wxMemoryDC bdc = new wxMemoryDC(), wdc = new wxMemoryDC();
+
+		bdc.SelectObject(m_back);
+		wdc.SelectObject(m_work);
+
+		if (!bdc.Ok()) {
+			return false;
+		}
+
+		if (!wdc.Ok()) {
+			return false;
+		}
+
+		if (!bdc.Blit(xdest, ydest, width, height, source, xsrc, ysrc,
+				logicalFunc, useMask, xsrcMask, ysrcMask)) {
+			return false;
+		}
+
+		Integer x = 0, y = 0;
+		Globals.GetClientSize(x, y);
+
+		if (!wdc.Blit(xdest, ydest, width, height, bdc, xdest, ydest)) {
+			return false;
+		}
+
+		m_rect_diff = new wxRect(0, 0, 0, 0);
+		m_rect_invalid = new wxRect(0, 0, x, y);
+		m_f_invalid = true;
+
+		return true;
 	}
 
 	public boolean BlitToFront(wxCoord xdest, wxCoord ydest, wxCoord width,
@@ -171,14 +216,53 @@ public class ggPanel extends wxPanel {
 				logicalFunc, useMask, xsrcMask, null));
 	}
 
+	/**
+	 * 
+	 * @param xdest
+	 * @param ydest
+	 * @param width
+	 * @param height
+	 * @param source
+	 * @param xsrc
+	 * @param ysrc
+	 * @param logicalFunc
+	 * @param useMask
+	 * @param xsrcMask
+	 * @param ysrcMask
+	 * @return
+	 * 
+	 * @author INFM042 F___68 Georgi Srebrov
+	 * @author INFM032 F___06 Rosen Kaplanov
+	 * @author INFM032 F___00 Tsvetelina Hristova
+	 */
 	public boolean BlitToFront(wxCoord xdest, wxCoord ydest, wxCoord width,
 			wxCoord height, wxDC source, wxCoord xsrc, wxCoord ysrc,
 			int logicalFunc, boolean useMask, wxCoord xsrcMask, wxCoord ysrcMask) {
-		// TODO To be done by INFM042 F___68 Georgi Srebrov ...
-		// TODO To be done by INFM032 F___06 Rosen Kaplanov ...
-		// TODO To be done by INFM032 F___00 Tsvetelina Hristova ...
 
-		return (false);
+		wxMemoryDC wdc = new wxMemoryDC();
+		wdc.SelectObject(m_work);
+
+		if (!wdc.Ok()) {
+			return false;
+		}
+
+		if (!wdc.Blit(xdest, ydest, width, height, source, xsrc, ysrc,
+				logicalFunc, useMask, xsrcMask, ysrcMask)) {
+			return false;
+		}
+
+		/*
+		 * Add the area drawn to m_rect_diff.
+		 */
+		m_rect_diff.Union(new wxRect(xdest, ydest, width, height));
+
+		/*
+		 * Add the area drawn to m_rect_invalid.
+		 */
+		m_rect_invalid.Union(new wxRect(xdest, ydest, width, height));
+		m_f_invalid = true;
+
+		return true;
 	}
 
 	public boolean DrawTextOnBack(String text, wxPoint pt) {

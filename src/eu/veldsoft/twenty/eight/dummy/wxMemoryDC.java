@@ -37,4 +37,15 @@ public class wxMemoryDC {
 		return false;
 	}
 
+	public boolean Blit(wxCoord xdest, wxCoord ydest, wxCoord width,
+			wxCoord height, wxMemoryDC bdc, wxCoord xdest2, wxCoord ydest2) {
+		return false;
+	}
+
+	public boolean Blit(wxCoord xdest, wxCoord ydest, wxCoord width,
+			wxCoord height, wxDC source, wxCoord xsrc, wxCoord ysrc,
+			int logicalFunc, boolean useMask, wxCoord xsrcMask, wxCoord ysrcMask) {
+		return false;
+	}
+
 }
