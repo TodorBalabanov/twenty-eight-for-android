@@ -30,15 +30,26 @@ public class raBidEvent extends wxEvent {
 	private int m_bid;
 
 	// Disallow copy assignment operator
+	
+	/**
+	 * 
+	 * @param object
+	 * 
+	 * @return
+	 * 
+	 * @author INFM042 F___52 Mihail Stankov
+	 * @author INFM032 F___81 Marina Rangelova
+	 * @author INFM032 F___14 Petya Atanasova 
+	 */
 	private raBidEvent assign(final raBidEvent object) {
-		// TODO To be done by INFM042 F___52 Mihail Stankov ...
-		// TODO To be done by INFM032 F___81 Marina Rangelova ...
-		// TODO To be done by INFM032 F___14 Petya Atanasova ...
 
 		return (this);
 	}
 
-	// Default finalructor.
+	/*
+	 *  Default final constructor.
+	 */
+	
 	public raBidEvent() {
 		// TODO To be done by INFM032 F___94 Aleksandar Milev ...
 		// TODO To be done by INFM042 F___84 Mariya Kostadinova ...
