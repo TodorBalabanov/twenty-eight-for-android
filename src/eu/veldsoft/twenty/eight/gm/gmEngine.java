@@ -453,13 +453,21 @@ public class gmEngine {
 
 		return (0);
 	}
-
+	
+/**
+ * 
+ * @param team
+ * 
+ * @return
+ * 
+ * @author INFM032 F___48 Georgi Ivanov
+ * @author INFM032 F___06 Rosen Kaplanov
+ * @author INFM032 F___27 Georgi Kostadinov
+ */
 	public int GetPoints(int team) {
-		// TODO To be done by INFM032 F___48 Georgi Ivanov ...
-		// TODO To be done by INFM032 F___06 Rosen Kaplanov ...
-		// TODO To be done by INFM032 F___27 Georgi Kostadinov ...
-
-		return (0);
+		
+		assert((team >= 0) && (team < Globals.gmTOTAL_TEAMS));
+		return m_data.pts[team];
 	}
 
 	public void GetPoints(int pts[]) {
