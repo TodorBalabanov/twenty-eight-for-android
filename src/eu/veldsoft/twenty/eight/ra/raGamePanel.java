@@ -483,12 +483,41 @@ public class raGamePanel extends ggPanel {
 		return (false);
 	}
 
+	/**
+	 * 
+	 * @param data
+	 * @param player
+	 * 
+	 * @return 
+	 * 
+	 * @author INFM042 F___06 Rosen Kaplanov
+	 * @author INFM042 F___81 Marina Rangelova
+	 * @author INFM042 F___90 Svetoslav Slavkov
+	 */
+	
 	private boolean HideInfo(gmEngineData data, int player) {
-		// TODO To be done by INFM042 F___06 Rosen Kaplanov ...
-		// TODO To be done by INFM042 F___81 Marina Rangelova ...
-		// TODO To be done by INFM042 F___90 Svetoslav Slavkov ...
+		
 
-		return (false);
+		assert((player != 0) && (player < Globals.gmTOTAL_PLAYERS));
+
+		/* Hide information that is not known the player
+		 * 
+		 */
+		for(int i = 0; i < Globals.gmTOTAL_PLAYERS; i++)
+		{
+			if(i != player)
+			{
+				data.hands[i] = 0;
+			}
+		}
+
+		if((data.curr_max_bidder != player) && !data.trump_shown)
+		{
+			data.trump_card = Globals.gmCARD_INVALID;
+			data.trump_suit = Globals.gmSUIT_INVALID;
+		}
+
+		return true;
 	}
 
 	private boolean HasDealEnded() {
