@@ -123,38 +123,124 @@ public class gmUtil {
 		}
 	}
 
-    /**
-     * 
-     * @param cards
-     * 
-     * @return
-     * 
-     * @author INFM032 F___81 Marina Rangelova
-     * @author INFM042 F___68 Nikola Vushkov
-     * @author INFM032 F___06 Rosen Kaplanov
-     */
-    public static String PrintLong(long cards) {
-            String out = "";
-            for (int i = 0; i < 32; i++) {
-                    if ((cards & (1 << i)) != 0) {
-                            out = out + m_suits[i / 8] + m_values[i % 8] + (",");
-                    }
-            }
+	/**
+	 * 
+	 * @param cards
+	 * 
+	 * @return
+	 * 
+	 * @author INFM032 F___81 Marina Rangelova
+	 * @author INFM042 F___68 Nikola Vushkov
+	 * @author INFM032 F___06 Rosen Kaplanov
+	 */
+	public static String PrintLong(long cards) {
+		String out = "";
+		for (int i = 0; i < 32; i++) {
+			if ((cards & (1 << i)) != 0) {
+				out = out + m_suits[i / 8] + m_values[i % 8] + (",");
+			}
+		}
 
-            String finish = "";
-            if (out != null && out.equals("") == false) {
-                    finish = out.substring(0, out.length() - 1);
-            }
+		String finish = "";
+		if (out != null && out.equals("") == false) {
+			finish = out.substring(0, out.length() - 1);
+		}
 
-            return finish;
-    }
-    
-	public static String PrintHands(long hands) {
-		// TODO To be done by INFM032 F___39 Shterion Yanev ...
-		// TODO To be done by INFM042 F___06 Rosen Kaplanov ...
-		// TODO To be done by INFM032 F___47 Kostadin Bulakiev ...
+		return finish;
+	}
 
-		return ("");
+	/**
+	 * 
+	 * @param hands
+	 * 
+	 * @return
+	 * 
+	 * @author INFM032 F___39 Shterion Yanev
+	 * @author INFM042 F___06 Rosen Kaplanov
+	 * @author INFM032 F___47 Kostadin Bulakiev
+	 */
+	public static String PrintHands(long hands[]) {
+		String finish;
+		String out;
+		long temp;
+
+		/*
+		 * Print North first
+		 */
+		String ret_val = "";
+		ret_val += (Globals.SPACES20 + m_long_locs[2]);
+		ret_val += ("\n");
+
+		for (int i = 0; i < 4; i++) {
+			temp = (hands[2] & m_suit_mask[i]) >> m_suit_rs[i];
+			out = "%s - " + m_suits[i];
+			for (int j = 7; j >= 0; j--) {
+				if ((temp & (1 << j)) != 0) {
+					out = out + m_values[j % 8] + ",";
+				}
+			}
+
+			finish = out.substring(0, out.length() - 1);
+
+			ret_val += Globals.SPACES20 + finish;
+			ret_val += "\n";
+		}
+
+		/*
+		 * Print East and West in the same line :D
+		 */
+		ret_val += "%-40s%-40s" + m_long_locs[1] + m_long_locs[3];
+		ret_val += "\n";
+
+		for (int i = 0; i < 4; i++) {
+			temp = (hands[1] & m_suit_mask[i]) >> m_suit_rs[i];
+			out = "%s - " + m_suits[i];
+
+			for (int j = 7; j >= 0; j--) {
+				if ((temp & (1 << j)) != 0) {
+					out = out + m_values[j % 8] + ",";
+				}
+			}
+
+			finish = "%-40s" + out.substring(0, out.length() - 1);
+
+			temp = (hands[3] & m_suit_mask[i]) >> m_suit_rs[i];
+			out = "%s - " + m_suits[i];
+
+			for (int j = 7; j >= 0; j--) {
+				if ((temp & (1 << j)) != 0) {
+					out = out + m_values[j % 8] + ",";
+				}
+			}
+
+			finish += "%-40s" + out.substring(0, out.length() - 1);
+
+			ret_val += (finish);
+			ret_val += "\n";
+		}
+
+		/*
+		 * Finally print South
+		 */
+		ret_val += (Globals.SPACES20 + m_long_locs[0]);
+		ret_val += "\n";
+
+		for (int i = 0; i < 4; i++) {
+			temp = (hands[0] & m_suit_mask[i]) >> m_suit_rs[i];
+			out = "%s - " + m_suits[i];
+
+			for (int j = 7; j >= 0; j--) {
+				if ((temp & (1 << j)) != 0) {
+					out = out + m_values[j % 8] + ",";
+				}
+			}
+
+			finish = out.substring(0, out.length() - 1);
+			ret_val += Globals.SPACES20 + finish;
+			ret_val += "\n";
+		}
+
+		return ret_val;
 	}
 
 	public static int GetCardIndex(String text) {
@@ -184,18 +270,18 @@ public class gmUtil {
 
 		main_frame = null;
 		main_frame = (wxFrame) wxTheApp.GetTopWindow();
-		
+
 		if (main_frame == null) {
 			return false;
 		}
-		
+
 		status_bar = null;
 		status_bar = main_frame.GetStatusBar();
-		
+
 		if (status_bar == null) {
 			return false;
 		}
-		
+
 		status_bar.SetStatusText(text, i);
 		status_bar.Update();
 

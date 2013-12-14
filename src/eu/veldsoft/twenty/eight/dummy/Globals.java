@@ -211,6 +211,8 @@ public class Globals {
 	public static int gmOUTPUT_DEAL_END = 1;
 
 	public static int gmINPUT_INVALID = -1;
+
+	public static String SPACES20 = "                    ";
 	
 	public static void wxLogError(String string, String file, int line) {
 	}
