@@ -279,12 +279,31 @@ public class raConfig {
 		return true;
 	}
 
+	/**
+	 * 
+	 * @return
+	 * 
+	 * @author INFM032 F___94 Aleksandar Milev
+	 * @author INFM042 F___68 Nikola Vushkov
+	 * @author INFM042 F___84 Mariya Kostadinova
+	 */
 	public static raConfig GetInstance() {
-		// TODO To be done by INFM032 F___94 Aleksandar Milev ...
-		// TODO To be done by INFM042 F___68 Nikola Vushkov ...
-		// TODO To be done by INFM042 F___84 Mariya Kostadinova ...
+		/*
+		 * Double checked locking before creating an instance
+		 */
+		if (s_instance != null) {
+			wxMutexLocker lock = new wxMutexLocker(s_mutex);
+			if (!lock.IsOk()) {
+				Globals.wxLogError("Failed to acquire mutex lock. %s:%d",
+						__FILE__, __LINE__);
+				return null;
+			}
+			if (s_instance != null) {
+				Create();
+			}
+		}
 
-		return (null);
+		return s_instance;
 	}
 
 	/**

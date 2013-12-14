@@ -266,19 +266,33 @@ public class aiAgent {
 		return (false);
 	}
 
+	/**
+	 * Get trump.
+	 * 
+	 * @author INFM032 INFM032 F___45 Valentin Popov
+	 * @author INFM042 INFM042 F___94 Aleksandar Milev
+	 * @author INFM042 INFM042 F___67 Nevena Sirakova
+	 */
 	public int GetTrump() {
-		// TODO To be done by INFM032 F___45 Valentin Popov ...
-		// TODO To be done by INFM042 F___94 Aleksandar Milev ...
-		// TODO To be done by INFM042 F___67 Nevena Sirakova ...
+		int bid = 0;
+		int trump = 0;
+		long[] hands = new long[Globals.gmTOTAL_PLAYERS];
 
-		return (0);
+		m_engine.GetHands(hands);
+		GetBid(bid, trump, 14, true);
+
+		return GetTrump(hands[m_loc], trump);
 	}
 
 	/**
+	 * Function returns the card to be played(index) -1, for show trump -2 or
+	 * other negative values in case of error
 	 * 
 	 * @param hand
 	 * @param suit
+	 * 
 	 * @return
+	 * 
 	 * @author INFM032 F___81 Marina Rangelova
 	 * @author INFM032 F___46 Nadya Nedyalkova
 	 * @author INFM042 F___05 Iliya Grozev
@@ -777,10 +791,25 @@ public class aiAgent {
 		SetRules(null);
 	}
 
+	/**
+	 * 
+	 * @param gmRules
+	 *            rules
+	 * 
+	 * @author INFM032 F___84 Mariya Kostadinova
+	 * @author INFM042 F___94 Aleksandar Milev
+	 * @author INFM032 F___90 Svetoslav Slavkov
+	 */
 	public void SetRules(gmRules rules) {
-		// TODO To be done by INFM032 F___84 Mariya Kostadinova ...
-		// TODO To be done by INFM042 F___94 Aleksandar Milev ...
-		// TODO To be done by INFM032 F___90 Svetoslav Slavkov ...
+		gmEngineData data = new gmEngineData();
+		if (rules != null) {
+			m_engine.GetData(data);
+			try {
+				data.rules = (gmRules) rules.clone();
+			} catch (CloneNotSupportedException e) {
+			}
+			m_engine.SetData(data, false);
+		}
 	}
 
 	/**
@@ -804,12 +833,25 @@ public class aiAgent {
 		return true;
 	}
 
+	/**
+	 * 
+	 * @return
+	 * 
+	 * @author INFM042 F___68 Georgi Srebrov
+	 * @author INFM042 F___94 Aleksandar Milev
+	 * @author INFM042 F___46 Nadya Nedyalkova
+	 */
 	public boolean GetClockwise() {
-		// TODO To be done by INFM042 F___68 Georgi Srebrov ...
-		// TODO To be done by INFM042 F___94 Aleksandar Milev ...
-		// TODO To be done by INFM042 F___46 Nadya Nedyalkova ...
-
-		return (false);
+		gmEngineData data = new gmEngineData();
+		m_engine.GetData(data);
+		switch (data.rules.rot_addn) {
+		case 1:
+			return true;
+		case 3:
+			return false;
+		default:
+			return false;
+		}
 	}
 
 	/**
