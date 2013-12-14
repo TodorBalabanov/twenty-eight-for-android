@@ -31,6 +31,9 @@ public class wxRect {
 	public wxRect(int x, int y, int w, int h) {
 	}
 
+	public wxRect(wxCoord xdest, wxCoord ydest, wxCoord width, wxCoord height) {
+	}
+
 	public int GetWidth() {
 		return 0;
 	}
