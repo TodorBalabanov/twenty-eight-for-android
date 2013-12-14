@@ -35,4 +35,9 @@ public class wxButton {
 
 	}
 
+	public void Enable(boolean passable) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
