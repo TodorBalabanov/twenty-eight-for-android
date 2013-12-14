@@ -24,6 +24,13 @@
 package eu.veldsoft.twenty.eight.gm;
 
 public class gmRand {
+	private static int[] psfmt32;
+
+	private static int idxof(int i) {
+
+		return 0;
+	}
+
 	public static String PrintState() {
 		// TODO To be done by INFM032 F___52 Mihail Stankov ...
 		// TODO To be done by INFM032 F___48 Georgi Ivanov ...
@@ -38,9 +45,21 @@ public class gmRand {
 		// TODO To be done by INFM042 F___48 Georgi Ivanov ...
 	}
 
+	/**
+	 * 
+	 * @param state
+	 * 
+	 * @author INFM032 F___68 Georgi Srebrov
+	 * @author INFM032 F___06 Rosen Kaplanov
+	 * @author INFM032 F___52 Mihail Stankov
+	 */
 	public static void SetState(gmRandState state) {
-		// TODO To be done by INFM032 F___68 Georgi Srebrov ...
-		// TODO To be done by INFM032 F___06 Rosen Kaplanov ...
-		// TODO To be done by INFM032 F___52 Mihail Stankov ...
+
+		int i = 0;
+		for (i = 0; i < 32; i++) {
+			psfmt32[idxof(i)] = state.state_array[i];
+			int idx = state.idx;
+		}
 	}
+
 }

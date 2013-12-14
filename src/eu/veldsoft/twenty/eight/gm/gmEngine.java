@@ -221,39 +221,40 @@ public class gmEngine {
 
 		return (0);
 	}
-/**
- * 
- * @param data
- * 
- * @return
- * 
- * @author INFM042 F___06 Rosen Kaplanov
- * @author INFM032 F___46 Nadya Nedyalkova
- * @author INFM032 F___68 Nikola Vushkov
- */
+
+	/**
+	 * 
+	 * @param data
+	 * 
+	 * @return
+	 * 
+	 * @author INFM042 F___06 Rosen Kaplanov
+	 * @author INFM032 F___46 Nadya Nedyalkova
+	 * @author INFM032 F___68 Nikola Vushkov
+	 */
 	public static boolean Reset(gmEngineData data) {
-		
+
 		boolean feedback;
-	    gmRules rules = null;
-	    feedback = data.feedback;
-	    try {
+		gmRules rules = null;
+		feedback = data.feedback;
+		try {
 			rules = (gmRules) data.rules.clone();
 		} catch (CloneNotSupportedException e) {
-			
+
 		}
-	    try {
+		try {
 			data = (gmEngineData) gmEngine.m_init.clone();
 		} catch (CloneNotSupportedException e) {
-			
+
 		}
-	    data.feedback = feedback;
-	    try {
+		data.feedback = feedback;
+		try {
 			data.rules = (gmRules) rules.clone();
 		} catch (CloneNotSupportedException e) {
 
 		}
-	    return true;
-		}
+		return true;
+	}
 
 	public boolean Reset() {
 		// TODO To be done by INFM032 F___45 Valentin Popov ...
@@ -453,20 +454,20 @@ public class gmEngine {
 
 		return (0);
 	}
-	
-/**
- * 
- * @param team
- * 
- * @return
- * 
- * @author INFM032 F___48 Georgi Ivanov
- * @author INFM032 F___06 Rosen Kaplanov
- * @author INFM032 F___27 Georgi Kostadinov
- */
+
+	/**
+	 * 
+	 * @param team
+	 * 
+	 * @return
+	 * 
+	 * @author INFM032 F___48 Georgi Ivanov
+	 * @author INFM032 F___06 Rosen Kaplanov
+	 * @author INFM032 F___27 Georgi Kostadinov
+	 */
 	public int GetPoints(int team) {
-		
-		assert((team >= 0) && (team < Globals.gmTOTAL_TEAMS));
+
+		assert ((team >= 0) && (team < Globals.gmTOTAL_TEAMS));
 		return m_data.pts[team];
 	}
 
