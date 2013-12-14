@@ -577,16 +577,28 @@ public class raGamePanel extends ggPanel {
 		return (false);
 	}
 
+	/**
+	 * ...
+	 * 
+	 * @author Vencislav Medarov
+	 * @email venci932@gmail.com
+	 * @date 14 Dec 2013
+	 */
 	private boolean BeginBusyState() {
-		// TODO To be done by Venci ...
-
-		return (false);
+		Globals.wxBeginBusyCursor();
+		return (true);
 	}
 
+	/**
+	 * ...
+	 * 
+	 * @author Vencislav Medarov
+	 * @email venci932@gmail.com
+	 * @date 14 Dec 2013
+	 */
 	private boolean EndBusyState() {
-		// TODO To be done by Venci ...
-
-		return (false);
+		Globals.wxEndBusyCursor();
+		return (true);
 	}
 
 	/**
@@ -711,13 +723,13 @@ public class raGamePanel extends ggPanel {
 	}
 
 	public boolean SetTile(wxBitmap tile) {
-		// TODO To be done by ...
+		// TODO To be done by Venci.
 
 		return (false);
 	}
 
 	public boolean SetInfoPanel(raInfo info_panel) {
-		// TODO To be done by ...
+		// TODO To be done by Venci.
 
 		return (false);
 	}
@@ -743,13 +755,13 @@ public class raGamePanel extends ggPanel {
 	}
 
 	public boolean SetClockwise(boolean flag) {
-		// TODO To be done by ...
+		// TODO To be done by Venci.
 
 		return (false);
 	}
 
 	public boolean GetClockwise() {
-		// TODO To be done by ...
+		// TODO To be done by Venci.
 
 		return (false);
 	}

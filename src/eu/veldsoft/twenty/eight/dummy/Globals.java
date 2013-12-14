@@ -194,16 +194,16 @@ public class Globals {
 	public static final String __GNUC_MINOR__ = "";
 
 	public static final boolean aiLOG_GENERATESLPROBLEM = false;
-	
+
 	public static final String raTEXT_CLOCKWISE = "Clockwise";
-	
+
 	public static final String raTEXT_ANTICLOCKWISE = "Anti-lockwise";
-	
+
 	public static final int raSBARPOS_GEN = 0;
-	
+
 	public static final int raSBARPOS_CLOCK = 1;
 
-	//TODO Find true value of this constant.
+	// TODO Find true value of this constant.
 	public static final int raBID_ROUND_3 = 3;
 
 	public static final wxColour wxWHITE = null;
@@ -215,7 +215,7 @@ public class Globals {
 	public static int gmINPUT_INVALID = -1;
 
 	public static String SPACES20 = "                    ";
-	
+
 	public static void wxLogError(String string, String file, int line) {
 	}
 
@@ -277,5 +277,11 @@ public class Globals {
 
 	public static void wxLogError(String string, String res_name, String file,
 			int line) {
+	}
+
+	public static void wxEndBusyCursor() {
+	}
+
+	public static void wxBeginBusyCursor() {
 	}
 }
