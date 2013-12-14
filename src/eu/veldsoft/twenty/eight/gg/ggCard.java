@@ -31,10 +31,13 @@ import eu.veldsoft.twenty.eight.dummy.wxBitmap;
 import eu.veldsoft.twenty.eight.dummy.wxColour;
 import eu.veldsoft.twenty.eight.dummy.wxCoord;
 import eu.veldsoft.twenty.eight.dummy.wxDC;
+import eu.veldsoft.twenty.eight.dummy.wxFileSystem;
 import eu.veldsoft.twenty.eight.dummy.wxImage;
 import eu.veldsoft.twenty.eight.dummy.wxMemoryDC;
 import eu.veldsoft.twenty.eight.dummy.wxMutex;
+import eu.veldsoft.twenty.eight.dummy.wxXPMHandler;
 import eu.veldsoft.twenty.eight.dummy.wxXmlResource;
+import eu.veldsoft.twenty.eight.dummy.wxZipFSHandler;
 
 public class ggCard {
 	/**
@@ -199,10 +202,45 @@ public class ggCard {
 		return true;
 	}
 
+	/**
+	 * 
+	 * This is a constructor
+	 * 
+	 * @author INFM032 F___06 Rosen Kaplanov
+	 * @author INFM032 F___68 Nikola Vushkov
+	 * @author INFM032 F___84 Mariya Kostadinova
+	 */
 	public ggCard() {
-		// TODO To be done by INFM032 F___06 Rosen Kaplanov ...
-		// TODO To be done by INFM032 F___68 Nikola Vushkov ...
-		// TODO To be done by INFM032 F___84 Mariya Kostadinova ...
+
+		m_face = null;
+
+		/*
+		 * If the constructor is being called for the first time 1. Load the
+		 * resources used by the library. 2. Load the mask image
+		 */
+
+		if (s_init) {
+			return;
+		}
+		wxMutex lock = new wxMutex(s_mutex);
+		if (!s_init) {
+			wxFileSystem.AddHandler(new wxZipFSHandler());
+			wxImage.AddHandler(new wxXPMHandler());
+
+			wxXmlResource.Get().InitAllHandlers();
+			if (!wxXmlResource.Get().Load(Globals.GG_CARD_XRS)) {
+				Globals.wxLogError("Failed to load xrs %s. %s:%d",
+						Globals.GG_CARD_XRS, __FILE__, __LINE__);
+				return;
+			}
+			s_mask_bmp = wxXmlResource.Get().LoadBitmap("mask");
+			if (!s_mask_bmp.Ok()) {
+				Globals.wxLogError("Failed to load mask bitmap. %s:%d",
+						__FILE__, __LINE__);
+				return;
+			}
+			s_init = true;
+		}
 	}
 
 	/**

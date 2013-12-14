@@ -208,6 +208,8 @@ public class Globals {
 
 	public static final wxColour wxWHITE = null;
 
+	public static final String GG_CARD_XRS = "cards.xrs";
+
 	public static int gmOUTPUT_DEAL_END = 1;
 
 	public static int gmINPUT_INVALID = -1;

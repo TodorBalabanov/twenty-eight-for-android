@@ -14,4 +14,14 @@ public class wxXmlResource {
 		return null;
 	}
 
+	public void InitAllHandlers() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public boolean Load(String ggCardXrs) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }
