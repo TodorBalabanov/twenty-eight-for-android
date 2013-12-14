@@ -23,7 +23,7 @@
 
 package eu.veldsoft.twenty.eight.gm;
 
-public class gmTrick {
+public class gmTrick implements Cloneable {
 	public boolean trumped;
 
 	public int cards[] = new int[gmUtil.gmTOTAL_PLAYERS];
@@ -37,4 +37,8 @@ public class gmTrick {
 	public int points;
 
 	public int winner;
+	
+	public Object clone() throws CloneNotSupportedException {
+		return super.clone();
+	}	
 }
