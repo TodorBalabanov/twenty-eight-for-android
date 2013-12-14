@@ -206,6 +206,8 @@ public class Globals {
 	//TODO Find true value of this constant.
 	public static final int raBID_ROUND_3 = 3;
 
+	public static final wxColour wxWHITE = null;
+
 	public static int gmOUTPUT_DEAL_END = 1;
 
 	public static int gmINPUT_INVALID = -1;
@@ -267,5 +269,9 @@ public class Globals {
 	}
 
 	public static void GetClientSize(Integer x, Integer y) {
+	}
+
+	public static void wxLogError(String string, String res_name, String file,
+			int line) {
 	}
 }

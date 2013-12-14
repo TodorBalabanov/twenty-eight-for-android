@@ -578,11 +578,14 @@ public class aiSuitLengthSolver {
 		return ("");
 	}
 
+	/**
+	 * 
+	 * @return
+	 * @author INFM042 F___94 Aleksandar Milev
+	 * @author INFM042 F___48 Georgi Ivanov
+	 * @author INFM032 F___81 Marina Rangelova
+	 */
 	public String PrintWorkingData() {
-		// TODO To be done by INFM042 F___94 Aleksandar Milev ...
-		// TODO To be done by INFM042 F___48 Georgi Ivanov ...
-		// TODO To be done by INFM032 F___81 Marina Rangelova ...
-
-		return ("");
+		return aiSuitLengthSolver.PrintData(m_working);
 	}
 }
