@@ -30,4 +30,7 @@ public class wxPanel {
 	public wxSize GetClientSize() {
 		return null;
 	}
+
+	public void Update() {
+	}
 }

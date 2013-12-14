@@ -411,7 +411,7 @@ public class raGamePanel extends ggPanel {
 		return true;
 	}
 
-	private boolean UpdateHands(long hands) {
+	private boolean UpdateHands(long hands[]) {
 		// TODO To be done by INFM042 F___45 Valentin Popov ...
 		// TODO To be done by INFM032 F___84 Mariya Kostadinova ...
 		// TODO To be done by INFM032 F___93 Krasimir Chariyski ...
@@ -475,12 +475,49 @@ public class raGamePanel extends ggPanel {
 		return (UpdateDrawAndRefresh(udpate, null));
 	}
 
-	private boolean UpdateDrawAndRefresh(boolean udpate, raBackDrawInfo info) {
-		// TODO To be done by INFM042 F___81 Marina Rangelova ...
-		// TODO To be done by INFM042 F___05 Iliya Grozev ...
-		// TODO To be done by INFM032 F___90 Svetoslav Slavkov ...
+	/**
+	 * 
+	 * @param udpate
+	 * @param info
+	 * 
+	 * @return
+	 * @author INFM042 F___81 Marina Rangelova
+	 * @author INFM042 F___05 Iliya Grozev
+	 * @author INFM032 F___90 Svetoslav Slavkov
+	 */
+	private boolean UpdateDrawAndRefresh(boolean update, raBackDrawInfo info) {
 
-		return (false);
+		long hands[] = new long[Globals.gmTOTAL_PLAYERS];
+
+		if (update) {
+			m_engine.GetHands(hands);
+
+			/*
+			 * Update hand/card positions and dimensions
+			 */
+			if (UpdateHands(hands) == false) {
+				Globals.wxLogError(String
+						.format("Call to UpdateHands failed. %s:%d", __FILE__,
+								__LINE__));
+				return false;
+			}
+		}
+
+		/*
+		 * Redraw back buffer and refrsh the screen to reflect the card play
+		 */
+		if (!RedrawBack(info)) {
+			Globals.wxLogError(String.format("RedrawBack failed. %s:%d",
+					__FILE__, __LINE__));
+			return false;
+		}
+		if (RefreshScreen() == true) {
+			Globals.wxLogError(String.format("RefreshScreen failed. %s:%d"),
+					__FILE__, __LINE__);
+			return false;
+		}
+		this.Update();
+		return true;
 	}
 
 	/**
@@ -488,31 +525,27 @@ public class raGamePanel extends ggPanel {
 	 * @param data
 	 * @param player
 	 * 
-	 * @return 
+	 * @return
 	 * 
 	 * @author INFM042 F___06 Rosen Kaplanov
 	 * @author INFM042 F___81 Marina Rangelova
 	 * @author INFM042 F___90 Svetoslav Slavkov
 	 */
-	
+
 	private boolean HideInfo(gmEngineData data, int player) {
-		
 
-		assert((player != 0) && (player < Globals.gmTOTAL_PLAYERS));
+		assert ((player != 0) && (player < Globals.gmTOTAL_PLAYERS));
 
-		/* Hide information that is not known the player
-		 * 
+		/*
+		 * Hide information that is not known the player
 		 */
-		for(int i = 0; i < Globals.gmTOTAL_PLAYERS; i++)
-		{
-			if(i != player)
-			{
+		for (int i = 0; i < Globals.gmTOTAL_PLAYERS; i++) {
+			if (i != player) {
 				data.hands[i] = 0;
 			}
 		}
 
-		if((data.curr_max_bidder != player) && !data.trump_shown)
-		{
+		if ((data.curr_max_bidder != player) && !data.trump_shown) {
 			data.trump_card = Globals.gmCARD_INVALID;
 			data.trump_suit = Globals.gmSUIT_INVALID;
 		}
