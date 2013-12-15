@@ -44,4 +44,9 @@ public class wxRect {
 
 	public void Union(wxRect m_rect_diff) {
 	}
+
+	public boolean Contains(wxPoint pt) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
