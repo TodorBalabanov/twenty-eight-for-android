@@ -287,13 +287,15 @@ public class gmEngine {
 
 		return (false);
 	}
-
+	/**		
+	*		
+	* @return		
+	* @author INFM042 F___93 Krasimir Chariyski		
+	* @author INFM032 F___45 Valentin Popov		
+	* @author INFM032 F___27 Georgi Kostadinov		
+	*/
 	public boolean IsOutputPending() {
-		// TODO To be done by INFM042 F___93 Krasimir Chariyski ...
-		// TODO To be done by INFM032 F___45 Valentin Popov ...
-		// TODO To be done by INFM032 F___27 Georgi Kostadinov ...
-
-		return (false);
+		return m_data.input_pending;
 	}
 
 	public int GetPendingOutputType() {
@@ -550,13 +552,27 @@ public class gmEngine {
 
 		return (false);
 	}
-
+	
+	/**
+	 * 
+	 * @param bid
+	 * @param loc
+	 * @return
+	 * 
+	 * @author INFM042 F___68 Nikola Vushkov
+	 * @author INFM032 F___93 Krasimir Chariyski
+	 * @author INFM042 F___05 Iliya Grozev
+	 */
 	public boolean GetMaxBid(int bid, int loc) {
-		// TODO To be done by INFM042 F___68 Nikola Vushkov ...
-		// TODO To be done by INFM032 F___93 Krasimir Chariyski ...
-		// TODO To be done by INFM042 F___05 Iliya Grozev ...
-
-		return (false);
+		if(bid == 1){
+			bid =  m_data.curr_max_bid;
+		}
+		
+		if(loc == 1){
+			loc = m_data.curr_max_bidder;
+		}
+		
+		return true;
 	}
 
 	public String GetLoggable() {
@@ -578,6 +594,7 @@ public class gmEngine {
 	/**
 	 * 
 	 * @return
+	 * 
 	 * @author INFM032 F___52 Mihail Stankov
 	 * @author INFM042 F___68 Nikola Vushkov
 	 * @author INFM032 F___93 Krasimir Chariyski
