@@ -266,13 +266,50 @@ public class raGamePanel extends ggPanel {
 	private int GetCardAtPos(wxPoint pt) {
 		return (GetCardAtPos(pt, gmUtil.gmPLAYER_INVALID));
 	}
-
+	
+	/**
+	 * 
+	 * @param pt
+	 * @param loc
+	 * @return
+	 * 
+	 * @author INFM032 F___45 Valentin Popov
+	 * @author INFM042 F___93 Krasimir Chariyski
+	 * @author INFM032 F___56 Daniel Nikolov
+	 */
 	private int GetCardAtPos(wxPoint pt, int loc) {
-		// TODO To be done by INFM032 F___45 Valentin Popov ...
-		// TODO To be done by INFM042 F___93 Krasimir Chariyski ...
-		// TODO To be done by INFM032 F___56 Daniel Nikolov ...
+		int i, j;
+		if (loc == gmUtil.gmPLAYER_INVALID) {
+			/*
+			 *  Check whether the position is inside any of the hands
+			 */
+			for (i = 0; i < gmUtil.gmTOTAL_PLAYERS; i++) {
+				// If so, find the card
+				if (m_hand_rects[i].Contains(pt)) {
+					
+					/*
+					 *  Consider each of the cards in the hand.
+					 *  This is done in reverse order is because the
+					 *  dimension/position of each of the cards is calculated
+					 *  without considering the possibility of overlapping
+					 */
+					for (j = m_hands[i].count - 1; j >= 0; j--) {
+						if (m_hand_card_rects[i][j].Contains(pt)) {
+							return m_hands[i].card_indexes[j];
+						}
+					}
+				}
+			}
+		} else {
+			assert ((loc >= 0) && (loc < gmUtil.gmTOTAL_PLAYERS));
+			for (i = m_hands[loc].count - 1; i >= 0; i--) {
+				if (m_hand_card_rects[loc][i].Contains(pt)) {
+					return m_hands[loc].card_indexes[i];
+				}
+			}
+		}
 
-		return (0);
+		return gmUtil.gmCARD_INVALID;
 	}
 
 	private int GetHandAtPos(wxPoint pt) {
