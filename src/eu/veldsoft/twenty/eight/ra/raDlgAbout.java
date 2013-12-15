@@ -30,12 +30,27 @@ import eu.veldsoft.twenty.eight.dummy.wxWindow;
 import eu.veldsoft.twenty.eight.dummy.wxWindowID;
 
 public class raDlgAbout {
+	private Object raDlgAbout;
+	private Object operator;
 
-	// Disallow copy finalructor/assignment operators
+	/**
+	 * 
+	 * @param object
+	 * 
+	 * @author INFM042 F___84 Mariya Kostadinova
+	 * @author INFM042 F___06 Rosen Kaplanov
+	 * @author INFM042 F___94 Aleksandar Milev
+	 */
+	// Disallow copy constructor/assignment operators
 	private raDlgAbout(final raDlgAbout object) {
-		// TODO To be done by INFM042 F___84 Mariya Kostadinova ...
-		// TODO To be done by INFM042 F___06 Rosen Kaplanov ...
-		// TODO To be done by INFM042 F___94 Aleksandar Milev ...
+
+		raDlgAbout(raDlgAbout);
+		raDlgAbout = operator = (raDlgAbout);
+	}
+
+	private void raDlgAbout(Object raDlgAbout2) {
+		// TODO Auto-generated method stub
+
 	}
 
 	/**
