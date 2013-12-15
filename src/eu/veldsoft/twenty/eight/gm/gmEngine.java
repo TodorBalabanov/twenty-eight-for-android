@@ -255,13 +255,17 @@ public class gmEngine {
 		}
 		return true;
 	}
-
+	
+/**
+ * 
+ * @return
+ * @author INFM032 F___45 Valentin Popov
+ * @author INFM042 F___48 Georgi Ivanov
+ * @author INFM032 F___05 Iliya Grozev
+ */
 	public boolean Reset() {
-		// TODO To be done by INFM032 F___45 Valentin Popov ...
-		// TODO To be done by INFM042 F___48 Georgi Ivanov ...
-		// TODO To be done by INFM032 F___05 Iliya Grozev ...
+		return Reset(m_data);
 
-		return (false);
 	}
 
 	public boolean Shuffle() {
