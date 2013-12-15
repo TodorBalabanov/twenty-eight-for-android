@@ -477,10 +477,21 @@ public class gmEngine {
 		return m_data.pts[team];
 	}
 
+	/**
+	 * 
+	 * @param pts
+	 * 
+	 * @author INFM042 F___68 Nikola Vushkov
+	 * @author INFM032 F___48 Georgi Ivanov
+	 * @author INFM032 F___05 Iliya Grozev
+	 */
 	public void GetPoints(int pts[]) {
-		// TODO To be done by INFM042 F___68 Nikola Vushkov ...
-		// TODO To be done by INFM032 F___48 Georgi Ivanov ...
-		// TODO To be done by INFM032 F___05 Iliya Grozev ...
+		assert(pts);
+		try {
+			pts = (m_data.pts) m_data.pts.clone();
+		} catch (CloneNotSupportedException e) {
+		}
+	
 	}
 
 	public int GetTrump() {
