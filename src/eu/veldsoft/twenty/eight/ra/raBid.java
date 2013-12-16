@@ -94,6 +94,7 @@ public class raBid {
 	/**
 	 * 
 	 * @param object
+	 * 
 	 * @return
 	 * 
 	 * @author INFM042 F___39 Shterion Yanev
@@ -149,9 +150,8 @@ public class raBid {
 	 * @author INFM032 F___48 Georgi Ivanov
 	 */
 	public boolean SetPassable(boolean passable) {
-
 		/*
-		 * Enable/disable the pass button as per the input criteria*
+		 * Enable/disable the pass button as per the input criteria.
 		 */
 		m_button_pass.Enable(passable);
 

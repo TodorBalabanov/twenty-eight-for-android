@@ -9,7 +9,7 @@ public class wxImage {
 
 	public static void AddHandler(wxXPMHandler wxXPMHandler) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

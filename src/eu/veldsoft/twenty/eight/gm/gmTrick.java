@@ -37,8 +37,8 @@ public class gmTrick implements Cloneable {
 	public int points;
 
 	public int winner;
-	
+
 	public Object clone() throws CloneNotSupportedException {
 		return super.clone();
-	}	
+	}
 }
