@@ -40,7 +40,7 @@ public class raApp {
 	private raFrame m_frame;
 
 	// Disallow copy finalructor/assignment operators
-	
+
 	/**
 	 * 
 	 * @param object

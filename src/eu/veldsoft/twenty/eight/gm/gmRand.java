@@ -24,10 +24,10 @@
 package eu.veldsoft.twenty.eight.gm;
 
 public class gmRand {
+	private static int idx;
 	private static int[] psfmt32;
 
 	private static int idxof(int i) {
-
 		return 0;
 	}
 
@@ -54,12 +54,9 @@ public class gmRand {
 	 * @author INFM032 F___52 Mihail Stankov
 	 */
 	public static void SetState(gmRandState state) {
-
-		int i = 0;
-		for (i = 0; i < 32; i++) {
+		for (int i = 0; i < 32; i++) {
 			psfmt32[idxof(i)] = state.state_array[i];
-			int idx = state.idx;
+			idx = state.idx;
 		}
 	}
-
 }

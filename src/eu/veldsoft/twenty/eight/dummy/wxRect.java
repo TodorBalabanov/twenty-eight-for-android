@@ -46,7 +46,6 @@ public class wxRect {
 	}
 
 	public boolean Contains(wxPoint pt) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 }

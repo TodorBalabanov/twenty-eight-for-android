@@ -16,7 +16,7 @@ public class wxXmlResource {
 
 	public void InitAllHandlers() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public boolean Load(String ggCardXrs) {

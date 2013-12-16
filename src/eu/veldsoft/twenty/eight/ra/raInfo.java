@@ -90,16 +90,17 @@ public class raInfo extends wxPanel {
 		// TODO To be done by INFM032 F___52 Mihail Stankov ...
 		// TODO To be done by INFM042 F___67 Nevena Sirakova ...
 	}
-/**
- * 
- * @param object
- * @return
- * @author INFM032 F___00 Tsvetelina Hristova
- * @author INFM042 F___94 Aleksandar Milev
- * @author INFM032 F___68 Georgi Srebrov
- */
+
+	/**
+	 * 
+	 * @param object
+	 * @return
+	 * @author INFM032 F___00 Tsvetelina Hristova
+	 * @author INFM042 F___94 Aleksandar Milev
+	 * @author INFM032 F___68 Georgi Srebrov
+	 */
 	private raInfo assign(final raInfo object) {
-	
+
 		return (this);
 	}
 
@@ -318,21 +319,21 @@ public class raInfo extends wxPanel {
 		m_details.bidder = Globals.gmPLAYER_INVALID;
 		m_details.dealer = Globals.gmPLAYER_INVALID;
 		m_details.deal_no = 1;
-		
+
 		for (int i = 0; i < Globals.gmTOTAL_TEAMS; i++) {
 			m_details.points[i] = 5;
 		}
-		
+
 		for (int i = 0; i < Globals.gmTOTAL_PLAYERS; i++) {
 			m_details.pnlties[i] = 0;
 		}
-		
+
 		m_details.trump = Globals.gmSUIT_INVALID;
-		
+
 		if (refresh == true) {
 			SetDetails(m_details);
 		}
-		
+
 		return true;
 	}
 }

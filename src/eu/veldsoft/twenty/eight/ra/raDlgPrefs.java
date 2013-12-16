@@ -64,16 +64,17 @@ public class raDlgPrefs extends wxDialog {
 		 * Empty constructor.
 		 */
 	}
-/**
- * 
- * @param object
- * @return
- * @author INFM032 F___00 Tsvetelina Hristova
- * @author INFM032 F___67 Nevena Sirakova
- * @author INFM032 F___52 Mihail Stankov
- */
+
+	/**
+	 * 
+	 * @param object
+	 * @return
+	 * @author INFM032 F___00 Tsvetelina Hristova
+	 * @author INFM032 F___67 Nevena Sirakova
+	 * @author INFM032 F___52 Mihail Stankov
+	 */
 	private raDlgPrefs assign(final raDlgPrefs object) {
-		
+
 		return (this);
 	}
 

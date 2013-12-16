@@ -233,39 +233,37 @@ public class gmEngine {
 	 * @author INFM032 F___68 Nikola Vushkov
 	 */
 	public static boolean Reset(gmEngineData data) {
-
 		boolean feedback;
 		gmRules rules = null;
 		feedback = data.feedback;
+
 		try {
 			rules = (gmRules) data.rules.clone();
 		} catch (CloneNotSupportedException e) {
-
 		}
 		try {
 			data = (gmEngineData) gmEngine.m_init.clone();
 		} catch (CloneNotSupportedException e) {
-
 		}
 		data.feedback = feedback;
 		try {
 			data.rules = (gmRules) rules.clone();
 		} catch (CloneNotSupportedException e) {
-
 		}
+
 		return true;
 	}
-	
-/**
- * 
- * @return
- * @author INFM032 F___45 Valentin Popov
- * @author INFM042 F___48 Georgi Ivanov
- * @author INFM032 F___05 Iliya Grozev
- */
+
+	/**
+	 * 
+	 * @return
+	 * 
+	 * @author INFM032 F___45 Valentin Popov
+	 * @author INFM042 F___48 Georgi Ivanov
+	 * @author INFM032 F___05 Iliya Grozev
+	 */
 	public boolean Reset() {
 		return Reset(m_data);
-
 	}
 
 	public boolean Shuffle() {
@@ -291,13 +289,15 @@ public class gmEngine {
 
 		return (false);
 	}
-	/**		
-	*		
-	* @return		
-	* @author INFM042 F___93 Krasimir Chariyski		
-	* @author INFM032 F___45 Valentin Popov		
-	* @author INFM032 F___27 Georgi Kostadinov		
-	*/
+
+	/**
+	 * 
+	 * @return
+	 * 
+	 * @author INFM042 F___93 Krasimir Chariyski
+	 * @author INFM032 F___45 Valentin Popov
+	 * @author INFM032 F___27 Georgi Kostadinov
+	 */
 	public boolean IsOutputPending() {
 		return m_data.input_pending;
 	}
@@ -486,12 +486,9 @@ public class gmEngine {
 	 * @author INFM032 F___05 Iliya Grozev
 	 */
 	public void GetPoints(int pts[]) {
-		assert(pts);
-		try {
-			pts = (m_data.pts) m_data.pts.clone();
-		} catch (CloneNotSupportedException e) {
-		}
-	
+		assert (pts != null);
+
+		pts = m_data.pts.clone();
 	}
 
 	public int GetTrump() {
@@ -567,11 +564,12 @@ public class gmEngine {
 
 		return (false);
 	}
-	
+
 	/**
 	 * 
 	 * @param bid
 	 * @param loc
+	 * 
 	 * @return
 	 * 
 	 * @author INFM042 F___68 Nikola Vushkov
@@ -579,14 +577,14 @@ public class gmEngine {
 	 * @author INFM042 F___05 Iliya Grozev
 	 */
 	public boolean GetMaxBid(int bid, int loc) {
-		if(bid == 1){
-			bid =  m_data.curr_max_bid;
+		if (bid == 1) {
+			bid = m_data.curr_max_bid;
 		}
-		
-		if(loc == 1){
+
+		if (loc == 1) {
 			loc = m_data.curr_max_bidder;
 		}
-		
+
 		return true;
 	}
 
