@@ -54,11 +54,15 @@ public class ggPanel extends wxPanel {
 		// TODO To be done by INFM032 F___47 Kostadin Bulakiev ...
 	}
 
+	/**
+	 * 
+	 * @param object
+	 * @return
+	 * @author INFM042 F___00 Tsvetelina Hristova
+	 * @author INFM032 F___68 Nikola Vushkov
+	 * @author INFM042 F___90 Svetoslav Slavkov
+	 */
 	private ggPanel assign(final ggPanel object) {
-		// TODO To be done by INFM042 F___90 Svetoslav Slavkov ...
-		// TODO To be done by INFM032 F___68 Nikola Vushkov ...
-		// TODO To be done by INFM042 F___00 Tsvetelina Hristova ...
-
 		return (this);
 	}
 
