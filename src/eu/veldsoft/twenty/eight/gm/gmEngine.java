@@ -36,7 +36,7 @@ public class gmEngine {
 	 * is called. Once this is done, all further initializations of this struct
 	 * is done be a memcpy from m_init.
 	 */
-	public static gmEngineData m_init;
+	public static gmEngineData m_init ;
 
 	public static boolean m_init_ok;
 

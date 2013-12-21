@@ -29,7 +29,7 @@ import eu.veldsoft.twenty.eight.gg.ggCard;
 
 public class Globals {
 
-	public static final Random PRNG = new Random();
+	public static final Random PRNG = new Random() ;
 
 	public static final int wxCOPY = 0;
 

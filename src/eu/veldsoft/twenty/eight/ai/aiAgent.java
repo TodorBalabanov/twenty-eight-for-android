@@ -34,7 +34,7 @@ import eu.veldsoft.twenty.eight.gm.gmUtil;
 public class aiAgent {
 	public static final int aiBID_SAMPLE = 100;
 
-	public static final int aiPLAY_SAMPLES = 30;
+	public static final int aiPLAY_SAMPLES = 30 ;
 
 	public static final int aiMAX_MOVES = 20;
 
