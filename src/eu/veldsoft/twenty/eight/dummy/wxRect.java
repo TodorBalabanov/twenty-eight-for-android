@@ -29,23 +29,23 @@ public class wxRect {
 	public int y;
 
 	public wxRect(int x, int y, int w, int h) {
-	} 
+	}
 
 	public wxRect(wxCoord xdest, wxCoord ydest, wxCoord width, wxCoord height) {
-	} 
+	}
 
 	public int GetWidth() {
 		return 0;
-	} 
+	}
 
 	public int GetHeight() {
 		return 0;
-	} 
+	}
 
 	public void Union(wxRect m_rect_diff) {
-	} 
+	}
 
 	public boolean Contains(wxPoint pt) {
 		return false;
-	} 
-} 
+	}
+}

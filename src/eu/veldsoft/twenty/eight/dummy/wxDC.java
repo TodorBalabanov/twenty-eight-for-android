@@ -29,6 +29,6 @@ public class wxDC {
 			int ggCardHeight, wxMemoryDC mdc, int i, int j, int logicalFunc,
 			boolean b) {
 		return false;
-	} 
+	}
 
-} 
+}

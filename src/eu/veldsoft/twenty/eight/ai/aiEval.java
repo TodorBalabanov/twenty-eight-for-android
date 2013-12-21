@@ -29,4 +29,4 @@ public class aiEval {
 	public int count;
 
 	public boolean valid;
-} 
+}

@@ -39,68 +39,68 @@ public class raFrame {
 		// TODO To be done by ...
 
 		return (false);
-	} 
+	}
 
 	private boolean ShowRules() {
 		// TODO To be done by ...
 
 		return (false);
-	} 
+	}
 
 	// Disallow copy finalructor/assignment operators
 	private raFrame(final raFrame object) {
 		// TODO To be done by ...
-	} 
+	}
 
 	raFrame assign(final raFrame object) {
 		// TODO To be done by ...
 
 		return (this);
-	} 
+	}
 
 	// Constructor
 	public raFrame(final String title) {
 		// TODO To be done by ...
-	} 
+	}
 
 	// Event handlers
 	public void OnQuit(wxCommandEvent event) {
 		// TODO To be done by ...
-	} 
+	}
 
 	public void OnAbout(wxCommandEvent event) {
 		// TODO To be done by ...
-	} 
+	}
 
 	public void OnGameNew(wxCommandEvent event) {
 		// TODO To be done by ...
-	} 
+	}
 
 	public void OnClose(wxCloseEvent event) {
 		// TODO To be done by ...
-	} 
+	}
 
 	public void OnPreferences(wxCommandEvent event) {
 		// TODO To be done by ...
-	} 
+	}
 
 	public void OnRules(wxCommandEvent event) {
 		// TODO To be done by ...
-	} 
+	}
 
 	public void OnAuction(wxCommandEvent event) {
 		// TODO To be done by ...
-	} 
+	}
 
 	public void OnLastTrick(wxCommandEvent event) {
 		// TODO To be done by ...
-	} 
+	}
 
 	public void OnSize(wxSizeEvent event) {
 		// TODO To be done by ...
-	} 
+	}
 
 	public void OnUpdate(raUpdateEvent event) {
 		// TODO To be done by ...
-	} 
-} 
+	}
+}

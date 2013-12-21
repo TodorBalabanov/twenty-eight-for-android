@@ -34,9 +34,9 @@ public class raConfData implements Cloneable {
 		app_data.setToZeros();
 		game_data.setToZeros();
 		prefs_data.setToZeros();
-	} 
+	}
 
 	public Object clone() throws CloneNotSupportedException {
 		return super.clone();
-	} 
-} 
+	}
+}

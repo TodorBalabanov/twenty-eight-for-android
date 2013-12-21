@@ -4,10 +4,10 @@ public class wxFrame {
 
 	public wxStatusBar GetStatusBar() {
 		return null;
-	} 
+	}
 
 	public wxWindow GetEventHandler() {
 		return null;
-	} 
+	}
 
-} 
+}

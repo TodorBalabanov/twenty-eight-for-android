@@ -34,12 +34,12 @@ public class raInfoEvent extends wxEvent {
 		// TODO To be done by ...
 
 		return (this);
-	} 
+	}
 
 	// Default finalructor.
 	public raInfoEvent() {
 		// TODO To be done by ...
-	} 
+	}
 
 	/**
 	 * Constructor.
@@ -51,13 +51,13 @@ public class raInfoEvent extends wxEvent {
 	public raInfoEvent(final raInfoEvent evt) {
 		SetEventType(Globals.raINFO_EVT);
 		m_cmd = evt.m_cmd;
-	} 
+	}
 
 	public wxEvent Clone() {
 		// TODO To be done by ...
 
 		return new raInfoEvent(this);
-	} 
+	}
 
 	/**
 	 * Set command.
@@ -70,7 +70,7 @@ public class raInfoEvent extends wxEvent {
 	 */
 	public void SetCommand(int cmd) {
 		m_cmd = cmd;
-	} 
+	}
 
 	/**
 	 * Get chosen command.
@@ -83,5 +83,5 @@ public class raInfoEvent extends wxEvent {
 	 */
 	public int GetCommand() {
 		return (m_cmd);
-	} 
-} 
+	}
+}

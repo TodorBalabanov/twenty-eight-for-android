@@ -26,26 +26,26 @@ package eu.veldsoft.twenty.eight.dummy;
 public class wxMemoryDC {
 
 	public void SelectObject(wxBitmap m_face) {
-	} 
+	}
 
 	public boolean Ok() {
 		return false;
-	} 
+	}
 
 	public boolean Blit(int x, int y, int getWidth, int getHeight,
 			wxMemoryDC bdc, int x2, int y2) {
 		return false;
-	} 
+	}
 
 	public boolean Blit(wxCoord xdest, wxCoord ydest, wxCoord width,
 			wxCoord height, wxMemoryDC bdc, wxCoord xdest2, wxCoord ydest2) {
 		return false;
-	} 
+	}
 
 	public boolean Blit(wxCoord xdest, wxCoord ydest, wxCoord width,
 			wxCoord height, wxDC source, wxCoord xsrc, wxCoord ysrc,
 			int logicalFunc, boolean useMask, wxCoord xsrcMask, wxCoord ysrcMask) {
 		return false;
-	} 
+	}
 
-} 
+}

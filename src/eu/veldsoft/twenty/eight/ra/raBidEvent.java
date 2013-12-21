@@ -44,7 +44,7 @@ public class raBidEvent extends wxEvent {
 	private raBidEvent assign(final raBidEvent object) {
 
 		return (this);
-	} 
+	}
 
 	/*
 	 * Default final constructor.
@@ -54,7 +54,7 @@ public class raBidEvent extends wxEvent {
 		// TODO To be done by INFM032 F___94 Aleksandar Milev ...
 		// TODO To be done by INFM042 F___84 Mariya Kostadinova ...
 		// TODO To be done by INFM032 F___56 Daniel Nikolov ...
-	} 
+	}
 
 	/**
 	 * 
@@ -67,11 +67,11 @@ public class raBidEvent extends wxEvent {
 	public raBidEvent(final raBidEvent evt) {
 		SetEventType(Globals.raBID_EVT);
 		m_bid = evt.m_bid;
-	} 
+	}
 
 	public wxEvent Clone() {
 		return new raBidEvent(this);
-	} 
+	}
 
 	/**
 	 * Setter.
@@ -84,7 +84,7 @@ public class raBidEvent extends wxEvent {
 	 */
 	public void SetBid(int bid) {
 		m_bid = bid;
-	} 
+	}
 
 	/**
 	 * Constructor.
@@ -95,5 +95,5 @@ public class raBidEvent extends wxEvent {
 	 */
 	public int GetBid() {
 		return (m_bid);
-	} 
-} 
+	}
+}

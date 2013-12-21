@@ -57,7 +57,7 @@ public class ggCard {
 			.getName());
 	static {
 		LOGGER.setLevel(Level.INFO);
-	} 
+	}
 
 	public static final int GG_CARD_CARD_COUNT = 52;
 
@@ -129,7 +129,7 @@ public class ggCard {
 	 * @author INFM032 F___81 Marina Rangelova
 	 */
 	private ggCard(final ggCard object) {
-	} 
+	}
 
 	/**
 	 * 
@@ -157,7 +157,7 @@ public class ggCard {
 			Globals.wxLogError("Failed to load resource %s. %s:%d", res_name,
 					__FILE__, __LINE__);
 			return false;
-		} 
+		}
 
 		/*
 		 * The widths of mask and the xpm image are differt. Hence create a new
@@ -167,7 +167,7 @@ public class ggCard {
 			Globals.wxLogError("Failed to create bitmap. %s:%d", __FILE__,
 					__LINE__);
 			return false;
-		} 
+		}
 
 		mdc1.SelectObject(bmp_temp1);
 		mdc2.SelectObject(bmp_temp2);
@@ -175,7 +175,7 @@ public class ggCard {
 		if (!mdc2.Blit(0, 0, GG_CARD_WIDTH, GG_CARD_HEIGHT, mdc1, 0, 0)) {
 			Globals.wxLogError("Blit failed. %s:%d", __FILE__, __LINE__);
 			return false;
-		} 
+		}
 
 		/*
 		 * Create images of face and mask and set the mask for the face
@@ -187,7 +187,7 @@ public class ggCard {
 				col_mask.Green(), col_mask.Blue())) {
 			Globals.wxLogError("Failed to set mask from image. %s:%d",
 					__FILE__, __LINE__);
-		} 
+		}
 
 		/*
 		 * And then finally create a bitmap from the masked image
@@ -197,10 +197,10 @@ public class ggCard {
 			Globals.wxLogError("Creation of bitmap from image failed. %s:%d",
 					__FILE__, __LINE__);
 			return false;
-		} 
+		}
 
 		return true;
-	} 
+	}
 
 	/**
 	 * 
@@ -221,7 +221,7 @@ public class ggCard {
 
 		if (s_init) {
 			return;
-		} 
+		}
 		wxMutex lock = new wxMutex(s_mutex);
 		if (!s_init) {
 			wxFileSystem.AddHandler(new wxZipFSHandler());
@@ -232,16 +232,16 @@ public class ggCard {
 				Globals.wxLogError("Failed to load xrs %s. %s:%d",
 						Globals.GG_CARD_XRS, __FILE__, __LINE__);
 				return;
-			} 
+			}
 			s_mask_bmp = wxXmlResource.Get().LoadBitmap("mask");
 			if (!s_mask_bmp.Ok()) {
 				Globals.wxLogError("Failed to load mask bitmap. %s:%d",
 						__FILE__, __LINE__);
 				return;
-			} 
+			}
 			s_init = true;
-		} 
-	} 
+		}
+	}
 
 	/**
 	 * This is a constructor.
@@ -263,17 +263,17 @@ public class ggCard {
 
 		if (LoadFace("face_" + (suit * GG_CARD_TOTAL_VALUES + value)) == false) {
 			LOGGER.info("LoadFace failed.");
-		} 
+		}
 
 		assert (m_face != null);
 		return;
-	} 
+	}
 
 	public ggCard(int other) {
 		// TODO To be done by INFM032 F___81 Marina Rangelova ...
 		// TODO To be done by INFM042 F___67 Nevena Sirakova ...
 		// TODO To be done by INFM032 F___05 Iliya Grozev ...
-	} 
+	}
 
 	/**
 	 * 
@@ -284,12 +284,12 @@ public class ggCard {
 	protected void finalize() {
 		if (m_face != null) {
 			m_face = null;
-		} 
-	} 
+		}
+	}
 
 	public boolean BlitTo(wxDC dest, wxCoord xdest, wxCoord ydest) {
 		return (BlitTo(dest, xdest, ydest, Globals.wxCOPY));
-	} 
+	}
 
 	/**
 	 * 
@@ -314,10 +314,10 @@ public class ggCard {
 				logicalFunc, true) != true) {
 			Globals.wxLogError("Blit failed. %s:%d", __FILE__, __LINE__);
 			return false;
-		} 
+		}
 
 		return true;
-	} 
+	}
 
 	public wxBitmap GetFace() {
 		// TODO To be done by INFM042 F___52 Mihail Stankov ...
@@ -325,7 +325,7 @@ public class ggCard {
 		// TODO To be done by INFM032 F___46 Nadya Nedyalkova ...
 
 		return (null);
-	} 
+	}
 
 	/**
 	 * 
@@ -338,7 +338,7 @@ public class ggCard {
 	public void SelectToDC(wxMemoryDC mdc) {
 		assert (mdc != null);
 		mdc.SelectObject(m_face);
-	} 
+	}
 
 	/**
 	 * 
@@ -351,5 +351,5 @@ public class ggCard {
 	public ggCard assign(final ggCard object) {
 
 		return (this);
-	} 
-} 
+	}
+}

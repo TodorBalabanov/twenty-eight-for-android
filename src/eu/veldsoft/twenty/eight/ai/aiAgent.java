@@ -48,7 +48,7 @@ public class aiAgent {
 
 	public static final int aiNEG_INFTY = -10000;
 
-	private final static int s_depths[] = { 2, 3, 4, 6, 7, 8, 8, 8 } ;;
+	private final static int s_depths[] = { 2, 3, 4, 6, 7, 8, 8, 8 };;
 
 	private gmEngine m_engine;
 
@@ -78,12 +78,12 @@ public class aiAgent {
 		move2 = (aiMove) elem2;
 		if (move1.rank > move2.rank) {
 			return -1;
-		}  else if (move1.rank == move2.rank) {
+		} else if (move1.rank == move2.rank) {
 			return 0;
-		}  else {
+		} else {
 			return 1;
-		} 
-	} 
+		}
+	}
 
 	/**
 	 * Disallow copy finalructor/assignment operators.
@@ -101,7 +101,7 @@ public class aiAgent {
 		/*
 		 * Empty body of private constructor.
 		 */
-	} 
+	}
 
 	private boolean EstimateTricks(long p_hands, int trump, int eval) {
 		// TODO To be done by INFM032 F___45 Valentin Popov ...
@@ -109,7 +109,7 @@ public class aiAgent {
 		// TODO To be done by INFM042 F___90 Svetoslav Slavkov ...
 
 		return (false);
-	} 
+	}
 
 	private boolean EstimatePoints(long hands, int trump, int trick_count,
 			int eval) {
@@ -118,13 +118,13 @@ public class aiAgent {
 		// TODO To be done by INFM032 F___05 Iliya Grozev ...
 
 		return (false);
-	} 
+	}
 
 	private boolean GenerateMoves(gmEngine node, aiMove moves, int count) {
 		GenerateMoves(node, moves, count, aiGENMV_ALL);
 
 		return (false);
-	} 
+	}
 
 	private boolean GenerateMoves(gmEngine node, aiMove moves, int count,
 			int type) {
@@ -133,7 +133,7 @@ public class aiAgent {
 		// TODO To be done by INFM032 F___52 Mihail Stankov ...
 
 		return (false);
-	} 
+	}
 
 	/**
 	 * 
@@ -154,12 +154,12 @@ public class aiAgent {
 		 */
 		for (int i = 0; i < count; i++) {
 			RankMove(data, moves[i]);
-		} 
+		}
 
 		Arrays.sort(moves);
 
 		return true;
-	} 
+	}
 
 	private boolean RankMove(gmEngineData data, aiMove move) {
 		// TODO To be done by INFM042 F___90 Svetoslav Slavkov ...
@@ -167,7 +167,7 @@ public class aiAgent {
 		// TODO To be done by INFM032 F___94 Aleksandar Milev ...
 
 		return (false);
-	} 
+	}
 
 	private int Evaluate(gmEngine node, int alpha, int beta, int depth,
 			boolean ret_val) {
@@ -176,7 +176,7 @@ public class aiAgent {
 		// TODO To be done by INFM032 F___68 Georgi Srebrov ...
 
 		return (0);
-	} 
+	}
 
 	private int EstimateHeuristic(gmEngine state) {
 		// TODO To be done by INFM042 F___52 Mihail Stankov ...
@@ -184,7 +184,7 @@ public class aiAgent {
 		// TODO To be done by INFM042 F___67 Nevena Sirakova ...
 
 		return (0);
-	} 
+	}
 
 	private boolean MakeMove(gmEngine node, aiMove move) {
 		// TODO To be done by INFM032 F___56 Daniel Nikolov ...
@@ -192,7 +192,7 @@ public class aiAgent {
 		// TODO To be done by INFM032 F___46 Nadya Nedyalkova ...
 
 		return (false);
-	} 
+	}
 
 	private boolean MakeMoveAndEval(gmEngine node, aiMove move, int depth,
 			int eval) {
@@ -201,13 +201,13 @@ public class aiAgent {
 		// TODO To be done by INFM032 F___81 Marina Rangelova ...
 
 		return (false);
-	} 
+	}
 
 	protected void finalize() {
 		// TODO To be done by INFM042 F___45 Valentin Popov ...
 		// TODO To be done by INFM042 F___27 Georgi Kostadinov ...
 		// TODO To be done by INFM032 F___14 Petya Atanasova ...
-	} 
+	}
 
 	/**
 	 * @author INFM032 F___06 Rosen Kaplanov
@@ -218,7 +218,7 @@ public class aiAgent {
 		// TODO : Remove hardcoding
 		m_loc = 0;
 		Reset();
-	} 
+	}
 
 	/**
 	 * Set location.
@@ -231,7 +231,7 @@ public class aiAgent {
 	 */
 	public void SetLocation(int loc) {
 		m_loc = loc;
-	} 
+	}
 
 	public int GetLocation() {
 		// TODO To be done by INFM032 F___52 Mihail Stankov ...
@@ -239,7 +239,7 @@ public class aiAgent {
 		// TODO To be done by INFM042 F___84 Mariya Kostadinova ...
 
 		return (0);
-	} 
+	}
 
 	public boolean GetBid(long cards, int bid, int trump, int min,
 			boolean force_bid) {
@@ -248,7 +248,7 @@ public class aiAgent {
 		// TODO To be done by INFM032 F___14 Petya Atanasova ...
 
 		return (false);
-	} 
+	}
 
 	public boolean GetBid(int bid, int trump, int min, boolean force_bid) {
 		// TODO To be done by INFM042 F___68 Nikola Vushkov ...
@@ -256,7 +256,7 @@ public class aiAgent {
 		// TODO To be done by INFM042 F___14 Petya Atanasova ...
 
 		return (false);
-	} 
+	}
 
 	public boolean SetRuleEngineData(gmEngineData data) {
 		// TODO To be done by INFM042 F___39 Shterion Yanev ...
@@ -264,7 +264,7 @@ public class aiAgent {
 		// TODO To be done by INFM042 F___56 Daniel Nikolov ...
 
 		return (false);
-	} 
+	}
 
 	/**
 	 * Get trump.
@@ -282,7 +282,7 @@ public class aiAgent {
 		GetBid(bid, trump, 14, true);
 
 		return GetTrump(hands[m_loc], trump);
-	} 
+	}
 
 	/**
 	 * Function returns the card to be played(index) -1, for show trump -2 or
@@ -308,19 +308,19 @@ public class aiAgent {
 				if ((trump_cards & (1 << i)) != 0) {
 					ret_val = (suit * 8) + i;
 					break;
-				} 
-			} 
-		}  else if (gmUtil.CountBitsSet(trump_cards & 0x0000000F) > 0) {
+				}
+			}
+		} else if (gmUtil.CountBitsSet(trump_cards & 0x0000000F) > 0) {
 			ret_val = (int) ((suit * 8) + gmUtil
 					.HighestBitSet(trump_cards & 0x0000000F));
-		}  else {
+		} else {
 			ret_val = (int) ((suit * 8) + gmUtil.HighestBitSet(trump_cards));
-		} 
+		}
 
 		assert ((hand & (1 << ret_val)) != 0);
 
 		return ret_val;
-	} 
+	}
 
 	public int GetPlay(long mask) {
 		// TODO To be done by INFM032 F___48 Georgi Ivanov ...
@@ -328,7 +328,7 @@ public class aiAgent {
 		// TODO To be done by INFM032 F___68 Nikola Vushkov ...
 
 		return (0);
-	} 
+	}
 
 	/**
 	 * Given the game engine data, generate the suit length problem. This suit
@@ -355,7 +355,7 @@ public class aiAgent {
 		if (Globals.aiLOG_GENERATESLPROBLEM == true) {
 			Globals.wxLogDebug("Inside GenerateSLProblem");
 			Globals.wxLogDebug("m_loc - %s", gmUtil.m_short_locs[m_loc]);
-		} 
+		}
 
 		assert (data != null);
 		assert (problem != null);
@@ -366,12 +366,12 @@ public class aiAgent {
 		// TODO Provide an appropriate comment.
 		if ((!data.trump_shown) && (data.curr_max_bidder != m_loc)) {
 			assert (trump != Globals.gmSUIT_INVALID);
-		} 
+		}
 
 		// TODO Provide an appropriate comment.
 		if ((data.trump_shown) || (data.curr_max_bidder == m_loc)) {
 			trump = data.trump_suit;
-		} 
+		}
 
 		// TODO Implement the case where the opponents of the max bidder should
 		// have at least one trump Initialize the problem. This will set all
@@ -386,8 +386,8 @@ public class aiAgent {
 			for (j = 0; j < Globals.gmTOTAL_SUITS; j++) {
 				played[i][j] = (int) gmUtil.CountBitsSet(data.played_cards[i]
 						& gmUtil.m_suit_mask[j]);
-			} 
-		} 
+			}
+		}
 
 		/*
 		 * Set the hand lengths
@@ -397,7 +397,7 @@ public class aiAgent {
 					.CountBitsSet(data.played_cards[i])));
 			sum_hands += problem.hand_total_length[i];
 			cards_played |= data.played_cards[i];
-		} 
+		}
 
 		/*
 		 * Set suit lengths
@@ -406,7 +406,7 @@ public class aiAgent {
 			problem.suit_total_length[i] = (int) (8 - gmUtil
 					.CountBitsSet(cards_played & gmUtil.m_suit_mask[i]));
 			sum_suits += problem.suit_total_length[i];
-		} 
+		}
 
 		/*
 		 * This is applicable only if self is not the max bidder. If the trump
@@ -421,7 +421,7 @@ public class aiAgent {
 			++(played[data.curr_max_bidder][trump]);
 			add_trump = true;
 
-		} 
+		}
 
 		/*
 		 * This is applicable only if self is not the player who bid the
@@ -438,8 +438,8 @@ public class aiAgent {
 				--(problem.suit_total_length[trump]);
 				++(played[data.curr_max_bidder][trump]);
 				add_trump = true;
-			} 
-		} 
+			}
+		}
 
 		/*
 		 * Set the cases where the suit length is null
@@ -448,9 +448,9 @@ public class aiAgent {
 			for (j = 0; j < Globals.gmTOTAL_SUITS; j++) {
 				if ((m_nulls[i] & (1 << j)) != 0) {
 					problem.suit_length[i][j] = 0;
-				} 
-			} 
-		} 
+				}
+			}
+		}
 
 		/*
 		 * Set the cells for self
@@ -458,7 +458,7 @@ public class aiAgent {
 		for (i = 0; i < Globals.gmTOTAL_SUITS; i++) {
 			problem.suit_length[m_loc][i] = (int) gmUtil
 					.CountBitsSet(data.hands[m_loc] & gmUtil.m_suit_mask[i]);
-		} 
+		}
 
 		/*
 		 * If self is the max bidder and if trump is not shown, add one to the
@@ -466,7 +466,7 @@ public class aiAgent {
 		 */
 		if ((!data.trump_shown) && (m_loc == data.curr_max_bidder)) {
 			++(problem.suit_length[m_loc][trump]);
-		} 
+		}
 
 		/*
 		 * All cards of self are known.
@@ -484,25 +484,25 @@ public class aiAgent {
 				{
 					if (problem.suit_length[i][j] == Globals.slVACANT) {
 						out += "x ";
-					}  else {
+					} else {
 						out += problem.suit_length[i][j] + " ";
-					} 
+					}
 
-				} 
+				}
 				Globals.wxLogDebug(out);
-			} 
+			}
 			Globals.wxLogDebug("Exiting GenerateSLProblem");
-		} 
+		}
 
 		return (true);
 
-	} 
+	}
 
 	public boolean GenerateDeals(gmEngineData data, long deals, int count) {
 		GenerateDeals(data, deals, count, gmUtil.gmSUIT_INVALID);
 
 		return (false);
-	} 
+	}
 
 	public boolean GenerateDeals(gmEngineData data, long deals, int count,
 			int trump) {
@@ -511,7 +511,7 @@ public class aiAgent {
 		// TODO To be done by INFM042 F___52 Mihail Stankov ...
 
 		return (false);
-	} 
+	}
 
 	/**
 	 * 
@@ -535,22 +535,22 @@ public class aiAgent {
 						+ gmUtil.m_suits[Globals.gmGetSuit(moves[i].card)]
 						+ gmUtil.m_values[Globals.gmGetValue(moves[i].card)]
 						+ "(" + moves[i].rank + "),");
-			}  else {
+			} else {
 				out.append(""
 						+ gmUtil.m_suits[Globals.gmGetSuit(moves[i].card)]
 						+ gmUtil.m_values[Globals.gmGetValue(moves[i].card)]
 						+ "(" + moves[i].rank + "),");
-			} 
-		} 
+			}
+		}
 
 		return out.toString();
-	} 
+	}
 
 	public boolean PostPlayUpdate(gmEngineData data) {
 		PostPlayUpdate(data, gmUtil.gmCARD_INVALID);
 
 		return (false);
-	} 
+	}
 
 	/**
 	 * 
@@ -590,7 +590,7 @@ public class aiAgent {
 					for (int i = 0; i < Globals.gmTOTAL_PLAYERS; i++) {
 						cards_left += gmUtil.CountBitsSet(data.played_cards[i]
 								& gmUtil.m_suit_mask[suit]);
-					} 
+					}
 
 					/*
 					 * Add to that the number of cards held by the AI player
@@ -616,10 +616,10 @@ public class aiAgent {
 						 * gmUtil::m_suits[suit].c_str()));
 						 */
 						m_trump_cards &= ~(1 << suit);
-					}  else {
+					} else {
 						m_notrump_suspects |= (1 << suit);
-					} 
-				} 
+					}
+				}
 
 				/*
 				 * Check each of the suspects, if the max bidder has played a
@@ -640,10 +640,10 @@ public class aiAgent {
 							 * Remove the suit from the list of suspects
 							 */
 							m_notrump_suspects &= ~(1 << i);
-						} 
-					} 
-				} 
-			} 
+						}
+					}
+				}
+			}
 
 			assert (m_trump_cards != 0);
 
@@ -662,16 +662,16 @@ public class aiAgent {
 				if ((data.in_trick_info.player == data.curr_max_bidder)
 						&& (!data.trump_shown)) {
 					m_mb_null_susp |= (1 << data.tricks[data.trick_round].lead_suit);
-				} 
+				}
 				/*
 				 * If the player playing the card is not the max bidder we can
 				 * safely assume that the suit length for the player
 				 */
 				else {
 					m_nulls[data.in_trick_info.player] |= (1 << data.tricks[data.trick_round].lead_suit);
-				} 
-			} 
-		} 
+				}
+			}
+		}
 
 		/*
 		 * If trump is shown and if any of the null suspects is not the trump
@@ -685,9 +685,9 @@ public class aiAgent {
 					 * Remove from the suspect list
 					 */
 					m_mb_null_susp &= ~(1 << i);
-				} 
-			} 
-		} 
+				}
+			}
+		}
 
 		/*
 		 * If self is not the max bidder and trump is not shown, For any suit if
@@ -703,7 +703,7 @@ public class aiAgent {
 			 */
 			if (card != Globals.gmCARD_INVALID) {
 				cards_played |= (1 << card);
-			} 
+			}
 
 			/*
 			 * Add the cards played so far (previous tricks and the current one)
@@ -712,18 +712,18 @@ public class aiAgent {
 				cards_played |= data.played_cards[i];
 				if (data.tricks[data.trick_round].cards[i] != Globals.gmCARD_INVALID)
 					cards_played |= (1 << data.tricks[data.trick_round].cards[i]);
-			} 
+			}
 
 			for (int i = 0; i < Globals.gmTOTAL_SUITS; i++) {
 				if (gmUtil.CountBitsSet((cards_played | data.hands[m_loc])
 						& gmUtil.m_suit_mask[i]) >= Globals.gmTOTAL_VALUES) {
 					m_trump_cards &= ~(1 << i);
-				} 
-			} 
-		} 
+				}
+			}
+		}
 
 		return true;
-	} 
+	}
 
 	/**
 	 * 
@@ -735,33 +735,33 @@ public class aiAgent {
 	 */
 	public boolean CheckAssumptions(gmEngineData data) {
 		if (Globals.raAI_LOG_CHECKASSUMPTIONS == true) {
-		} 
+		}
 
 		for (int i = 0; i < Globals.gmTOTAL_SUITS; i++) {
 			if ((m_trump_cards & (1 << i)) != 0) {
 				continue;
-			} 
+			}
 
 			if (data.trump_suit == i) {
 				Globals.wxLogDebug("Dummy");
-			} 
+			}
 
 			assert (data.trump_suit != i);
-		} 
+		}
 
 		for (int j = 0; j < Globals.gmTOTAL_PLAYERS; j++) {
 			for (int i = 0; i < Globals.gmTOTAL_SUITS; i++) {
 				if ((m_nulls[j] & (1 << i)) == 0) {
 					continue;
-				} 
+				}
 
 				assert ((data.hands[j] & gmUtil.m_suit_mask[i]) == 0);
-			} 
-		} 
+			}
+		}
 
 		return true;
 
-	} 
+	}
 
 	/**
 	 * @param moves
@@ -779,17 +779,17 @@ public class aiAgent {
 
 		for (int i = 0; i < Globals.gmTOTAL_PLAYERS; i++) {
 			m_nulls[i] = 0;
-		} 
+		}
 
 		m_notrump_suspects = 0;
 		m_mb_null_susp = 0;
 
 		return true;
-	} 
+	}
 
 	public void SetRules() {
 		SetRules(null);
-	} 
+	}
 
 	/**
 	 * 
@@ -806,11 +806,11 @@ public class aiAgent {
 			m_engine.GetData(data);
 			try {
 				data.rules = (gmRules) rules.clone();
-			}  catch (CloneNotSupportedException e) {
-			} 
+			} catch (CloneNotSupportedException e) {
+			}
 			m_engine.SetData(data, false);
-		} 
-	} 
+		}
+	}
 
 	/**
 	 * 
@@ -825,13 +825,13 @@ public class aiAgent {
 		m_engine.GetData(data);
 		if (flag) {
 			data.rules.rot_addn = 1;
-		}  else {
+		} else {
 			data.rules.rot_addn = 3;
-		} 
+		}
 		m_engine.SetData(data, false);
 
 		return true;
-	} 
+	}
 
 	/**
 	 * 
@@ -851,8 +851,8 @@ public class aiAgent {
 			return false;
 		default:
 			return false;
-		} 
-	} 
+		}
+	}
 
 	/**
 	 * 
@@ -868,5 +868,5 @@ public class aiAgent {
 		assert (flag);
 		flag = true;
 		return true;
-	} 
-} 
+	}
+}

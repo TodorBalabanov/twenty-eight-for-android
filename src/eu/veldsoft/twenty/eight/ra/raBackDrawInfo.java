@@ -29,4 +29,4 @@ public class raBackDrawInfo {
 	public int bid_loc;
 
 	public int bid;
-} 
+}

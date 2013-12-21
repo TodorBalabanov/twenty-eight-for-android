@@ -29,4 +29,4 @@ public class gmRandState {
 	public int state_array[] = new int[Globals.N32];
 
 	public int idx;
-} 
+}

@@ -29,4 +29,4 @@ public class slCell {
 	public int max;
 
 	public int suit_length;
-} 
+}
