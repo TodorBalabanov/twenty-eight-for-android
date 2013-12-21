@@ -54,8 +54,8 @@ public class slData {
 				cells[i][j].min = 0;
 				cells[i][j].max = 0;
 				cells[i][j].suit_length = 0;
-			} 
-		} 
+			}
+		}
 
 		Arrays.fill(suit_total_length, 0);
 		Arrays.fill(hand_total_length, 0);
@@ -65,5 +65,5 @@ public class slData {
 		Arrays.fill(hand_sum_of_maxs, 0);
 		Arrays.fill(suit_sum_of_vacant_mins, 0);
 		Arrays.fill(hand_sum_of_vacant_mins, 0);
-	} 
-} 
+	}
+}

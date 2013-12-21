@@ -60,7 +60,7 @@ public class raPlayer {
 		m_loc = 0;
 		m_type = Globals.raPLAYER_TYPE_HUMAN;
 		m_trump = Globals.gmSUIT_INVALID;
-	} 
+	}
 
 	/**
 	 * Constructor without parameters.
@@ -70,7 +70,7 @@ public class raPlayer {
 	 * @date 27 Oct 2013
 	 */
 	protected void finalize() {
-	} 
+	}
 
 	/**
 	 * Set location.
@@ -83,7 +83,7 @@ public class raPlayer {
 		assert ((loc >= 0) && (loc < Globals.gmTOTAL_PLAYERS));
 		m_loc = loc;
 		m_agent.SetLocation(m_loc);
-	} 
+	}
 
 	/**
 	 * Get lucation.
@@ -94,7 +94,7 @@ public class raPlayer {
 	 */
 	public int GetLocation() {
 		return (m_loc);
-	} 
+	}
 
 	/**
 	 * Return the corresponding type.
@@ -105,7 +105,7 @@ public class raPlayer {
 	 */
 	public int GetType() {
 		return (m_type);
-	} 
+	}
 
 	/**
 	 * Set type.
@@ -119,7 +119,7 @@ public class raPlayer {
 	 */
 	public void SetType(int type) {
 		m_type = type;
-	} 
+	}
 
 	/**
 	 * Setting the rules of engine data.
@@ -132,7 +132,7 @@ public class raPlayer {
 	 */
 	public void SetRuleEngineData(gmEngineData data) {
 		m_agent.SetRuleEngineData(data);
-	} 
+	}
 
 	/**
 	 * Get bid level.
@@ -147,7 +147,7 @@ public class raPlayer {
 		ret_val = m_agent.GetBid(bid, trump, min, force_bid);
 		m_trump = m_trump * trump;
 		return (ret_val);
-	} 
+	}
 
 	/**
 	 * Get trump.
@@ -158,7 +158,7 @@ public class raPlayer {
 	 */
 	public int GetTrump() {
 		return (m_agent.GetTrump());
-	} 
+	}
 
 	/**
 	 * Get playing.
@@ -169,7 +169,7 @@ public class raPlayer {
 	 */
 	public int GetPlay() {
 		return (m_agent.GetPlay(0));
-	} 
+	}
 
 	/**
 	 * Updating of post play.
@@ -180,7 +180,7 @@ public class raPlayer {
 	 */
 	public boolean PostPlayUpdate(gmEngineData data, int card) {
 		return (m_agent.PostPlayUpdate(data, card));
-	} 
+	}
 
 	/**
 	 * Checking assumptions.
@@ -191,7 +191,7 @@ public class raPlayer {
 	 */
 	public boolean CheckAssumptions(gmEngineData data) {
 		return (m_agent.CheckAssumptions(data));
-	} 
+	}
 
 	/**
 	 * Method for reset.
@@ -202,11 +202,11 @@ public class raPlayer {
 	 */
 	public boolean Reset() {
 		return (m_agent.Reset());
-	} 
+	}
 
 	public void SetRules() {
 		SetRules(null);
-	} 
+	}
 
 	/**
 	 * Rule setter.
@@ -217,7 +217,7 @@ public class raPlayer {
 	 */
 	public void SetRules(gmRules rules) {
 		m_agent.SetRules(rules);
-	} 
+	}
 
 	/**
 	 * Clockwise setter.
@@ -228,7 +228,7 @@ public class raPlayer {
 	 */
 	public boolean SetClockwise(boolean flag) {
 		return (m_agent.SetClockwise(flag));
-	} 
+	}
 
 	/**
 	 * Return a clockwise.
@@ -239,7 +239,7 @@ public class raPlayer {
 	 */
 	public boolean GetClockwise() {
 		return (m_agent.GetClockwise());
-	} 
+	}
 
 	/**
 	 * Constructor.
@@ -250,5 +250,5 @@ public class raPlayer {
 	 */
 	public boolean AbandonGame(boolean flag) {
 		return (m_agent.AbandonGame(flag));
-	} 
-} 
+	}
+}

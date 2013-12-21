@@ -68,7 +68,7 @@ public class gmRules implements Cloneable {
 	 */
 	public Object clone() throws CloneNotSupportedException {
 		throw new CloneNotSupportedException();
-	} 
+	}
 
 	/**
 	 * 
@@ -83,5 +83,5 @@ public class gmRules implements Cloneable {
 		min_bid_3 = 0;
 		waive_rule_4 = false;
 		sluff_jacks = false;
-	} 
-} 
+	}
+}

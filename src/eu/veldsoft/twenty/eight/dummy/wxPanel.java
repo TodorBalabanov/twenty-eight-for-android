@@ -25,12 +25,12 @@ package eu.veldsoft.twenty.eight.dummy;
 
 public class wxPanel {
 	public void AddPendingEvent(wxEvent event) {
-	} 
+	}
 
 	public wxSize GetClientSize() {
 		return null;
-	} 
+	}
 
 	public void Update() {
-	} 
-} 
+	}
+}

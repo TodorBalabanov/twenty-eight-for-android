@@ -46,17 +46,17 @@ public class gmEngine {
 		// TODO To be done by INFM032 F___46 Nadya Nedyalkova ...
 		// TODO To be done by INFM032 F___56 Daniel Nikolov ...
 		// TODO To be done by INFM032 F___47 Kostadin Bulakiev ...
-	} 
+	}
 
 	private void SetInput(int input_type) {
 		// TODO To be done by INFM032 F___14 Petya Atanasova ...
 		// TODO To be done by INFM032 F___48 Georgi Ivanov ...
 		// TODO To be done by INFM042 F___56 Daniel Nikolov ...
-	} 
+	}
 
 	private long GenerateMask() {
 		return (GenerateMask(0));
-	} 
+	}
 
 	/**
 	 * 
@@ -82,7 +82,7 @@ public class gmEngine {
 			assert (m_data.trump_suit != Globals.gmSUIT_INVALID);
 			mask = ~(gmUtil.m_suit_mask[m_data.trump_suit]);
 			temp |= Globals.gmRULE_1;
-		} 
+		}
 		/*
 		 * Rule 4 : If the max bidder asked for trump to be shown he/she must
 		 * play the very same card
@@ -91,7 +91,7 @@ public class gmEngine {
 			assert (m_data.trump_card != Globals.gmCARD_INVALID);
 			mask = 1 << m_data.trump_card;
 			temp |= Globals.gmRULE_4;
-		} 
+		}
 		/*
 		 * Rule 2 : If trump was asked to be shown, then trump must be played
 		 */
@@ -99,7 +99,7 @@ public class gmEngine {
 			assert (m_data.trump_suit != Globals.gmSUIT_INVALID);
 			mask = gmUtil.m_suit_mask[m_data.trump_suit];
 			temp |= Globals.gmRULE_2;
-		} 
+		}
 		/*
 		 * Rule 3 : Should follow suit
 		 */
@@ -107,7 +107,7 @@ public class gmEngine {
 			assert (m_data.tricks[m_data.trick_round].lead_suit != Globals.gmSUIT_INVALID);
 			mask = gmUtil.m_suit_mask[m_data.tricks[m_data.trick_round].lead_suit];
 			temp |= Globals.gmRULE_3;
-		} 
+		}
 		assert (mask != 0);
 
 		/*
@@ -115,10 +115,10 @@ public class gmEngine {
 		 */
 		if (rules != 0) {
 			rules = temp;
-		} 
+		}
 
 		return mask;
-	} 
+	}
 
 	/**
 	 * 
@@ -133,25 +133,25 @@ public class gmEngine {
 		 */
 		if (m_data.pts[m_data.curr_max_bidder % 2] >= m_data.curr_max_bid) {
 			m_data.out_deal_end_info.winner = m_data.curr_max_bidder % 2;
-		} 
+		}
 		// TODO : Remove hard coding of 28
 		else if (m_data.pts[(m_data.curr_max_bidder + 1) % 2] > (28 - m_data.curr_max_bid)) {
 			m_data.out_deal_end_info.winner = (m_data.curr_max_bidder + 1) % 2;
-		}  else {
+		} else {
 			return false;
-		} 
+		}
 		if (m_data.feedback) {
 			SetOutput(Globals.gmOUTPUT_DEAL_END);
-		} 
+		}
 		return true;
-	} 
+	}
 
 	// Disallow copy finalructor/assignment operators
 	private gmEngine(final gmEngine object) {
 		// TODO To be done by INFM032 F___14 Petya Atanasova ...
 		// TODO To be done by INFM032 F___90 Svetoslav Slavkov ...
 		// TODO To be done by INFM032 F___47 Kostadin Bulakiev ...
-	} 
+	}
 
 	/**
 	 * 
@@ -163,13 +163,13 @@ public class gmEngine {
 	 */
 	private gmEngine assign(final gmEngine object) {
 		return (this);
-	} 
+	}
 
 	public static void InitCache() {
 		// TODO To be done by INFM042 F___56 Daniel Nikolov ...
 		// TODO To be done by INFM042 F___67 Nevena Sirakova ...
 		// TODO To be done by INFM042 F___90 Svetoslav Slavkov ...
-	} 
+	}
 
 	/**
 	 * 
@@ -181,7 +181,7 @@ public class gmEngine {
 		if (m_init_ok == false) {
 			gmEngine.InitCache();
 			m_init_ok = true;
-		} 
+		}
 
 		m_data.ok = Reset(m_data);
 		m_data.feedback = true;
@@ -195,13 +195,13 @@ public class gmEngine {
 		m_data.rules.min_bid_3 = 23;
 		m_data.rules.waive_rule_4 = false;
 		m_data.rules.sluff_jacks = true;
-	} 
+	}
 
 	protected void finalize() {
 		// TODO To be done by INFM032 F___90 Svetoslav Slavkov ...
 		// TODO To be done by INFM042 F___56 Daniel Nikolov ...
 		// TODO To be done by INFM032 F___94 Aleksandar Milev ...
-	} 
+	}
 
 	/**
 	 * 
@@ -212,7 +212,7 @@ public class gmEngine {
 	 */
 	public boolean IsOk() {
 		return m_data.ok;
-	} 
+	}
 
 	public int GetStatus() {
 		// TODO To be done by INFM042 F___45 Valentin Popov ...
@@ -220,7 +220,7 @@ public class gmEngine {
 		// TODO To be done by INFM042 F___68 Nikola Vushkov ...
 
 		return (0);
-	} 
+	}
 
 	/**
 	 * 
@@ -239,20 +239,20 @@ public class gmEngine {
 
 		try {
 			rules = (gmRules) data.rules.clone();
-		}  catch (CloneNotSupportedException e) {
-		} 
+		} catch (CloneNotSupportedException e) {
+		}
 		try {
 			data = (gmEngineData) gmEngine.m_init.clone();
-		}  catch (CloneNotSupportedException e) {
-		} 
+		} catch (CloneNotSupportedException e) {
+		}
 		data.feedback = feedback;
 		try {
 			data.rules = (gmRules) rules.clone();
-		}  catch (CloneNotSupportedException e) {
-		} 
+		} catch (CloneNotSupportedException e) {
+		}
 
 		return true;
-	} 
+	}
 
 	/**
 	 * 
@@ -264,7 +264,7 @@ public class gmEngine {
 	 */
 	public boolean Reset() {
 		return Reset(m_data);
-	} 
+	}
 
 	public boolean Shuffle() {
 		// TODO To be done by INFM042 F___46 Nadya Nedyalkova ...
@@ -272,7 +272,7 @@ public class gmEngine {
 		// TODO To be done by INFM032 F___52 Mihail Stankov ...
 
 		return (false);
-	} 
+	}
 
 	public boolean Continue() {
 		// TODO To be done by INFM042 F___45 Valentin Popov ...
@@ -280,7 +280,7 @@ public class gmEngine {
 		// TODO To be done by INFM042 F___93 Krasimir Chariyski ...
 
 		return (false);
-	} 
+	}
 
 	public boolean GetOutput(int output_type, Object output) {
 		// TODO To be done by INFM032 F___27 Georgi Kostadinov ...
@@ -288,7 +288,7 @@ public class gmEngine {
 		// TODO To be done by INFM032 F___68 Nikola Vushkov ...
 
 		return (false);
-	} 
+	}
 
 	/**
 	 * 
@@ -300,7 +300,7 @@ public class gmEngine {
 	 */
 	public boolean IsOutputPending() {
 		return m_data.input_pending;
-	} 
+	}
 
 	public int GetPendingOutputType() {
 		// TODO To be done by INFM042 F___45 Valentin Popov ...
@@ -308,7 +308,7 @@ public class gmEngine {
 		// TODO To be done by INFM042 F___47 Kostadin Bulakiev ...
 
 		return (0);
-	} 
+	}
 
 	public boolean IsInputPending() {
 		// TODO To be done by INFM042 F___90 Svetoslav Slavkov ...
@@ -316,7 +316,7 @@ public class gmEngine {
 		// TODO To be done by INFM032 F___27 Georgi Kostadinov ...
 
 		return (false);
-	} 
+	}
 
 	/**
 	 * 
@@ -331,9 +331,9 @@ public class gmEngine {
 		 */
 		if (m_data.input_pending == false) {
 			return Globals.gmINPUT_INVALID;
-		} 
+		}
 		return m_data.input_type;
-	} 
+	}
 
 	public boolean GetPendingInputCriteria(int input_type, Object input) {
 		// TODO To be done by INFM032 F___68 Nikola Vushkov ...
@@ -341,7 +341,7 @@ public class gmEngine {
 		// TODO To be done by INFM042 F___46 Nadya Nedyalkova ...
 
 		return (false);
-	} 
+	}
 
 	public int PostInputMessage(int input_type, Object input) {
 		// TODO To be done by INFM042 F___14 Petya Atanasova ...
@@ -349,7 +349,7 @@ public class gmEngine {
 		// TODO To be done by INFM032 F___27 Georgi Kostadinov ...
 
 		return (0);
-	} 
+	}
 
 	/**
 	 * Get Feedback
@@ -362,7 +362,7 @@ public class gmEngine {
 	 */
 	public boolean GetFeedback() {
 		return m_data.feedback;
-	} 
+	}
 
 	/**
 	 * Set Feedback
@@ -379,8 +379,8 @@ public class gmEngine {
 
 		if (m_data.feedback == false) {
 			m_data.output_pending = false;
-		} 
-	} 
+		}
+	}
 
 	/**
 	 * 
@@ -393,9 +393,9 @@ public class gmEngine {
 	public void GetRules(gmRules rules) {
 		try {
 			rules = (gmRules) m_data.rules.clone();
-		}  catch (CloneNotSupportedException e) {
-		} 
-	} 
+		} catch (CloneNotSupportedException e) {
+		}
+	}
 
 	/**
 	 * 
@@ -408,21 +408,21 @@ public class gmEngine {
 	public void SetRules(gmRules rules) {
 		try {
 			m_data.rules = (gmRules) rules.clone();
-		}  catch (CloneNotSupportedException e) {
-		} 
-	} 
+		} catch (CloneNotSupportedException e) {
+		}
+	}
 
 	public void GetHands(long hands[]) {
 		// TODO To be done by INFM032 F___68 Nikola Vushkov ...
 		// TODO To be done by INFM032 F___14 Petya Atanasova ...
 		// TODO To be done by INFM032 F___56 Daniel Nikolov ...
-	} 
+	}
 
 	public void GetCardsPlayed(long cards) {
 		// TODO To be done by INFM042 F___68 Georgi Srebrov ...
 		// TODO To be done by INFM042 F___48 Georgi Ivanov ...
 		// TODO To be done by INFM032 F___56 Daniel Nikolov ...
-	} 
+	}
 
 	/**
 	 * 
@@ -436,10 +436,10 @@ public class gmEngine {
 		assert ((trick_round >= 0) && (trick_round < Globals.gmTOTAL_TRICKS));
 		try {
 			trick = (gmTrick) m_data.tricks[trick_round].clone();
-		}  catch (CloneNotSupportedException e) {
+		} catch (CloneNotSupportedException e) {
 
-		} 
-	} 
+		}
+	}
 
 	/**
 	 * 
@@ -451,7 +451,7 @@ public class gmEngine {
 	 */
 	public void GetTrick(gmTrick trick) {
 		GetTrick(m_data.trick_round, trick);
-	} 
+	}
 
 	public int GetTrickRound() {
 		// TODO To be done by INFM042 F___47 Kostadin Bulakiev ...
@@ -459,7 +459,7 @@ public class gmEngine {
 		// TODO To be done by INFM042 F___52 Mihail Stankov ...
 
 		return (0);
-	} 
+	}
 
 	/**
 	 * 
@@ -475,7 +475,7 @@ public class gmEngine {
 
 		assert ((team >= 0) && (team < Globals.gmTOTAL_TEAMS));
 		return m_data.pts[team];
-	} 
+	}
 
 	/**
 	 * 
@@ -489,7 +489,7 @@ public class gmEngine {
 		assert (pts != null);
 
 		pts = m_data.pts.clone();
-	} 
+	}
 
 	public int GetTrump() {
 		// TODO To be done by INFM042 F___47 Kostadin Bulakiev ...
@@ -497,7 +497,7 @@ public class gmEngine {
 		// TODO To be done by INFM032 F___48 Georgi Ivanov ...
 
 		return (0);
-	} 
+	}
 
 	public int GetTrumpCard() {
 		// TODO To be done by INFM042 F___27 Georgi Kostadinov ...
@@ -505,7 +505,7 @@ public class gmEngine {
 		// TODO To be done by INFM042 F___14 Petya Atanasova ...
 
 		return (0);
-	} 
+	}
 
 	public int GetDealer() {
 		// TODO To be done by INFM042 F___52 Mihail Stankov ...
@@ -513,7 +513,7 @@ public class gmEngine {
 		// TODO To be done by INFM042 F___56 Daniel Nikolov ...
 
 		return (0);
-	} 
+	}
 
 	/**
 	 * 
@@ -526,13 +526,13 @@ public class gmEngine {
 	public void SetDealer(int dealer) {
 		assert ((dealer >= 0) && (dealer < Globals.gmTOTAL_PLAYERS));
 		m_data.dealer = dealer;
-	} 
+	}
 
 	public static void ResetTrick(gmTrick trick) {
 		// TODO To be done by INFM042 F___27 Georgi Kostadinov ...
 		// TODO To be done by INFM042 F___14 Petya Atanasova ...
 		// TODO To be done by INFM042 F___68 Georgi Srebrov ...
-	} 
+	}
 
 	/**
 	 * 
@@ -547,15 +547,15 @@ public class gmEngine {
 	public boolean GetData(gmEngineData data) {
 		try {
 			data = (gmEngineData) m_data.clone();
-		}  catch (CloneNotSupportedException e) {
-		} 
+		} catch (CloneNotSupportedException e) {
+		}
 
 		return (false);
-	} 
+	}
 
 	public boolean SetData(gmEngineData data) {
 		return (SetData(data, true));
-	} 
+	}
 
 	public boolean SetData(gmEngineData data, boolean check) {
 		// TODO To be done by INFM032 F___47 Kostadin Bulakiev ...
@@ -563,7 +563,7 @@ public class gmEngine {
 		// TODO To be done by INFM042 F___93 Krasimir Chariyski ...
 
 		return (false);
-	} 
+	}
 
 	/**
 	 * 
@@ -579,14 +579,14 @@ public class gmEngine {
 	public boolean GetMaxBid(int bid, int loc) {
 		if (bid == 1) {
 			bid = m_data.curr_max_bid;
-		} 
+		}
 
 		if (loc == 1) {
 			loc = m_data.curr_max_bidder;
-		} 
+		}
 
 		return true;
-	} 
+	}
 
 	public String GetLoggable() {
 		// TODO To be done by INFM042 F___14 Petya Atanasova ...
@@ -594,7 +594,7 @@ public class gmEngine {
 		// TODO To be done by INFM042 F___68 Georgi Srebrov ...
 
 		return ("");
-	} 
+	}
 
 	public static String PrintRuleEngineData(gmEngineData data) {
 		// TODO To be done by INFM042 F___56 Daniel Nikolov ...
@@ -602,7 +602,7 @@ public class gmEngine {
 		// TODO To be done by INFM032 F___68 Nikola Vushkov ...
 
 		return ("");
-	} 
+	}
 
 	/**
 	 * 
@@ -614,7 +614,7 @@ public class gmEngine {
 	 */
 	public boolean IsTrumpShown() {
 		return m_data.trump_shown;
-	} 
+	}
 
 	public int GetTrickNextToPlay() {
 		// TODO To be done by INFM032 F___14 Petya Atanasova ...
@@ -622,23 +622,23 @@ public class gmEngine {
 		// TODO To be done by INFM032 F___68 Georgi Srebrov ...
 
 		return (0);
-	} 
+	}
 
 	public void SetMinBid(int round, int bid) {
 		// TODO To be done by INFM042 F___56 Daniel Nikolov ...
 		// TODO To be done by INFM042 F___81 Marina Rangelova ...
 		// TODO To be done by INFM032 F___48 Georgi Ivanov ...
-	} 
+	}
 
 	public void SetWaiveRuleFour(boolean flag) {
 		// TODO To be done by INFM042 F___81 Marina Rangelova ...
 		// TODO To be done by INFM042 F___68 Georgi Srebrov ...
 		// TODO To be done by INFM032 F___56 Daniel Nikolov ...
-	} 
+	}
 
 	public void SetSluffJacks(boolean flag) {
 		// TODO To be done by INFM032 F___68 Georgi Srebrov ...
 		// TODO To be done by INFM042 F___47 Kostadin Bulakiev ...
 		// TODO To be done by INFM032 F___68 Nikola Vushkov ...
-	} 
-} 
+	}
+}

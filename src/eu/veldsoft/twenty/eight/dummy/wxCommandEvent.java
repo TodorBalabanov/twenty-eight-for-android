@@ -26,6 +26,6 @@ package eu.veldsoft.twenty.eight.dummy;
 public class wxCommandEvent {
 
 	public void Skip() {
-	} 
+	}
 
-} 
+}

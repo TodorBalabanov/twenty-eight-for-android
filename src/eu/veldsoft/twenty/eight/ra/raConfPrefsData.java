@@ -37,5 +37,5 @@ public class raConfPrefsData {
 		card_back = 0;
 		auto_play_single = false;
 		show_bid_bubbles = false;
-	} 
-} 
+	}
+}

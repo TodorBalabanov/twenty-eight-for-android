@@ -28,6 +28,6 @@ public class wxInitDialogEvent {
 	public void Skip() {
 		// TODO Auto-generated method stub
 
-	} 
+	}
 
-} 
+}

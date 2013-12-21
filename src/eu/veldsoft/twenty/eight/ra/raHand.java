@@ -37,6 +37,6 @@ public class raHand {
 		count = 0;
 		for (int i = 0; i < card_indexes.length; i++) {
 			card_indexes[i] = 0;
-		} 
-	} 
-} 
+		}
+	}
+}

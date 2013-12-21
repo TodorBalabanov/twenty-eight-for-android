@@ -37,5 +37,5 @@ public class raConfGameData {
 		min_bid3 = 0;
 		waive_rule4 = false;
 		sluff_jacks = false;
-	} 
-} 
+	}
+}

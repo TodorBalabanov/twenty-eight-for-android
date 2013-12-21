@@ -27,4 +27,4 @@ public class gmInputTrumpselInfo {
 	public int card;
 
 	public int player;
-} 
+}

@@ -33,4 +33,4 @@ public class raHandCard {
 	public int width;
 
 	public int height;
-} 
+}

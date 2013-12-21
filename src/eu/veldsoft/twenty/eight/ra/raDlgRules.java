@@ -51,7 +51,7 @@ public class raDlgRules {
 		// TODO To be done by INFM042 F___94 Aleksandar Milev ...
 		// TODO To be done by INFM042 F___67 Nevena Sirakova ...
 		// TODO To be done by INFM032 F___47 Kostadin Bulakiev ...
-	} 
+	}
 
 	private raDlgRules assign(final raDlgRules object) {
 		// TODO To be done by INFM032 F___94 Aleksandar Milev ...
@@ -59,20 +59,20 @@ public class raDlgRules {
 		// TODO To be done by INFM032 F___14 Petya Atanasova ...
 
 		return (this);
-	} 
+	}
 
 	public raDlgRules() {
 		// TODO To be done by INFM042 F___45 Valentin Popov ...
 		// TODO To be done by INFM032 F___94 Aleksandar Milev ...
 		// TODO To be done by INFM042 F___14 Petya Atanasova ...
-	} 
+	}
 
 	public raDlgRules(wxWindow parent, wxWindowID id, final String caption,
 			final wxPoint pos, final wxSize size, long style) {
 		// TODO To be done by INFM042 F___27 Georgi Kostadinov ...
 		// TODO To be done by INFM042 F___67 Nevena Sirakova ...
 		// TODO To be done by INFM032 F___90 Svetoslav Slavkov ...
-	} 
+	}
 
 	/**
 	 * 
@@ -103,9 +103,9 @@ public class raDlgRules {
 
 		if (conf_data.game_data.clockwise) {
 			radio_clockwise.SetValue(true);
-		}  else {
+		} else {
 			radio_anticlockwise.SetValue(true);
-		} 
+		}
 
 		assert ((conf_data.game_data.min_bid3 == 23) || (conf_data.game_data.min_bid3 == 24));
 		switch (conf_data.game_data.min_bid3) {
@@ -118,18 +118,18 @@ public class raDlgRules {
 		default:
 			Globals.wxLogError("Unexpected value. %s:%d", __FILE__, __LINE__);
 			break;
-		} 
+		}
 
 		check_waiverule4.SetValue(!conf_data.game_data.waive_rule4);
 		check_sluffjacks.SetValue(conf_data.game_data.sluff_jacks);
 
 		event.Skip();
 
-	} 
+	}
 
 	public void OnRulesBtnApplyClick(wxCommandEvent event) {
 		// TODO To be done by INFM032 F___68 Nikola Vushkov ...
 		// TODO To be done by INFM032 F___68 Georgi Srebrov ...
 		// TODO To be done by INFM032 F___93 Krasimir Chariyski ...
-	} 
-} 
+	}
+}

@@ -26,18 +26,18 @@ package eu.veldsoft.twenty.eight.dummy;
 public class wxColour {
 
 	public wxColour(wxColour arg0) {
-	} 
+	}
 
 	public int Red() {
 		return 0;
-	} 
+	}
 
 	public int Green() {
 		return 0;
-	} 
+	}
 
 	public int Blue() {
 		return 0;
-	} 
+	}
 
-} 
+}
