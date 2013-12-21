@@ -40,7 +40,7 @@ public class raDlgAbout {
 	 * @author INFM042 F___94 Aleksandar Milev
 	 */
 	private raDlgAbout(final raDlgAbout object) {
-	}
+	} 
 
 	/**
 	 * 
@@ -54,24 +54,24 @@ public class raDlgAbout {
 	 */
 	private raDlgAbout assign(final raDlgAbout object) {
 		return (this);
-	}
+	} 
 
 	public raDlgAbout() {
 		// TODO To be done by INFM032 F___84 Mariya Kostadinova ...
 		// TODO To be done by INFM042 F___00 Tsvetelina Hristova ...
 		// TODO To be done by INFM042 F___27 Georgi Kostadinov ...
-	}
+	} 
 
 	public raDlgAbout(wxWindow parent, wxWindowID id, final String caption,
 			final wxPoint pos, final wxSize size, long style) {
 		// TODO To be done by INFM032 F___84 Mariya Kostadinova ...
 		// TODO To be done by INFM042 F___00 Tsvetelina Hristova ...
 		// TODO To be done by INFM032 F___48 Georgi Ivanov ...
-	}
+	} 
 
 	public void OnAboutBtnOkClick(wxCommandEvent event) {
 		// TODO To be done by INFM032 F___68 Nikola Vushkov ...
 		// TODO To be done by INFM042 F___84 Mariya Kostadinova ...
 		// TODO To be done by INFM042 F___00 Tsvetelina Hristova ...
-	}
-}
+	} 
+} 

@@ -26,20 +26,20 @@ package eu.veldsoft.twenty.eight.dummy;
 public class wxBitmap {
 
 	public wxBitmap(wxImage img_face, int i) {
-	}
+	} 
 
 	public wxBitmap() {
-	}
+	} 
 
 	public boolean Ok() {
 		return false;
-	}
+	} 
 
 	public boolean Create(int ggCardWidth, int ggCardHeight, int i) {
 		return false;
-	}
+	} 
 
 	public wxImage ConvertToImage() {
 		return null;
-	}
-}
+	} 
+} 

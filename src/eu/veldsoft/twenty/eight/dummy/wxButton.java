@@ -26,12 +26,12 @@ package eu.veldsoft.twenty.eight.dummy;
 public class wxButton {
 
 	public void Show(boolean b) {
-	}
+	} 
 
 	public void SetLabel(String raINFO_DEAL_TEXT) {
-	}
+	} 
 
 	public void Enable(boolean passable) {
-	}
+	} 
 
-}
+} 

@@ -53,7 +53,7 @@ public class gmUtil {
 
 	public static final int gmTOTAL_TEAMS = 2;
 
-	public static int m_value_trans[] = { 6, 7, 11, 12, 9, 0, 8, 10 };
+	public static int m_value_trans[] = { 6, 7, 11, 12, 9, 0, 8, 10 } ;
 
 	public static int BitsSetTable256[] = { 0, 1, 1, 2, 1, 2, 2, 3, 1, 2, 2, 3,
 			2, 3, 3, 4, 1, 2, 2, 3, 2, 3, 3, 4, 2, 3, 3, 4, 3, 4, 4, 5, 1, 2,
@@ -67,7 +67,7 @@ public class gmUtil {
 			5, 6, 6, 7, 2, 3, 3, 4, 3, 4, 4, 5, 3, 4, 4, 5, 4, 5, 5, 6, 3, 4,
 			4, 5, 4, 5, 5, 6, 4, 5, 5, 6, 5, 6, 6, 7, 3, 4, 4, 5, 4, 5, 5, 6,
 			4, 5, 5, 6, 5, 6, 6, 7, 4, 5, 5, 6, 5, 6, 6, 7, 5, 6, 6, 7, 6, 7,
-			7, 8 };
+			7, 8 } ;
 
 	public static int LogTable256[] = { 0, 0, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 3,
 			3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 5, 5, 5,
@@ -80,7 +80,7 @@ public class gmUtil {
 			7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7,
 			7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7,
 			7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7,
-			7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7 };
+			7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7 } ;
 
 	public static String m_suits[];
 
@@ -112,7 +112,7 @@ public class gmUtil {
 	public static void ShuffleArray(int array[], long n) {
 		if (n <= 1) {
 			return;
-		}
+		} 
 
 		for (int i = (int) (n - 1); i >= 1; i--) {
 			// TODO Non linear distribution. To be corrected.
@@ -120,8 +120,8 @@ public class gmUtil {
 			int t = array[j];
 			array[j] = array[i];
 			array[i] = t;
-		}
-	}
+		} 
+	} 
 
 	/**
 	 * 
@@ -138,16 +138,16 @@ public class gmUtil {
 		for (int i = 0; i < 32; i++) {
 			if ((cards & (1 << i)) != 0) {
 				out = out + m_suits[i / 8] + m_values[i % 8] + (",");
-			}
-		}
+			} 
+		} 
 
 		String finish = "";
 		if (out != null && out.equals("") == false) {
 			finish = out.substring(0, out.length() - 1);
-		}
+		} 
 
 		return finish;
-	}
+	} 
 
 	/**
 	 * 
@@ -177,14 +177,14 @@ public class gmUtil {
 			for (int j = 7; j >= 0; j--) {
 				if ((temp & (1 << j)) != 0) {
 					out = out + m_values[j % 8] + ",";
-				}
-			}
+				} 
+			} 
 
 			finish = out.substring(0, out.length() - 1);
 
 			ret_val += Globals.SPACES20 + finish;
 			ret_val += "\n";
-		}
+		} 
 
 		/*
 		 * Print East and West in the same line :D
@@ -199,8 +199,8 @@ public class gmUtil {
 			for (int j = 7; j >= 0; j--) {
 				if ((temp & (1 << j)) != 0) {
 					out = out + m_values[j % 8] + ",";
-				}
-			}
+				} 
+			} 
 
 			finish = "%-40s" + out.substring(0, out.length() - 1);
 
@@ -210,14 +210,14 @@ public class gmUtil {
 			for (int j = 7; j >= 0; j--) {
 				if ((temp & (1 << j)) != 0) {
 					out = out + m_values[j % 8] + ",";
-				}
-			}
+				} 
+			} 
 
 			finish += "%-40s" + out.substring(0, out.length() - 1);
 
 			ret_val += (finish);
 			ret_val += "\n";
-		}
+		} 
 
 		/*
 		 * Finally print South
@@ -232,16 +232,16 @@ public class gmUtil {
 			for (int j = 7; j >= 0; j--) {
 				if ((temp & (1 << j)) != 0) {
 					out = out + m_values[j % 8] + ",";
-				}
-			}
+				} 
+			} 
 
 			finish = out.substring(0, out.length() - 1);
 			ret_val += Globals.SPACES20 + finish;
 			ret_val += "\n";
-		}
+		} 
 
 		return ret_val;
-	}
+	} 
 
 	public static int GetCardIndex(String text) {
 		// TODO To be done by INFM032 F___68 Nikola Vushkov ...
@@ -249,11 +249,11 @@ public class gmUtil {
 		// TODO To be done by INFM032 F___48 Georgi Ivanov ...
 
 		return (0);
-	}
+	} 
 
 	public static boolean SetStatusText(final String text) {
 		return (SetStatusText(text, 0));
-	}
+	} 
 
 	/**
 	 * 
@@ -273,20 +273,20 @@ public class gmUtil {
 
 		if (main_frame == null) {
 			return false;
-		}
+		} 
 
 		status_bar = null;
 		status_bar = main_frame.GetStatusBar();
 
 		if (status_bar == null) {
 			return false;
-		}
+		} 
 
 		status_bar.SetStatusText(text, i);
 		status_bar.Update();
 
 		return true;
-	}
+	} 
 
 	/**
 	 * 
@@ -302,7 +302,7 @@ public class gmUtil {
 				+ BitsSetTable256[(int) ((v >> 8) & 0xff)]
 				+ BitsSetTable256[(int) ((v >> 16) & 0xff)]
 				+ BitsSetTable256[(int) (v >> 24)];
-	}
+	} 
 
 	public static long HighestBitSet(long v) {
 		// TODO To be done by INFM042 F___68 Georgi Srebrov ...
@@ -310,5 +310,5 @@ public class gmUtil {
 		// TODO To be done by INFM032 F___48 Georgi Ivanov ...
 
 		return (0);
-	}
-}
+	} 
+} 

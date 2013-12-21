@@ -33,4 +33,4 @@ public class gmInputBidInfo {
 	public int bid;
 
 	public int round;
-}
+} 
