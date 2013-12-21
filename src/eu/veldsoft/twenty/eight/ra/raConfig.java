@@ -85,7 +85,7 @@ public class raConfig {
 	private static void Create() {
 		raConfig the_instance = null;
 		s_instance = the_instance;
-	}
+	} 
 
 	/**
 	 * Set value.
@@ -112,7 +112,7 @@ public class raConfig {
 		data.prefs_data.card_back = Globals.raCONFIG_PREFS_CARDBACK_BLUE;
 		data.prefs_data.auto_play_single = true;
 		data.prefs_data.show_bid_bubbles = true;
-	}
+	} 
 
 	// Disallow copy finalructor/assignment operators
 	/**
@@ -140,8 +140,8 @@ public class raConfig {
 			 */
 			SetDefaultValues(m_data);
 			Save();
-		}
-	}
+		} 
+	} 
 
 	/**
 	 * 
@@ -153,7 +153,7 @@ public class raConfig {
 	 */
 	private raConfig assign(final raConfig object) {
 		return (this);
-	}
+	} 
 
 	/**
 	 * This is a constructor
@@ -173,7 +173,7 @@ public class raConfig {
 		 */
 		if (Load() == true) {
 			return;
-		}
+		} 
 
 		/*
 		 * If load failed, the application is being run for the first time Save
@@ -181,7 +181,7 @@ public class raConfig {
 		 */
 		SetDefaultValues(m_data);
 		Save();
-	}
+	} 
 
 	/**
 	 * @return
@@ -195,89 +195,89 @@ public class raConfig {
 			Globals.wxLogError("m_config->Read failed. %s:%d", __FILE__,
 					__LINE__);
 			return false;
-		}
+		} 
 
 		if (!m_config.Read(Globals.raCONFPATH_APP_DATA_Y, m_data.app_data.y)) {
 			Globals.wxLogError("m_config->Read failed. %s:%d", __FILE__,
 					__LINE__);
 			return false;
-		}
+		} 
 
 		if (!m_config.Read(Globals.raCONFPATH_APP_DATA_WIDTH,
 				m_data.app_data.width)) {
 			Globals.wxLogError("m_config->Read failed. %s:%d", __FILE__,
 					__LINE__);
 			return false;
-		}
+		} 
 
 		if (!m_config.Read(Globals.raCONFPATH_APP_DATA_HEIGHT,
 				m_data.app_data.height)) {
 			Globals.wxLogError("m_config->Read failed. %s:%d", __FILE__,
 					__LINE__);
 			return false;
-		}
+		} 
 
 		if (!m_config.Read(Globals.raCONFPATH_APP_DATA_MAX,
 				m_data.app_data.maximized)) {
 			Globals.wxLogError("m_config->Read failed. %s:%d", __FILE__,
 					__LINE__);
 			return false;
-		}
+		} 
 
 		if (!m_config.Read(Globals.raCONFPATH_GAME_DATA_CLOCK,
 				m_data.game_data.clockwise)) {
 			Globals.wxLogError("m_config->Read failed. %s:%d", __FILE__,
 					__LINE__);
 			return false;
-		}
+		} 
 
 		if (!m_config.Read(Globals.raCONFPATH_GAME_DATA_MINBID3,
 				m_data.game_data.min_bid3)) {
 			Globals.wxLogError("m_config->Read failed. %s:%d", __FILE__,
 					__LINE__);
 			return false;
-		}
+		} 
 
 		if (!m_config.Read(Globals.raCONFPATH_GAME_DATA_WAIVERULE4,
 				m_data.game_data.waive_rule4)) {
 			Globals.wxLogError("m_config->Read failed. %s:%d", __FILE__,
 					__LINE__);
 			return false;
-		}
+		} 
 
 		if (!m_config.Read(Globals.raCONFPATH_GAME_DATA_SLUFFJACKS,
 				m_data.game_data.sluff_jacks)) {
 			Globals.wxLogError("m_config->Read failed. %s:%d", __FILE__,
 					__LINE__);
 			return false;
-		}
+		} 
 
 		if (!m_config.Read(Globals.raCONFPATH_PREFS_PLAYCARDON,
 				m_data.prefs_data.play_card_on)) {
 			Globals.wxLogError("m_config->Read failed. %s:%d", __FILE__,
 					__LINE__);
 			return false;
-		}
+		} 
 		if (!m_config.Read(Globals.raCONFPATH_PREFS_CARDBACK,
 				m_data.prefs_data.card_back)) {
 			Globals.wxLogError("m_config->Read failed. %s:%d", __FILE__,
 					__LINE__);
 			return false;
-		}
+		} 
 		if (!m_config.Read(Globals.raCONFPATH_PREFS_AUTOPLAYSINGLE,
 				m_data.prefs_data.auto_play_single)) {
 			Globals.wxLogError("m_config->Read failed. %s:%d", __FILE__,
 					__LINE__);
 			return false;
-		}
+		} 
 		if (!m_config.Read(Globals.raCONFPATH_PREFS_BIDBUBBLES,
 				m_data.prefs_data.show_bid_bubbles)) {
 			Globals.wxLogError("m_config->Read failed. %s:%d", __FILE__,
 					__LINE__);
 			return false;
-		}
+		} 
 		return true;
-	}
+	} 
 
 	/**
 	 * 
@@ -297,14 +297,14 @@ public class raConfig {
 				Globals.wxLogError("Failed to acquire mutex lock. %s:%d",
 						__FILE__, __LINE__);
 				return null;
-			}
+			} 
 			if (s_instance != null) {
 				Create();
-			}
-		}
+			} 
+		} 
 
 		return s_instance;
-	}
+	} 
 
 	/**
 	 * 
@@ -318,87 +318,87 @@ public class raConfig {
 			Globals.wxLogError("m_config->Write() failed. %s:%d", __FILE__,
 					__LINE__);
 			return false;
-		}
+		} 
 
 		if (!m_config.Write(raCONFPATH_APP_DATA_Y, m_data.app_data.y)) {
 			Globals.wxLogError("m_config->Write() failed. %s:%d", __FILE__,
 					__LINE__);
 			return false;
-		}
+		} 
 
 		if (!m_config.Write(raCONFPATH_APP_DATA_WIDTH, m_data.app_data.width)) {
 			Globals.wxLogError("m_config->Write() failed. %s:%d", __FILE__,
 					__LINE__);
 			return false;
-		}
+		} 
 
 		if (!m_config.Write(raCONFPATH_APP_DATA_HEIGHT, m_data.app_data.height)) {
 			Globals.wxLogError("m_config->Write() failed. %s:%d", __FILE__,
 					__LINE__);
 			return false;
-		}
+		} 
 
 		if (!m_config.Write(raCONFPATH_APP_DATA_MAX, m_data.app_data.maximized)) {
 			Globals.wxLogError("m_config->Write() failed. %s:%d", __FILE__,
 					__LINE__);
 			return false;
-		}
+		} 
 
 		if (!m_config.Write(raCONFPATH_GAME_DATA_CLOCK,
 				m_data.game_data.clockwise)) {
 			Globals.wxLogError("m_config->Write() failed. %s:%d", __FILE__,
 					__LINE__);
 			return false;
-		}
+		} 
 
 		if (!m_config.Write(raCONFPATH_GAME_DATA_MINBID3,
 				m_data.game_data.min_bid3)) {
 			Globals.wxLogError("m_config->Write() failed. %s:%d", __FILE__,
 					__LINE__);
 			return false;
-		}
+		} 
 
 		if (!m_config.Write(raCONFPATH_GAME_DATA_WAIVERULE4,
 				m_data.game_data.waive_rule4)) {
 			Globals.wxLogError("m_config->Write() failed. %s:%d", __FILE__,
 					__LINE__);
 			return false;
-		}
+		} 
 
 		if (!m_config.Write(raCONFPATH_GAME_DATA_SLUFFJACKS,
 				m_data.game_data.sluff_jacks)) {
 			Globals.wxLogError("m_config->Write() failed. %s:%d", __FILE__,
 					__LINE__);
 			return false;
-		}
+		} 
 
 		if (!m_config.Write(raCONFPATH_PREFS_PLAYCARDON,
 				m_data.prefs_data.play_card_on)) {
 			Globals.wxLogError("m_config->Write() failed. %s:%d", __FILE__,
 					__LINE__);
 			return false;
-		}
+		} 
 		if (!m_config.Write(raCONFPATH_PREFS_CARDBACK,
 				m_data.prefs_data.card_back)) {
 			Globals.wxLogError("m_config->Write() failed. %s:%d", __FILE__,
 					__LINE__);
 			return false;
-		}
+		} 
 		if (!m_config.Write(raCONFPATH_PREFS_AUTOPLAYSINGLE,
 				m_data.prefs_data.auto_play_single)) {
 			Globals.wxLogError("m_config->Write() failed. %s:%d", __FILE__,
 					__LINE__);
 			return false;
-		}
+		} 
 		if (!m_config.Write(raCONFPATH_PREFS_BIDBUBBLES,
 				m_data.prefs_data.show_bid_bubbles)) {
 			Globals.wxLogError("m_config->Write() failed. %s:%d", __FILE__,
 					__LINE__);
 			return false;
-		}
+		} 
 
 		return true;
-	}
+	} 
 
 	/**
 	 * 
@@ -411,9 +411,9 @@ public class raConfig {
 		wxMutexLocker lock = new wxMutexLocker(s_mutex);
 		try {
 			data = (raConfData) m_data.clone();
-		} catch (CloneNotSupportedException e) {
-		}
-	}
+		}  catch (CloneNotSupportedException e) {
+		} 
+	} 
 
 	/**
 	 * 
@@ -428,10 +428,10 @@ public class raConfig {
 
 		try {
 			m_data = (raConfData) data.clone();
-		} catch (CloneNotSupportedException e) {
-		}
+		}  catch (CloneNotSupportedException e) {
+		} 
 		return true;
-	}
+	} 
 
 	/*
 	 * Private constructor/destructor Private methods
@@ -441,5 +441,5 @@ public class raConfig {
 		// TODO To be done by INFM042 F___94 Aleksandar Milev ...
 		// TODO To be done by INFM032 F___68 Georgi Srebrov ...
 		// TODO To be done by INFM042 F___00 Tsvetelina Hristova ...
-	}
-}
+	} 
+} 

@@ -39,5 +39,5 @@ public class raConfAppData {
 		y = 0;
 		width = 0;
 		height = 0;
-	}
-}
+	} 
+} 

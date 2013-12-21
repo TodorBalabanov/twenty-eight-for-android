@@ -4,6 +4,6 @@ public class wxFileSystem {
 
 	public static void AddHandler(wxZipFSHandler wxZipFSHandler) {
 
-	}
+	} 
 
-}
+} 

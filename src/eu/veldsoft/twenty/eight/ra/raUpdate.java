@@ -44,24 +44,24 @@ public class raUpdate {
 	 */
 	private int CheckForUpdate() {
 		return (CheckForUpdate(null));
-	}
+	} 
 
 	private int CheckForUpdate(String new_ver) {
 		// TODO To be done by ...
 
 		return (0);
-	}
+	} 
 
 	// Disallow copy finalructor/assignment operators
 	private raUpdate(final raUpdate object) {
 		// TODO To be done by ...
-	}
+	} 
 
 	private raUpdate assign(final raUpdate object) {
 		// TODO To be done by ...
 
 		return (this);
-	}
+	} 
 
 	/**
 	 * Empty constructor.
@@ -74,7 +74,7 @@ public class raUpdate {
 		/*
 		 * Empty body of public constructor.
 		 */
-	}
+	} 
 
 	/**
 	 * Entry method which is checks for updates.
@@ -91,15 +91,15 @@ public class raUpdate {
 		if (ret_val < 0) {
 			Globals.wxLogError("addr.GetError() returned error. %s:%d",
 					__FILE__, __LINE__);
-		} else if (ret_val == 0) {
+		}  else if (ret_val == 0) {
 			Globals.wxLogMessage("Check for update done successfully");
-		} else if (ret_val > 0) {
+		}  else if (ret_val > 0) {
 			StringBuffer msg = new StringBuffer();
 			msg.append("A new version ");
 			if (new_var.isEmpty() == false) {
 				msg.append(new_var);
 				msg.append(" ");
-			}
+			} 
 			msg.append("is available");
 			msg.append(".");
 			msg.append("\n");
@@ -113,11 +113,11 @@ public class raUpdate {
 				update_event.SetMessage(msg.toString());
 				Globals.wxLogMessage(update_event.GetMessage());
 				main_frame.GetEventHandler().AddPendingEvent(update_event);
-			} else {
+			}  else {
 				Globals.wxLogError("main_frame is null. %s:%d", __FILE__,
 						__LINE__);
-			}
-		}
+			} 
+		} 
 		return (null);
-	}
-}
+	} 
+} 

@@ -33,5 +33,5 @@ public class aiMove implements Comparable {
 	@Override
 	public int compareTo(Object object) {
 		return aiAgent.CompareMoves(this, object);
-	}
-}
+	} 
+} 

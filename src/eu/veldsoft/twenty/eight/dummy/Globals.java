@@ -217,71 +217,71 @@ public class Globals {
 	public static String SPACES20 = "                    ";
 
 	public static void wxLogError(String string, String file, int line) {
-	}
+	} 
 
 	public static void wxLogError(String string) {
-	}
+	} 
 
 	public static void wxLogMessage(String string) {
-	}
+	} 
 
 	public static Object XRCCTRL(Object arg1, String arg2, Class arg3) {
 		return null;
-	}
+	} 
 
 	public static void wxLogDebug(String arg1, int arg2, int arg3, int arg4) {
-	}
+	} 
 
 	public static void wxLogDebug(String arg1, int arg2, int arg3) {
-	}
+	} 
 
 	public static void wxLogDebug(String arg1, String arg2) {
-	}
+	} 
 
 	public static void wxMessageBox(String arg0, String arg1, int arg2) {
-	}
+	} 
 
 	public static int gmGetSuit(int arg1) {
 		return (arg1 / gmTOTAL_VALUES);
-	}
+	} 
 
 	public static int gmGetValue(int arg1) {
 		return (arg1 % gmTOTAL_VALUES);
-	}
+	} 
 
 	public static int gmGetOpponent(int x) {
 		return ((x + 1) % gmTOTAL_TEAMS);
-	}
+	} 
 
 	public static int gmGetOpponentOne(int x) {
 		return ((x + 1) % gmTOTAL_PLAYERS);
-	}
+	} 
 
 	public static int gmGetOpponentTwo(int x) {
 		return ((x + 3) % gmTOTAL_PLAYERS);
-	}
+	} 
 
 	public static void wxLogDebug(String string) {
-	}
+	} 
 
 	public static String wxGetOsDescription() {
 		return null;
-	}
+	} 
 
 	public static boolean wxIsPlatform64Bit() {
 		return false;
-	}
+	} 
 
 	public static void GetClientSize(Integer x, Integer y) {
-	}
+	} 
 
 	public static void wxLogError(String string, String res_name, String file,
 			int line) {
-	}
+	} 
 
 	public static void wxEndBusyCursor() {
-	}
+	} 
 
 	public static void wxBeginBusyCursor() {
-	}
-}
+	} 
+} 
