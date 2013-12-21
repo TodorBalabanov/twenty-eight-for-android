@@ -34,28 +34,28 @@ public class raUpdateEvent extends wxEvent {
 		// TODO To be done by ...
 
 		return (this);
-	}
+	} 
 
 	// Default finalructor.
 	public raUpdateEvent() {// TODO To be done by ...
-	}
+	} 
 
 	public raUpdateEvent(final raUpdateEvent evt) {
 		// TODO To be done by ...
-	}
+	} 
 
 	public wxEvent Clone() {
 		// TODO To be done by ...
 
 		return new raUpdateEvent(this);
-	}
+	} 
 
 	public void SetMessage(String msg) {
 		// TODO To be done by ...
-	}
+	} 
 
 	public String GetMessage() {
 		// TODO To be done by ...
 		return ("");
-	}
-}
+	} 
+} 

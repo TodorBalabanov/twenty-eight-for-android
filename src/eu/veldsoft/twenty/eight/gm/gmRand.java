@@ -29,7 +29,7 @@ public class gmRand {
 
 	private static int idxof(int i) {
 		return 0;
-	}
+	} 
 
 	public static String PrintState() {
 		// TODO To be done by INFM032 F___52 Mihail Stankov ...
@@ -37,13 +37,13 @@ public class gmRand {
 		// TODO To be done by INFM032 F___81 Marina Rangelova ...
 
 		return ("");
-	}
+	} 
 
 	public static void GetState(gmRandState state) {
 		// TODO To be done by INFM032 F___27 Georgi Kostadinov ...
 		// TODO To be done by INFM042 F___52 Mihail Stankov ...
 		// TODO To be done by INFM042 F___48 Georgi Ivanov ...
-	}
+	} 
 
 	/**
 	 * 
@@ -57,6 +57,6 @@ public class gmRand {
 		for (int i = 0; i < 32; i++) {
 			psfmt32[idxof(i)] = state.state_array[i];
 			idx = state.idx;
-		}
-	}
-}
+		} 
+	} 
+} 

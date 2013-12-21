@@ -25,4 +25,4 @@ package eu.veldsoft.twenty.eight.gm;
 
 public class gmOutputDealEndInfo {
 	public int winner;
-}
+} 

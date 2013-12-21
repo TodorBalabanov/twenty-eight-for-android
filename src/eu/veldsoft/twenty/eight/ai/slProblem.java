@@ -36,9 +36,9 @@ public class slProblem {
 		for (int i = 0; i < suit_length.length; i++) {
 			for (int j = 0; j < suit_length[i].length; j++) {
 				suit_length[i][j] = 0;
-			}
-		}
+			} 
+		} 
 		Arrays.fill(suit_total_length, 0);
 		Arrays.fill(hand_total_length, 0);
-	}
-}
+	} 
+} 

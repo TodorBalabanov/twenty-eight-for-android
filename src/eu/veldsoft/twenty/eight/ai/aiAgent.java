@@ -59,7 +59,7 @@ public class aiAgent {
 
 	public static final int aiNEG_INFTY = -10000;
 
-	private final static int s_depths[] = { 2, 3, 4, 6, 7, 8, 8, 8 };;
+	private final static int s_depths[] = { 2, 3, 4, 6, 7, 8, 8, 8 };
 
 	private gmEngine m_engine;
 
@@ -114,7 +114,7 @@ public class aiAgent {
 		 */
 	}
 
-	private boolean EstimateTricks(long[] p_hands, int trump, int[] eval) {
+	private boolean EstimateTricks(long p_hands, int trump, int eval) {
 		// TODO To be done by INFM032 F___45 Valentin Popov ...
 		// TODO To be done by INFM032 F___81 Marina Rangelova ...
 		// TODO To be done by INFM042 F___90 Svetoslav Slavkov ...
@@ -462,20 +462,60 @@ public class aiAgent {
 		return (false);
 	}
 
+	/**
+	 * Get trump.
+	 * 
+	 * @author INFM032 INFM032 F___45 Valentin Popov
+	 * @author INFM042 INFM042 F___94 Aleksandar Milev
+	 * @author INFM042 INFM042 F___67 Nevena Sirakova
+	 */
 	public int GetTrump() {
-		// TODO To be done by INFM032 F___45 Valentin Popov ...
-		// TODO To be done by INFM042 F___94 Aleksandar Milev ...
-		// TODO To be done by INFM042 F___67 Nevena Sirakova ...
+		int bid = 0;
+		int trump = 0;
+		long[] hands = new long[Globals.gmTOTAL_PLAYERS];
 
-		return (0);
+		m_engine.GetHands(hands);
+		GetBid(bid, trump, 14, true);
+
+		return GetTrump(hands[m_loc], trump);
 	}
 
+	/**
+	 * Function returns the card to be played(index) -1, for show trump -2 or
+	 * other negative values in case of error
+	 * 
+	 * @param hand
+	 * @param suit
+	 * 
+	 * @return
+	 * 
+	 * @author INFM032 F___81 Marina Rangelova
+	 * @author INFM032 F___46 Nadya Nedyalkova
+	 * @author INFM042 F___05 Iliya Grozev
+	 */
 	public static int GetTrump(long hand, int suit) {
-		// TODO To be done by INFM032 F___81 Marina Rangelova ...
-		// TODO To be done by INFM032 F___46 Nadya Nedyalkova ...
-		// TODO To be done by INFM042 F___05 Iliya Grozev ...
+		assert (hand != 0);
+		assert ((suit > Globals.gmSUIT_INVALID) && (suit <= Globals.gmTOTAL_SUITS));
 
-		return (0);
+		int ret_val = Globals.gmCARD_INVALID;
+		long trump_cards = (hand & gmUtil.m_suit_mask[suit]) >> gmUtil.m_suit_rs[suit];
+		if ((gmUtil.CountBitsSet(trump_cards & 0x0000000F0)) >= 2) {
+			for (int i = 4; i < 8; i++) {
+				if ((trump_cards & (1 << i)) != 0) {
+					ret_val = (suit * 8) + i;
+					break;
+				}
+			}
+		} else if (gmUtil.CountBitsSet(trump_cards & 0x0000000F) > 0) {
+			ret_val = (int) ((suit * 8) + gmUtil
+					.HighestBitSet(trump_cards & 0x0000000F));
+		} else {
+			ret_val = (int) ((suit * 8) + gmUtil.HighestBitSet(trump_cards));
+		}
+
+		assert ((hand & (1 << ret_val)) != 0);
+
+		return ret_val;
 	}
 
 	public int GetPlay(long mask) {
@@ -947,10 +987,25 @@ public class aiAgent {
 		SetRules(null);
 	}
 
+	/**
+	 * 
+	 * @param gmRules
+	 *            rules
+	 * 
+	 * @author INFM032 F___84 Mariya Kostadinova
+	 * @author INFM042 F___94 Aleksandar Milev
+	 * @author INFM032 F___90 Svetoslav Slavkov
+	 */
 	public void SetRules(gmRules rules) {
-		// TODO To be done by INFM032 F___84 Mariya Kostadinova ...
-		// TODO To be done by INFM042 F___94 Aleksandar Milev ...
-		// TODO To be done by INFM032 F___90 Svetoslav Slavkov ...
+		gmEngineData data = new gmEngineData();
+		if (rules != null) {
+			m_engine.GetData(data);
+			try {
+				data.rules = (gmRules) rules.clone();
+			} catch (CloneNotSupportedException e) {
+			}
+			m_engine.SetData(data, false);
+		}
 	}
 
 	/**
@@ -974,12 +1029,25 @@ public class aiAgent {
 		return true;
 	}
 
+	/**
+	 * 
+	 * @return
+	 * 
+	 * @author INFM042 F___68 Georgi Srebrov
+	 * @author INFM042 F___94 Aleksandar Milev
+	 * @author INFM042 F___46 Nadya Nedyalkova
+	 */
 	public boolean GetClockwise() {
-		// TODO To be done by INFM042 F___68 Georgi Srebrov ...
-		// TODO To be done by INFM042 F___94 Aleksandar Milev ...
-		// TODO To be done by INFM042 F___46 Nadya Nedyalkova ...
-
-		return (false);
+		gmEngineData data = new gmEngineData();
+		m_engine.GetData(data);
+		switch (data.rules.rot_addn) {
+		case 1:
+			return true;
+		case 3:
+			return false;
+		default:
+			return false;
+		}
 	}
 
 	/**
