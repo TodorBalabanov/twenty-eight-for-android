@@ -1,6 +1,6 @@
 package eu.veldsoft.twenty.eight.dummy;
 
-public class  wxDialog {
+public class wxDialog {
 	public void SetParent(wxWindow parent) {
 	}
 

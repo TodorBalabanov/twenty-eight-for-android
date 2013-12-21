@@ -25,7 +25,7 @@ package eu.veldsoft.twenty.eight.ra;
 
 import eu.veldsoft.twenty.eight.gm.gmUtil;
 
-public class  raInfoDetails implements Cloneable {
+public class raInfoDetails implements Cloneable {
 	public int deal_no;
 
 	public int dealer;

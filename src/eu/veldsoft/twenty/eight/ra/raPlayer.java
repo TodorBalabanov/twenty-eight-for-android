@@ -29,7 +29,7 @@ import eu.veldsoft.twenty.eight.gm.gmEngineData;
 import eu.veldsoft.twenty.eight.gm.gmRules;
 import eu.veldsoft.twenty.eight.dummy.Globals;
 
-public class  raPlayer {
+public class raPlayer {
 	/**
 	 */
 	private aiAgent m_agent;

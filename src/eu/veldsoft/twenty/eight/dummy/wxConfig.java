@@ -23,7 +23,7 @@
 
 package eu.veldsoft.twenty.eight.dummy;
 
-public class  wxConfig implements Cloneable {
+public class wxConfig implements Cloneable {
 	public Object clone() throws CloneNotSupportedException {
 		return super.clone();
 	}

@@ -28,7 +28,7 @@ import eu.veldsoft.twenty.eight.dummy.wxFrame;
 import eu.veldsoft.twenty.eight.dummy.wxStatusBar;
 import eu.veldsoft.twenty.eight.dummy.wxTheApp;
 
-public class  gmUtil {
+public class gmUtil {
 	public static final int gmTOTAL_CARDS = 32;
 
 	public static final int gmTOTAL_PLAYERS = 4;

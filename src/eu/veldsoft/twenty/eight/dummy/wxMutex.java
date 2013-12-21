@@ -27,7 +27,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 
-public class  wxMutex implements Lock {
+public class wxMutex implements Lock {
 
 	public wxMutex(wxMutex s_mutex) {
 		// TODO Auto-generated constructor stub

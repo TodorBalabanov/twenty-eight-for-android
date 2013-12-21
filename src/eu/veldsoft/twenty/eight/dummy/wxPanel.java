@@ -23,7 +23,7 @@
 
 package eu.veldsoft.twenty.eight.dummy;
 
-public class  wxPanel {
+public class wxPanel {
 	public void AddPendingEvent(wxEvent event) {
 	}
 

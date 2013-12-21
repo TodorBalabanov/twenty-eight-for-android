@@ -25,7 +25,7 @@ package eu.veldsoft.twenty.eight.ai;
 
 import java.util.Arrays;
 
-public class  slProblem {
+public class slProblem {
 	public int[][] suit_length;
 
 	public int suit_total_length[] = new int[aiSuitLengthSolver.slTOTAL_SUITS];

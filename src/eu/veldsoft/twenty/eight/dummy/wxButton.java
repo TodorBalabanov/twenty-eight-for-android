@@ -23,7 +23,7 @@
 
 package eu.veldsoft.twenty.eight.dummy;
 
-public class  wxButton {
+public class wxButton {
 
 	public void Show(boolean b) {
 	}

@@ -1,5 +1,5 @@
 package eu.veldsoft.twenty.eight.dummy;
 
-public class  wxXPMHandler {
+public class wxXPMHandler {
 
 }

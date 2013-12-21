@@ -23,7 +23,7 @@
 
 package eu.veldsoft.twenty.eight.gm;
 
-public class  gmInputBidInfo {
+public class gmInputBidInfo {
 	public int player;
 
 	public int min;
