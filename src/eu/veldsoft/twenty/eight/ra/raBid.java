@@ -140,6 +140,7 @@ public class raBid extends wxPanel {
 
 	/**
 	 * 
+	 * 
 	 * @param passable
 	 * @return
 	 * 
