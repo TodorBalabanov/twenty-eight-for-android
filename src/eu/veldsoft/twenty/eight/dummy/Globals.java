@@ -90,8 +90,6 @@ public class Globals {
 
 	public static final int gmCARD_INVALID = -1;
 
-	public static final int gmSTATUS_TRICKS = 0;
-
 	public static final int raHAND_VERTICAL = 0;
 
 	public static final int raHAND_HORIZONTAL = 1;
@@ -198,8 +196,6 @@ public class Globals {
 
 	public static final String raTEXT_CLOCKWISE = "Clockwise";
 
-	public static final String raTEXT_ANTICLOCKWISE = "Anti-lockwise";
-
 	// TODO Find real value of the constant.
 	public static final boolean raAI_LOG_ESTIMATE_POINTS = false;
 
@@ -238,8 +234,6 @@ public class Globals {
 	public static final String GG_CARD_XRS = "cards.xrs";
 
 	public static int gmOUTPUT_DEAL_END = 1;
-
-	public static int gmINPUT_INVALID = -1;
 
 	public static String SPACES20 = "                    ";
 
@@ -304,16 +298,22 @@ public class Globals {
 				+ gmUtil.m_total_points[(int) ((gmUtil.m_suit_mask[1] & X) >> gmUtil.m_suit_rs[1])]
 				+ gmUtil.m_total_points[(int) ((gmUtil.m_suit_mask[2] & X) >> gmUtil.m_suit_rs[2])]
 				+ gmUtil.m_total_points[(int) ((gmUtil.m_suit_mask[3] & X) >> gmUtil.m_suit_rs[3])];
+	}
+	
 	public static void GetClientSize(Integer x, Integer y) {
 	}
 
 	public static void wxLogDebug(String string, int i) {
+	}
+	
 	public static void wxLogError(String string, String res_name, String file,
 			int line) {
 	}
 
 	public static void wxLogDebug(String string, String string2,
 			String string3, String string4, String file, int line) {
+	}
+	
 	public static void wxEndBusyCursor() {
 	}
 
@@ -322,6 +322,8 @@ public class Globals {
 	}
 
 	public static void wxLogDebug(String arg1, String file, int line) {
+	}
+	
 	public static void wxBeginBusyCursor() {
 	}
 }
