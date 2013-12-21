@@ -30,48 +30,51 @@ import eu.veldsoft.twenty.eight.dummy.wxWindow;
 import eu.veldsoft.twenty.eight.dummy.wxWindowID;
 
 public class raDlgAbout {
+
+	
 	/**
-	 * Disallow copy constructor/assignment operators
+	 * Disallow copy finalructor/assignment operators
 	 * 
 	 * @param object
 	 * 
 	 * @author INFM042 F___84 Mariya Kostadinova
 	 * @author INFM042 F___06 Rosen Kaplanov
 	 * @author INFM042 F___94 Aleksandar Milev
+	 * 
 	 */
 	private raDlgAbout(final raDlgAbout object) {
-	} 
+		
+	}
 
 	/**
 	 * 
 	 * @param object
-	 * 
 	 * @return
-	 * 
 	 * @author INFM042 F___67 Nevena Sirakova
 	 * @author INFM042 F___39 Shterion Yanev
 	 * @author INFM032 F___94 Aleksandar Milev
 	 */
 	private raDlgAbout assign(final raDlgAbout object) {
+
 		return (this);
-	} 
+	}
 
 	public raDlgAbout() {
 		// TODO To be done by INFM032 F___84 Mariya Kostadinova ...
 		// TODO To be done by INFM042 F___00 Tsvetelina Hristova ...
 		// TODO To be done by INFM042 F___27 Georgi Kostadinov ...
-	} 
+	}
 
 	public raDlgAbout(wxWindow parent, wxWindowID id, final String caption,
 			final wxPoint pos, final wxSize size, long style) {
 		// TODO To be done by INFM032 F___84 Mariya Kostadinova ...
 		// TODO To be done by INFM042 F___00 Tsvetelina Hristova ...
 		// TODO To be done by INFM032 F___48 Georgi Ivanov ...
-	} 
+	}
 
 	public void OnAboutBtnOkClick(wxCommandEvent event) {
 		// TODO To be done by INFM032 F___68 Nikola Vushkov ...
 		// TODO To be done by INFM042 F___84 Mariya Kostadinova ...
 		// TODO To be done by INFM042 F___00 Tsvetelina Hristova ...
-	} 
-} 
+	}
+}

@@ -32,7 +32,7 @@ import eu.veldsoft.twenty.eight.dummy.wxPanel;
 import eu.veldsoft.twenty.eight.dummy.wxStaticText;
 import eu.veldsoft.twenty.eight.dummy.wxWindow;
 
-public class raBid {
+public class raBid extends wxPanel {
 	public static final int raBID_BTN_ROWS = 5;
 
 	public static final int raBID_BTN_COLS = 3;
@@ -89,12 +89,11 @@ public class raBid {
 		// TODO To be done by INFM042 F___48 Georgi Ivanov ...
 		// TODO To be done by INFM042 F___39 Shterion Yanev ...
 		// TODO To be done by INFM042 F___81 Marina Rangelova ...
-	} 
+	}
 
 	/**
 	 * 
 	 * @param object
-	 * 
 	 * @return
 	 * 
 	 * @author INFM042 F___39 Shterion Yanev
@@ -103,25 +102,25 @@ public class raBid {
 	 */
 	private raBid assign(final raBid object) {
 		return (this);
-	} 
+	}
 
 	void OnButtonClick(wxCommandEvent event) {
 		// TODO To be done by INFM032 F___68 Nikola Vushkov ...
 		// TODO To be done by INFM042 F___47 Kostadin Bulakiev ...
 		// TODO To be done by INFM042 F___27 Georgi Kostadinov ...
-	} 
+	}
 
 	public raBid(final wxWindow parent) {
 		// TODO To be done by INFM042 F___93 Krasimir Chariyski ...
 		// TODO To be done by INFM042 F___14 Petya Atanasova ...
 		// TODO To be done by INFM042 F___27 Georgi Kostadinov ...
-	} 
+	}
 
 	protected void finalize() {
 		// TODO To be done by INFM042 F___47 Kostadin Bulakiev ...
 		// TODO To be done by INFM042 F___27 Georgi Kostadinov ...
 		// TODO To be done by INFM042 F___52 Mihail Stankov ...
-	} 
+	}
 
 	public boolean SetGamePanel(raGamePanel game_panel) {
 		// TODO To be done by INFM032 F___05 Iliya Grozev ...
@@ -129,7 +128,7 @@ public class raBid {
 		// TODO To be done by INFM042 F___47 Kostadin Bulakiev ...
 
 		return (false);
-	} 
+	}
 
 	/**
 	 * 
@@ -137,26 +136,15 @@ public class raBid {
 	 */
 	public boolean SetPassable() {
 		return (SetPassable(true));
-	} 
+	}
 
-	/**
-	 * 
-	 * @param passable
-	 * 
-	 * @return
-	 * 
-	 * @author INFM032 F___06 Rosen Kaplanov
-	 * @author INFM042 F___52 Mihail Stankov
-	 * @author INFM032 F___48 Georgi Ivanov
-	 */
 	public boolean SetPassable(boolean passable) {
-		/*
-		 * Enable/disable the pass button as per the input criteria.
-		 */
-		m_button_pass.Enable(passable);
+		// TODO To be done by INFM032 F___06 Rosen Kaplanov ...
+		// TODO To be done by INFM042 F___52 Mihail Stankov ...
+		// TODO To be done by INFM032 F___48 Georgi Ivanov ...
 
-		return true;
-	} 
+		return (false);
+	}
 
 	public boolean SetMinimumBid(int min_bid) {
 		// TODO To be done by INFM042 F___68 Nikola Vushkov ...
@@ -164,5 +152,6 @@ public class raBid {
 		// TODO To be done by INFM042 F___14 Petya Atanasova ...
 
 		return (false);
-	} 
-} 
+	}
+
+}
