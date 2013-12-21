@@ -29,4 +29,4 @@ public class raCommon {
 
 	static final int raSBARPOS_CLOCK = 1;
 
-}
+} 

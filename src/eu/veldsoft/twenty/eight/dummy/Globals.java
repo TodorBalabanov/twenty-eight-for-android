@@ -28,9 +28,9 @@ import java.util.Random;
 import eu.veldsoft.twenty.eight.gg.ggCard;
 import eu.veldsoft.twenty.eight.gm.gmUtil;
 
-public class  Globals {
+public class Globals {
 
-	public static final Random PRNG = new Random() ;
+	public static final Random PRNG = new Random();
 
 	public static final int wxCOPY = 0;
 
@@ -89,6 +89,8 @@ public class  Globals {
 	public static final long gmRULE_5 = 16;
 
 	public static final int gmCARD_INVALID = -1;
+
+	public static final int gmSTATUS_TRICKS = 0;
 
 	public static final int raHAND_VERTICAL = 0;
 
@@ -194,16 +196,25 @@ public class  Globals {
 
 	public static final boolean aiLOG_GENERATESLPROBLEM = false;
 
+	public static final String raTEXT_CLOCKWISE = "Clockwise";
+
+	public static final String raTEXT_ANTICLOCKWISE = "Anti-lockwise";
+
 	// TODO Find real value of the constant.
 	public static final boolean raAI_LOG_ESTIMATE_POINTS = false;
+
+	public static final String raTEXT_ANTICLOCKWISE = "Anti-lockwise";
 
 	public static final int gmINPUT_INVALID = -1;
 	public static final int gmINPUT_BID = 0;
 	public static final int gmINPUT_TRUMPSEL = 1;
 	public static final int gmINPUT_TRICK = 2;
 
+	public static final int raSBARPOS_GEN = 0;
 	//TODO Find original value of the constant.
 	public static final boolean raAI_LOG_MAKEMOVE = false;
+
+	public static final int raSBARPOS_CLOCK = 1;
 
 	public static final int gmSTATUS_NOT_STARTED = 0;
 	public static final int gmSTATUS_DEAL1 = 1;
@@ -216,10 +227,21 @@ public class  Globals {
 	public static final int gmSTATUS_TRICKS = 8;
 	public static final int gmSTATUS_FINISHED  = 9;
 
+	// TODO Find true value of this constant.
+	public static final int raBID_ROUND_3 = 3;
 	public static final int gmTOTAL_CARDS = 32;
 
 	//TODO Find original value of the constant.
 	public static final boolean raAI_LOG_GETBID = false;
+	public static final wxColour wxWHITE = null;
+
+	public static final String GG_CARD_XRS = "cards.xrs";
+
+	public static int gmOUTPUT_DEAL_END = 1;
+
+	public static int gmINPUT_INVALID = -1;
+
+	public static String SPACES20 = "                    ";
 
 	public static void wxLogError(String string, String file, int line) {
 	}
@@ -230,7 +252,7 @@ public class  Globals {
 	public static void wxLogMessage(String string) {
 	}
 
-	public static Object XRCCTRL(Object arg1, String arg2, class  arg3) {
+	public static Object XRCCTRL(Object arg1, String arg2, Class arg3) {
 		return null;
 	}
 
@@ -282,13 +304,17 @@ public class  Globals {
 				+ gmUtil.m_total_points[(int) ((gmUtil.m_suit_mask[1] & X) >> gmUtil.m_suit_rs[1])]
 				+ gmUtil.m_total_points[(int) ((gmUtil.m_suit_mask[2] & X) >> gmUtil.m_suit_rs[2])]
 				+ gmUtil.m_total_points[(int) ((gmUtil.m_suit_mask[3] & X) >> gmUtil.m_suit_rs[3])];
+	public static void GetClientSize(Integer x, Integer y) {
 	}
 
 	public static void wxLogDebug(String string, int i) {
+	public static void wxLogError(String string, String res_name, String file,
+			int line) {
 	}
 
 	public static void wxLogDebug(String string, String string2,
 			String string3, String string4, String file, int line) {
+	public static void wxEndBusyCursor() {
 	}
 
 	public static void wxLogDebug(String string, String string2,
@@ -296,5 +322,6 @@ public class  Globals {
 	}
 
 	public static void wxLogDebug(String arg1, String file, int line) {
+	public static void wxBeginBusyCursor() {
 	}
 }

@@ -35,4 +35,4 @@ public class gmInputTrickInfo {
 	public int card;
 
 	public long rules;
-}
+} 

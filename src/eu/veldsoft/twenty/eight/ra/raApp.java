@@ -51,7 +51,7 @@ public class raApp {
 	 */
 	private raApp assign(final raApp object) {
 		return (this);
-	}
+	} 
 
 	public static String GenerateLogFileName() {
 		// TODO To be done by INFM032 F___48 Georgi Ivanov ...
@@ -59,7 +59,7 @@ public class raApp {
 		// TODO To be done by INFM042 F___56 Daniel Nikolov ...
 
 		return ("");
-	}
+	} 
 
 	/**
 	 * 
@@ -79,26 +79,26 @@ public class raApp {
 			out += "Compiler             : GNU C/C++ ";
 			out += "" + Globals.__GNUC__ + "." + Globals.__GNUC_MINOR__ + "";
 			Globals.wxLogMessage(out);
-		}
+		} 
 
 		out = "";
 		out += "Operating System     : ";
 		out += Globals.wxGetOsDescription();
 		if (Globals.wxIsPlatform64Bit() == true) {
 			out += "(64 bit)";
-		}
+		} 
 		Globals.wxLogMessage(out);
 
 		out = "";
 		out += "Endianness           : ";
 		if (Globals.wxIsPlatform64Bit() == true) {
 			out += "Little Endian";
-		} else {
+		}  else {
 			out += "Big Endian";
-		}
+		} 
 		Globals.wxLogMessage(out);
 		Globals.wxLogMessage("");
-	}
+	} 
 
 	// Called on application startup
 	public boolean OnInit() {
@@ -107,7 +107,7 @@ public class raApp {
 		// TODO To be done by INFM032 F___06 Rosen Kaplanov ...
 
 		return (false);
-	}
+	} 
 
 	public int OnRun() {
 		// TODO To be done by INFM042 F___39 Shterion Yanev ...
@@ -115,7 +115,7 @@ public class raApp {
 		// TODO To be done by INFM042 F___68 Georgi Srebrov ...
 
 		return (0);
-	}
+	} 
 
 	public int OnExit() {
 		// TODO To be done by INFM032 F___47 Kostadin Bulakiev ...
@@ -123,5 +123,5 @@ public class raApp {
 		// TODO To be done by INFM032 F___14 Petya Atanasova ...
 
 		return (0);
-	}
-}
+	} 
+} 

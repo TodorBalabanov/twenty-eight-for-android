@@ -50,7 +50,7 @@ public class raDlgPrefs extends wxDialog {
 	 * Dummy function from wxWidgets.
 	 */
 	private void Destroy() {
-	}
+	} 
 
 	/**
 	 * Disallow copy finalructor/assignment operators.
@@ -63,7 +63,7 @@ public class raDlgPrefs extends wxDialog {
 		/*
 		 * Empty constructor.
 		 */
-	}
+	} 
 
 	/**
 	 * 
@@ -76,7 +76,7 @@ public class raDlgPrefs extends wxDialog {
 	private raDlgPrefs assign(final raDlgPrefs object) {
 
 		return (this);
-	}
+	} 
 
 	/**
 	 * 
@@ -88,7 +88,7 @@ public class raDlgPrefs extends wxDialog {
 		/**
 		 * This is empty constructor.
 		 */
-	}
+	} 
 
 	/**
 	 * 
@@ -109,12 +109,12 @@ public class raDlgPrefs extends wxDialog {
 
 		if (!wxXmlResource.Get().LoadDialog(this, GetParent(), "raDlgPrefs")) {
 			Globals.wxLogError("Missing wxXmlResource::Get()->Load() in OnInit()?");
-		}
+		} 
 
 		if (GetSizer() != null) {
 			GetSizer().SetSizeHints(this);
-		}
-	}
+		} 
+	} 
 
 	/**
 	 * 
@@ -143,7 +143,7 @@ public class raDlgPrefs extends wxDialog {
 		default:
 			Globals.wxLogError("Unexpected value. %s:%d", __FILE__, __LINE__);
 			break;
-		}
+		} 
 
 		combo_cardback = (wxComboBox) Globals.XRCCTRL(this,
 				"m_radlgprefs_cardback", wxComboBox.class);
@@ -158,7 +158,7 @@ public class raDlgPrefs extends wxDialog {
 		default:
 			Globals.wxLogError("Unexpected value. %s:%d", __FILE__, __LINE__);
 			break;
-		}
+		} 
 
 		check_autoplay = (wxCheckBox) Globals.XRCCTRL(this,
 				"m_radlgprefs_playsingauto", wxCheckBox.class);
@@ -168,7 +168,7 @@ public class raDlgPrefs extends wxDialog {
 		check_bidbubbles.SetValue(conf_data.prefs_data.show_bid_bubbles);
 
 		event.Skip();
-	}
+	} 
 
 	/**
 	 * @param event
@@ -198,7 +198,7 @@ public class raDlgPrefs extends wxDialog {
 		default:
 			Globals.wxLogError("Unexpected value. %s:%d", __FILE__, __LINE__);
 			break;
-		}
+		} 
 
 		combo_cardback = (wxComboBox) Globals.XRCCTRL(this,
 				"m_radlgprefs_cardback", wxComboBox.class);
@@ -213,7 +213,7 @@ public class raDlgPrefs extends wxDialog {
 		default:
 			Globals.wxLogError("Unexpected value. %s:%d", __FILE__, __LINE__);
 			break;
-		}
+		} 
 
 		check_autoplay = (wxCheckBox) Globals.XRCCTRL(this,
 				"m_radlgprefs_playsingauto", wxCheckBox.class);
@@ -226,5 +226,5 @@ public class raDlgPrefs extends wxDialog {
 		event.Skip();
 
 		Destroy();
-	}
-}
+	} 
+} 

@@ -26,27 +26,27 @@ package eu.veldsoft.twenty.eight.dummy;
 public class wxConfig implements Cloneable {
 	public Object clone() throws CloneNotSupportedException {
 		return super.clone();
-	}
+	} 
 
 	public boolean Write(String raCONFPATH_APP_DATA_X, boolean auto_play_single) {
 		// TODO Auto-generated method stub
 		return false;
-	}
+	} 
 
 	public boolean Write(String raCONFPATH_PREFS_PLAYCARDON, int play_card_on) {
 		// TODO Auto-generated method stub
 		return false;
-	}
+	} 
 
 	public wxConfig(Object arg0) {
-	}
+	} 
 
 	public boolean Read(String arg0, int arg1) {
 		return false;
-	}
+	} 
 
 	public boolean Read(String arg0, boolean arg1) {
 		return false;
-	}
+	} 
 
-}
+} 
