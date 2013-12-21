@@ -27,15 +27,18 @@ import eu.veldsoft.twenty.eight.dummy.Globals;
 import eu.veldsoft.twenty.eight.dummy.wxBitmap;
 import eu.veldsoft.twenty.eight.dummy.wxEvent;
 import eu.veldsoft.twenty.eight.dummy.wxFont;
+import eu.veldsoft.twenty.eight.dummy.wxMemoryDC;
 import eu.veldsoft.twenty.eight.dummy.wxMouseEvent;
 import eu.veldsoft.twenty.eight.dummy.wxPoint;
 import eu.veldsoft.twenty.eight.dummy.wxRect;
 import eu.veldsoft.twenty.eight.dummy.wxSizeEvent;
+import eu.veldsoft.twenty.eight.dummy.wxThread;
 import eu.veldsoft.twenty.eight.dummy.wxWindow;
 import eu.veldsoft.twenty.eight.gg.ggCard;
 import eu.veldsoft.twenty.eight.gg.ggPanel;
 import eu.veldsoft.twenty.eight.gm.gmEngine;
 import eu.veldsoft.twenty.eight.gm.gmEngineData;
+import eu.veldsoft.twenty.eight.gm.gmInputBidInfo;
 import eu.veldsoft.twenty.eight.gm.gmRules;
 import eu.veldsoft.twenty.eight.gm.gmTrick;
 import eu.veldsoft.twenty.eight.gm.gmUtil;
@@ -56,12 +59,21 @@ public class raGamePanel extends ggPanel {
 
 	private static final int raCONFIG_PREFS_PLAYCARDON_DCLICK = 1;
 
-	// Disallow copy finalructor/assignment operators
+	private static final int gmCARD_INVALID = 0;
+
+	private static final int raPLAYER_TYPE_AI = 0;
+
+	/**
+	 * Disallow copy finalructor/assignment operators.
+	 * 
+	 * @param object
+	 * 
+	 * @author INFM042 F___56 Daniel Nikolov
+	 * @author INFM042 F___84 Mariya Kostadinova
+	 * @author INFM032 F___06 Rosen Kaplanov
+	 */
 	private raGamePanel(final raGamePanel object) {
-		// TODO To be done by INFM042 F___56 Daniel Nikolov ...
-		// TODO To be done by INFM042 F___84 Mariya Kostadinova ...
-		// TODO To be done by INFM032 F___06 Rosen Kaplanov ...
-	} 
+	}
 
 	private raGamePanel assign(final raGamePanel object) {
 		// TODO To be done by INFM032 F___45 Valentin Popov ...
@@ -69,7 +81,7 @@ public class raGamePanel extends ggPanel {
 		// TODO To be done by INFM032 F___47 Kostadin Bulakiev ...
 
 		return (this);
-	} 
+	}
 
 	private wxBitmap m_card_faces[] = new wxBitmap[gmUtil.gmTOTAL_CARDS];
 
@@ -182,11 +194,11 @@ public class raGamePanel extends ggPanel {
 		// TODO To be done by INFM032 F___56 Daniel Nikolov ...
 		// TODO To be done by INFM042 F___90 Svetoslav Slavkov ...
 		// TODO To be done by INFM042 F___05 Iliya Grozev ...
-	} 
+	}
 
 	private boolean RedrawBack() {
 		return (RedrawBack(null));
-	} 
+	}
 
 	private boolean RedrawBack(raBackDrawInfo info) {
 		// TODO To be done by INFM042 F___84 Mariya Kostadinova ...
@@ -194,11 +206,11 @@ public class raGamePanel extends ggPanel {
 		// TODO To be done by INFM042 F___27 Georgi Kostadinov ...
 
 		return (false);
-	} 
+	}
 
 	private boolean DrawHand(int loc, int x, int y) {
 		return (DrawHand(loc, x, y, Globals.raHAND_HORIZONTAL));
-	} 
+	}
 
 	private boolean DrawHand(int loc, int x, int y, int orientation) {
 		// TODO To be done by INFM042 F___68 Nikola Vushkov ...
@@ -206,7 +218,7 @@ public class raGamePanel extends ggPanel {
 		// TODO To be done by INFM032 F___67 Nevena Sirakova ...
 
 		return (false);
-	} 
+	}
 
 	private boolean DrawTrick() {
 		// TODO To be done by INFM042 F___05 Iliya Grozev ...
@@ -214,27 +226,67 @@ public class raGamePanel extends ggPanel {
 		// TODO To be done by INFM032 F___14 Petya Atanasova ...
 
 		return (false);
-	} 
+	}
 
+	/**
+	 * 
+	 * @return
+	 * 
+	 * @author INFM032 F___56 Daniel Nikolov
+	 * @author INFM032 F___67 Nevena Sirakova
+	 * @author INFM042 F___06 Rosen Kaplanov
+	 */
 	private boolean DrawTrump() {
-		// TODO To be done by INFM032 F___56 Daniel Nikolov ...
-		// TODO To be done by INFM032 F___67 Nevena Sirakova ...
-		// TODO To be done by INFM042 F___06 Rosen Kaplanov ...
+		int trump_card = 0;
+		int max_bidder = 0;
+		int player_type = 0;
+		wxMemoryDC mdc = new wxMemoryDC();
+		if (!m_engine.GetMaxBid(null, max_bidder)) {
+			Globals.wxLogError("GetMaxBid failed. %s:%d", __FILE__, __LINE__);
+			return false;
+		}
+		assert ((max_bidder >= Globals.gmPLAYER_INVALID) && (max_bidder < Globals.gmTOTAL_PLAYERS));
+		if (max_bidder == Globals.gmPLAYER_INVALID)
+			return true;
+		player_type = m_players[max_bidder].GetType();
+		assert ((player_type >= Globals.raPLAYER_TYPE_INVALID) && (player_type <= Globals.raPLAYER_TYPE_AI));
+		trump_card = m_engine.GetTrumpCard();
+		assert ((trump_card >= Globals.gmCARD_INVALID) && (trump_card < Globals.gmTOTAL_CARDS));
+		/*
+		 * Draw the trump only if 1. There is a valid trump set 2. and if the
+		 * trump is not shown yet.
+		 */
 
-		return (false);
-	} 
+		if ((trump_card != gmCARD_INVALID) && !m_engine.IsTrumpShown()) {
+			if (Globals.raGAME_HIDE_AI_HANDS) {
+				if (player_type == raPLAYER_TYPE_AI)
+					mdc.SelectObject(m_card_backs[m_pref_card_back]);
+				else
+					mdc.SelectObject(m_card_faces[trump_card]);
+			}
+			mdc.SelectObject(m_card_faces[trump_card]);
+			if (!Globals.BlitToBack(Globals.raCARD_PANEL_RELIEF,
+					Globals.raCARD_PANEL_RELIEF, Globals.GG_CARD_WIDTH,
+					Globals.GG_CARD_HEIGHT, mdc, 0, 0, Globals.wxCOPY, true)) {
+				Globals.wxLogError("BlitToBack failed. %s:%d", __FILE__,
+						__LINE__);
+				return false;
+			}
+		}
+		return true;
+	}
 
 	private void OnInfo(raInfoEvent event) {
 		// TODO To be done by INFM032 F___39 Shterion Yanev ...
 		// TODO To be done by INFM042 F___84 Mariya Kostadinova ...
 		// TODO To be done by INFM042 F___81 Marina Rangelova ...
-	} 
+	}
 
 	private void OnBid(raBidEvent event) {
 		// TODO To be done by INFM032 F___48 Georgi Ivanov ...
 		// TODO To be done by INFM042 F___68 Nikola Vushkov ...
 		// TODO To be done by INFM032 F___93 Krasimir Chariyski ...
-	} 
+	}
 
 	/**
 	 * 
@@ -252,65 +304,28 @@ public class raGamePanel extends ggPanel {
 				Globals.wxLogError("OnCardClick failed. %s:%d", __FILE__,
 						__LINE__);
 				return;
-			} 
-		} 
+			}
+		}
 		return;
-	} 
+	}
 
 	private void OnLeftUp(wxMouseEvent event) {
 		// TODO To be done by INFM042 F___84 Mariya Kostadinova ...
 		// TODO To be done by INFM032 F___81 Marina Rangelova ...
 		// TODO To be done by INFM042 F___56 Daniel Nikolov ...
-	} 
+	}
 
 	private int GetCardAtPos(wxPoint pt) {
 		return (GetCardAtPos(pt, gmUtil.gmPLAYER_INVALID));
-	} 
+	}
 
-	/**
-	 * 
-	 * @param pt
-	 * @param loc
-	 * @return
-	 * 
-	 * @author INFM032 F___45 Valentin Popov
-	 * @author INFM042 F___93 Krasimir Chariyski
-	 * @author INFM032 F___56 Daniel Nikolov
-	 */
 	private int GetCardAtPos(wxPoint pt, int loc) {
-		if (loc == gmUtil.gmPLAYER_INVALID) {
-			/*
-			 * Check whether the position is inside any of the hands
-			 */
-			for (int i = 0; i < gmUtil.gmTOTAL_PLAYERS; i++) {
-				/*
-				 * If so, find the card.
-				 */
-				if (m_hand_rects[i].Contains(pt)) {
-					/*
-					 * Consider each of the cards in the hand. This is done in
-					 * reverse order is because the dimension/position of each
-					 * of the cards is calculated without considering the
-					 * possibility of overlapping
-					 */
-					for (int j = m_hands[i].count - 1; j >= 0; j--) {
-						if (m_hand_card_rects[i][j].Contains(pt)) {
-							return m_hands[i].card_indexes[j];
-						} 
-					} 
-				} 
-			} 
-		}  else {
-			assert ((loc >= 0) && (loc < gmUtil.gmTOTAL_PLAYERS));
-			for (int i = m_hands[loc].count - 1; i >= 0; i--) {
-				if (m_hand_card_rects[loc][i].Contains(pt)) {
-					return m_hands[loc].card_indexes[i];
-				} 
-			} 
-		} 
+		// TODO To be done by INFM032 F___45 Valentin Popov ...
+		// TODO To be done by INFM042 F___93 Krasimir Chariyski ...
+		// TODO To be done by INFM032 F___56 Daniel Nikolov ...
 
-		return gmUtil.gmCARD_INVALID;
-	} 
+		return (0);
+	}
 
 	private int GetHandAtPos(wxPoint pt) {
 		// TODO To be done by INFM032 F___27 Georgi Kostadinov ...
@@ -318,7 +333,7 @@ public class raGamePanel extends ggPanel {
 		// TODO To be done by INFM042 F___90 Svetoslav Slavkov ...
 
 		return (0);
-	} 
+	}
 
 	private boolean Continue() {
 		// TODO To be done by INFM032 F___45 Valentin Popov ...
@@ -326,7 +341,7 @@ public class raGamePanel extends ggPanel {
 		// TODO To be done by INFM042 F___14 Petya Atanasova ...
 
 		return (false);
-	} 
+	}
 
 	/**
 	 * 
@@ -344,7 +359,7 @@ public class raGamePanel extends ggPanel {
 					"Attempt to reset the rule engine failed. %s:%d", __FILE__,
 					__LINE__);
 			return false;
-		} 
+		}
 
 		m_wait_trick = false;
 		m_deal_ended = false;
@@ -354,7 +369,7 @@ public class raGamePanel extends ggPanel {
 		 */
 		for (raHand hand : m_hands) {
 			hand.setToZeros();
-		} 
+		}
 
 		/*
 		 * Initialize the trick
@@ -368,7 +383,7 @@ public class raGamePanel extends ggPanel {
 		for (i = 0; i < Globals.gmTOTAL_PLAYERS; i++) {
 			m_hand_rects[i] = new wxRect(0, 0, 0, 0);
 			m_trick_card_rects[i] = new wxRect(0, 0, 0, 0);
-		} 
+		}
 
 		/*
 		 * Initialize card positions and dimensions
@@ -382,7 +397,7 @@ public class raGamePanel extends ggPanel {
 		 */
 		m_bid_history = "";
 		return true;
-	} 
+	}
 
 	/**
 	 * 
@@ -412,10 +427,10 @@ public class raGamePanel extends ggPanel {
 		if (data.game_data.clockwise) {
 			gmUtil.SetStatusText(Globals.raTEXT_CLOCKWISE,
 					Globals.raSBARPOS_CLOCK);
-		}  else {
+		} else {
 			gmUtil.SetStatusText(Globals.raTEXT_ANTICLOCKWISE,
 					Globals.raSBARPOS_CLOCK);
-		} 
+		}
 
 		m_engine.SetDealer(0);
 
@@ -429,24 +444,24 @@ public class raGamePanel extends ggPanel {
 		m_saved_rules.min_bid_3 = data.game_data.min_bid3;
 		if (data.game_data.clockwise) {
 			m_saved_rules.rot_addn = 1;
-		}  else {
+		} else {
 			m_saved_rules.rot_addn = 3;
-		} 
+		}
 		m_saved_rules.sluff_jacks = data.game_data.sluff_jacks;
 		m_saved_rules.waive_rule_4 = data.game_data.waive_rule4;
 
 		for (i = 0; i < Globals.gmTOTAL_TEAMS; i++) {
 			m_game_pts[i] = 5;
-		} 
+		}
 
 		for (i = 0; i < Globals.gmTOTAL_PLAYERS; i++) {
 			m_pnlties[i] = 0;
 			m_players[i].Reset();
 			m_players[i].SetRules(m_saved_rules);
-		} 
+		}
 
 		return true;
-	} 
+	}
 
 	private boolean UpdateHands(long hands[]) {
 		// TODO To be done by INFM042 F___45 Valentin Popov ...
@@ -454,11 +469,11 @@ public class raGamePanel extends ggPanel {
 		// TODO To be done by INFM032 F___93 Krasimir Chariyski ...
 
 		return (false);
-	} 
+	}
 
 	private int PlayCard(int card) {
 		return (PlayCard(card, gmUtil.gmPLAYER_INVALID));
-	} 
+	}
 
 	private int PlayCard(int card, int loc) {
 		// TODO To be done by INFM032 F___45 Valentin Popov ...
@@ -466,11 +481,11 @@ public class raGamePanel extends ggPanel {
 		// TODO To be done by INFM042 F___67 Nevena Sirakova ...
 
 		return (0);
-	} 
+	}
 
 	private int SetTrump(int card) {
 		return (SetTrump(card, gmUtil.gmPLAYER_INVALID));
-	} 
+	}
 
 	private int SetTrump(int card, int loc) {
 		// TODO To be done by INFM032 F___47 Kostadin Bulakiev ...
@@ -478,11 +493,11 @@ public class raGamePanel extends ggPanel {
 		// TODO To be done by INFM032 F___81 Marina Rangelova ...
 
 		return (0);
-	} 
+	}
 
 	private int ShowTrump() {
 		return (ShowTrump(gmUtil.gmPLAYER_INVALID));
-	} 
+	}
 
 	private int ShowTrump(int loc) {
 		// TODO To be done by INFM032 F___45 Valentin Popov ...
@@ -490,27 +505,161 @@ public class raGamePanel extends ggPanel {
 		// TODO To be done by INFM042 F___47 Kostadin Bulakiev ...
 
 		return (0);
-	} 
+	}
 
 	private int MakeBid(int bid) {
 		return (MakeBid(bid, gmUtil.gmPLAYER_INVALID));
-	} 
+	}
 
+	/**
+	 * 
+	 * @param bid
+	 * @param loc
+	 * @return
+	 * 
+	 * @author INFM032 F___39 Shterion Yanev
+	 * @author INFM032 F___06 Rosen Kaplanov
+	 * @author INFM042 F___90 Svetoslav Slavkov
+	 * 
+	 */
 	private int MakeBid(int bid, int loc) {
-		// TODO To be done by INFM032 F___39 Shterion Yanev ...
-		// TODO To be done by INFM032 F___06 Rosen Kaplanov ...
-		// TODO To be done by INFM042 F___90 Svetoslav Slavkov ...
 
-		return (0);
-	} 
+		gmInputBidInfo bid_info = new gmInputBidInfo();
+		int ret_val;
+		raInfoDetails info_dtls = new raInfoDetails();
+		raBackDrawInfo back_draw_info = new raBackDrawInfo();
+
+		/*
+		 * Check if the engine is waiting for a bid input
+		 */
+		if ((m_engine.IsInputPending())
+				&& (m_engine.GetPendingInputType() == Globals.gmINPUT_BID)) {
+			if (!m_engine.GetPendingInputCriteria(null, bid_info)) {
+				Globals.wxLogError(
+						"Failed to get pending input criteria. %s:%d",
+						__FILE__, __LINE__);
+				return -1;
+			}
+
+			/*
+			 * Check if the bid is by the correct player
+			 */
+			if ((loc != Globals.gmPLAYER_INVALID) && (loc != bid_info.player)) {
+				Globals.wxLogDebug("Bid by the wrong player. %s:%d", __FILE__,
+						__LINE__);
+				return Globals.gmERR_BID_BY_WRONG_PLAYER;
+			}
+
+			/*
+			 * If the bid is a pass,
+			 */
+			if ((bid == Globals.gmBID_PASS) && (!bid_info.passable)) {
+				Globals.wxLogDebug("Cannot pass. %s:%d", __FILE__, __LINE__);
+				return Globals.gmERR_CANNOT_PASS;
+			}
+
+			/*
+			 * If the bid is less than minimum
+			 */
+			if ((bid != Globals.gmBID_ALL) && (bid != Globals.gmBID_PASS)
+					&& (bid < bid_info.min)) {
+				Globals.wxLogDebug("Bid less than minimum allowed. %s:%d",
+						__FILE__, __LINE__);
+				return Globals.gmERR_BID_LESS_THAN_MIN;
+			}
+
+			bid_info.bid = bid;
+
+			/*
+			 * Post the input and check for error
+			 */
+			if ((ret_val = m_engine.PostInputMessage(Globals.gmINPUT_BID,
+					bid_info)) != 0) {
+				Globals.wxLogDebug("PostInputMessage failed. %s:%d", __FILE__,
+						__LINE__);
+				return ret_val;
+			}
+
+			/*
+			 * Append to the auciton history
+			 */
+			if (bid != Globals.gmBID_PASS) {
+				String temp = "";
+				if (bid == Globals.gmBID_ALL) {
+					temp += ("All Tricks");
+				} else {
+					temp += "%d" + bid_info.bid;
+				}
+				temp += " by " + gmUtil.m_long_locs[bid_info.player] + "\n";
+
+				/*
+				 * Log the bid
+				 */
+				Globals.wxLogMessage(temp.trim());
+
+				m_bid_history += temp;
+			}
+
+		} else {
+			Globals.wxLogDebug(
+					"Cannot make a bid when one is not expected. %s:%d",
+					__FILE__, __LINE__);
+			return -1;
+		}
+
+		// Update Info panel
+		if (bid != Globals.gmBID_PASS) {
+			m_info.GetDetails(info_dtls);
+			info_dtls.bid = bid;
+			info_dtls.bidder = bid_info.player;
+			m_info.SetDetails(info_dtls);
+		}
+
+		//
+		// Show the bid graphically in a bubble
+		//
+
+		back_draw_info.draw_bid = true;
+		back_draw_info.bid = bid_info.bid;
+		back_draw_info.bid_loc = bid_info.player;
+
+		if (m_show_bidbubbles && (bid != Globals.gmBID_PASS)) {
+			// Hide the bid window
+			m_bid.Show(false);
+
+			/*
+			 * Redraw the screen with bid bubble
+			 */
+			if (!UpdateDrawAndRefresh(false, back_draw_info)) {
+				Globals.wxLogError("UpdateDrawAndRefresh failed. %s:%d",
+						__FILE__, __LINE__);
+			}
+
+			/*
+			 * Sleep for some time so that the user can read the information
+			 */
+			wxThread.Sleep(1000);
+
+		}
+
+		/*
+		 * Redraw the screen without bid bubble
+		 */
+		if (!UpdateDrawAndRefresh()) {
+			Globals.wxLogError("UpdateDrawAndRefresh failed. %s:%d", __FILE__,
+					__LINE__);
+		}
+
+		return 0;
+	}
 
 	private boolean UpdateDrawAndRefresh() {
 		return (UpdateDrawAndRefresh(true, null));
-	} 
+	}
 
 	private boolean UpdateDrawAndRefresh(boolean udpate) {
 		return (UpdateDrawAndRefresh(udpate, null));
-	} 
+	}
 
 	/**
 	 * 
@@ -537,8 +686,8 @@ public class raGamePanel extends ggPanel {
 						.format("Call to UpdateHands failed. %s:%d", __FILE__,
 								__LINE__));
 				return false;
-			} 
-		} 
+			}
+		}
 
 		/*
 		 * Redraw back buffer and refrsh the screen to reflect the card play
@@ -547,15 +696,15 @@ public class raGamePanel extends ggPanel {
 			Globals.wxLogError(String.format("RedrawBack failed. %s:%d",
 					__FILE__, __LINE__));
 			return false;
-		} 
+		}
 		if (RefreshScreen() == true) {
 			Globals.wxLogError(String.format("RefreshScreen failed. %s:%d"),
 					__FILE__, __LINE__);
 			return false;
-		} 
+		}
 		this.Update();
 		return true;
-	} 
+	}
 
 	/**
 	 * 
@@ -579,20 +728,20 @@ public class raGamePanel extends ggPanel {
 		for (int i = 0; i < Globals.gmTOTAL_PLAYERS; i++) {
 			if (i != player) {
 				data.hands[i] = 0;
-			} 
-		} 
+			}
+		}
 
 		if ((data.curr_max_bidder != player) && !data.trump_shown) {
 			data.trump_card = Globals.gmCARD_INVALID;
 			data.trump_suit = Globals.gmSUIT_INVALID;
-		} 
+		}
 
 		return true;
-	} 
+	}
 
 	private boolean HasDealEnded() {
 		return (HasDealEnded(0));
-	} 
+	}
 
 	private boolean HasDealEnded(int winner) {
 		// TODO To be done by INFM042 F___52 Mihail Stankov ...
@@ -600,11 +749,11 @@ public class raGamePanel extends ggPanel {
 		// TODO To be done by INFM032 F___90 Svetoslav Slavkov ...
 
 		return (false);
-	} 
+	}
 
 	private boolean EndDeal() {
 		return (EndDeal(false));
-	} 
+	}
 
 	private boolean EndDeal(boolean abandon) {
 		// TODO To be done by INFM032 F___93 Krasimir Chariyski ...
@@ -612,40 +761,22 @@ public class raGamePanel extends ggPanel {
 		// TODO To be done by INFM042 F___14 Petya Atanasova ...
 
 		return (false);
-	} 
+	}
 
-	/**
-	 * ...
-	 * 
-	 * @return
-	 * 
-	 * @author Vencislav Medarov
-	 * @email venci932@gmail.com
-	 * @date 14 Dec 2013
-	 */
 	private boolean BeginBusyState() {
-		Globals.wxBeginBusyCursor();
-		return (true);
-	} 
+		// TODO To be done by Venci ...
 
-	/**
-	 * ...
-	 * 
-	 * @return
-	 * 
-	 * @author Vencislav Medarov
-	 * @email venci932@gmail.com
-	 * @date 14 Dec 2013
-	 */
+		return (false);
+	}
+
 	private boolean EndBusyState() {
-		Globals.wxEndBusyCursor();
-		return (true);
-	} 
+		// TODO To be done by Venci ...
+
+		return (false);
+	}
 
 	/**
 	 * ...
-	 * 
-	 * @return
 	 * 
 	 * @author Vencislav Medarov
 	 * @email venci932@gmail.com
@@ -689,24 +820,24 @@ public class raGamePanel extends ggPanel {
 					Globals.wxLogError("EndDeal failed. %s:%d", __FILE__,
 							__LINE__);
 					return (-1);
-				} 
+				}
 
 				return (1);
-			} 
-		} 
+			}
+		}
 
 		return (0);
-	} 
+	}
 
 	private boolean OnCardClick(wxPoint pt) {
 		// TODO To be done by ...
 
 		return (false);
-	} 
+	}
 
 	public raGamePanel(final wxWindow parent) {
 		// TODO To be done by ...
-	} 
+	}
 
 	/**
 	 * 
@@ -721,15 +852,15 @@ public class raGamePanel extends ggPanel {
 		for (int i = 0; i < Globals.gmTOTAL_SUITS; i++) {
 			for (int j = 0; j < Globals.gmTOTAL_VALUES; j++) {
 				m_card_faces[(i * Globals.gmTOTAL_VALUES) + j] = null;
-			} 
-		} 
+			}
+		}
 
 		/*
 		 * Delete card backs
 		 */
 		for (int i = 0; i < Globals.raTOTAL_CARD_BACKS; i++) {
 			m_card_backs[i] = null;
-		} 
+		}
 
 		/*
 		 * Delete the bitmaps created from xpms
@@ -763,67 +894,67 @@ public class raGamePanel extends ggPanel {
 		 * Delete tile bitmap
 		 */
 		m_tile = null;
-	} 
+	}
 
 	public boolean SetTile(wxBitmap tile) {
-		// TODO To be done by Venci.
+		// TODO To be done by ...
 
 		return (false);
-	} 
+	}
 
 	public boolean SetInfoPanel(raInfo info_panel) {
-		// TODO To be done by Venci.
+		// TODO To be done by ...
 
 		return (false);
-	} 
+	}
 
 	public boolean NewGame() {
 		return (NewGame(gmUtil.gmPLAYER_INVALID, true));
-	} 
+	}
 
 	public boolean NewGame(int dealer) {
 		return (NewGame(dealer, true));
-	} 
+	}
 
 	public boolean NewGame(int dealer, boolean immediate) {
 		// TODO To be done by ...
 
 		return (false);
-	} 
+	}
 
 	public boolean NewDeal() {
 		// TODO To be done by ...
 
 		return (false);
-	} 
+	}
 
 	public boolean SetClockwise(boolean flag) {
-		// TODO To be done by Venci.
+		// TODO To be done by ...
 
 		return (false);
-	} 
+	}
 
 	public boolean GetClockwise() {
-		// TODO To be done by Venci.
+		// TODO To be done by ...
 
 		return (false);
-	} 
+	}
 
 	public boolean ReloadFromConfig() {
 		// TODO To be done by ...
 
 		return (false);
-	} 
+	}
 
 	public boolean ShowAuction() {
 		// TODO To be done by ...
 
 		return (false);
-	} 
+	}
 
 	public boolean ShowLastTrick() {
 		// TODO To be done by ...
 
 		return (false);
-	} 
-} 
+	}
+}
