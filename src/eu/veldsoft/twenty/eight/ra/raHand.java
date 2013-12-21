@@ -25,7 +25,7 @@ package eu.veldsoft.twenty.eight.ra;
 
 import eu.veldsoft.twenty.eight.dummy.Globals;
 
-public class  raHand {
+public class raHand {
 	public long cards;
 
 	public int count;

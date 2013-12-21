@@ -23,6 +23,6 @@
 
 package eu.veldsoft.twenty.eight.dummy;
 
-public class  wxGridSizer {
+public class wxGridSizer {
 
 }

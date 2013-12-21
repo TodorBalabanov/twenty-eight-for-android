@@ -39,7 +39,7 @@ import eu.veldsoft.twenty.eight.dummy.wxXPMHandler;
 import eu.veldsoft.twenty.eight.dummy.wxXmlResource;
 import eu.veldsoft.twenty.eight.dummy.wxZipFSHandler;
 
-public class  ggCard {
+public class ggCard {
 	/**
 	 * Dummy values.
 	 */
@@ -53,7 +53,7 @@ public class  ggCard {
 	/**
 	 * Logger for debug.
 	 */
-	private final static Logger LOGGER = Logger.getLogger(ggCard.class 
+	private final static Logger LOGGER = Logger.getLogger(ggCard.class
 			.getName());
 	static {
 		LOGGER.setLevel(Level.INFO);

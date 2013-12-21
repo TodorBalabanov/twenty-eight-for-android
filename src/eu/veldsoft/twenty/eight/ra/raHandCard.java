@@ -23,7 +23,7 @@
 
 package eu.veldsoft.twenty.eight.ra;
 
-public class  raHandCard {
+public class raHandCard {
 	public int index;
 
 	public int x;

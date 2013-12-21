@@ -28,7 +28,7 @@ import eu.veldsoft.twenty.eight.dummy.Globals;
 import eu.veldsoft.twenty.eight.dummy.wxLog;
 import eu.veldsoft.twenty.eight.dummy.wxLogStderr;
 
-public class  raApp {
+public class raApp {
 	private FILE m_logfile;
 
 	private wxLogStderr m_logger;

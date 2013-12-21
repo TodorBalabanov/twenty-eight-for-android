@@ -23,7 +23,7 @@
 
 package eu.veldsoft.twenty.eight.ra;
 
-public class  raConfGameData {
+public class raConfGameData {
 	public boolean clockwise;
 
 	public int min_bid3;

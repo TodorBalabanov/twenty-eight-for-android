@@ -23,7 +23,7 @@
 
 package eu.veldsoft.twenty.eight.dummy;
 
-public class  wxInitDialogEvent {
+public class wxInitDialogEvent {
 
 	public void Skip() {
 		// TODO Auto-generated method stub

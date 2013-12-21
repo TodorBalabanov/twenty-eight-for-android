@@ -23,6 +23,6 @@
 
 package eu.veldsoft.twenty.eight.dummy;
 
-public class  wxPoint {
+public class wxPoint {
 
 }

@@ -28,7 +28,7 @@ import eu.veldsoft.twenty.eight.dummy.wxCommandEvent;
 import eu.veldsoft.twenty.eight.dummy.wxSizeEvent;
 import eu.veldsoft.twenty.eight.dummy.wxSplitterWindow;
 
-public class  raFrame {
+public class raFrame {
 	private wxSplitterWindow m_split_main;
 
 	private raGamePanel m_game;

@@ -23,7 +23,7 @@
 
 package eu.veldsoft.twenty.eight.dummy;
 
-public class  wxBitmap {
+public class wxBitmap {
 
 	public wxBitmap(wxImage img_face, int i) {
 	}

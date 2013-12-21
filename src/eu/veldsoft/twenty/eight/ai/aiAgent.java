@@ -45,7 +45,7 @@ public class aiAgent {
 
 	public static final int aiBID_SAMPLE = 100;
 
-	public static final int aiPLAY_SAMPLES = 30 ;
+	public static final int aiPLAY_SAMPLES = 30;
 
 	public static final int aiMAX_MOVES = 20;
 
@@ -428,29 +428,29 @@ public class aiAgent {
 		assert (cards != 0);
 		max_bidder = Globals.gmPLAYER_INVALID;
 		m_engine.GetMaxBid(null, max_bidder);
-		
+
 		assert ((max_bidder >= Globals.gmPLAYER_INVALID) && (max_bidder < Globals.gmTOTAL_PLAYERS));
-		
+
 		if (max_bidder == m_loc) {
 			trump_card = m_engine.GetTrumpCard();
 			assert ((trump_card >= 0) && (trump_card < Globals.gmTOTAL_CARDS));
 			cards |= (1 << trump_card);
 		}
-		
+
 		assert (gmUtil.CountBitsSet(cards) <= 8);
-		
+
 		if (!GetBid(cards, ret_bid, ret_trump, min, force_bid)) {
 			Globals.wxLogDebug("GetBid failed. File - %s Line - %d", __FILE__,
 					__LINE__);
 			return false;
 		}
-		
+
 		assert ((ret_bid == Globals.gmBID_ALL)
 				|| (ret_bid == Globals.gmBID_PASS) || (ret_bid >= min));
-		
+
 		bid = ret_bid;
 		trump = ret_trump;
-		
+
 		return true;
 	}
 

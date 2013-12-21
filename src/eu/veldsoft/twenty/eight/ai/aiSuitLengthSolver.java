@@ -25,7 +25,7 @@ package eu.veldsoft.twenty.eight.ai;
 
 import eu.veldsoft.twenty.eight.dummy.Globals;
 
-public class  aiSuitLengthSolver {
+public class aiSuitLengthSolver {
 	public static final int slLENGTH_MAX = 8;
 
 	public static final int slTOTAL_HANDS = 4;

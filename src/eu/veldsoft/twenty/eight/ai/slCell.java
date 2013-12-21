@@ -23,7 +23,7 @@
 
 package eu.veldsoft.twenty.eight.ai;
 
-public class  slCell {
+public class slCell {
 	public int min;
 
 	public int max;

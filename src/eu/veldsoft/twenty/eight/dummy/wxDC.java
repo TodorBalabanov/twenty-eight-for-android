@@ -23,7 +23,7 @@
 
 package eu.veldsoft.twenty.eight.dummy;
 
-public class  wxDC {
+public class wxDC {
 
 	public boolean Blit(wxCoord xdest, wxCoord ydest, int ggCardWidth,
 			int ggCardHeight, wxMemoryDC mdc, int i, int j, int logicalFunc,

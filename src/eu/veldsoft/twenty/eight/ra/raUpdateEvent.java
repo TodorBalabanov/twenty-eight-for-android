@@ -25,7 +25,7 @@ package eu.veldsoft.twenty.eight.ra;
 
 import eu.veldsoft.twenty.eight.dummy.wxEvent;
 
-public class  raUpdateEvent extends wxEvent {
+public class raUpdateEvent extends wxEvent {
 
 	private String m_msg;
 

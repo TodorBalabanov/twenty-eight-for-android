@@ -26,7 +26,7 @@ package eu.veldsoft.twenty.eight.ra;
 import eu.veldsoft.twenty.eight.dummy.Globals;
 import eu.veldsoft.twenty.eight.dummy.wxEvent;
 
-public class  raBidEvent extends wxEvent {
+public class raBidEvent extends wxEvent {
 	private int m_bid;
 
 	// Disallow copy assignment operator
