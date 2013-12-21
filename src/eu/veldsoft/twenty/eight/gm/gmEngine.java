@@ -36,7 +36,7 @@ public class  gmEngine {
 	 * is called. Once this is done, all further initializations of this struct
 	 * is done be a memcpy from m_init.
 	 */
-	public static gmEngineData m_init;
+	public static gmEngineData m_init ;
 
 	public static boolean m_init_ok;
 
@@ -120,30 +120,12 @@ public class  gmEngine {
 		return mask;
 	}
 
-	/**
-	 * 
-	 * @return
-	 * @author INFM042 F___84 Mariya Kostadinova
-	 * @author INFM032 F___93 Krasimir Chariyski
-	 * @author INFM032 F___68 Georgi Srebrov
-	 */
 	private boolean SetDealEndOutput() {
-		/**
-		 * Check whether there is a winner?
-		 */
-		if (m_data.pts[m_data.curr_max_bidder % 2] >= m_data.curr_max_bid) {
-			m_data.out_deal_end_info.winner = m_data.curr_max_bidder % 2;
-		}
-		// TODO : Remove hard coding of 28
-		else if (m_data.pts[(m_data.curr_max_bidder + 1) % 2] > (28 - m_data.curr_max_bid)) {
-			m_data.out_deal_end_info.winner = (m_data.curr_max_bidder + 1) % 2;
-		} else {
-			return false;
-		}
-		if (m_data.feedback) {
-			SetOutput(Globals.gmOUTPUT_DEAL_END);
-		}
-		return true;
+		// TODO To be done by INFM042 F___84 Mariya Kostadinova ...
+		// TODO To be done by INFM032 F___93 Krasimir Chariyski ...
+		// TODO To be done by INFM032 F___68 Georgi Srebrov ...
+
+		return (false);
 	}
 
 	// Disallow copy finalructor/assignment operators
@@ -222,48 +204,20 @@ public class  gmEngine {
 		return (0);
 	}
 
-	/**
-	 * 
-	 * @param data
-	 * 
-	 * @return
-	 * 
-	 * @author INFM042 F___06 Rosen Kaplanov
-	 * @author INFM032 F___46 Nadya Nedyalkova
-	 * @author INFM032 F___68 Nikola Vushkov
-	 */
 	public static boolean Reset(gmEngineData data) {
-		boolean feedback;
-		gmRules rules = null;
-		feedback = data.feedback;
+		// TODO To be done by INFM042 F___06 Rosen Kaplanov ...
+		// TODO To be done by INFM032 F___46 Nadya Nedyalkova ...
+		// TODO To be done by INFM032 F___68 Nikola Vushkov ...
 
-		try {
-			rules = (gmRules) data.rules.clone();
-		} catch (CloneNotSupportedException e) {
-		}
-		try {
-			data = (gmEngineData) gmEngine.m_init.clone();
-		} catch (CloneNotSupportedException e) {
-		}
-		data.feedback = feedback;
-		try {
-			data.rules = (gmRules) rules.clone();
-		} catch (CloneNotSupportedException e) {
-		}
-
-		return true;
+		return (false);
 	}
 
-	/**
-	 * 
-	 * @return
-	 * 
-	 * @author INFM032 F___45 Valentin Popov
-	 * @author INFM042 F___48 Georgi Ivanov
-	 * @author INFM032 F___05 Iliya Grozev
-	 */
 	public boolean Reset() {
-		return Reset(m_data);
+		// TODO To be done by INFM032 F___45 Valentin Popov ...
+		// TODO To be done by INFM042 F___48 Georgi Ivanov ...
+		// TODO To be done by INFM032 F___05 Iliya Grozev ...
+
+		return (false);
 	}
 
 	public boolean Shuffle() {
@@ -290,16 +244,12 @@ public class  gmEngine {
 		return (false);
 	}
 
-	/**
-	 * 
-	 * @return
-	 * 
-	 * @author INFM042 F___93 Krasimir Chariyski
-	 * @author INFM032 F___45 Valentin Popov
-	 * @author INFM032 F___27 Georgi Kostadinov
-	 */
 	public boolean IsOutputPending() {
-		return m_data.input_pending;
+		// TODO To be done by INFM042 F___93 Krasimir Chariyski ...
+		// TODO To be done by INFM032 F___45 Valentin Popov ...
+		// TODO To be done by INFM032 F___27 Georgi Kostadinov ...
+
+		return (false);
 	}
 
 	public int GetPendingOutputType() {
@@ -318,24 +268,15 @@ public class  gmEngine {
 		return (false);
 	}
 
-	/**
-	 * 
-	 * @return
-	 * @author INFM042 F___14 Petya Atanasova
-	 * @author INFM032 F___93 Krasimir Chariyski
-	 * @author INFM042 F___48 Georgi Ivanov
-	 */
 	public int GetPendingInputType() {
-		/*
-		 * If no input is pending, return invalid type
-		 */
-		if (m_data.input_pending == false) {
-			return Globals.gmINPUT_INVALID;
-		}
-		return m_data.input_type;
+		// TODO To be done by INFM042 F___14 Petya Atanasova ...
+		// TODO To be done by INFM032 F___93 Krasimir Chariyski ...
+		// TODO To be done by INFM042 F___48 Georgi Ivanov ...
+
+		return (0);
 	}
 
-	public boolean GetPendingInputCriteria(int input_type, Object input) {
+	public boolean GetPendingInputCriteria(Integer input_type, Object input) {
 		// TODO To be done by INFM032 F___68 Nikola Vushkov ...
 		// TODO To be done by INFM042 F___48 Georgi Ivanov ...
 		// TODO To be done by INFM042 F___46 Nadya Nedyalkova ...
@@ -424,21 +365,13 @@ public class  gmEngine {
 		// TODO To be done by INFM032 F___56 Daniel Nikolov ...
 	}
 
-	/**
-	 * 
-	 * @param trick_round
-	 * @param trick
-	 * @author INFM032 F___68 Nikola Vushkov
-	 * @author INFM032 F___52 Mihail Stankov
-	 * @author INFM042 F___39 Shterion Yanev
-	 */
 	public void GetTrick(int trick_round, gmTrick trick) {
-		assert ((trick_round >= 0) && (trick_round < Globals.gmTOTAL_TRICKS));
-		try {
-			trick = (gmTrick) m_data.tricks[trick_round].clone();
-		} catch (CloneNotSupportedException e) {
+		// TODO To be done by INFM032 F___68 Nikola Vushkov ...
+		// TODO To be done by INFM032 F___52 Mihail Stankov ...
+		// TODO To be done by INFM042 F___39 Shterion Yanev ...
 
-		}
+		// TODO Try to implement one method with trick_round as default
+		// variable.
 	}
 
 	/**
@@ -461,34 +394,18 @@ public class  gmEngine {
 		return (0);
 	}
 
-	/**
-	 * 
-	 * @param team
-	 * 
-	 * @return
-	 * 
-	 * @author INFM032 F___48 Georgi Ivanov
-	 * @author INFM032 F___06 Rosen Kaplanov
-	 * @author INFM032 F___27 Georgi Kostadinov
-	 */
 	public int GetPoints(int team) {
+		// TODO To be done by INFM032 F___48 Georgi Ivanov ...
+		// TODO To be done by INFM032 F___06 Rosen Kaplanov ...
+		// TODO To be done by INFM032 F___27 Georgi Kostadinov ...
 
-		assert ((team >= 0) && (team < Globals.gmTOTAL_TEAMS));
-		return m_data.pts[team];
+		return (0);
 	}
 
-	/**
-	 * 
-	 * @param pts
-	 * 
-	 * @author INFM042 F___68 Nikola Vushkov
-	 * @author INFM032 F___48 Georgi Ivanov
-	 * @author INFM032 F___05 Iliya Grozev
-	 */
 	public void GetPoints(int pts[]) {
-		assert (pts != null);
-
-		pts = m_data.pts.clone();
+		// TODO To be done by INFM042 F___68 Nikola Vushkov ...
+		// TODO To be done by INFM032 F___48 Georgi Ivanov ...
+		// TODO To be done by INFM032 F___05 Iliya Grozev ...
 	}
 
 	public int GetTrump() {
@@ -565,27 +482,12 @@ public class  gmEngine {
 		return (false);
 	}
 
-	/**
-	 * 
-	 * @param bid
-	 * @param loc
-	 * 
-	 * @return
-	 * 
-	 * @author INFM042 F___68 Nikola Vushkov
-	 * @author INFM032 F___93 Krasimir Chariyski
-	 * @author INFM042 F___05 Iliya Grozev
-	 */
-	public boolean GetMaxBid(int bid, int loc) {
-		if (bid == 1) {
-			bid = m_data.curr_max_bid;
-		}
+	public boolean GetMaxBid(Integer bid, int loc) {
+		// TODO To be done by INFM042 F___68 Nikola Vushkov ...
+		// TODO To be done by INFM032 F___93 Krasimir Chariyski ...
+		// TODO To be done by INFM042 F___05 Iliya Grozev ...
 
-		if (loc == 1) {
-			loc = m_data.curr_max_bidder;
-		}
-
-		return true;
+		return (false);
 	}
 
 	public String GetLoggable() {
@@ -604,16 +506,12 @@ public class  gmEngine {
 		return ("");
 	}
 
-	/**
-	 * 
-	 * @return
-	 * 
-	 * @author INFM032 F___52 Mihail Stankov
-	 * @author INFM042 F___68 Nikola Vushkov
-	 * @author INFM032 F___93 Krasimir Chariyski
-	 */
 	public boolean IsTrumpShown() {
-		return m_data.trump_shown;
+		// TODO To be done by INFM032 F___52 Mihail Stankov ...
+		// TODO To be done by INFM042 F___68 Nikola Vushkov ...
+		// TODO To be done by INFM032 F___93 Krasimir Chariyski ...
+
+		return (false);
 	}
 
 	public int GetTrickNextToPlay() {
