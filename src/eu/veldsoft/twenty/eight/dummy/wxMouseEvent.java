@@ -28,6 +28,6 @@ public class wxMouseEvent {
 	public wxPoint GetPosition() {
 		// TODO Auto-generated method stub
 		return null;
-	}
+	} 
 
-}
+} 
