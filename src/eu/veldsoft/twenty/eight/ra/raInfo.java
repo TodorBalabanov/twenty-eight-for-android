@@ -31,7 +31,7 @@ import eu.veldsoft.twenty.eight.dummy.wxStaticText;
 import eu.veldsoft.twenty.eight.dummy.wxWindow;
 import eu.veldsoft.twenty.eight.gm.gmUtil;
 
-public class raInfo extends wxPanel {
+public class  raInfo extends wxPanel {
 	public static final int raINFO_CMD_NONE = 1;
 
 	public static final int raINFO_CMD_NEW_DEAL = 2;

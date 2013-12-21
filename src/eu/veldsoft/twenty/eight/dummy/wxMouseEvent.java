@@ -23,7 +23,7 @@
 
 package eu.veldsoft.twenty.eight.dummy;
 
-public class wxMouseEvent {
+public class  wxMouseEvent {
 
 	public wxPoint GetPosition() {
 		// TODO Auto-generated method stub

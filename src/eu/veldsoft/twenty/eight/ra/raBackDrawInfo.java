@@ -23,7 +23,7 @@
 
 package eu.veldsoft.twenty.eight.ra;
 
-public class raBackDrawInfo {
+public class  raBackDrawInfo {
 	public boolean draw_bid;
 
 	public int bid_loc;

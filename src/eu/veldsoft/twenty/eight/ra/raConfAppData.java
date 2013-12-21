@@ -23,7 +23,7 @@
 
 package eu.veldsoft.twenty.eight.ra;
 
-public class raConfAppData {
+public class  raConfAppData {
 	public int x;
 
 	public int y;

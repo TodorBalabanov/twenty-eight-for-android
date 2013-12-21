@@ -34,7 +34,7 @@ import eu.veldsoft.twenty.eight.dummy.wxSize;
 import eu.veldsoft.twenty.eight.dummy.wxWindow;
 import eu.veldsoft.twenty.eight.dummy.wxWindowID;
 
-public class raDlgRules {
+public class  raDlgRules {
 
 	/**
 	 * Dummy values.
@@ -91,15 +91,15 @@ public class raDlgRules {
 
 		raConfig.GetInstance().GetData(conf_data);
 		radio_clockwise = (wxRadioButton) Globals.XRCCTRL(this,
-				"m_radlgrules_clockwise", wxRadioButton.class);
+				"m_radlgrules_clockwise", wxRadioButton.class );
 		radio_anticlockwise = (wxRadioButton) Globals.XRCCTRL(this,
-				"m_radlgrules_anticlockwise", wxRadioButton.class);
+				"m_radlgrules_anticlockwise", wxRadioButton.class );
 		combo_minbid3 = (wxComboBox) Globals.XRCCTRL(this,
-				"m_radlgrules_minbidthird", wxComboBox.class);
+				"m_radlgrules_minbidthird", wxComboBox.class );
 		check_waiverule4 = (wxCheckBox) Globals.XRCCTRL(this,
-				"m_radlgrules_waiverule4", wxCheckBox.class);
+				"m_radlgrules_waiverule4", wxCheckBox.class );
 		check_sluffjacks = (wxCheckBox) Globals.XRCCTRL(this,
-				"m_radlgrules_sluffjacks", wxCheckBox.class);
+				"m_radlgrules_sluffjacks", wxCheckBox.class );
 
 		if (conf_data.game_data.clockwise) {
 			radio_clockwise.SetValue(true);

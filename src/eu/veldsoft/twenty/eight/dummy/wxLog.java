@@ -23,6 +23,6 @@
 
 package eu.veldsoft.twenty.eight.dummy;
 
-public class wxLog {
+public class  wxLog {
 
 }

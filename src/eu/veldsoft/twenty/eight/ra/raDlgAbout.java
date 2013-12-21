@@ -29,7 +29,7 @@ import eu.veldsoft.twenty.eight.dummy.wxSize;
 import eu.veldsoft.twenty.eight.dummy.wxWindow;
 import eu.veldsoft.twenty.eight.dummy.wxWindowID;
 
-public class raDlgAbout {
+public class  raDlgAbout {
 	/**
 	 * Disallow copy constructor/assignment operators
 	 * 

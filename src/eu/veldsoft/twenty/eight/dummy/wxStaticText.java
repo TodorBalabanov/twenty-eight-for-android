@@ -23,7 +23,7 @@
 
 package eu.veldsoft.twenty.eight.dummy;
 
-public class wxStaticText {
+public class  wxStaticText {
 
 	public void SetLabel(String string) {
 	}

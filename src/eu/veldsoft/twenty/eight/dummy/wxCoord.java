@@ -23,6 +23,6 @@
 
 package eu.veldsoft.twenty.eight.dummy;
 
-public class wxCoord {
+public class  wxCoord {
 
 }

@@ -23,7 +23,7 @@
 
 package eu.veldsoft.twenty.eight.gm;
 
-public class gmInputTrickInfo {
+public class  gmInputTrickInfo {
 	public int player;
 
 	public boolean can_ask_trump;

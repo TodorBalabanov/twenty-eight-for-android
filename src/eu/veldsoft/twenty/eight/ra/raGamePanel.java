@@ -41,7 +41,7 @@ import eu.veldsoft.twenty.eight.gm.gmTrick;
 import eu.veldsoft.twenty.eight.gm.gmUtil;
 import eu.veldsoft.twenty.eight.dummy.Globals;
 
-public class raGamePanel extends ggPanel {
+public class  raGamePanel extends ggPanel {
 	/**
 	 * Dummy values.
 	 */

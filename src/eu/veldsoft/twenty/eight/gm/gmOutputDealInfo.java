@@ -23,7 +23,7 @@
 
 package eu.veldsoft.twenty.eight.gm;
 
-public class gmOutputDealInfo {
+public class  gmOutputDealInfo {
 	public int round;
 	public long hands[] = new long[gmUtil.gmTOTAL_PLAYERS];
 }

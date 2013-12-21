@@ -35,7 +35,7 @@ import eu.veldsoft.twenty.eight.dummy.wxWindow;
 import eu.veldsoft.twenty.eight.dummy.wxWindowID;
 import eu.veldsoft.twenty.eight.dummy.wxXmlResource;
 
-public class raDlgPrefs extends wxDialog {
+public class  raDlgPrefs extends wxDialog {
 	/**
 	 * Dummy values.
 	 */
@@ -132,7 +132,7 @@ public class raDlgPrefs extends wxDialog {
 
 		raConfig.GetInstance().GetData(conf_data);
 		combo_playcardon = (wxComboBox) Globals.XRCCTRL(this,
-				"m_radlgprefs_playcardon", wxComboBox.class);
+				"m_radlgprefs_playcardon", wxComboBox.class );
 		switch (conf_data.prefs_data.play_card_on) {
 		case Globals.raCONFIG_PREFS_PLAYCARDON_SCLICK:
 			combo_playcardon.SetSelection(Globals.raPREFS_PLAYCARDON_SCLICK);
@@ -146,7 +146,7 @@ public class raDlgPrefs extends wxDialog {
 		}
 
 		combo_cardback = (wxComboBox) Globals.XRCCTRL(this,
-				"m_radlgprefs_cardback", wxComboBox.class);
+				"m_radlgprefs_cardback", wxComboBox.class );
 
 		switch (conf_data.prefs_data.card_back) {
 		case Globals.raCONFIG_PREFS_CARDBACK_BLUE:
@@ -161,10 +161,10 @@ public class raDlgPrefs extends wxDialog {
 		}
 
 		check_autoplay = (wxCheckBox) Globals.XRCCTRL(this,
-				"m_radlgprefs_playsingauto", wxCheckBox.class);
+				"m_radlgprefs_playsingauto", wxCheckBox.class );
 		check_autoplay.SetValue(conf_data.prefs_data.auto_play_single);
 		check_bidbubbles = (wxCheckBox) Globals.XRCCTRL(this,
-				"m_radlgprefs_showbidbubb", wxCheckBox.class);
+				"m_radlgprefs_showbidbubb", wxCheckBox.class );
 		check_bidbubbles.SetValue(conf_data.prefs_data.show_bid_bubbles);
 
 		event.Skip();
@@ -186,7 +186,7 @@ public class raDlgPrefs extends wxDialog {
 		raConfData new_conf = null;
 		raConfig.GetInstance().GetData(new_conf);
 		combo_playcardon = (wxComboBox) Globals.XRCCTRL(this,
-				"m_radlgprefs_playcardon", wxComboBox.class);
+				"m_radlgprefs_playcardon", wxComboBox.class );
 
 		switch (combo_playcardon.GetSelection()) {
 		case Globals.raPREFS_PLAYCARDON_SCLICK:
@@ -201,7 +201,7 @@ public class raDlgPrefs extends wxDialog {
 		}
 
 		combo_cardback = (wxComboBox) Globals.XRCCTRL(this,
-				"m_radlgprefs_cardback", wxComboBox.class);
+				"m_radlgprefs_cardback", wxComboBox.class );
 
 		switch (combo_cardback.GetSelection()) {
 		case Globals.raPREFS_CARDBACK_BLUE:
@@ -216,10 +216,10 @@ public class raDlgPrefs extends wxDialog {
 		}
 
 		check_autoplay = (wxCheckBox) Globals.XRCCTRL(this,
-				"m_radlgprefs_playsingauto", wxCheckBox.class);
+				"m_radlgprefs_playsingauto", wxCheckBox.class );
 		new_conf.prefs_data.auto_play_single = check_autoplay.GetValue();
 		check_bidbubbles = (wxCheckBox) Globals.XRCCTRL(this,
-				"m_radlgprefs_showbidbubb", wxCheckBox.class);
+				"m_radlgprefs_showbidbubb", wxCheckBox.class );
 		new_conf.prefs_data.show_bid_bubbles = check_bidbubbles.GetValue();
 
 		raConfig.GetInstance().SetData(new_conf);

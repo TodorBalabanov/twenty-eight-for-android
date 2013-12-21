@@ -32,7 +32,7 @@ import eu.veldsoft.twenty.eight.dummy.wxPanel;
 import eu.veldsoft.twenty.eight.dummy.wxStaticText;
 import eu.veldsoft.twenty.eight.dummy.wxWindow;
 
-public class raBid {
+public class  raBid {
 	public static final int raBID_BTN_ROWS = 5;
 
 	public static final int raBID_BTN_COLS = 3;

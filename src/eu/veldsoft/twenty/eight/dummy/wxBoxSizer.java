@@ -23,6 +23,6 @@
 
 package eu.veldsoft.twenty.eight.dummy;
 
-public class wxBoxSizer {
+public class  wxBoxSizer {
 
 }

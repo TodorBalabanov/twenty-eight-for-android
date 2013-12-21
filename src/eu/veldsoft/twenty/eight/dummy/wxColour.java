@@ -23,7 +23,7 @@
 
 package eu.veldsoft.twenty.eight.dummy;
 
-public class wxColour {
+public class  wxColour {
 
 	public wxColour(wxColour arg0) {
 	}

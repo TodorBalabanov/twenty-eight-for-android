@@ -29,7 +29,7 @@ package eu.veldsoft.twenty.eight.gm;
  * @email venci932@gmail.com
  * @date 13 Dec 2013
  */
-public class gmRules implements Cloneable {
+public class  gmRules implements Cloneable {
 	/**
 	 * 
 	 */

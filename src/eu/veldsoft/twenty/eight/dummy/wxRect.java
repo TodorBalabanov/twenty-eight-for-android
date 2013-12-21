@@ -23,7 +23,7 @@
 
 package eu.veldsoft.twenty.eight.dummy;
 
-public class wxRect {
+public class  wxRect {
 	public int x;
 
 	public int y;

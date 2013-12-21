@@ -23,7 +23,7 @@
 
 package eu.veldsoft.twenty.eight.ra;
 
-public class raConfPrefsData {
+public class  raConfPrefsData {
 	public int play_card_on;
 
 	public int card_back;

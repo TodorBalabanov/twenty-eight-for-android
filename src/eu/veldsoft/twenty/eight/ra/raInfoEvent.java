@@ -26,7 +26,7 @@ package eu.veldsoft.twenty.eight.ra;
 import eu.veldsoft.twenty.eight.dummy.wxEvent;
 import eu.veldsoft.twenty.eight.dummy.Globals;
 
-public class raInfoEvent extends wxEvent {
+public class  raInfoEvent extends wxEvent {
 	private int m_cmd;
 
 	// Disallow copy assignment operator

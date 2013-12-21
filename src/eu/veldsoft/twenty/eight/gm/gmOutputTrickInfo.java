@@ -23,7 +23,7 @@
 
 package eu.veldsoft.twenty.eight.gm;
 
-public class gmOutputTrickInfo {
+public class  gmOutputTrickInfo {
 	public int points[] = new int[gmUtil.gmTOTAL_TEAMS];
 
 	public gmTrick trick;

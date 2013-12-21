@@ -23,7 +23,7 @@
 
 package eu.veldsoft.twenty.eight.ra;
 
-public class raConfData implements Cloneable {
+public class  raConfData implements Cloneable {
 	public raConfAppData app_data;
 
 	public raConfGameData game_data;

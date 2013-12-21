@@ -25,7 +25,7 @@ package eu.veldsoft.twenty.eight.gm;
 
 import eu.veldsoft.twenty.eight.dummy.Globals;
 
-public class gmRandState {
+public class  gmRandState {
 	public int state_array[] = new int[Globals.N32];
 
 	public int idx;

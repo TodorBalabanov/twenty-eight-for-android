@@ -28,7 +28,7 @@ import eu.veldsoft.twenty.eight.dummy.wxConfig;
 import eu.veldsoft.twenty.eight.dummy.wxMutex;
 import eu.veldsoft.twenty.eight.dummy.wxMutexLocker;
 
-public class raConfig {
+public class  raConfig {
 	/**
 	 * Dummy values.
 	 */

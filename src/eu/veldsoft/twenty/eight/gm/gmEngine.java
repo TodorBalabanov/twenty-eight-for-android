@@ -25,7 +25,7 @@ package eu.veldsoft.twenty.eight.gm;
 
 import eu.veldsoft.twenty.eight.dummy.Globals;
 
-public class gmEngine {
+public class  gmEngine {
 	/**
 	 * Initialization of the gmEngineData structure used by each gmEngine
 	 * instance (m_data) is a costly affair because 1) the structure is huge 2)

@@ -36,7 +36,7 @@ import eu.veldsoft.twenty.eight.dummy.wxPoint;
 import eu.veldsoft.twenty.eight.dummy.wxRect;
 import eu.veldsoft.twenty.eight.dummy.wxWindow;
 
-public class ggPanel extends wxPanel {
+public class  ggPanel extends wxPanel {
 	private wxBitmap m_back;
 
 	private wxBitmap m_work;

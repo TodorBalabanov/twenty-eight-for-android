@@ -27,7 +27,7 @@ import eu.veldsoft.twenty.eight.dummy.Globals;
 import eu.veldsoft.twenty.eight.dummy.wxFrame;
 import eu.veldsoft.twenty.eight.dummy.wxTheApp;
 
-public class raUpdate {
+public class  raUpdate {
 	/**
 	 * Dummy values.
 	 */

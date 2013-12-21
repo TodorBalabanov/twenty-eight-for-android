@@ -23,7 +23,7 @@
 
 package eu.veldsoft.twenty.eight.gm;
 
-public class gmEngineData implements Cloneable {
+public class  gmEngineData implements Cloneable {
 	public boolean ok;
 
 	public boolean feedback;

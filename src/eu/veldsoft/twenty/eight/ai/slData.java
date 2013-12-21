@@ -25,7 +25,7 @@ package eu.veldsoft.twenty.eight.ai;
 
 import java.util.Arrays;
 
-public class slData {
+public class  slData {
 	public slCell cells[][] = new slCell[aiSuitLengthSolver.slTOTAL_HANDS][aiSuitLengthSolver.slTOTAL_SUITS];
 
 	public int suit_total_length[] = new int[aiSuitLengthSolver.slTOTAL_SUITS];

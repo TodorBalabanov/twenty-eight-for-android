@@ -23,7 +23,7 @@
 
 package eu.veldsoft.twenty.eight.gm;
 
-public class gmRand {
+public class  gmRand {
 	private static int idx;
 	private static int[] psfmt32;
 

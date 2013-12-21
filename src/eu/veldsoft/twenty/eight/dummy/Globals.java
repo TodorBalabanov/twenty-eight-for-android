@@ -27,7 +27,7 @@ import java.util.Random;
 
 import eu.veldsoft.twenty.eight.gg.ggCard;
 
-public class Globals {
+public class  Globals {
 
 	public static final Random PRNG = new Random();
 
@@ -225,7 +225,7 @@ public class Globals {
 	public static void wxLogMessage(String string) {
 	}
 
-	public static Object XRCCTRL(Object arg1, String arg2, Class arg3) {
+	public static Object XRCCTRL(Object arg1, String arg2, class  arg3) {
 		return null;
 	}
 

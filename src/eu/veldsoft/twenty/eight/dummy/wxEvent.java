@@ -23,7 +23,7 @@
 
 package eu.veldsoft.twenty.eight.dummy;
 
-public class wxEvent {
+public class  wxEvent {
 
 	private wxEvent type;
 

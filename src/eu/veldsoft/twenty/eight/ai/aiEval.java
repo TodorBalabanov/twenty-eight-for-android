@@ -23,7 +23,7 @@
 
 package eu.veldsoft.twenty.eight.ai;
 
-public class aiEval {
+public class  aiEval {
 	public int eval;
 
 	public int count;

@@ -23,6 +23,6 @@
 
 package eu.veldsoft.twenty.eight.dummy;
 
-public class wxPaintEvent {
+public class  wxPaintEvent {
 
 }

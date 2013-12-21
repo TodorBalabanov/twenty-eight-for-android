@@ -23,7 +23,7 @@
 
 package eu.veldsoft.twenty.eight.ra;
 
-public class raCommon {
+public class  raCommon {
 
 	static final int raSBARPOS_GEN = 0;
 
