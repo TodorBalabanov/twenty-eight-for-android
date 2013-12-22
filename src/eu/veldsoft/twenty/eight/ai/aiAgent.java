@@ -330,14 +330,50 @@ public class aiAgent {
 
 		return true;
 	}
-
+	
+	/**
+	 * 	@author F___68 Georgi Srebrov ...
+	 *	@author F___90 Svetoslav Slavkov ...
+	 *	@author2 F___81 Marina Rangelova ...
+	 */
 	private boolean MakeMoveAndEval(gmEngine node, aiMove move, int depth,
 			int eval) {
-		// TODO To be done by INFM032 F___68 Georgi Srebrov ...
-		// TODO To be done by INFM032 F___90 Svetoslav Slavkov ...
-		// TODO To be done by INFM032 F___81 Marina Rangelova ...
+		boolean eval_ret;
+		int temp;
 
-		return (false);
+		assert(node!=null);
+		assert(eval!=0);
+		assert(move!=null);
+		assert(depth > 0);
+
+		if (!MakeMove(node, move))
+		{
+			Globals.wxLogError("MakeMove failed. %s:%d",
+					__FILE__, __LINE__);
+			Globals.wxLogError(node.GetLoggable());
+			if (move.ask_trump)
+			{
+				Globals.wxLogError("Move attempted ?%s%s",gmUtil.m_suits[Globals.gmGetSuit(move.card)], gmUtil.m_values[Globals.gmGetValue(move.card)], __LINE__);
+			}
+			else
+			{
+				Globals.wxLogError("Move attempted ?%s%s",gmUtil.m_suits[Globals.gmGetSuit(move.card)], gmUtil.m_values[Globals.gmGetValue(move.card)], __LINE__);
+			}
+			return false;
+		}
+
+		eval_ret = false;
+		temp = aiNEG_INFTY;
+		temp = Evaluate(node, aiNEG_INFTY, aiPOS_INFTY, depth, eval_ret);
+		assert(temp != aiNEG_INFTY);
+		if (!eval_ret)
+		{
+			Globals.wxLogError("Evaluate failed. %s:%d",__FILE__, __LINE__);
+			return false;
+		}
+		else {
+			return true;
+		}
 	}
 
 	protected void finalize() {

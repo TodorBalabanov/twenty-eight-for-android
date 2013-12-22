@@ -119,13 +119,32 @@ public class gmEngine {
 
 		return mask;
 	}
-
+	
+	/**
+	 * @author INFM042 F___84 Mariya Kostadinova
+	 * @author INFM032 F___93 Krasimir Chariyski
+	 * @author INFM042 F___68 Georgi Srebrov
+	 */
 	private boolean SetDealEndOutput() {
-		// TODO To be done by INFM042 F___84 Mariya Kostadinova ...
-		// TODO To be done by INFM032 F___93 Krasimir Chariyski ...
-		// TODO To be done by INFM032 F___68 Georgi Srebrov ...
+		// Check whether there is a winner?
+		if (m_data.pts[m_data.curr_max_bidder % 2] >= m_data.curr_max_bid)
+		{
+			m_data.out_deal_end_info.winner = m_data.curr_max_bidder % 2;
+		}
+		else if (m_data.pts[(m_data.curr_max_bidder + 1) % 2] > (28 - m_data.curr_max_bid))
+		{
+			m_data.out_deal_end_info.winner = (m_data.curr_max_bidder + 1) % 2;
+		}
+		else
+		{
+			return false;
+		}
+		if (m_data.feedback)
+		{
+			SetOutput(Globals.gmOUTPUT_DEAL_END);
+		}
+		return true;
 
-		return (false);
 	}
 
 	// Disallow copy finalructor/assignment operators
@@ -196,12 +215,14 @@ public class gmEngine {
 		return m_data.ok;
 	}
 
-	public int GetStatus() {
-		// TODO To be done by INFM042 F___45 Valentin Popov ...
-		// TODO To be done by INFM032 F___68 Georgi Srebrov ...
-		// TODO To be done by INFM042 F___68 Nikola Vushkov ...
+	/**
+	 * 	@author INFM042 F___45 Valentin Popov
+	 *	@author INFM032 F___68 Georgi Srebrov
+	 *	@author INFM042 F___68 Nikola Vushkov
+	 */
 
-		return (0);
+	public int GetStatus() {
+		return m_data.status;
 	}
 
 	/**
@@ -385,10 +406,17 @@ public class gmEngine {
 		// TODO To be done by INFM032 F___56 Daniel Nikolov ...
 	}
 
+	/**
+	 * 
+	 * @param cards
+	 * 
+	 * @author INFM042 F___68 Georgi Srebrov
+	 * @author INFM042 F___48 Georgi Ivanov
+	 * @author INFM042 F___56 Daniel Nikolov
+	 */
+
 	public void GetCardsPlayed(long cards) {
-		// TODO To be done by INFM042 F___68 Georgi Srebrov ...
-		// TODO To be done by INFM042 F___48 Georgi Ivanov ...
-		// TODO To be done by INFM032 F___56 Daniel Nikolov ...
+		  System.arraycopy(m_data.played_cards, 0,cards, 0,m_data.played_cards.length);
 	}
 
 	public void GetTrick(int trick_round, gmTrick trick) {
@@ -479,10 +507,23 @@ public class gmEngine {
 		m_data.dealer = dealer;
 	}
 
+	
+	/**
+	 * 	@author INFM042 F___27 Georgi Kostadinov
+	 *	@author INFM042 F___14 Petya Atanasova
+	 *	@author INFM042 F___68 Georgi Srebrov
+	 */
 	public static void ResetTrick(gmTrick trick) {
-		// TODO To be done by INFM042 F___27 Georgi Kostadinov ...
-		// TODO To be done by INFM042 F___14 Petya Atanasova ...
-		// TODO To be done by INFM042 F___68 Georgi Srebrov ...
+
+		for (int j = 0; j < Globals.gmTOTAL_PLAYERS; j++) {
+			trick.cards[j] = Globals.gmCARD_INVALID;
+		}
+		trick.count = 0;
+		trick.lead_loc = Globals.gmPLAYER_INVALID;
+		trick.lead_suit = Globals.gmSUIT_INVALID;
+		trick.points = 0;
+		trick.trumped = false;
+		trick.winner = Globals.gmPLAYER_INVALID;
 	}
 
 	/**
@@ -524,12 +565,14 @@ public class gmEngine {
 		return (false);
 	}
 
-	public String GetLoggable() {
-		// TODO To be done by INFM042 F___14 Petya Atanasova ...
-		// TODO To be done by INFM032 F___68 Nikola Vushkov ...
-		// TODO To be done by INFM042 F___68 Georgi Srebrov ...
 
-		return ("");
+	/**
+	 * 	@author INFM042 F___14 Petya Atanasova
+	 *	@author INFM032 F___68 Nikola Vushkov
+	 *	@author INFM042 F___68 Georgi Srebrov
+	 */
+	public String GetLoggable() {
+		return PrintRuleEngineData(m_data);
 	}
 
 	public static String PrintRuleEngineData(gmEngineData data) {
@@ -562,15 +605,28 @@ public class gmEngine {
 		// TODO To be done by INFM032 F___48 Georgi Ivanov ...
 	}
 
+	/**
+	 * 
+	 * @param flag
+	 * 
+	 * @author INFM042 F___81 Marina Rangelova
+	 * @author INFM042 F___68 Georgi Srebrov
+	 * @author INFM042 F___56 Daniel Nikolov
+	 */
+
 	public void SetWaiveRuleFour(boolean flag) {
-		// TODO To be done by INFM042 F___81 Marina Rangelova ...
-		// TODO To be done by INFM042 F___68 Georgi Srebrov ...
-		// TODO To be done by INFM032 F___56 Daniel Nikolov ...
+		m_data.rules.waive_rule_4 = flag;
 	}
 
+	/**
+	 * 
+	 * @param flag
+	 * 
+	 * @author INFM032 F___68 Georgi Srebrov
+	 * @author INFM042 F___47 Kostadin Bulakiev
+	 * @author INFM032 F___68 Nikola Vushkov
+	 */
 	public void SetSluffJacks(boolean flag) {
-		// TODO To be done by INFM032 F___68 Georgi Srebrov ...
-		// TODO To be done by INFM042 F___47 Kostadin Bulakiev ...
-		// TODO To be done by INFM032 F___68 Nikola Vushkov ...
+		m_data.rules.sluff_jacks = flag;
 	}
 }

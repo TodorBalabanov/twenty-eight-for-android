@@ -561,13 +561,78 @@ public class aiSuitLengthSolver {
 
 		return (false);
 	} 
+	
+	/**
+	 * 
+	 * @param solution
+	 * 
+	 * @return
+	 * 
+	 * @author INFM042 F___45 Valentin Popov
+	 * @author INFM032 F___84 Mariya Kostadinova
+	 * @author INFM042 F___68 Georgi Srebrov
+	 */
 
 	public boolean GenerateRandomSolution(int[][] solution) {
-		// TODO To be done by INFM042 F___45 Valentin Popov ...
-		// TODO To be done by INFM032 F___84 Mariya Kostadinova ...
-		// TODO To be done by INFM042 F___68 Georgi Srebrov ...
+		int i = 0;
+		int j = 0;
+		int fill = 0;
 
-		return (false);
+		if (solution == null)
+		{
+			return false;
+		}
+		  System.arraycopy(m_saved, 0, m_working, 0,m_saved.cells.length);
+	
+	///#if slLOG_DEBUG_GETRANDSOLN
+		  Globals.wxLogDebug("Problem :");
+		  Globals.wxLogDebug(PrintData(m_working));
+	///#endif
+
+		for (i = 0; i < slTOTAL_HANDS; i++)
+		{
+			for (j = 0; j < slTOTAL_SUITS; j++)
+			{
+				// Fill only if the cell is vacant
+
+				if (m_working.cells[i][j].suit_length == slVACANT)
+				{
+					// In a vacant cell, if max and min are the same, then that is the only option.
+					// No need to try to get a random number.
+
+					if (m_working.cells[i][j].max == m_working.cells[i][j].min)
+					{
+						fill = m_working.cells[i][j].max;
+					}
+					else
+					{
+						fill = GenerateRandomFill(m_working.cells[i][j].min, m_working.cells[i][j].max);
+					}
+	///#if slLOG_DEBUG_GETRANDSOLN
+					Globals.wxLogDebug("Attempting to fill (%d, %d) with %d", i, j, fill);
+	///#endif
+					SetCell(m_working, i, j, fill);
+	///#if slLOG_DEBUG_GETRANDSOLN
+					Globals.wxLogDebug(PrintData(m_working));
+	///#endif
+				}
+			}
+		}
+
+		// Set the solution
+
+		for (i = 0; i < slTOTAL_HANDS; i++)
+		{
+			for (j = 0; j < slTOTAL_SUITS; j++)
+			{
+				solution[i][j] = m_working.cells[i][j].suit_length;
+			}
+		}
+	///#if slLOG_DEBUG_GETRANDSOLN
+		Globals.wxLogDebug(PrintMatrix(solution));
+	///#endif
+		return true;
+
 	} 
 
 	public String PrintSavedData() {
