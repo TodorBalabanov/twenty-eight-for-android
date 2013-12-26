@@ -27,6 +27,7 @@ import eu.veldsoft.twenty.eight.dummy.FILE;
 import eu.veldsoft.twenty.eight.dummy.Globals;
 import eu.veldsoft.twenty.eight.dummy.wxLog;
 import eu.veldsoft.twenty.eight.dummy.wxLogStderr;
+import eu.veldsoft.twenty.eight.dummy.wxTheApp;
 
 public class raApp {
 	private FILE m_logfile;
@@ -38,6 +39,10 @@ public class raApp {
 	private raUpdate m_update;
 
 	private raFrame m_frame;
+
+	private String __FILE__ = "raAPP";
+
+	private String __LINE__ = "";
 
 	// Disallow copy finalructor/assignment operators
 
@@ -115,13 +120,26 @@ public class raApp {
 
 		return (true);
 	}
+	/**
+	 * 
+	 * @author INFM042 F___39 Shterion Yanev
+	 * @author INFM032 F___56 Daniel Nikolov
+	 * @author INFM042 F___68 Georgi Srebrov
+	 */
+
 
 	public int OnRun() {
-		// TODO To be done by INFM042 F___39 Shterion Yanev ...
-		// TODO To be done by INFM032 F___56 Daniel Nikolov ...
-		// TODO To be done by INFM042 F___68 Georgi Srebrov ...
+		// Check for updates
+		m_update = null;
+		m_update = new raUpdate();
+		if (m_update==null)
+		{
+			Globals.wxLogError(String.format("m_update = new raUpdate(); failed. %s:%d", __FILE__, __LINE__));
+			Globals.wxMessageBox("Failed to create an instance of the thread which checks for updates!", __FILE__, 135);
+		}
+		
+		return 0;
 
-		return (0);
 	}
 
 	public int OnExit() {
