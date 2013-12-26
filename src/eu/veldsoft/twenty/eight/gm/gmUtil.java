@@ -304,11 +304,26 @@ public class gmUtil {
 				+ BitsSetTable256[(int) (v >> 24)];
 	} 
 
-	public static long HighestBitSet(long v) {
-		// TODO To be done by INFM042 F___68 Georgi Srebrov ...
-		// TODO To be done by INFM042 F___05 Iliya Grozev ...
-		// TODO To be done by INFM032 F___48 Georgi Ivanov ...
+	/**
+	 * 
+	 * @param  v
+	 * 
+	 * @return long
+	 * 
+	 * @author INFM042 F___68 Georgi Srebrov
+	 * @author INFM042 F___05 Iliya Grozev
+	 * @author INFM032 F___48 Georgi Ivanov
+	 */
 
-		return (0);
+	public static long HighestBitSet(long v) {
+		 long t = 0, tt = 0; // temporaries
+		if (tt == v >> 16)
+		{
+			return (t == v >> 24) ? 24 + LogTable256[(int) t] : 16 + LogTable256[(int) (tt & 0xFF)];
+		}
+		else
+		{
+			return (t == v >> 8) ? 8 + LogTable256[(int) t] : LogTable256[(int) v];
+		}
 	} 
 } 
