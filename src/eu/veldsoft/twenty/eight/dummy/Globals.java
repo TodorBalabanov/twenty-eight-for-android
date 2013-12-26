@@ -238,6 +238,8 @@ public class Globals {
 
 	public static Object wxThread;
 	
+	public static final int gmINPUT_TRICK = 2;
+	
 	public static void wxLogError(String string, String file, int line) {
 	}
 
