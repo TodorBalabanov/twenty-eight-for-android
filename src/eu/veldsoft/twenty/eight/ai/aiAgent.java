@@ -114,7 +114,8 @@ public class aiAgent {
 		 */
 	}
 
-	private boolean EstimateTricks(long[] hands, int trump, int[] trick_count_array) {
+	private boolean EstimateTricks(long[] hands, int trump,
+			int[] trick_count_array) {
 		// TODO To be done by INFM032 F___45 Valentin Popov ...
 		// TODO To be done by INFM032 F___81 Marina Rangelova ...
 		// TODO To be done by INFM042 F___90 Svetoslav Slavkov ...
@@ -159,10 +160,10 @@ public class aiAgent {
 		eval[0] = (total_pts * trick_count_array[0]) / (8 - trick_count);
 		eval[1] = (total_pts * trick_count_array[1]) / (8 - trick_count);
 		if (Globals.raAI_LOG_ESTIMATE_POINTS) {
-			Globals.wxLogDebug("Points expected before sharing - %d, %d",
-					eval[0], eval[1]);
-			Globals.wxLogDebug("Points shared- %d",
-					(total_pts - eval[0] - eval[1]) / 4);
+			Globals.wxLogDebug(String.format("Points expected before sharing - %d, %d",
+					eval[0], eval[1]));
+			Globals.wxLogDebug(String.format("Points shared- %d",
+					(total_pts - eval[0] - eval[1]) / 4));
 		}
 
 		/*
@@ -229,7 +230,7 @@ public class aiAgent {
 	}
 
 	/**
-	 *  
+	 * 
 	 * @author INFM042 F___46 Nadya Nedyalkov
 	 * @author INFM032 F___56 Daniel Nikolov
 	 * @author INFM032 F___68 Georgi Srebrov
@@ -237,10 +238,6 @@ public class aiAgent {
 
 	private int Evaluate(gmEngine node, int alpha, int beta, int depth,
 			boolean ret_val) {
-		// TODO To be done by INFM042 F___46 Nadya Nedyalkova ...
-		// TODO To be done by INFM032 F___56 Daniel Nikolov ...
-		// TODO To be done by INFM032 F___68 Georgi Srebrov ...
-		
 		int eval;
 		gmEngineData old_node = new gmEngineData();
 		int i;
@@ -250,131 +247,123 @@ public class aiAgent {
 		int move_count = 0;
 		int ret_heur;
 
-		assert(ret_val);
+		assert (ret_val);
 		ret_val = true;
 
 		trick_round = node.GetTrickRound();
-		assert((trick_round >= 0) && (trick_round <= 8));
+		assert ((trick_round >= 0) && (trick_round <= 8));
 
-	///#if raAI_LOG_EVALUATE
-		Globals.wxLogDebug(String.format("Evaluating round %d. %s:%d", trick_round, __FILE__, __LINE__));
-	///#endif
+		// /#if raAI_LOG_EVALUATE
+		Globals.wxLogDebug(String.format("Evaluating round %d. %s:%d",
+				trick_round, __FILE__, __LINE__));
+		// /#endif
 
 		// If node is leaf, estimate heuristic
-		if ((trick_round == 8) || (trick_round >= depth))
-		{
+		if ((trick_round == 8) || (trick_round >= depth)) {
 			ret_heur = EstimateHeuristic(node);
-	///#if raAI_LOG_EVALUATE
+			// /#if raAI_LOG_EVALUATE
 			Globals.wxLogDebug("Logging at leaf");
 			Globals.wxLogDebug("-------------------------------");
 			Globals.wxLogDebug(node.GetLoggable());
-			Globals.wxLogDebug(String.format("Estimated Heuristic - %d", ret_heur));
+			Globals.wxLogDebug(String.format("Estimated Heuristic - %d",
+					ret_heur));
 			Globals.wxLogDebug("-------------------------------");
-	///#endif
+			// /#endif
 			return ret_heur;
 		}
 
 		// Backup the current state of the rule engine
 		node.GetData(old_node);
 
-		if (node.GetPendingInputType() != Globals.gmINPUT_TRICK)
-		{
-			Globals.wxLogError(String.format("Unexpected input type. %s:%d",__FILE__, __LINE__));
+		if (node.GetPendingInputType() != Globals.gmINPUT_TRICK) {
+			Globals.wxLogError(String.format("Unexpected input type. %s:%d",
+					__FILE__, __LINE__));
 			ret_val = false;
 			return 0;
 		}
 
-		if (!node.GetPendingInputCriteria(null, trick_info))
-		{
-			Globals.wxLogError(String.format("GetPendingInputCriteria failed. %s:%d", __FILE__, __LINE__));
+		if (!node.GetPendingInputCriteria(null, trick_info)) {
+			Globals.wxLogError(String
+					.format("GetPendingInputCriteria failed. %s:%d", __FILE__,
+							__LINE__));
 			ret_val = false;
 			return 0;
 		}
 
-	
-		//if node is a minimizing node
-		if ((trick_info.player & 1) != (m_loc & 1))
-		{
+		// if node is a minimizing node
+		if ((trick_info.player & 1) != (m_loc & 1)) {
 			GenerateMoves(node, moves, move_count);
-			assert(move_count>0);
+			assert (move_count > 0);
 
-	///#if raAI_ORDERMOVES
-			if (move_count > 1)
-			{
+			// /#if raAI_ORDERMOVES
+			if (move_count > 1) {
 				OrderMoves(node, moves, move_count);
 			}
-	///#endif
+			// /#endif
 
-			if (move_count <= 0)
-			{
+			if (move_count <= 0) {
 				Globals.wxLogError(node.GetLoggable());
 			}
 			// for each child of node
-			for (i = 0; i < move_count; i++)
-			{
-				if (!MakeMove(node, moves[i]))
-				{
-					Globals.wxLogError(String.format("MakeMove failed. %s:%d", __FILE__, __LINE__));
-				ret_val = false;
+			for (i = 0; i < move_count; i++) {
+				if (!MakeMove(node, moves[i])) {
+					Globals.wxLogError(String.format("MakeMove failed. %s:%d",
+							__FILE__, __LINE__));
+					ret_val = false;
 					return 0;
 				}
-				//beta = min (beta, evaluate (child, alpha, beta))
+				// beta = min (beta, evaluate (child, alpha, beta))
 				eval = Evaluate(node, alpha, beta, depth, ret_val);
-				if (!ret_val)
-				{
-					Globals.wxLogError(String.format("Evaluate failed. %s:%d", __FILE__, __LINE__));
+				if (!ret_val) {
+					Globals.wxLogError(String.format("Evaluate failed. %s:%d",
+							__FILE__, __LINE__));
 					return 0;
 				}
 				beta = Math.min(beta, eval);
 				node.SetData(old_node, false);
-				//if beta <= alpha
-				//	return alpha
-				if (beta <= alpha)
-				{
+				// if beta <= alpha
+				// return alpha
+				if (beta <= alpha) {
 					return alpha;
 				}
 			}
-			//return beta
+			// return beta
 			return beta;
 
 		}
-		//if node is a maximizing node
-		else
-		{
+		// if node is a maximizing node
+		else {
 			GenerateMoves(node, moves, move_count);
-			assert(move_count>0);
+			assert (move_count > 0);
 
-	///#if raAI_ORDERMOVES
-			if (move_count > 1)
-			{
+			// /#if raAI_ORDERMOVES
+			if (move_count > 1) {
 				OrderMoves(node, moves, move_count);
 			}
-	///#endif
-			if (move_count <= 0)
-			{
+			// /#endif
+			if (move_count <= 0) {
 				Globals.wxLogError(node.GetLoggable());
 			}
 			// for each child of node
-			for (i = 0; i < move_count; i++)
-			{
-				if (!MakeMove(node, moves[i]))
-				{					Globals.wxLogError(String.format("MakeMove failed. %s:%d", __FILE__, __LINE__));
+			for (i = 0; i < move_count; i++) {
+				if (!MakeMove(node, moves[i])) {
+					Globals.wxLogError(String.format("MakeMove failed. %s:%d",
+							__FILE__, __LINE__));
 					ret_val = false;
 					return 0;
 				}
-				//alpha = max (alpha, evaluate (child, alpha, beta))
+				// alpha = max (alpha, evaluate (child, alpha, beta))
 				eval = Evaluate(node, alpha, beta, depth, ret_val);
-				if (!ret_val)
-				{
-					Globals.wxLogError(String.format("Evaluate failed. %s:%d",__FILE__, __LINE__));
+				if (!ret_val) {
+					Globals.wxLogError(String.format("Evaluate failed. %s:%d",
+							__FILE__, __LINE__));
 					return 0;
 				}
 				alpha = Math.max(alpha, eval);
 				node.SetData(old_node, false);
-				//if beta <= alpha
-				//    return beta
-				if (beta <= alpha)
-				{
+				// if beta <= alpha
+				// return beta
+				if (beta <= alpha) {
 					return beta;
 				}
 			}
@@ -450,19 +439,19 @@ public class aiAgent {
 		 */
 		trick_info.card = move.card;
 		if (Globals.raAI_LOG_MAKEMOVE) {
-			Globals.wxLogDebug("%s making a move %s%s. %s:%d",
+			Globals.wxLogDebug(String.format("%s making a move %s%s. %s:%d",
 					gmUtil.m_short_locs[trick_info.player],
 					gmUtil.m_suits[Globals.gmGetSuit(move.card)],
 					gmUtil.m_values[Globals.gmGetValue(move.card)], __FILE__,
-					__LINE__);
+					__LINE__));
 		}
 
 		if (node.PostInputMessage(Globals.gmINPUT_TRICK, trick_info) != 0) {
 			node.PostInputMessage(Globals.gmINPUT_TRICK, trick_info);
-			Globals.wxLogDebug("Player %s Card %s%s",
+			Globals.wxLogDebug(String.format("Player %s Card %s%s",
 					gmUtil.m_short_locs[trick_info.player],
 					gmUtil.m_suits[Globals.gmGetSuit(trick_info.card)],
-					gmUtil.m_values[Globals.gmGetValue(trick_info.card)]);
+					gmUtil.m_values[Globals.gmGetValue(trick_info.card)]));
 			Globals.wxLogError("PostInputMessage failed. %s:%d", __FILE__,
 					__LINE__);
 			return false;
@@ -476,11 +465,11 @@ public class aiAgent {
 
 		return true;
 	}
-	
+
 	/**
-	 * 	@author F___68 Georgi Srebrov ...
-	 *	@author F___90 Svetoslav Slavkov ...
-	 *	@author2 F___81 Marina Rangelova ...
+	 * @author F___68 Georgi Srebrov ...
+	 * @author F___90 Svetoslav Slavkov ...
+	 * @author2 F___81 Marina Rangelova ...
 	 */
 	private boolean MakeMoveAndEval(gmEngine node, aiMove move, int depth,
 			int eval) {
@@ -488,23 +477,24 @@ public class aiAgent {
 		boolean eval_ret;
 		int temp;
 
-		assert(node!=null);
-		assert(eval!=0);
-		assert(move!=null);
-		assert(depth > 0);
+		assert (node != null);
+		assert (eval != 0);
+		assert (move != null);
+		assert (depth > 0);
 
-		if (!MakeMove(node, move))
-		{
-			Globals.wxLogError("MakeMove failed. %s:%d",
-					__FILE__, __LINE__);
+		if (!MakeMove(node, move)) {
+			Globals.wxLogError("MakeMove failed. %s:%d", __FILE__, __LINE__);
 			Globals.wxLogError(node.GetLoggable());
-			if (move.ask_trump)
-			{
-				Globals.wxLogError("Move attempted ?%s%s",gmUtil.m_suits[Globals.gmGetSuit(move.card)], gmUtil.m_values[Globals.gmGetValue(move.card)], __LINE__);
-			}
-			else
-			{
-				Globals.wxLogError("Move attempted ?%s%s",gmUtil.m_suits[Globals.gmGetSuit(move.card)], gmUtil.m_values[Globals.gmGetValue(move.card)], __LINE__);
+			if (move.ask_trump) {
+				Globals.wxLogError("Move attempted ?%s%s",
+						gmUtil.m_suits[Globals.gmGetSuit(move.card)],
+						gmUtil.m_values[Globals.gmGetValue(move.card)],
+						__LINE__);
+			} else {
+				Globals.wxLogError("Move attempted ?%s%s",
+						gmUtil.m_suits[Globals.gmGetSuit(move.card)],
+						gmUtil.m_values[Globals.gmGetValue(move.card)],
+						__LINE__);
 			}
 			return false;
 		}
@@ -512,13 +502,11 @@ public class aiAgent {
 		eval_ret = false;
 		temp = aiNEG_INFTY;
 		temp = Evaluate(node, aiNEG_INFTY, aiPOS_INFTY, depth, eval_ret);
-		assert(temp != aiNEG_INFTY);
-		if (!eval_ret)
-		{
-			Globals.wxLogError("Evaluate failed. %s:%d",__FILE__, __LINE__);
+		assert (temp != aiNEG_INFTY);
+		if (!eval_ret) {
+			Globals.wxLogError("Evaluate failed. %s:%d", __FILE__, __LINE__);
 			return false;
-		}
-		else {
+		} else {
 			return true;
 		}
 	}
@@ -603,7 +591,7 @@ public class aiAgent {
 		m_engine.GetHands(hands);
 
 		if (Globals.raAI_LOG_GETBID) {
-			Globals.wxLogDebug("Estimated bid for %d", m_loc);
+			Globals.wxLogDebug(String.format("Estimated bid for %d", m_loc));
 			Globals.wxLogDebug(gmUtil.PrintLong(hands[m_loc]));
 		}
 
