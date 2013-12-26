@@ -26,6 +26,7 @@ package eu.veldsoft.twenty.eight.dummy;
 import java.util.Random;
 
 import eu.veldsoft.twenty.eight.gg.ggCard;
+import eu.veldsoft.twenty.eight.gm.gmUtil;
 
 public class Globals {
 
@@ -195,6 +196,8 @@ public class Globals {
 
 	public static final boolean aiLOG_GENERATESLPROBLEM = false;
 	
+	public static final boolean raAI_LOG_ESTIMATE_POINTS = false;
+	
 	public static final String raTEXT_CLOCKWISE = "Clockwise";
 	
 	public static final String raTEXT_ANTICLOCKWISE = "Anti-lockwise";
@@ -202,14 +205,20 @@ public class Globals {
 	public static final int raSBARPOS_GEN = 0;
 	
 	public static final int raSBARPOS_CLOCK = 1;
+	
+	public static final int gmSTATUS_NOT_STARTED = 0;
 
 	//TODO Find true value of this constant.
 	public static final int raBID_ROUND_3 = 3;
 
 	public static final wxColour wxWHITE = null;
+	
+	public static final boolean raAI_LOG_MAKEMOVE = false;
 
 	public static final String GG_CARD_XRS = "cards.xrs";
-
+	
+	public static final boolean raAI_LOG_GETBID = false;
+	
 	public static final int raPLAYER_TYPE_INVALID = 0;
 
 	public static final int raPLAYER_TYPE_AI = 0;
@@ -296,6 +305,12 @@ public class Globals {
 		return false;
 	}
 
+	public static int gmTotalPoints(long X) {
+		return gmUtil.m_total_points[(int) ((gmUtil.m_suit_mask[0] & X) >> gmUtil.m_suit_rs[0])]
+				+ gmUtil.m_total_points[(int) ((gmUtil.m_suit_mask[1] & X) >> gmUtil.m_suit_rs[1])]
+				+ gmUtil.m_total_points[(int) ((gmUtil.m_suit_mask[2] & X) >> gmUtil.m_suit_rs[2])]
+				+ gmUtil.m_total_points[(int) ((gmUtil.m_suit_mask[3] & X) >> gmUtil.m_suit_rs[3])];
+	}
 	public static void GetClientSize(Integer x, Integer y) {
 	}
 
