@@ -437,9 +437,12 @@ public class raConfig {
 	 * Private constructor/destructor Private methods
 	 */
 
+	/**
+	 * 
+	 * @author INFM042 F___94 Aleksandar Mile
+	 * @author INFM032 F___68 Georgi Srebrov
+	 * @author INFM042 F___00 Tsvetelina Hristova
+	 */
 	protected void finalize() {
-		// TODO To be done by INFM042 F___94 Aleksandar Milev ...
-		// TODO To be done by INFM032 F___68 Georgi Srebrov ...
-		// TODO To be done by INFM042 F___00 Tsvetelina Hristova ...
 	} 
 } 
