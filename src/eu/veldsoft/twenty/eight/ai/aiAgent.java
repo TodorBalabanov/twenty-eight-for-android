@@ -179,8 +179,8 @@ public class aiAgent {
 		return true;
 	}
 
-	private boolean GenerateMoves(gmEngine node, aiMove moves, int count) {
-		GenerateMoves(node, moves, count, aiGENMV_ALL);
+	private boolean GenerateMoves(gmEngine node, aiMove[] moves, int count) {
+		GenerateMoves(node, moves, count);
 
 		return (false);
 	}
@@ -228,13 +228,159 @@ public class aiAgent {
 		return (false);
 	}
 
+	/**
+	 *  
+	 * @author INFM042 F___46 Nadya Nedyalkov
+	 * @author INFM032 F___56 Daniel Nikolov
+	 * @author INFM032 F___68 Georgi Srebrov
+	 */
+
 	private int Evaluate(gmEngine node, int alpha, int beta, int depth,
 			boolean ret_val) {
 		// TODO To be done by INFM042 F___46 Nadya Nedyalkova ...
 		// TODO To be done by INFM032 F___56 Daniel Nikolov ...
 		// TODO To be done by INFM032 F___68 Georgi Srebrov ...
+		
+		int eval;
+		gmEngineData old_node = new gmEngineData();
+		int i;
+		int trick_round;
+		gmInputTrickInfo trick_info = new gmInputTrickInfo();
+		aiMove moves[] = new aiMove[aiMAX_MOVES];
+		int move_count = 0;
+		int ret_heur;
 
-		return (0);
+		assert(ret_val);
+		ret_val = true;
+
+		trick_round = node.GetTrickRound();
+		assert((trick_round >= 0) && (trick_round <= 8));
+
+	///#if raAI_LOG_EVALUATE
+		Globals.wxLogDebug(String.format("Evaluating round %d. %s:%d", trick_round, __FILE__, __LINE__));
+	///#endif
+
+		// If node is leaf, estimate heuristic
+		if ((trick_round == 8) || (trick_round >= depth))
+		{
+			ret_heur = EstimateHeuristic(node);
+	///#if raAI_LOG_EVALUATE
+			Globals.wxLogDebug("Logging at leaf");
+			Globals.wxLogDebug("-------------------------------");
+			Globals.wxLogDebug(node.GetLoggable());
+			Globals.wxLogDebug(String.format("Estimated Heuristic - %d", ret_heur));
+			Globals.wxLogDebug("-------------------------------");
+	///#endif
+			return ret_heur;
+		}
+
+		// Backup the current state of the rule engine
+		node.GetData(old_node);
+
+		if (node.GetPendingInputType() != Globals.gmINPUT_TRICK)
+		{
+			Globals.wxLogError(String.format("Unexpected input type. %s:%d",__FILE__, __LINE__));
+			ret_val = false;
+			return 0;
+		}
+
+		if (!node.GetPendingInputCriteria(null, trick_info))
+		{
+			Globals.wxLogError(String.format("GetPendingInputCriteria failed. %s:%d", __FILE__, __LINE__));
+			ret_val = false;
+			return 0;
+		}
+
+	
+		//if node is a minimizing node
+		if ((trick_info.player & 1) != (m_loc & 1))
+		{
+			GenerateMoves(node, moves, move_count);
+			assert(move_count>0);
+
+	///#if raAI_ORDERMOVES
+			if (move_count > 1)
+			{
+				OrderMoves(node, moves, move_count);
+			}
+	///#endif
+
+			if (move_count <= 0)
+			{
+				Globals.wxLogError(node.GetLoggable());
+			}
+			// for each child of node
+			for (i = 0; i < move_count; i++)
+			{
+				if (!MakeMove(node, moves[i]))
+				{
+					Globals.wxLogError(String.format("MakeMove failed. %s:%d", __FILE__, __LINE__));
+				ret_val = false;
+					return 0;
+				}
+				//beta = min (beta, evaluate (child, alpha, beta))
+				eval = Evaluate(node, alpha, beta, depth, ret_val);
+				if (!ret_val)
+				{
+					Globals.wxLogError(String.format("Evaluate failed. %s:%d", __FILE__, __LINE__));
+					return 0;
+				}
+				beta = Math.min(beta, eval);
+				node.SetData(old_node, false);
+				//if beta <= alpha
+				//	return alpha
+				if (beta <= alpha)
+				{
+					return alpha;
+				}
+			}
+			//return beta
+			return beta;
+
+		}
+		//if node is a maximizing node
+		else
+		{
+			GenerateMoves(node, moves, move_count);
+			assert(move_count>0);
+
+	///#if raAI_ORDERMOVES
+			if (move_count > 1)
+			{
+				OrderMoves(node, moves, move_count);
+			}
+	///#endif
+			if (move_count <= 0)
+			{
+				Globals.wxLogError(node.GetLoggable());
+			}
+			// for each child of node
+			for (i = 0; i < move_count; i++)
+			{
+				if (!MakeMove(node, moves[i]))
+				{					Globals.wxLogError(String.format("MakeMove failed. %s:%d", __FILE__, __LINE__));
+					ret_val = false;
+					return 0;
+				}
+				//alpha = max (alpha, evaluate (child, alpha, beta))
+				eval = Evaluate(node, alpha, beta, depth, ret_val);
+				if (!ret_val)
+				{
+					Globals.wxLogError(String.format("Evaluate failed. %s:%d",__FILE__, __LINE__));
+					return 0;
+				}
+				alpha = Math.max(alpha, eval);
+				node.SetData(old_node, false);
+				//if beta <= alpha
+				//    return beta
+				if (beta <= alpha)
+				{
+					return beta;
+				}
+			}
+			// return alpha
+			return alpha;
+		}
 	}
 
 	private int EstimateHeuristic(gmEngine state) {
