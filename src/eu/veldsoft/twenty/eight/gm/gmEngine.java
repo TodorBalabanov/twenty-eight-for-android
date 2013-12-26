@@ -1,6 +1,5 @@
 /*******************************************************************************
  *                                                                             *
- * Twenty-Eight for Android is port of popular Asian card game called Rosanne: *
  * Twenty-eight (28) <http://sourceforge.net/projects/rosanne/>. Project       *
  * development is done as NBU Java training course held in Sofia, Bulgaria.    *
  *                                                                             *
@@ -591,12 +590,28 @@ public class gmEngine {
 		return (false);
 	}
 
-	public int GetTrickNextToPlay() {
-		// TODO To be done by INFM032 F___14 Petya Atanasova ...
-		// TODO To be done by INFM032 F___47 Kostadin Bulakiev ...
-		// TODO To be done by INFM032 F___68 Georgi Srebrov ...
+	
+	/**
+	 *  
+	 * @author INFM032 F___14 Petya Atanasova
+	 * @author INFM032 F___47 Kostadin Bulakiev
+	 * @author INFM032 F___68 Georgi Srebrov
+	 */
 
-		return (0);
+	public int GetTrickNextToPlay() {
+		if(m_data.status != Globals.gmSTATUS_TRICKS)
+			return Globals.gmPLAYER_INVALID;
+		if(m_data.tricks[m_data.trick_round].count == Globals.gmTOTAL_PLAYERS)
+			return Globals.gmPLAYER_INVALID;
+		else {
+		return gmTrickNext();
+		}
+	}
+
+	private int gmTrickNext() {
+		int next = (m_data.tricks[m_data.trick_round].lead_loc + 
+		(m_data.tricks[m_data.trick_round].count * m_data.rules.rot_addn)) %4;
+		return next;
 	}
 
 	public void SetMinBid(int round, int bid) {
