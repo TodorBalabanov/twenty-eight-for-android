@@ -127,9 +127,66 @@ public class raDlgRules {
 
 	} 
 
+	/**
+	 * 
+	 * @param event
+	 * 
+	 * @author INFM032 F___68 Nikola Vushkov
+	 * @author INFM032 F___68 Georgi Srebrov
+	 * @author INFM032 F___93 Krasimir Chariyski
+	 */
+
 	public void OnRulesBtnApplyClick(wxCommandEvent event) {
-		// TODO To be done by INFM032 F___68 Nikola Vushkov ...
-		// TODO To be done by INFM032 F___68 Georgi Srebrov ...
-		// TODO To be done by INFM032 F___93 Krasimir Chariyski ...
+		wxRadioButton radio_clockwise;
+		wxRadioButton radio_anticlockwise;
+		wxComboBox combo_minbid3;
+		wxCheckBox check_waiverule4;
+		wxCheckBox check_sluffjacks;
+		raConfData new_conf = new raConfData();
+
+		raConfig.GetInstance().GetData(new_conf);
+
+		radio_clockwise =(wxRadioButton) Globals.XRCCTRL(this,
+				"m_radlgrules_clockwise", wxRadioButton.class);
+		radio_anticlockwise = (wxRadioButton) Globals.XRCCTRL(this, "m_radlgrules_anticlockwise", wxRadioButton.class);
+		combo_minbid3 = (wxComboBox) Globals.XRCCTRL(this, "m_radlgrules_minbidthird", wxComboBox.class);
+		check_waiverule4 =(wxCheckBox) Globals.XRCCTRL(this, "m_radlgrules_waiverule4", wxCheckBox.class);
+		check_sluffjacks = (wxCheckBox) Globals.XRCCTRL(this, "m_radlgrules_sluffjacks", wxCheckBox.class);
+
+		if (radio_clockwise.GetValue())
+		{
+			new_conf.game_data.clockwise = true;
+		}
+		else if (radio_anticlockwise.GetValue())
+		{
+			new_conf.game_data.clockwise = false;
+		}
+		else
+		{
+	
+			Globals.wxLogError("Unexpected value. %s:%d", __FILE__, __LINE__);
+		}
+
+		switch (combo_minbid3.GetSelection())
+		{
+		case 0:
+			new_conf.game_data.min_bid3 = 23;
+			break;
+		case 1:
+			new_conf.game_data.min_bid3 = 24;
+			break;
+		default:
+			Globals.wxLogError("Unexpected value. %s:%d", __FILE__, __LINE__);
+			break;
+		}
+
+		// Check waiver of rule 4
+		new_conf.game_data.waive_rule4 = !check_waiverule4.GetValue();
+		new_conf.game_data.sluff_jacks = check_sluffjacks.GetValue();
+
+
+		raConfig.GetInstance().SetData(new_conf);
+		event.Skip();
+		
 	} 
 } 

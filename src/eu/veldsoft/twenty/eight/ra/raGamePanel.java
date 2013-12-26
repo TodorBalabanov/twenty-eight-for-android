@@ -32,7 +32,6 @@ import eu.veldsoft.twenty.eight.dummy.wxMouseEvent;
 import eu.veldsoft.twenty.eight.dummy.wxPoint;
 import eu.veldsoft.twenty.eight.dummy.wxRect;
 import eu.veldsoft.twenty.eight.dummy.wxSizeEvent;
-import eu.veldsoft.twenty.eight.dummy.wxThread;
 import eu.veldsoft.twenty.eight.dummy.wxWindow;
 import eu.veldsoft.twenty.eight.gg.ggCard;
 import eu.veldsoft.twenty.eight.gg.ggPanel;
@@ -638,7 +637,12 @@ public class raGamePanel extends ggPanel {
 			/*
 			 * Sleep for some time so that the user can read the information
 			 */
-			wxThread.Sleep(1000);
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+
+				e.printStackTrace();
+			}
 
 		}
 
@@ -755,12 +759,179 @@ public class raGamePanel extends ggPanel {
 		return (EndDeal(false));
 	}
 
+	/**
+	 * 
+	 * @param abadon
+	 * 
+	 * @return boolean
+	 * 
+	 * @author INFM032 F___93 Krasimir Chariyski
+	 * @author INFM042 F___68 Georgi Srebrov
+	 * @author INFM042 F___14 Petya Atanasova
+	 */
 	private boolean EndDeal(boolean abandon) {
-		// TODO To be done by INFM032 F___93 Krasimir Chariyski ...
-		// TODO To be done by INFM042 F___68 Georgi Srebrov ...
-		// TODO To be done by INFM042 F___14 Petya Atanasova ...
+		int bid = 0;
+		int loc = 0;
+		raInfoDetails info_dtls = new raInfoDetails();
+		int game_pts = 0;
+		int winner = 0;
+		String msg_deal = new String();
+		String msg_pnlty = new String();
+		int i = 0;
+		int old_deal_no = 0;
 
-		return (false);
+		// If the game is not being abandoned,
+		// show the detail of the deal that has ended.
+		if (!abandon) {
+			if (!HasDealEnded(winner)) {
+				Globals.wxLogError("HasDealEnded failed. %s:%d", __FILE__,
+						__LINE__);
+				return false;
+			}
+
+			if (!m_engine.GetMaxBid(bid, loc)) {
+				Globals.wxLogError("GetMaxBid failed. %s:%d", __FILE__,
+						__LINE__);
+				return false;
+			}
+		}
+
+		m_info.GetDetails(info_dtls);
+
+		if (!abandon) {
+			// Calculate the game points to be awarded
+			// and set it in the info details
+			if (bid < 20) {
+				game_pts = 1;
+			} else if (bid < 23) {
+				game_pts = 2;
+			} else {
+				game_pts = 3;
+			}
+
+			msg_pnlty = "";
+			// If the max bidder is the winner and he has at least one
+			// penalty, one will be deducted
+			if (winner == gmGetTeam(loc)) {
+				if (m_pnlties[loc] > 0) {
+					m_pnlties[loc]--;
+					StringBuffer msg = new StringBuffer();
+					msg.append("One penalty deducted from ");
+					msg.append(gmUtil.m_short_locs[loc]);
+					msg.append(".");
+					msg_pnlty = msg.toString();
+				}
+			} else {
+				game_pts++;
+			}
+
+			m_game_pts[winner] += game_pts;
+			m_game_pts[Globals.gmGetOpponent(winner)] -= game_pts;
+			for (i = 0; i < Globals.gmTOTAL_TEAMS; i++) {
+				if (m_game_pts[i] < 0) {
+					m_pnlties[i]++;
+					// TODO : Use raGetPartner
+					m_pnlties[i + 2]++;
+					// TODO : Remove hard coding
+					m_game_pts[0] = 5;
+					m_game_pts[1] = 5;
+
+					// if msg_pnlty is not empty
+					if (msg_pnlty != null && msg_pnlty.length() != 0) {
+						StringBuffer msg = new StringBuffer();
+						msg.append("\n");
+						msg_pnlty = msg.toString();
+					}
+					StringBuffer msg = new StringBuffer();
+					msg.append("Game points reset and penalties awarded to ");
+					msg.append(gmUtil.m_short_teams[i]);
+					msg.append(".");
+					msg_pnlty = msg.toString();
+					break;
+				}
+			}
+
+			// Show a message box with details
+			// as to who won the deal
+
+			msg_deal = "";
+			StringBuffer msg = new StringBuffer();
+			msg.append(String.format("Game won by %s.",
+					gmUtil.m_short_teams[winner]));
+			msg.append(String.format("\n\nHighest bid was %d by %s.", bid,
+					gmUtil.m_long_locs[loc]));
+			msg.append(String.format("\n%s won %d points..",
+					gmUtil.m_short_teams[0], m_engine.GetPoints(0)));
+			msg.append(String.format("\n%s won %d points..",
+					gmUtil.m_short_teams[1], m_engine.GetPoints(1)));
+			msg.append(String.format("\n\n%d game point(s) awarded to %s.",
+					game_pts, gmUtil.m_short_teams[winner]));
+			msg_deal = msg.toString();
+
+			// if msg_pnlty is not empty
+			if (msg_pnlty != null && msg_pnlty.length() != 0) {
+				StringBuffer msgDeal = new StringBuffer();
+				msgDeal.append("\n\n");
+				msgDeal.append(msg_pnlty);
+				msg_deal = msgDeal.toString();
+			}
+
+			Globals.wxMessageBox(msg_deal, ("Deal completed"), Globals.wxOK
+					| Globals.wxICON_INFORMATION);
+
+		}
+
+		// End the busy state
+		EndBusyState();
+
+		// Reset all players
+		for (i = 0; i < Globals.gmTOTAL_PLAYERS; i++) {
+			m_players[i].Reset();
+			m_players[i].SetRules(m_saved_rules);
+		}
+
+		m_info.SetInstruction("", m_info.raINFO_CMD_NEW_DEAL);
+
+		// Set the dealer for the next deal
+		if (m_clockwise) {
+			m_engine.SetDealer((m_engine.GetDealer() + 1)
+					% Globals.gmTOTAL_PLAYERS);
+		} else {
+			m_engine.SetDealer((m_engine.GetDealer() + 3)
+					% Globals.gmTOTAL_PLAYERS);
+		}
+
+		// Set the detail in the info panel
+		old_deal_no = info_dtls.deal_no;
+		m_info.ResetDetails();
+		m_info.GetDetails(info_dtls);
+		info_dtls.dealer = m_engine.GetDealer();
+		info_dtls.deal_no = old_deal_no + 1;
+		for (i = 0; i < Globals.gmTOTAL_TEAMS; i++) {
+			info_dtls.points[i] = m_game_pts[i];
+		}
+		for (i = 0; i < Globals.gmTOTAL_PLAYERS; i++) {
+			info_dtls.pnlties[i] = m_pnlties[i];
+		}
+		m_info.SetDetails(info_dtls);
+
+		m_deal_ended = true;
+		return true;
+	}
+
+	/**
+	 * 
+	 * @param loc
+	 * 
+	 * @return int
+	 * 
+	 * @author INFM032 F___93 Krasimir Chariyski
+	 * @author INFM042 F___68 Georgi Srebrov
+	 * @author INFM042 F___14 Petya Atanasova
+	 */
+	private int gmGetTeam(int loc) {
+		int team = loc % Globals.gmTOTAL_TEAMS;
+		return team;
 	}
 
 	private boolean BeginBusyState() {
