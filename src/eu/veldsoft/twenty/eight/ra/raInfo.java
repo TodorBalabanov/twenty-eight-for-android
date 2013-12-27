@@ -29,6 +29,7 @@ import eu.veldsoft.twenty.eight.dummy.wxCommandEvent;
 import eu.veldsoft.twenty.eight.dummy.wxPanel;
 import eu.veldsoft.twenty.eight.dummy.wxStaticText;
 import eu.veldsoft.twenty.eight.dummy.wxWindow;
+import eu.veldsoft.twenty.eight.dummy.wxXmlResource;
 import eu.veldsoft.twenty.eight.gm.gmUtil;
 
 public class raInfo extends wxPanel {
@@ -84,12 +85,21 @@ public class raInfo extends wxPanel {
 	 */
 	private static final int __LINE__ = 0;
 
-	// Disallow copy finalructor/assignment operators
+	/**
+	 * Disallow copy finalructor/assignment operators
+	 * 
+	 * @param object
+	 * 
+	 * @author INFM032 F___94 Aleksandar Milev
+	 * @author INFM032 F___52 Mihail Stankov
+	 * @author INFM042 F___67 Nevena Sirakova
+	 */
 	private raInfo(final raInfo object) {
-		// TODO To be done by INFM032 F___94 Aleksandar Milev ...
-		// TODO To be done by INFM032 F___52 Mihail Stankov ...
-		// TODO To be done by INFM042 F___67 Nevena Sirakova ...
-	} 
+		/*
+		 * Empty body of private constructor.
+		 */
+
+	}
 
 	/**
 	 * 
@@ -102,7 +112,7 @@ public class raInfo extends wxPanel {
 	private raInfo assign(final raInfo object) {
 
 		return (this);
-	} 
+	}
 
 	/**
 	 * 
@@ -119,13 +129,58 @@ public class raInfo extends wxPanel {
 		raInfoEvent new_event = new raInfoEvent();
 		new_event.SetCommand(m_curr_cmd);
 		m_game.AddPendingEvent(new_event);
-	} 
+	}
 
+	/**
+	 * 
+	 * @author INFM042 F___94 Aleksandar Milev
+	 * @author INFM042 F___67 Nevena Sirakova
+	 * @author INFM042 F___47 Kostadin Bulakiev
+	 */
 	public raInfo(wxWindow parent) {
-		// TODO To be done by INFM042 F___94 Aleksandar Milev ...
-		// TODO To be done by INFM042 F___67 Nevena Sirakova ...
-		// TODO To be done by INFM042 F___47 Kostadin Bulakiev ...
-	} 
+		m_game = null;
+		m_curr_cmd = raINFO_CMD_NONE;
+
+		ResetDetails();
+
+		if (!wxXmlResource.Get().LoadPanel(this, parent, "raInfo")) {
+			Globals.wxLogError("Missing wxXmlResource::Get()->Load() in OnInit()?");
+		}
+
+		m_button = (wxButton) Globals.XRCCTRL(this, "m_rainfo_btn",
+				wxStaticText.class);
+		m_dealno = (wxStaticText) Globals.XRCCTRL(this, "m_rainfo_dealno",
+				wxStaticText.class);
+		m_dealer = (wxStaticText) Globals.XRCCTRL(this, "m_rainfo_dealer",
+				wxStaticText.class);
+		m_bid = (wxStaticText) Globals.XRCCTRL(this, "m_rainfo_bid",
+				wxStaticText.class);
+		m_trump = (wxStaticText) Globals.XRCCTRL(this, "m_rainfo_trump",
+				wxStaticText.class);
+
+		m_nspts = (wxStaticText) Globals.XRCCTRL(this, "m_rainfo_nspts",
+				wxStaticText.class);
+		m_ewpts = (wxStaticText) Globals.XRCCTRL(this, "m_rainfo_ewpts",
+				wxStaticText.class);
+
+		m_spnlty = (wxStaticText) Globals.XRCCTRL(this, "m_rainfo_spnlty",
+				wxStaticText.class);
+		m_npnlty = (wxStaticText) Globals.XRCCTRL(this, "m_rainfo_npnlty",
+				wxStaticText.class);
+		m_epnlty = (wxStaticText) Globals.XRCCTRL(this, "m_rainfo_epnlty",
+				wxStaticText.class);
+		m_wpnlty = (wxStaticText) Globals.XRCCTRL(this, "m_rainfo_wpnlty",
+				wxStaticText.class);
+
+		m_instr = (wxStaticText) Globals.XRCCTRL(this, "m_rainfo_instr",
+				wxStaticText.class);
+
+		m_button.Show(false);
+
+		SetDetails(m_details);
+
+		return;
+	}
 
 	/**
 	 * @author INFM032 F___05 Iliya Grozev ...
@@ -133,7 +188,7 @@ public class raInfo extends wxPanel {
 	 * @author INFM032 F___84 Mariya Kostadinova ...
 	 */
 	protected void finalize() {
-	} 
+	}
 
 	/**
 	 * 
@@ -151,7 +206,7 @@ public class raInfo extends wxPanel {
 			Globals.wxLogError("Negative deal number passed. %s:%d", __FILE__,
 					__LINE__);
 			return false;
-		} 
+		}
 		m_dealno.SetLabel(("%d"), details.deal_no);
 
 		/*
@@ -161,13 +216,13 @@ public class raInfo extends wxPanel {
 				|| (details.dealer > Globals.gmTOTAL_PLAYERS)) {
 			Globals.wxLogError("Incorrect dealer. %s:%d", __FILE__, __LINE__);
 			return false;
-		} 
+		}
 
 		if (details.dealer == Globals.gmPLAYER_INVALID) {
 			m_dealer.SetLabel("N/A");
-		}  else {
+		} else {
 			m_dealer.SetLabel(("%s"), gmUtil.m_long_locs[details.dealer]);
-		} 
+		}
 
 		/*
 		 * Validate input data and set the bidder
@@ -176,16 +231,16 @@ public class raInfo extends wxPanel {
 				|| (details.bidder > Globals.gmTOTAL_PLAYERS)) {
 			Globals.wxLogError("Incorrect bidder. %s:%d", __FILE__, __LINE__);
 			return false;
-		} 
+		}
 
 		if (details.bidder == Globals.gmPLAYER_INVALID) {
 			m_bid.SetLabel("N/A");
-		}  else if (details.bid == Globals.gmBID_ALL) {
+		} else if (details.bid == Globals.gmBID_ALL) {
 			m_bid.SetLabel("All by %s", gmUtil.m_long_locs[details.bidder]);
-		}  else {
+		} else {
 			m_bid.SetLabel("%d by %s", details.bid,
 					gmUtil.m_long_locs[details.bidder]);
-		} 
+		}
 
 		/*
 		 * Validate input data and set the trump
@@ -195,13 +250,13 @@ public class raInfo extends wxPanel {
 			Globals.wxLogError("Incorrect trump suit. %s:%d", __FILE__,
 					__LINE__);
 			return false;
-		} 
+		}
 
 		if (details.trump == Globals.gmSUIT_INVALID) {
 			m_trump.SetLabel("Not Shown");
-		}  else {
+		} else {
 			m_trump.SetLabel("%s", gmUtil.m_suits[details.trump]);
-		} 
+		}
 
 		m_nspts.SetLabel("%d", details.points[0]);
 		m_ewpts.SetLabel("%d", details.points[1]);
@@ -213,11 +268,11 @@ public class raInfo extends wxPanel {
 
 		try {
 			m_details = (raInfoDetails) details.clone();
-		}  catch (CloneNotSupportedException e) {
-		} 
+		} catch (CloneNotSupportedException e) {
+		}
 
 		return true;
-	} 
+	}
 
 	/**
 	 * 
@@ -230,13 +285,13 @@ public class raInfo extends wxPanel {
 	public void GetDetails(raInfoDetails details) {
 		try {
 			details = (raInfoDetails) m_details.clone();
-		}  catch (CloneNotSupportedException e) {
-		} 
-	} 
+		} catch (CloneNotSupportedException e) {
+		}
+	}
 
 	public boolean SetInstruction(String instruction) {
 		return (SetInstruction(instruction, raInfo.raINFO_CMD_NONE));
-	} 
+	}
 
 	/**
 	 * 
@@ -264,7 +319,7 @@ public class raInfo extends wxPanel {
 				m_button.SetLabel(raINFO_DEAL_TEXT);
 				if (m_instruction != null && m_instruction.equals("")) {
 					m_instruction = "Click on the button below to start a new Deal.";
-				} 
+				}
 				break;
 			case raINFO_CMD_SHOW_TRUMP:
 				m_button.Show(true);
@@ -275,9 +330,9 @@ public class raInfo extends wxPanel {
 						"Unexpected value in switch statement. %s:%d",
 						__FILE__, __LINE__);
 				return false;
-			} 
+			}
 			m_curr_cmd = cmd;
-		} 
+		}
 
 		/*
 		 * Set the instuction text, wrap and fit
@@ -290,19 +345,25 @@ public class raInfo extends wxPanel {
 		m_instr.Refresh();
 
 		return true;
-	} 
+	}
 
+	/**
+	 * 
+	 * @author INFM042 F___56 Daniel Nikolov
+	 * @author INFM042 F___67 Nevena Sirakova
+	 * @author INFM032 F___00 Tsvetelina Hristov
+	 */
 	public boolean SetGamePanel(raGamePanel game_panel) {
-		// TODO To be done by INFM042 F___56 Daniel Nikolov ...
-		// TODO To be done by INFM042 F___67 Nevena Sirakova ...
-		// TODO To be done by INFM032 F___00 Tsvetelina Hristova ...
 
-		return (false);
-	} 
+		assert (game_panel == null);
+		m_game = game_panel;
+		return true;
+
+	}
 
 	public boolean ResetDetails() {
 		return (ResetDetails(false));
-	} 
+	}
 
 	/**
 	 * 
@@ -322,18 +383,18 @@ public class raInfo extends wxPanel {
 
 		for (int i = 0; i < Globals.gmTOTAL_TEAMS; i++) {
 			m_details.points[i] = 5;
-		} 
+		}
 
 		for (int i = 0; i < Globals.gmTOTAL_PLAYERS; i++) {
 			m_details.pnlties[i] = 0;
-		} 
+		}
 
 		m_details.trump = Globals.gmSUIT_INVALID;
 
 		if (refresh == true) {
 			SetDetails(m_details);
-		} 
+		}
 
 		return true;
-	} 
-} 
+	}
+}

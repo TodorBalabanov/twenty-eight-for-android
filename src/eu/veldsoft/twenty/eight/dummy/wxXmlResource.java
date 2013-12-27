@@ -1,5 +1,7 @@
 package eu.veldsoft.twenty.eight.dummy;
 
+import eu.veldsoft.twenty.eight.ra.raInfo;
+
 public class wxXmlResource {
 
 	public static wxXmlResource Get() {
@@ -21,6 +23,10 @@ public class wxXmlResource {
 
 	public boolean Load(String ggCardXrs) {
 		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean LoadPanel(raInfo raInfo, wxWindow parent, String string) {
 		return false;
 	} 
 
