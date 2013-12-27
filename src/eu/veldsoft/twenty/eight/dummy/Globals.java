@@ -326,4 +326,10 @@ public class Globals {
 			wxMemoryDC mdc, int i, int j, int wxcopy2, boolean b) {
 		return false;
 	}
+
+	public static boolean BlitToBack(int x, int y, int raARROW_WIDTH,
+			int raARROW_WIDTH2, wxMemoryDC mdc, int i, int j, int wxcopy2,
+			boolean b) {
+		return false;
+	}
 }

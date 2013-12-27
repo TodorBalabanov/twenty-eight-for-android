@@ -30,6 +30,11 @@ public class wxSize {
 
 	public int Width() {
 		return 0;
+	}
+
+
+	public int Height() {
+		return 0;
 	} 
 
 } 

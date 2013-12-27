@@ -25,4 +25,9 @@ package eu.veldsoft.twenty.eight.dummy;
 
 public class wxCoord {
 
+	public int size() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 } 

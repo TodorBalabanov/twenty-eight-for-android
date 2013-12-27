@@ -25,6 +25,7 @@ package eu.veldsoft.twenty.eight.ra;
 
 import eu.veldsoft.twenty.eight.dummy.Globals;
 import eu.veldsoft.twenty.eight.dummy.wxBitmap;
+import eu.veldsoft.twenty.eight.dummy.wxCoord;
 import eu.veldsoft.twenty.eight.dummy.wxEvent;
 import eu.veldsoft.twenty.eight.dummy.wxFont;
 import eu.veldsoft.twenty.eight.dummy.wxMemoryDC;
@@ -189,6 +190,14 @@ public class raGamePanel extends ggPanel {
 
 	private wxBitmap m_bmp_bubble_edge_top;
 
+	private int raARROW_WIDTH = 16;
+
+	private int raGAME_ARROW_RELIEF = 8;
+
+	public static final int GG_CARD_WIDTH = 71;
+
+	public static final int GG_CARD_HEIGHT = 96;
+
 	private void OnSize(wxSizeEvent event) {
 		// TODO To be done by INFM032 F___56 Daniel Nikolov ...
 		// TODO To be done by INFM042 F___90 Svetoslav Slavkov ...
@@ -211,20 +220,197 @@ public class raGamePanel extends ggPanel {
 		return (DrawHand(loc, x, y, Globals.raHAND_HORIZONTAL));
 	}
 
+	/**
+	 * 
+	 * @author INFM042 F___68 Nikola Vushkov
+	 * @author INFM032 F___27 Georgi Kostadinov
+	 * @author INFM032 F___67 Nevena Sirakova
+	 */
 	private boolean DrawHand(int loc, int x, int y, int orientation) {
-		// TODO To be done by INFM042 F___68 Nikola Vushkov ...
-		// TODO To be done by INFM032 F___27 Georgi Kostadinov ...
-		// TODO To be done by INFM032 F___67 Nevena Sirakova ...
 
-		return (false);
+		int j;
+		wxMemoryDC cfdc = new wxMemoryDC();
+		wxMemoryDC cbdc = new wxMemoryDC();
+		int player_type;
+		assert ((orientation == Globals.raHAND_HORIZONTAL) || (orientation == Globals.raHAND_VERTICAL));
+
+		player_type = m_players[loc].GetType();
+
+		// /#if raGAME_HIDE_AI_HANDS
+		if (player_type == raPLAYER_TYPE_AI) {
+			cbdc.SelectObject(m_card_backs[m_pref_card_back]);
+		}
+		// /#endif
+
+		if (orientation == Globals.raHAND_HORIZONTAL) {
+			for (j = 0; j < m_hands[loc].count; j++) {
+				// /#if raGAME_HIDE_AI_HANDS
+				if (player_type == raPLAYER_TYPE_AI) {
+					wxCoord w = new wxCoord();
+
+					Globals.BlitToBack(x + (Globals.raCARD_HORZ_RELIEF * j), y,
+							Globals.GG_CARD_WIDTH, Globals.GG_CARD_HEIGHT,
+							cbdc, 0, 0, Globals.wxCOPY, true);
+				} else {
+					// /#endif
+					cfdc.SelectObject(m_card_faces[m_hands[loc].card_indexes[j]]);
+					Globals.BlitToBack(x + (Globals.raCARD_HORZ_RELIEF * j), y,
+							Globals.GG_CARD_WIDTH, Globals.GG_CARD_HEIGHT,
+							cfdc, 0, 0, Globals.wxCOPY, true);
+					// /#if raGAME_HIDE_AI_HANDS
+				}
+				// /#endif
+
+				// Update the position and dimensions of cards and hands
+				m_hand_card_rects[loc][j] = new wxRect(x
+						+ (Globals.raCARD_HORZ_RELIEF * j), y,
+						Globals.GG_CARD_WIDTH, Globals.GG_CARD_HEIGHT);
+
+				// TODO : Correction for overlapping
+				m_hand_rects[loc].Union(m_hand_card_rects[loc][j]);
+			}
+		} else {
+			for (j = 0; j < m_hands[loc].count; j++) {
+				// /#if raGAME_HIDE_AI_HANDS
+				if (player_type == raPLAYER_TYPE_AI) {
+					Globals.BlitToBack(x, y + (Globals.raCARD_VERT_RELIEF * j),
+							Globals.GG_CARD_WIDTH, Globals.GG_CARD_HEIGHT,
+							cbdc, 0, 0, Globals.wxCOPY, true);
+				} else {
+					// /#endif
+					cfdc.SelectObject(m_card_faces[m_hands[loc].card_indexes[j]]);
+					Globals.BlitToBack(x, y + (Globals.raCARD_VERT_RELIEF * j),
+							Globals.GG_CARD_WIDTH, Globals.GG_CARD_HEIGHT,
+							cfdc, 0, 0, Globals.wxCOPY, true);
+					// /#if raGAME_HIDE_AI_HANDS
+				}
+				// /#endif
+
+				// Update the position and dimensions of cards and hands
+				if (orientation == Globals.raHAND_HORIZONTAL) {
+					m_hand_card_rects[loc][j] = new wxRect(x
+							+ (Globals.raCARD_HORZ_RELIEF * j), y,
+							Globals.GG_CARD_WIDTH, Globals.GG_CARD_HEIGHT);
+				} else {
+					m_hand_card_rects[loc][j] = new wxRect(x, y
+							+ (Globals.raCARD_VERT_RELIEF * j),
+							Globals.GG_CARD_WIDTH, Globals.GG_CARD_HEIGHT);
+				}
+
+				m_hand_rects[loc].Union(m_hand_card_rects[loc][j]);
+			}
+		}
+
+		return true;
 	}
 
+	/**
+	 * 
+	 * @author INFM042 F___05 Iliya Grozev
+	 * @author INFM032 F___67 Nevena Sirakova
+	 * @author INFM032 F___14 Petya Atanasova
+	 */
 	private boolean DrawTrick() {
-		// TODO To be done by INFM042 F___05 Iliya Grozev ...
-		// TODO To be done by INFM032 F___67 Nevena Sirakova ...
-		// TODO To be done by INFM032 F___14 Petya Atanasova ...
+		int i;
+		int loc;
+		wxMemoryDC mdc = new wxMemoryDC();
+		int rot_addn;
 
-		return (false);
+		if (m_clockwise) {
+			rot_addn = 1;
+		} else {
+			rot_addn = 3;
+		}
+
+		for (i = 0; i < Globals.gmTOTAL_PLAYERS; i++) {
+			m_trick_card_rects[i] = new wxRect(0, 0, 0, 0);
+		}
+
+		for (i = 0; i < m_trick.count; i++) {
+			loc = (m_trick.lead_loc + (i * rot_addn)) % Globals.gmTOTAL_PLAYERS;
+			mdc.SelectObject(m_card_faces[m_trick.cards[loc]]);
+			switch (loc) {
+			case 0:
+				// Draw at the bottom
+				m_trick_card_rects[0] = new wxRect(
+						(GetClientSize().Width() - GG_CARD_WIDTH) / 2,
+						((GetClientSize().Height() - GG_CARD_HEIGHT) / 2)
+								+ (GG_CARD_HEIGHT / 4), GG_CARD_WIDTH,
+						GG_CARD_HEIGHT);
+				Globals.BlitToBack(m_trick_card_rects[0].x,
+						m_trick_card_rects[0].y, Globals.GG_CARD_WIDTH,
+						Globals.GG_CARD_HEIGHT, mdc, 0, 0, Globals.wxCOPY, true);
+				break;
+			case 1:
+				m_trick_card_rects[1] = new wxRect(
+						((GetClientSize().Width() - GG_CARD_WIDTH) / 2)
+								- (GG_CARD_WIDTH / 4), (GetClientSize()
+								.Height() - GG_CARD_HEIGHT) / 2, GG_CARD_WIDTH,
+						GG_CARD_HEIGHT);
+				Globals.BlitToBack(m_trick_card_rects[1].x,
+						m_trick_card_rects[1].y, Globals.GG_CARD_WIDTH,
+						Globals.GG_CARD_HEIGHT, mdc, 0, 0, Globals.wxCOPY, true);
+				break;
+			case 2:
+				m_trick_card_rects[2] = new wxRect(
+						(GetClientSize().Width() - GG_CARD_WIDTH) / 2,
+						((GetClientSize().Height() - GG_CARD_HEIGHT) / 2)
+								- (GG_CARD_HEIGHT / 4), GG_CARD_WIDTH,
+						GG_CARD_HEIGHT);
+				Globals.BlitToBack(m_trick_card_rects[2].x,
+						m_trick_card_rects[2].y, Globals.GG_CARD_WIDTH,
+						Globals.GG_CARD_HEIGHT, mdc, 0, 0, Globals.wxCOPY, true);
+				break;
+			case 3:
+				m_trick_card_rects[3] = new wxRect(
+						((GetClientSize().Width() - GG_CARD_WIDTH) / 2)
+								+ (GG_CARD_WIDTH / 4), (GetClientSize()
+								.Height() - GG_CARD_HEIGHT) / 2, GG_CARD_WIDTH,
+						GG_CARD_HEIGHT);
+				Globals.BlitToBack(m_trick_card_rects[3].x,
+						m_trick_card_rects[3].y, Globals.GG_CARD_WIDTH,
+						Globals.GG_CARD_HEIGHT, mdc, 0, 0, Globals.wxCOPY, true);
+				break;
+			}
+		}
+
+		// If the trick has ended, graphically indicate the winner
+		// using the red arrow
+		if (m_trick.count == Globals.gmTOTAL_PLAYERS) {
+			int x = 0;
+			int y = 0;
+
+			switch (m_trick.winner) {
+			case 0:
+				mdc.SelectObject(m_bmp_red_arrow_bottom);
+				x = (this.GetClientSize().Width() - raARROW_WIDTH) / 2;
+				y = m_trick_card_rects[0].GetBottom() + raGAME_ARROW_RELIEF;
+				break;
+			case 1:
+				mdc.SelectObject(m_bmp_red_arrow_left);
+				x = m_trick_card_rects[1].GetLeft() - raARROW_WIDTH
+						- raGAME_ARROW_RELIEF;
+				y = (GetClientSize().Height() - raARROW_WIDTH) / 2;
+				break;
+			case 2:
+				mdc.SelectObject(m_bmp_red_arrow_top);
+				x = (GetClientSize().Width() - raARROW_WIDTH) / 2;
+				y = m_trick_card_rects[2].GetTop() - raARROW_WIDTH
+						- raGAME_ARROW_RELIEF;
+				break;
+			case 3:
+				mdc.SelectObject(m_bmp_red_arrow_right);
+				x = m_trick_card_rects[3].GetRight() + raGAME_ARROW_RELIEF;
+				y = (GetClientSize().Height() - raARROW_WIDTH) / 2;
+				break;
+			default:
+				break;
+			}
+			Globals.BlitToBack(x, y, raARROW_WIDTH, raARROW_WIDTH, mdc, 0, 0,
+					Globals.wxCOPY, true);
+		}
+
+		return true;
 	}
 
 	/**
