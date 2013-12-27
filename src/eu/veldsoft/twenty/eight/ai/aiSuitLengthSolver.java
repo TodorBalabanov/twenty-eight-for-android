@@ -44,6 +44,10 @@ public class aiSuitLengthSolver {
 
 	private int m_hand_sum_of_min[] = new int[slTOTAL_HANDS];
 
+	private String __FILE__;
+
+	private int __LINE__;
+
 	/**
 	 * Disallow copy finalructor/assignment operators
 	 * 
@@ -57,7 +61,7 @@ public class aiSuitLengthSolver {
 		/*
 		 * Empty body constructor.
 		 */
-	} 
+	}
 
 	/**
 	 * 
@@ -70,7 +74,7 @@ public class aiSuitLengthSolver {
 	private aiSuitLengthSolver assign(final aiSuitLengthSolver object) {
 
 		return (this);
-	} 
+	}
 
 	/**
 	 * 
@@ -90,11 +94,11 @@ public class aiSuitLengthSolver {
 		for (int i = 0; i < slTOTAL_HANDS; i++) {
 			for (int j = 0; j < slTOTAL_SUITS; j++) {
 				data.cells[i][j].suit_length = slVACANT;
-			} 
-		} 
+			}
+		}
 
 		return;
-	} 
+	}
 
 	/**
 	 * 
@@ -142,10 +146,10 @@ public class aiSuitLengthSolver {
 			data.hand_sum_of_maxs[hand] -= (old_max - new_max);
 			data.suit_sum_of_maxs[suit] -= (old_max - new_max);
 			return true;
-		} 
+		}
 
 		return false;
-	} 
+	}
 
 	/**
 	 * 
@@ -164,7 +168,7 @@ public class aiSuitLengthSolver {
 			Globals.wxLogDebug(
 					"Entering aiSuitLengthSolver::SetCell (%d, %d) = %d", hand,
 					suit, suit_length);
-		} 
+		}
 
 		assert (data != null);
 		assert (hand < Globals.slTOTAL_HANDS);
@@ -196,7 +200,7 @@ public class aiSuitLengthSolver {
 		if (data.cells[hand][suit].min > 0) {
 			data.hand_sum_of_vacant_mins[hand] -= data.cells[hand][suit].min;
 			data.suit_sum_of_vacant_mins[suit] -= data.cells[hand][suit].min;
-		} 
+		}
 
 		/*
 		 * Fix the max and min as the same as the suit length
@@ -220,7 +224,7 @@ public class aiSuitLengthSolver {
 		RecalcMinForImpactedCells(data, hand, suit);
 
 		return true;
-	} 
+	}
 
 	/**
 	 * 
@@ -244,7 +248,7 @@ public class aiSuitLengthSolver {
 					"Entering aiSuitLengthSolver::RecalcMaxForImpactedCells for (%d, %d)",
 					hand, suit);
 			Globals.wxLogDebug("Data : %s", (String) PrintData(data));
-		} 
+		}
 
 		/*
 		 * Recalculate the max for all the affected cells Recalculate the max
@@ -258,9 +262,9 @@ public class aiSuitLengthSolver {
 			if (data.cells[hand][i].suit_length == Globals.slVACANT) {
 				if (RecalcCellMax(data, hand, i) == true) {
 					RecalcMinForImpactedCells(data, hand, i);
-				} 
-			} 
-		} 
+				}
+			}
+		}
 
 		/*
 		 * Recalculate the max for all cell in suit.
@@ -273,12 +277,12 @@ public class aiSuitLengthSolver {
 			if (data.cells[i][suit].suit_length == Globals.slVACANT) {
 				if (RecalcCellMax(data, i, suit) == true) {
 					RecalcMinForImpactedCells(data, i, suit);
-				} 
-			} 
-		} 
+				}
+			}
+		}
 
 		return true;
-	} 
+	}
 
 	/**
 	 * 
@@ -302,7 +306,7 @@ public class aiSuitLengthSolver {
 					"Entering aiSuitLengthSolver::RecalcMinForImpactedCells for (%d, %d)",
 					hand, suit);
 			Globals.wxLogDebug("Data : %s", PrintData(data));
-		} 
+		}
 
 		/*
 		 * Recalculate the min for all the affected cells Recalculate the min
@@ -316,9 +320,9 @@ public class aiSuitLengthSolver {
 			if (data.cells[hand][i].suit_length == Globals.slVACANT) {
 				if (RecalcCellMin(data, hand, i) == true) {
 					RecalcMaxForImpactedCells(data, hand, i);
-				} 
-			} 
-		} 
+				}
+			}
+		}
 
 		/*
 		 * Recalculate the max for all cell in suit
@@ -331,12 +335,12 @@ public class aiSuitLengthSolver {
 			if (data.cells[i][suit].suit_length == Globals.slVACANT) {
 				if (RecalcCellMin(data, i, suit) == true) {
 					RecalcMaxForImpactedCells(data, i, suit);
-				} 
-			} 
-		} 
+				}
+			}
+		}
 
 		return (true);
-	} 
+	}
 
 	/**
 	 * 
@@ -360,13 +364,13 @@ public class aiSuitLengthSolver {
 				+ data.cells[hand][suit].max;
 		if (i < 0) {
 			i = 0;
-		} 
+		}
 
 		int j = data.suit_total_length[suit] - data.suit_sum_of_maxs[suit]
 				+ data.cells[hand][suit].max;
 		if (j < 0) {
 			j = 0;
-		} 
+		}
 
 		int old_min = data.cells[hand][suit].min;
 		int new_min = Math.max(i, j);
@@ -385,10 +389,10 @@ public class aiSuitLengthSolver {
 			data.hand_sum_of_vacant_mins[hand] += (new_min - old_min);
 			data.suit_sum_of_vacant_mins[suit] += (new_min - old_min);
 			return true;
-		} 
+		}
 
 		return false;
-	} 
+	}
 
 	/**
 	 * 
@@ -399,7 +403,7 @@ public class aiSuitLengthSolver {
 		RecalcMinForAllCells(data, false);
 
 		return (false);
-	} 
+	}
 
 	/**
 	 * 
@@ -431,12 +435,12 @@ public class aiSuitLengthSolver {
 					 * If the min for a vacant cell is not zero, add that to the
 					 * sum of mins for vacant cells
 					 */
-				} 
-			} 
-		} 
+				}
+			}
+		}
 
 		return (true);
-	} 
+	}
 
 	/**
 	 * 
@@ -467,12 +471,12 @@ public class aiSuitLengthSolver {
 
 				if (data.cells[i][j].suit_length == slVACANT) {
 					RecalcCellMax(data, i, j);
-				} 
-			} 
-		} 
+				}
+			}
+		}
 
 		return true;
-	} 
+	}
 
 	private int GenerateRandomFill(int min, int max) {
 		// TODO To be done by INFM032 F___27 Georgi Kostadinov ...
@@ -480,7 +484,7 @@ public class aiSuitLengthSolver {
 		// TODO To be done by INFM042 F___90 Svetoslav Slavkov ...
 
 		return (0);
-	} 
+	}
 
 	public static String PrintData(slData data) {
 		// TODO To be done by INFM042 F___93 Krasimir Chariyski ...
@@ -488,7 +492,7 @@ public class aiSuitLengthSolver {
 		// TODO To be done by INFM032 F___84 Mariya Kostadinova ...
 
 		return ("");
-	} 
+	}
 
 	public static String PrintMatrix(int[][] matrix) {
 		// TODO To be done by INFM032 F___00 Tsvetelina Hristova ...
@@ -496,7 +500,7 @@ public class aiSuitLengthSolver {
 		// TODO To be done by INFM032 F___39 Shterion Yanev ...
 
 		return ("");
-	} 
+	}
 
 	/**
 	 * 
@@ -515,9 +519,9 @@ public class aiSuitLengthSolver {
 		for (int i = 0; i < slTOTAL_HANDS; i++) {
 			for (int j = 0; j < slTOTAL_SUITS; j++) {
 				problem.suit_length[i][j] = slVACANT;
-			} 
-		} 
-	} 
+			}
+		}
+	}
 
 	/**
 	 * 
@@ -535,9 +539,9 @@ public class aiSuitLengthSolver {
 		for (int i = 0; i < played.length; i++) {
 			for (int j = 0; j < played[i].length; j++) {
 				played[i][j] = 0;
-			} 
-		} 
-	} 
+			}
+		}
+	}
 
 	/**
 	 * 
@@ -546,22 +550,144 @@ public class aiSuitLengthSolver {
 	 * @author INFM042 F___46 Nadya Nedyalkova
 	 */
 	public aiSuitLengthSolver() {
-	} 
+	}
 
 	protected void finalize() {
 		// TODO To be done by INFM042 F___94 Aleksandar Milev ...
 		// TODO To be done by INFM032 F___46 Nadya Nedyalkova ...
 		// TODO To be done by INFM042 F___68 Nikola Vushkov ...
-	} 
+	}
 
+	/**
+	 * 
+	 * @author INFM032 F___90 Svetoslav Slavkov
+	 * @author INFM032 F___39 Shterion Yanev
+	 * @author INFM032 F___67 Nevena Sirakova
+	 */
 	public boolean SetProblem(slProblem problem, int[][] played) {
-		// TODO To be done by INFM032 F___90 Svetoslav Slavkov ...
-		// TODO To be done by INFM032 F___39 Shterion Yanev ...
-		// TODO To be done by INFM032 F___67 Nevena Sirakova ...
 
-		return (false);
-	} 
-	
+		int i = 0;
+		int j = 0;
+		int[] hand_total_played = { 0, 0, 0, 0 };
+		int[] suit_total_played = { 0, 0, 0, 0 };
+
+		if (problem == null) {
+			Globals.wxLogError(String
+					.format("Input variable problem for aiSuitLengthSolver::SetProblem is NULL. %s:%d",
+							__FILE__, __LINE__));
+			return false;
+		}
+		if (played == null) {
+			Globals.wxLogError(String
+					.format("Input variable played for aiSuitLengthSolver::SetProblem is NULL. %s:%d",
+							__FILE__, __LINE__));
+			return false;
+		}
+
+		InitializeWorkingData(m_saved);
+
+		// Create a copy of the problem
+		System.arraycopy(problem, 0, m_problem, 0,
+				problem.suit_total_length.length);
+		System.arraycopy(m_problem, 0, problem, 0,
+				m_problem.suit_total_length.length);
+
+		// Check the sanity of data.
+		// The array played contains the list of played cards.
+		// The hand_total_length and suit_total_length arrays in problem contain
+		// the list of cards to be allocatd.
+		// Both added together for should be 8
+
+		for (i = 0; i < slTOTAL_HANDS; i++) {
+			for (j = 0; j < slTOTAL_SUITS; j++) {
+				hand_total_played[i] += m_played[i][j];
+				suit_total_played[j] += m_played[i][j];
+			}
+		}
+
+		for (i = 0; i < slTOTAL_HANDS; i++) {
+			if ((hand_total_played[i] + m_problem.hand_total_length[i]) != slLENGTH_MAX) {
+				Globals.wxLogError(String
+						.format("No of played cards and the cards to be set does not add up to slLENGTH_MAX for hand %d. %s:%d",
+								i, __FILE__, __LINE__));
+				Globals.wxLogError(String.format("hand_total_played[%d] = %d",
+						i, hand_total_played[i]));
+				Globals.wxLogError(String.format(
+						"m_problem.hand_total_length[%d] = %d", i,
+						m_problem.hand_total_length[i]));
+				assert (false);
+				return false;
+			}
+		}
+
+		for (i = 0; i < slTOTAL_SUITS; i++) {
+			if ((suit_total_played[i] + m_problem.suit_total_length[i]) != slLENGTH_MAX) {
+				Globals.wxLogError(String
+						.format("No of played cards and the cards to be set does not add up to slLENGTH_MAX for suit %d. %s:%d",
+								i, __FILE__, __LINE__));
+				Globals.wxLogError(String.format("suit_total_played[%d] = %d",
+						i, suit_total_played[i]));
+				Globals.wxLogError(String.format(
+						"m_problem.suit_total_length[%d] = %d", i,
+						m_problem.suit_total_length[i]));
+				assert (false);
+				return false;
+			}
+		}
+
+		// Copy the status of each cell (which must be zero to slLENGTH_MAX or
+		// slVACANT)
+
+		for (i = 0; i < slTOTAL_HANDS; i++) {
+			for (j = 0; j < slTOTAL_SUITS; j++) {
+				assert ((m_problem.suit_length[i][j] == slVACANT) || ((m_problem.suit_length[i][j] >= 0) && (m_problem.suit_length[i][j] <= slLENGTH_MAX)));
+
+				// SetCell(&m_saved, i, j, m_problem.suit_length[i][j]);
+				m_saved.cells[i][j].suit_length = m_problem.suit_length[i][j];
+
+				// If the suit length for the cell is fixed already
+				// set max and min as the fixed value.
+
+				if (m_problem.suit_length[i][j] != slVACANT) {
+					m_saved.cells[i][j].max = m_problem.suit_length[i][j];
+					m_saved.cells[i][j].min = m_problem.suit_length[i][j];
+
+					// Adjust the sum of maxes
+					m_saved.hand_sum_of_maxs[i] += m_saved.cells[i][j].max;
+					m_saved.suit_sum_of_maxs[j] += m_saved.cells[i][j].max;
+
+					// Adjust allocated cards
+					m_saved.hand_allocated[i] += m_problem.suit_length[i][j];
+					m_saved.suit_allocated[j] += m_problem.suit_length[i][j];
+				}
+
+			}
+		}
+
+		// Calc max for each cell
+		// Zero or -1 will not affect alloc
+		// Calculate sum of maxes
+		// Calculate min
+		System.arraycopy(m_problem.hand_total_length, 0,
+				m_saved.hand_total_length, 0, m_saved.hand_total_length.length);
+		System.arraycopy(m_problem.suit_total_length, 0,
+				m_saved.suit_total_length, 0, m_saved.suit_total_length.length);
+
+		// Calculate max for all cells
+		// This also calculates the sum of maxes for all hands and suits
+		// internally
+
+		RecalcMaxForAllCells(m_saved);
+
+		for (i = 0; i < slTOTAL_HANDS; i++) {
+			for (j = 0; j < slTOTAL_SUITS; j++) {
+				RecalcMinForImpactedCells(m_saved, i, j);
+			}
+
+		}
+		return true;
+	}
+
 	/**
 	 * 
 	 * @param solution
@@ -578,62 +704,56 @@ public class aiSuitLengthSolver {
 		int j = 0;
 		int fill = 0;
 
-		if (solution == null)
-		{
+		if (solution == null) {
 			return false;
 		}
-		  System.arraycopy(m_saved, 0, m_working, 0,m_saved.cells.length);
-	
-	///#if slLOG_DEBUG_GETRANDSOLN
-		  Globals.wxLogDebug("Problem :");
-		  Globals.wxLogDebug(PrintData(m_working));
-	///#endif
+		System.arraycopy(m_saved, 0, m_working, 0, m_saved.cells.length);
 
-		for (i = 0; i < slTOTAL_HANDS; i++)
-		{
-			for (j = 0; j < slTOTAL_SUITS; j++)
-			{
+		// /#if slLOG_DEBUG_GETRANDSOLN
+		Globals.wxLogDebug("Problem :");
+		Globals.wxLogDebug(PrintData(m_working));
+		// /#endif
+
+		for (i = 0; i < slTOTAL_HANDS; i++) {
+			for (j = 0; j < slTOTAL_SUITS; j++) {
 				// Fill only if the cell is vacant
 
-				if (m_working.cells[i][j].suit_length == slVACANT)
-				{
-					// In a vacant cell, if max and min are the same, then that is the only option.
+				if (m_working.cells[i][j].suit_length == slVACANT) {
+					// In a vacant cell, if max and min are the same, then that
+					// is the only option.
 					// No need to try to get a random number.
 
-					if (m_working.cells[i][j].max == m_working.cells[i][j].min)
-					{
+					if (m_working.cells[i][j].max == m_working.cells[i][j].min) {
 						fill = m_working.cells[i][j].max;
+					} else {
+						fill = GenerateRandomFill(m_working.cells[i][j].min,
+								m_working.cells[i][j].max);
 					}
-					else
-					{
-						fill = GenerateRandomFill(m_working.cells[i][j].min, m_working.cells[i][j].max);
-					}
-	///#if slLOG_DEBUG_GETRANDSOLN
-					Globals.wxLogDebug("Attempting to fill (%d, %d) with %d", i, j, fill);
-	///#endif
+					// /#if slLOG_DEBUG_GETRANDSOLN
+					Globals.wxLogDebug("Attempting to fill (%d, %d) with %d",
+							i, j, fill);
+					// /#endif
 					SetCell(m_working, i, j, fill);
-	///#if slLOG_DEBUG_GETRANDSOLN
+					// /#if slLOG_DEBUG_GETRANDSOLN
 					Globals.wxLogDebug(PrintData(m_working));
-	///#endif
+					// /#endif
 				}
 			}
 		}
 
 		// Set the solution
 
-		for (i = 0; i < slTOTAL_HANDS; i++)
-		{
-			for (j = 0; j < slTOTAL_SUITS; j++)
-			{
+		for (i = 0; i < slTOTAL_HANDS; i++) {
+			for (j = 0; j < slTOTAL_SUITS; j++) {
 				solution[i][j] = m_working.cells[i][j].suit_length;
 			}
 		}
-	///#if slLOG_DEBUG_GETRANDSOLN
+		// /#if slLOG_DEBUG_GETRANDSOLN
 		Globals.wxLogDebug(PrintMatrix(solution));
-	///#endif
+		// /#endif
 		return true;
 
-	} 
+	}
 
 	public String PrintSavedData() {
 		// TODO To be done by INFM042 F___46 Nadya Nedyalkova ...
@@ -641,7 +761,7 @@ public class aiSuitLengthSolver {
 		// TODO To be done by INFM042 F___27 Georgi Kostadinov ...
 
 		return ("");
-	} 
+	}
 
 	/**
 	 * 
@@ -652,5 +772,5 @@ public class aiSuitLengthSolver {
 	 */
 	public String PrintWorkingData() {
 		return aiSuitLengthSolver.PrintData(m_working);
-	} 
-} 
+	}
+}
