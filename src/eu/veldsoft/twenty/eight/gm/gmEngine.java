@@ -118,7 +118,7 @@ public class gmEngine {
 
 		return mask;
 	}
-	
+
 	/**
 	 * @author INFM042 F___84 Mariya Kostadinova
 	 * @author INFM032 F___93 Krasimir Chariyski
@@ -126,20 +126,14 @@ public class gmEngine {
 	 */
 	private boolean SetDealEndOutput() {
 		// Check whether there is a winner?
-		if (m_data.pts[m_data.curr_max_bidder % 2] >= m_data.curr_max_bid)
-		{
+		if (m_data.pts[m_data.curr_max_bidder % 2] >= m_data.curr_max_bid) {
 			m_data.out_deal_end_info.winner = m_data.curr_max_bidder % 2;
-		}
-		else if (m_data.pts[(m_data.curr_max_bidder + 1) % 2] > (28 - m_data.curr_max_bid))
-		{
+		} else if (m_data.pts[(m_data.curr_max_bidder + 1) % 2] > (28 - m_data.curr_max_bid)) {
 			m_data.out_deal_end_info.winner = (m_data.curr_max_bidder + 1) % 2;
-		}
-		else
-		{
+		} else {
 			return false;
 		}
-		if (m_data.feedback)
-		{
+		if (m_data.feedback) {
 			SetOutput(Globals.gmOUTPUT_DEAL_END);
 		}
 		return true;
@@ -165,10 +159,76 @@ public class gmEngine {
 		return (this);
 	}
 
+	/**
+	 * 
+	 * @author INFM042 F___56 Daniel Nikolov
+	 * @author INFM042 F___67 Nevena Sirakova 
+	 * @author INFM042 F___90 Svetoslav Slavkov
+	 */
 	public static void InitCache() {
-		// TODO To be done by INFM042 F___56 Daniel Nikolov ...
-		// TODO To be done by INFM042 F___67 Nevena Sirakova ...
-		// TODO To be done by INFM042 F___90 Svetoslav Slavkov ...
+		int i;
+		int j;
+		
+		Reset(m_init);
+		
+		gmEngine.m_init.status = Globals.gmSTATUS_NOT_STARTED;
+		gmEngine.m_init.dealer = 0;
+
+		// Filling m_shuffled with values for all the 32 cards
+		for (i = 0; i < Globals.gmTOTAL_CARDS; i++) {
+			gmEngine.m_init.shuffled[i] = i;
+		}
+
+		// Neither input or output is pending at the start
+		gmEngine.m_init.input_pending = false;
+		gmEngine.m_init.output_pending = false;
+
+		// Reset the hands
+		for (i = 0; i < Globals.gmTOTAL_PLAYERS; i++) {
+			gmEngine.m_init.hands[i] = 0;
+		}
+
+		// Resetting variables related to bidding
+		gmEngine.m_init.first_bid = true;
+		gmEngine.m_init.curr_max_bid = 0;
+		gmEngine.m_init.curr_max_bidder = Globals.gmPLAYER_INVALID;
+		gmEngine.m_init.last_bidder = Globals.gmPLAYER_INVALID;
+		for (i = 0; i < gmUtil.gmTOTAL_BID_ROUNDS; i++) {
+			for (j = 0; j < Globals.gmTOTAL_PLAYERS; j++) {
+				gmEngine.m_init.bid_hist[i][j] = false;
+			}
+		}
+		gmEngine.m_init.passed_round1 = 0;
+
+		// Resetting trump suit and card
+		gmEngine.m_init.trump_card = Globals.gmCARD_INVALID;
+		gmEngine.m_init.trump_suit = Globals.gmSUIT_INVALID;
+
+		// Resetting variables related to tricks
+		for (i = 0; i < Globals.gmTOTAL_TEAMS; i++) {
+			gmEngine.m_init.pts[i] = 0;
+		}
+
+		for (i = 0; i < Globals.gmTOTAL_PLAYERS; i++) {
+			gmEngine.m_init.played_cards[i] = 0;
+		}
+
+		gmEngine.m_init.trick_round = 0;
+		gmEngine.m_init.should_trump = false;
+		gmEngine.m_init.should_play_trump_card = false;
+		gmEngine.m_init.trump_shown = false;
+
+		for (i = 0; i < Globals.gmTOTAL_TRICKS; i++) {
+			for (j = 0; j < Globals.gmTOTAL_PLAYERS; j++) {
+				gmEngine.m_init.tricks[i].cards[j] = Globals.gmCARD_INVALID;
+			}
+			gmEngine.m_init.tricks[i].count = 0;
+			gmEngine.m_init.tricks[i].lead_loc = Globals.gmPLAYER_INVALID;
+			gmEngine.m_init.tricks[i].lead_suit = Globals.gmSUIT_INVALID;
+			gmEngine.m_init.tricks[i].points = 0;
+			gmEngine.m_init.tricks[i].trumped = false;
+			m_init.tricks[i].winner = Globals.gmPLAYER_INVALID;
+		}
 	}
 
 	/**
@@ -215,9 +275,9 @@ public class gmEngine {
 	}
 
 	/**
-	 * 	@author INFM042 F___45 Valentin Popov
-	 *	@author INFM032 F___68 Georgi Srebrov
-	 *	@author INFM042 F___68 Nikola Vushkov
+	 * @author INFM042 F___45 Valentin Popov
+	 * @author INFM032 F___68 Georgi Srebrov
+	 * @author INFM042 F___68 Nikola Vushkov
 	 */
 
 	public int GetStatus() {
@@ -415,7 +475,8 @@ public class gmEngine {
 	 */
 
 	public void GetCardsPlayed(long cards) {
-		  System.arraycopy(m_data.played_cards, 0,cards, 0,m_data.played_cards.length);
+		System.arraycopy(m_data.played_cards, 0, cards, 0,
+				m_data.played_cards.length);
 	}
 
 	public void GetTrick(int trick_round, gmTrick trick) {
@@ -506,11 +567,10 @@ public class gmEngine {
 		m_data.dealer = dealer;
 	}
 
-	
 	/**
-	 * 	@author INFM042 F___27 Georgi Kostadinov
-	 *	@author INFM042 F___14 Petya Atanasova
-	 *	@author INFM042 F___68 Georgi Srebrov
+	 * @author INFM042 F___27 Georgi Kostadinov
+	 * @author INFM042 F___14 Petya Atanasova
+	 * @author INFM042 F___68 Georgi Srebrov
 	 */
 	public static void ResetTrick(gmTrick trick) {
 
@@ -564,11 +624,10 @@ public class gmEngine {
 		return (false);
 	}
 
-
 	/**
-	 * 	@author INFM042 F___14 Petya Atanasova
-	 *	@author INFM032 F___68 Nikola Vushkov
-	 *	@author INFM042 F___68 Georgi Srebrov
+	 * @author INFM042 F___14 Petya Atanasova
+	 * @author INFM032 F___68 Nikola Vushkov
+	 * @author INFM042 F___68 Georgi Srebrov
 	 */
 	public String GetLoggable() {
 		return PrintRuleEngineData(m_data);
@@ -590,27 +649,25 @@ public class gmEngine {
 		return (false);
 	}
 
-	
 	/**
-	 *  
+	 * 
 	 * @author INFM032 F___14 Petya Atanasova
 	 * @author INFM032 F___47 Kostadin Bulakiev
 	 * @author INFM032 F___68 Georgi Srebrov
 	 */
 
 	public int GetTrickNextToPlay() {
-		if(m_data.status != Globals.gmSTATUS_TRICKS)
+		if (m_data.status != Globals.gmSTATUS_TRICKS)
 			return Globals.gmPLAYER_INVALID;
-		if(m_data.tricks[m_data.trick_round].count == Globals.gmTOTAL_PLAYERS)
+		if (m_data.tricks[m_data.trick_round].count == Globals.gmTOTAL_PLAYERS)
 			return Globals.gmPLAYER_INVALID;
 		else {
-		return gmTrickNext();
+			return gmTrickNext();
 		}
 	}
 
 	private int gmTrickNext() {
-		int next = (m_data.tricks[m_data.trick_round].lead_loc + 
-		(m_data.tricks[m_data.trick_round].count * m_data.rules.rot_addn)) %4;
+		int next = (m_data.tricks[m_data.trick_round].lead_loc + (m_data.tricks[m_data.trick_round].count * m_data.rules.rot_addn)) % 4;
 		return next;
 	}
 

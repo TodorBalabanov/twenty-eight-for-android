@@ -269,10 +269,45 @@ public class ggCard {
 		return;
 	} 
 
+	/**
+	 * 
+	 * @author INFM032 F___81 Marina Rangelova
+	 * @author INFM042 F___67 Nevena Sirakova
+	 * @author INFM032 F___05 Iliya Grozev
+	 */
 	public ggCard(int other) {
-		// TODO To be done by INFM032 F___81 Marina Rangelova ...
-		// TODO To be done by INFM042 F___67 Nevena Sirakova ...
-		// TODO To be done by INFM032 F___05 Iliya Grozev ...
+		switch (other) {
+		case GG_CARD_BACK_1:
+			if (!LoadFace("back_00")) {
+				Globals.wxLogError(String.format("LoadFace failed. %s:%d",
+						__FILE__, __LINE__));
+			}
+			break;
+		case GG_CARD_BACK_2:
+			if (!LoadFace("back_01")) {
+				Globals.wxLogError(String.format("LoadFace failed. %s:%d",
+						__FILE__, __LINE__));
+			}
+			break;
+		case GG_CARD_JOKER_1:
+			if (!LoadFace("joker_01")) {
+				Globals.wxLogError(String.format("LoadFace failed. %s:%d",
+						__FILE__, __LINE__));
+			}
+			break;
+		case GG_CARD_JOKER_2:
+			if (!LoadFace("joker_01")) {
+				Globals.wxLogError(String.format("LoadFace failed. %s:%d",
+						__FILE__, __LINE__));
+			}
+			break;
+		default:
+			Globals.wxLogError(String.format(
+					"Incorrect argument passed. %s:%d", __FILE__, __LINE__));
+			break;
+		}
+
+		assert (m_face) != null;
 	} 
 
 	/**
