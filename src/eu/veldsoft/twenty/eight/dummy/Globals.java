@@ -246,6 +246,8 @@ public class Globals {
 	public static String SPACES20 = "                    ";
 
 	public static Object wxThread;
+
+	public static int gmERR_TRICK_MASK_MISMATCH = 8;
 	
 	public static final int gmINPUT_TRICK = 2;
 	

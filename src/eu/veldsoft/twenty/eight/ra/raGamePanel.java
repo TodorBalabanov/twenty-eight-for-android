@@ -39,6 +39,7 @@ import eu.veldsoft.twenty.eight.gg.ggPanel;
 import eu.veldsoft.twenty.eight.gm.gmEngine;
 import eu.veldsoft.twenty.eight.gm.gmEngineData;
 import eu.veldsoft.twenty.eight.gm.gmInputBidInfo;
+import eu.veldsoft.twenty.eight.gm.gmInputTrickInfo;
 import eu.veldsoft.twenty.eight.gm.gmRules;
 import eu.veldsoft.twenty.eight.gm.gmTrick;
 import eu.veldsoft.twenty.eight.gm.gmUtil;
@@ -660,12 +661,110 @@ public class raGamePanel extends ggPanel {
 		return (PlayCard(card, gmUtil.gmPLAYER_INVALID));
 	}
 
+	/**
+	 * 
+	 * @author INFM032 F___45 Valentin Popov
+	 * @author INFM042 F___48 Georgi Ivanov
+	 * @author INFM042 F___67 Nevena Sirakova
+	 */
 	private int PlayCard(int card, int loc) {
-		// TODO To be done by INFM032 F___45 Valentin Popov ...
-		// TODO To be done by INFM042 F___48 Georgi Ivanov ...
-		// TODO To be done by INFM042 F___67 Nevena Sirakova ...
 
-		return (0);
+		gmInputTrickInfo trick_info = new gmInputTrickInfo();
+		int trick_round;
+		int ret_val;
+		// raInfoDetails info_details;
+		gmEngineData pplay_data = new gmEngineData();
+		gmEngineData re_data = new gmEngineData();
+		int i;
+
+		// Validate the input card
+		assert ((card >= 0) && (card < Globals.gmTOTAL_CARDS));
+
+		if (!m_engine.GetPendingInputCriteria(null, trick_info)) {
+			Globals.wxLogError(String.format(
+					"Failed to get pending input criteria. %s:%d", __FILE__,
+					__LINE__));
+			return -1;
+		}
+
+		// Check whether the card is valid as per the mask
+		if ((trick_info.mask & (1 << card)) > 0) {
+			assert (trick_info.rules != 0);
+			return Globals.gmERR_TRICK_MASK_MISMATCH;
+		}
+
+		// Save the trick round
+		trick_round = m_engine.GetTrickRound();
+
+		m_engine.GetData(re_data);
+
+		// Post the input and check for error
+		trick_info.card = card;
+		if ((ret_val = m_engine.PostInputMessage(Globals.gmINPUT_TRICK,
+				trick_info)) != 0) {
+			return ret_val;
+		}
+
+		Globals.wxLogMessage(String.format("%s plays %s%s",
+				gmUtil.m_long_locs[trick_info.player],
+				gmUtil.m_suits[gmGetSuit(card)],
+				gmUtil.m_values[gmGetValue(card)]));
+
+		// Update other players about the game play
+		for (i = 0; i < Globals.gmTOTAL_PLAYERS; i++) {
+			// Update only if the player is AI
+			if ((m_players[i].GetType() == raPLAYER_TYPE_AI)
+					&& (re_data.in_trick_info.player != i)) {
+				// Hide information before sending
+				System.arraycopy(re_data, 0, pplay_data, 0,
+						Globals.gmTOTAL_PLAYERS);
+				HideInfo(pplay_data, i);
+
+				// Inferences could be made from the mask or
+				// the rules and hence hide the same
+				pplay_data.in_trick_info.mask = 0;
+				pplay_data.in_trick_info.rules = 0;
+				m_players[i].PostPlayUpdate(pplay_data, card);
+				System.arraycopy(re_data, 0, pplay_data, 0,
+						Globals.gmTOTAL_PLAYERS);
+				m_players[i].CheckAssumptions(pplay_data);
+			}
+		}
+
+		// If the card played was accepted by the engine,
+
+		// Update the cards in the trick for the round saved
+		// so that the same is reflected when the back buffer
+		// is redrawn
+		m_engine.GetTrick(trick_round, m_trick);
+
+		// Update hands, redraw back buffer and refresh the screen
+		if (!UpdateDrawAndRefresh()) {
+			Globals.wxLogError(String.format(
+					"UpdateDrawAndRefresh failed. %s:%d", __FILE__, __LINE__));
+			return -1;
+		}
+
+		// If the trick that ended, need to wait for the user to accept the
+		// trick
+		if (m_trick.count == Globals.gmTOTAL_PLAYERS) {
+			m_info.SetInstruction("Click on the cards to continue.",
+					raInfo.raINFO_CMD_NONE);
+			m_wait_trick = true;
+			// Log details of the trick ended
+			Globals.wxLogMessage(String.format("Trick %d won by %s",
+					trick_round + 1, gmUtil.m_long_locs[m_trick.winner]));
+		}
+
+		return 0;
+	}
+
+	private int gmGetValue(int card) {
+		return card & Globals.gmTOTAL_VALUES;
+	}
+
+	private int gmGetSuit(int card) {
+		return card / Globals.gmTOTAL_VALUES;
 	}
 
 	private int SetTrump(int card) {
