@@ -34,6 +34,10 @@ public class wxRect {
 	public wxRect(wxCoord xdest, wxCoord ydest, wxCoord width, wxCoord height) {
 	} 
 
+	public wxRect(int x, int y, wxCoord Width, wxCoord Height) {
+		
+	}
+
 	public int GetWidth() {
 		return 0;
 	} 
@@ -47,5 +51,21 @@ public class wxRect {
 
 	public boolean Contains(wxPoint pt) {
 		return false;
+	}
+
+	public int GetBottom() {
+		return 0;
+	}
+
+	public int GetLeft() {
+		return 0;
+	}
+
+	public int GetTop() {
+		return 0;
+	}
+
+	public int GetRight() {
+		return 0;
 	} 
 } 
