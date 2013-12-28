@@ -250,6 +250,12 @@ public class Globals {
 	public static int gmERR_TRICK_MASK_MISMATCH = 8;
 	
 	public static final int gmINPUT_TRICK = 2;
+
+	public static final int raINFO_CMD_NEW_DEAL = 0;
+
+	public static final int raINFO_CMD_SHOW_TRUMP = 0;
+
+	public static final String gmUtil = null;
 	
 	public static void wxLogError(String string, String file, int line) {
 	}
@@ -333,5 +339,10 @@ public class Globals {
 			int raARROW_WIDTH2, wxMemoryDC mdc, int i, int j, int wxcopy2,
 			boolean b) {
 		return false;
+	}
+
+	public static void wxMessageBox(String string) {
+		// TODO Auto-generated method stub
+		
 	}
 }
