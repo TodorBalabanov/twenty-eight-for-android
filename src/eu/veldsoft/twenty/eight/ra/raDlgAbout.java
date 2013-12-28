@@ -31,7 +31,6 @@ import eu.veldsoft.twenty.eight.dummy.wxWindowID;
 
 public class raDlgAbout {
 
-	
 	/**
 	 * Disallow copy finalructor/assignment operators
 	 * 
@@ -43,7 +42,7 @@ public class raDlgAbout {
 	 * 
 	 */
 	private raDlgAbout(final raDlgAbout object) {
-		
+
 	}
 
 	/**
@@ -59,10 +58,13 @@ public class raDlgAbout {
 		return (this);
 	}
 
+	/**
+	 * @author INFM032 F___84 Mariya Kostadinova
+	 * @author INFM042 F___00 Tsvetelina Hristova
+	 * @author INFM042 F___27 Georgi Kostadinov
+	 */
 	public raDlgAbout() {
-		// TODO To be done by INFM032 F___84 Mariya Kostadinova ...
-		// TODO To be done by INFM042 F___00 Tsvetelina Hristova ...
-		// TODO To be done by INFM042 F___27 Georgi Kostadinov ...
+
 	}
 
 	public raDlgAbout(wxWindow parent, wxWindowID id, final String caption,
