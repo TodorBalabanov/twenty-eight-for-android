@@ -64,6 +64,15 @@ public class raGamePanel extends ggPanel {
 
 	private static final int raPLAYER_TYPE_AI = 0;
 
+	private void memset(int[] card_indexes, int i, Object sizeof) {
+
+	}
+
+	private Object sizeof(int[] card_indexes) {
+
+		return null;
+	}
+
 	/**
 	 * Disallow copy finalructor/assignment operators.
 	 * 
@@ -465,44 +474,44 @@ public class raGamePanel extends ggPanel {
 		}
 		return true;
 	}
-/**
- * 
- * @param event
- * 
- * @author INFM032 F___39 Shterion Yanev 
- * @author INFM042 F___84 Mariya Kostadinova
- * @author INFM042 F___81 Marina Rangelova
- */
+
+	/**
+	 * 
+	 * @param event
+	 * 
+	 * @author INFM032 F___39 Shterion Yanev
+	 * @author INFM042 F___84 Mariya Kostadinova
+	 * @author INFM042 F___81 Marina Rangelova
+	 */
 	private void OnInfo(raInfoEvent event) {
-		
+
 		int ret_val;
-		
-		switch(event.GetCommand())
-		{
-		case 1: raINFO_CMD_NEW_DEAL:
-			if(!NewDeal())
-			{
-				Globals.wxLogError("NewDeal() failed. %s:%d", __FILE__, __LINE__);
+
+		switch (event.GetCommand()) {
+		case 1:
+			raINFO_CMD_NEW_DEAL: if (!NewDeal()) {
+				Globals.wxLogError("NewDeal() failed. %s:%d", __FILE__,
+						__LINE__);
 			}
 			break;
-		case 2: raINFO_CMD_SHOW_TRUMP:
-			if((ret_val = ShowTrump()) != 0)
-			{
+		case 2:
+			raINFO_CMD_SHOW_TRUMP: if ((ret_val = ShowTrump()) != 0) {
 				Globals.wxMessageBox("Cannot ask for trump");
 			}
-			
+
 			/*
-			 *  Check whether the game needs to be abandoned
+			 * Check whether the game needs to be abandoned
 			 */
-			if(CheckOppTrumps() == 1)
-			{
+			if (CheckOppTrumps() == 1) {
 				EndDeal(true);
 				return;
 			}
-			while(Continue());
+			while (Continue())
+				;
 			break;
 		default:
-			Globals.wxLogError("Unrecognized info event received. %s:%d", __FILE__, __LINE__);
+			Globals.wxLogError("Unrecognized info event received. %s:%d",
+					__FILE__, __LINE__);
 		}
 	}
 
@@ -687,12 +696,38 @@ public class raGamePanel extends ggPanel {
 		return true;
 	}
 
+	/**
+	 * 
+	 * @param hands
+	 * @return
+	 * 
+	 * @author INFM042 F___45 Valentin Popov
+	 * @author INFM032 F___84 Mariya Kostadinova
+	 * @author INFM032 F___93 Krasimir Chariyski
+	 */
 	private boolean UpdateHands(long hands[]) {
-		// TODO To be done by INFM042 F___45 Valentin Popov ...
-		// TODO To be done by INFM032 F___84 Mariya Kostadinova ...
-		// TODO To be done by INFM032 F___93 Krasimir Chariyski ...
 
-		return (false);
+		int i, j;
+		long cards_left;
+
+		for (i = 0; i < Globals.gmTOTAL_PLAYERS; i++) {
+			m_hands[i].cards = hands[i];
+
+			memset(m_hands[i].card_indexes, 0, sizeof(m_hands[i].card_indexes));
+
+			cards_left = hands[i];
+			j = 0;
+			while (cards_left > 0) {
+				m_hands[i].card_indexes[j] = (int) gmUtil
+						.HighestBitSet(cards_left);
+				cards_left &= ~(1 << m_hands[i].card_indexes[j]);
+				j++;
+			}
+			m_hands[i].count = j;
+			assert ((m_hands[i].count >= 0) && (m_hands[i].count <= Globals.raMAX_CARDS_PER_HAND));
+
+		}
+		return true;
 	}
 
 	private int PlayCard(int card) {
