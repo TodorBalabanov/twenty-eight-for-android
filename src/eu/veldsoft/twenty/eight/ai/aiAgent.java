@@ -540,13 +540,17 @@ public class aiAgent {
 	public void SetLocation(int loc) {
 		m_loc = loc;
 	}
-
+/**
+ * 
+ * @return
+ * 
+ * @author INFM032 F___52 Mihail Stankov
+ * @author INFM032 F___46 Nadya Nedyalkova
+ * @author INFM042 F___84 Mariya Kostadinova
+ */
 	public int GetLocation() {
-		// TODO To be done by INFM032 F___52 Mihail Stankov ...
-		// TODO To be done by INFM032 F___46 Nadya Nedyalkova ...
-		// TODO To be done by INFM042 F___84 Mariya Kostadinova ...
-
-		return (0);
+		
+		return m_loc;
 	}
 
 	public boolean GetBid(long cards, int bid, int trump, int min,
