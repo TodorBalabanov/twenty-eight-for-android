@@ -121,13 +121,22 @@ public class raBid extends wxPanel {
 		// TODO To be done by INFM042 F___27 Georgi Kostadinov ...
 		// TODO To be done by INFM042 F___52 Mihail Stankov ...
 	}
+	
+	/**
+	 * 
+	 * @param game_panel
+	 * @return
+	 * 
+	 * @author INFM032 F___05 Iliya Grozev
+	 * @author INFM042 F___48 Georgi Ivanov
+	 * @author INFM042 F___47 Kostadin Bulakiev
+	 * 
+	 */
 
 	public boolean SetGamePanel(raGamePanel game_panel) {
-		// TODO To be done by INFM032 F___05 Iliya Grozev ...
-		// TODO To be done by INFM042 F___48 Georgi Ivanov ...
-		// TODO To be done by INFM042 F___47 Kostadin Bulakiev ...
-
-		return (false);
+		
+		m_game = game_panel;
+		return true; 
 	}
 
 	/**
