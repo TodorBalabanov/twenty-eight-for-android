@@ -530,20 +530,36 @@ public class gmEngine {
 		// TODO To be done by INFM032 F___05 Iliya Grozev ...
 	}
 
+	/**
+	 * 
+	 * @param trump
+	 * 
+	 * @return
+	 *
+	 * @author INFM042 F___47 Kostadin Bulakiev
+	 * @author INFM042 F___81 Marina Rangelova
+	 * @author INFM032 F___48 Georgi Ivanov
+	 */
+	
 	public int GetTrump() {
-		// TODO To be done by INFM042 F___47 Kostadin Bulakiev ...
-		// TODO To be done by INFM042 F___81 Marina Rangelova ...
-		// TODO To be done by INFM032 F___48 Georgi Ivanov ...
-
-		return (0);
+		
+		return m_data.trump_suit;
 	}
 
+	/**
+	 * 
+	 * @param card
+	 * 
+	 * @return
+	 * 
+	 * @author INFM042 F___27 Georgi Kostadinov
+	 * @author INFM042 F___48 Georgi Ivanov
+	 * @author INFM042 F___14 Petya Atanasova
+	 	 */
+	
 	public int GetTrumpCard() {
-		// TODO To be done by INFM042 F___27 Georgi Kostadinov ...
-		// TODO To be done by INFM042 F___48 Georgi Ivanov ...
-		// TODO To be done by INFM042 F___14 Petya Atanasova ...
-
-		return (0);
+		
+		return m_data.trump_card;
 	}
 
 	public int GetDealer() {
