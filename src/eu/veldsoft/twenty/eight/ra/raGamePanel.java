@@ -199,6 +199,10 @@ public class raGamePanel extends ggPanel {
 
 	public static final int GG_CARD_HEIGHT = 96;
 
+	private static final int raINFO_CMD_NEW_DEAL = 0;
+
+	private static final int raINFO_CMD_SHOW_TRUMP = 0;
+
 	private void OnSize(wxSizeEvent event) {
 		// TODO To be done by INFM032 F___56 Daniel Nikolov ...
 		// TODO To be done by INFM042 F___90 Svetoslav Slavkov ...
@@ -461,11 +465,45 @@ public class raGamePanel extends ggPanel {
 		}
 		return true;
 	}
-
+/**
+ * 
+ * @param event
+ * 
+ * @author INFM032 F___39 Shterion Yanev 
+ * @author INFM042 F___84 Mariya Kostadinova
+ * @author INFM042 F___81 Marina Rangelova
+ */
 	private void OnInfo(raInfoEvent event) {
-		// TODO To be done by INFM032 F___39 Shterion Yanev ...
-		// TODO To be done by INFM042 F___84 Mariya Kostadinova ...
-		// TODO To be done by INFM042 F___81 Marina Rangelova ...
+		
+		int ret_val;
+		
+		switch(event.GetCommand())
+		{
+		case 1: raINFO_CMD_NEW_DEAL:
+			if(!NewDeal())
+			{
+				Globals.wxLogError("NewDeal() failed. %s:%d", __FILE__, __LINE__);
+			}
+			break;
+		case 2: raINFO_CMD_SHOW_TRUMP:
+			if((ret_val = ShowTrump()) != 0)
+			{
+				Globals.wxMessageBox("Cannot ask for trump");
+			}
+			
+			/*
+			 *  Check whether the game needs to be abandoned
+			 */
+			if(CheckOppTrumps() == 1)
+			{
+				EndDeal(true);
+				return;
+			}
+			while(Continue());
+			break;
+		default:
+			Globals.wxLogError("Unrecognized info event received. %s:%d", __FILE__, __LINE__);
+		}
 	}
 
 	private void OnBid(raBidEvent event) {
