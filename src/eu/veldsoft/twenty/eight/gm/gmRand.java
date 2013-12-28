@@ -38,11 +38,24 @@ public class gmRand {
 
 		return ("");
 	} 
+	
+	/**
+	 * 
+	 * @param state
+	 * 
+	 * @author INFM032 F___27 Georgi Kostadinov
+	 * @author INFM042 F___52 Mihail Stankov
+	 * @author INFM042 F___48 Georgi Ivanov
+	 * 
+	 */
 
 	public static void GetState(gmRandState state) {
-		// TODO To be done by INFM032 F___27 Georgi Kostadinov ...
-		// TODO To be done by INFM042 F___52 Mihail Stankov ...
-		// TODO To be done by INFM042 F___48 Georgi Ivanov ...
+
+		 	int i = 0;
+		 	for(i = 0; i < 32; i++) {
+		 		state.state_array[i] = psfmt32[idxof(i)];
+		 		state.idx = idx; 
+		 	}
 	} 
 
 	/**
