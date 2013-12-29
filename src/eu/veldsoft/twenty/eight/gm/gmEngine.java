@@ -384,12 +384,20 @@ public class gmEngine {
 		return (false);
 	}
 
+	/**
+	 * 
+	 * @return
+	 * 
+	 * @author INFM042 F___14 Petya Atanasova
+	 * @author INFM032 F___93 Krasimir Chariyski
+	 * @author INFM042 F___48 Georgi Ivanov
+	 */
 	public int GetPendingInputType() {
-		// TODO To be done by INFM042 F___14 Petya Atanasova ...
-		// TODO To be done by INFM032 F___93 Krasimir Chariyski ...
-		// TODO To be done by INFM042 F___48 Georgi Ivanov ...
-
-		return (0);
+	// If no input is pending,return invalid type
+		
+		if(m_data.input_pending)
+		return gmINPUT_INVALID;
+		return m_data.input_type; 
 	}
 
 	public boolean GetPendingInputCriteria(Integer input_type, Object input) {
