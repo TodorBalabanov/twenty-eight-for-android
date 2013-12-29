@@ -47,10 +47,20 @@ public class gmEngine {
 		// TODO To be done by INFM032 F___47 Kostadin Bulakiev ...
 	}
 
+	/**
+	 * 
+	 * @param input_type
+	 * 
+	 * @author INFM032 F___14 Petya Atanasova
+	 * @author INFM032 F___48 Georgi Ivanov
+	 * @author INFM042 F___56 Daniel Nikolov
+	 */
 	private void SetInput(int input_type) {
-		// TODO To be done by INFM032 F___14 Petya Atanasova ...
-		// TODO To be done by INFM032 F___48 Georgi Ivanov ...
-		// TODO To be done by INFM042 F___56 Daniel Nikolov ...
+		
+		assert (m_data.output_pending);
+		assert (m_data.input_pending);
+		m_data.input_type = input_type;
+		m_data.input_pending = true; 
 	}
 
 	private long GenerateMask() {
