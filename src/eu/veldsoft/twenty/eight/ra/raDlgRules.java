@@ -69,10 +69,13 @@ public class raDlgRules extends wxDialog {
 		return (this);
 	}
 
+	/**
+	 * 
+	 * @author INFM042 F___45 Valentin Popov
+	 * @author INFM032 F___94 Aleksandar Milev
+	 * @author INFM042 F___14 Petya Atanasova
+	 */
 	public raDlgRules() {
-		// TODO To be done by INFM042 F___45 Valentin Popov ...
-		// TODO To be done by INFM032 F___94 Aleksandar Milev ...
-		// TODO To be done by INFM042 F___14 Petya Atanasova ...
 	}
 
 	/**
