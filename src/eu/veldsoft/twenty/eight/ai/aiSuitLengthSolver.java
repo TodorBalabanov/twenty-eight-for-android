@@ -551,11 +551,14 @@ public class aiSuitLengthSolver {
 	 */
 	public aiSuitLengthSolver() {
 	}
-
+	
+/**
+ * 
+ * @author INFM042 F___94 Aleksandar Milev
+ * @author INFM032 F___46 Nadya Nedyalkova
+ * @author INFM042 F___68 Nikola Vushkov
+ */
 	protected void finalize() {
-		// TODO To be done by INFM042 F___94 Aleksandar Milev ...
-		// TODO To be done by INFM032 F___46 Nadya Nedyalkova ...
-		// TODO To be done by INFM042 F___68 Nikola Vushkov ...
 	}
 
 	/**

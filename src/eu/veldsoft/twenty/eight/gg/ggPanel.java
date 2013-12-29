@@ -52,7 +52,7 @@ public class ggPanel extends wxPanel {
 		// TODO To be done by INFM032 F___52 Mihail Stankov ...
 		// TODO To be done by INFM042 F___46 Nadya Nedyalkova ...
 		// TODO To be done by INFM032 F___47 Kostadin Bulakiev ...
-	} 
+	}
 
 	/**
 	 * 
@@ -64,22 +64,33 @@ public class ggPanel extends wxPanel {
 	 */
 	private ggPanel assign(final ggPanel object) {
 		return (this);
-	} 
-
+	}
+/**
+ * 
+ * @param parent
+ * 
+ * @author INFM032 F___47 Kostadin Bulakiev
+ * @author INFM042 F___27 Georgi Kostadinov
+ * @author INFM032 F___94 Aleksandar Milev
+ */
 	public ggPanel(final wxWindow parent) {
-		// TODO To be done by INFM032 F___47 Kostadin Bulakiev ...
-		// TODO To be done by INFM042 F___27 Georgi Kostadinov ...
-		// TODO To be done by INFM032 F___94 Aleksandar Milev ...
-	} 
+		m_work = null;
+		m_back = null;
+		m_f_invalid = true;
+		Size();
+	}
 
 	public ggPanel() {
-	} 
+	}
 
+	/**
+	 * 
+	 * @author INFM032 F___94 Aleksandar Milev
+	 * @author INFM042 F___52 Mihail Stankov
+	 * @author INFM032 F___27 Georgi Kostadinov
+	 */
 	protected void finalize() {
-		// TODO To be done by INFM032 F___94 Aleksandar Milev ...
-		// TODO To be done by INFM042 F___52 Mihail Stankov ...
-		// TODO To be done by INFM032 F___27 Georgi Kostadinov ...
-	} 
+	}
 
 	public boolean Size() {
 		// TODO To be done by INFM032 F___56 Daniel Nikolov ...
@@ -87,7 +98,7 @@ public class ggPanel extends wxPanel {
 		// TODO To be done by INFM042 F___00 Tsvetelina Hristova ...
 
 		return (false);
-	} 
+	}
 
 	public boolean Paint() {
 		// TODO To be done by INFM042 F___39 Shterion Yanev ...
@@ -95,13 +106,13 @@ public class ggPanel extends wxPanel {
 		// TODO To be done by INFM032 F___84 Mariya Kostadinova ...
 
 		return (false);
-	} 
+	}
 
 	public void OnPaint(wxPaintEvent event) {
 		// TODO To be done by INFM032 F___47 Kostadin Bulakiev ...
 		// TODO To be done by INFM042 F___81 Marina Rangelova ...
 		// TODO To be done by INFM032 F___90 Svetoslav Slavkov ...
-	} 
+	}
 
 	public boolean RefreshScreen() {
 		// TODO To be done by INFM042 F___14 Petya Atanasova ...
@@ -109,34 +120,34 @@ public class ggPanel extends wxPanel {
 		// TODO To be done by INFM042 F___68 Nikola Vushkov ...
 
 		return (false);
-	} 
+	}
 
 	public boolean BlitToBack(wxCoord xdest, wxCoord ydest, wxCoord width,
 			wxCoord height, wxDC source, wxCoord xsrc, wxCoord ysrc) {
 		return (BlitToBack(xdest, ydest, width, height, source, xsrc, ysrc,
 				Globals.wxCOPY, false, null, null));
-	} 
+	}
 
 	public boolean BlitToBack(wxCoord xdest, wxCoord ydest, wxCoord width,
 			wxCoord height, wxDC source, wxCoord xsrc, wxCoord ysrc,
 			int logicalFunc) {
 		return (BlitToBack(xdest, ydest, width, height, source, xsrc, ysrc,
 				logicalFunc, false, null, null));
-	} 
+	}
 
 	public boolean BlitToBack(wxCoord xdest, wxCoord ydest, wxCoord width,
 			wxCoord height, wxDC source, wxCoord xsrc, wxCoord ysrc,
 			int logicalFunc, boolean useMask) {
 		return (BlitToBack(xdest, ydest, width, height, source, xsrc, ysrc,
 				logicalFunc, useMask, null, null));
-	} 
+	}
 
 	public boolean BlitToBack(wxCoord xdest, wxCoord ydest, wxCoord width,
 			wxCoord height, wxDC source, wxCoord xsrc, wxCoord ysrc,
 			int logicalFunc, boolean useMask, wxCoord xsrcMask) {
 		return (BlitToBack(xdest, ydest, width, height, source, xsrc, ysrc,
 				logicalFunc, useMask, xsrcMask, null));
-	} 
+	}
 
 	/**
 	 * 
@@ -168,57 +179,57 @@ public class ggPanel extends wxPanel {
 
 		if (!bdc.Ok()) {
 			return false;
-		} 
+		}
 
 		if (!wdc.Ok()) {
 			return false;
-		} 
+		}
 
 		if (!bdc.Blit(xdest, ydest, width, height, source, xsrc, ysrc,
 				logicalFunc, useMask, xsrcMask, ysrcMask)) {
 			return false;
-		} 
+		}
 
 		Integer x = 0, y = 0;
 		Globals.GetClientSize(x, y);
 
 		if (!wdc.Blit(xdest, ydest, width, height, bdc, xdest, ydest)) {
 			return false;
-		} 
+		}
 
 		m_rect_diff = new wxRect(0, 0, 0, 0);
 		m_rect_invalid = new wxRect(0, 0, x, y);
 		m_f_invalid = true;
 
 		return true;
-	} 
+	}
 
 	public boolean BlitToFront(wxCoord xdest, wxCoord ydest, wxCoord width,
 			wxCoord height, wxDC source, wxCoord xsrc, wxCoord ysrc) {
 		return (BlitToFront(xdest, ydest, width, height, source, xsrc, ysrc,
 				Globals.wxCOPY, false, null, null));
-	} 
+	}
 
 	public boolean BlitToFront(wxCoord xdest, wxCoord ydest, wxCoord width,
 			wxCoord height, wxDC source, wxCoord xsrc, wxCoord ysrc,
 			int logicalFunc) {
 		return (BlitToFront(xdest, ydest, width, height, source, xsrc, ysrc,
 				logicalFunc, false, null, null));
-	} 
+	}
 
 	public boolean BlitToFront(wxCoord xdest, wxCoord ydest, wxCoord width,
 			wxCoord height, wxDC source, wxCoord xsrc, wxCoord ysrc,
 			int logicalFunc, boolean useMask) {
 		return (BlitToFront(xdest, ydest, width, height, source, xsrc, ysrc,
 				logicalFunc, useMask, null, null));
-	} 
+	}
 
 	public boolean BlitToFront(wxCoord xdest, wxCoord ydest, wxCoord width,
 			wxCoord height, wxDC source, wxCoord xsrc, wxCoord ysrc,
 			int logicalFunc, boolean useMask, wxCoord xsrcMask) {
 		return (BlitToFront(xdest, ydest, width, height, source, xsrc, ysrc,
 				logicalFunc, useMask, xsrcMask, null));
-	} 
+	}
 
 	/**
 	 * 
@@ -248,12 +259,12 @@ public class ggPanel extends wxPanel {
 
 		if (!wdc.Ok()) {
 			return false;
-		} 
+		}
 
 		if (!wdc.Blit(xdest, ydest, width, height, source, xsrc, ysrc,
 				logicalFunc, useMask, xsrcMask, ysrcMask)) {
 			return false;
-		} 
+		}
 
 		/*
 		 * Add the area drawn to m_rect_diff.
@@ -267,16 +278,16 @@ public class ggPanel extends wxPanel {
 		m_f_invalid = true;
 
 		return true;
-	} 
+	}
 
 	public boolean DrawTextOnBack(String text, wxPoint pt) {
 		return (DrawTextOnBack(text, pt, Globals.wxNullColour,
 				Globals.wxNullFont));
-	} 
+	}
 
 	public boolean DrawTextOnBack(String text, wxPoint pt, wxColour colour) {
 		return (DrawTextOnBack(text, pt, colour, Globals.wxNullFont));
-	} 
+	}
 
 	public boolean DrawTextOnBack(String text, wxPoint pt, wxColour colour,
 			wxFont font) {
@@ -285,7 +296,7 @@ public class ggPanel extends wxPanel {
 		// TODO To be done by INFM042 F___56 Daniel Nikolov ...
 
 		return (false);
-	} 
+	}
 
 	/**
 	 * 
@@ -302,21 +313,21 @@ public class ggPanel extends wxPanel {
 
 		if (!bdc.Ok()) {
 			return false;
-		} 
+		}
 
 		if (!wdc.Ok()) {
 			return false;
-		} 
+		}
 
 		if (!wdc.Blit(m_rect_diff.x, m_rect_diff.y, m_rect_diff.GetWidth(),
 				m_rect_diff.GetHeight(), bdc, m_rect_diff.x, m_rect_diff.y)) {
 			return false;
-		} 
+		}
 
 		m_rect_invalid.Union(m_rect_diff);
 		m_rect_diff = new wxRect(0, 0, 0, 0);
 		m_f_invalid = true;
 
 		return true;
-	} 
-} 
+	}
+}
