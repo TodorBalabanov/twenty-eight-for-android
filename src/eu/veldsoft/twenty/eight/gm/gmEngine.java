@@ -396,7 +396,7 @@ public class gmEngine {
 	// If no input is pending,return invalid type
 		
 		if(m_data.input_pending)
-		return gmINPUT_INVALID;
+		return Globals.gmINPUT_INVALID;
 		return m_data.input_type; 
 	}
 
@@ -542,10 +542,17 @@ public class gmEngine {
 		return m_data.pts[team];
 	}
 
+	/**
+	 * 
+	 * @param pts
+	 * 
+	 * @author INFM042 F___68 Nikola Vushkov
+	 * @author INFM032 F___48 Georgi Ivanov
+	 * @author INFM032 F___05 Iliya Grozev
+	 */
 	public void GetPoints(int pts[]) {
-		// TODO To be done by INFM042 F___68 Nikola Vushkov ...
-		// TODO To be done by INFM032 F___48 Georgi Ivanov ...
-		// TODO To be done by INFM032 F___05 Iliya Grozev ...
+		assert (pts);
+		memcpy(pts, m_data.pts, sizeof(m_data.pts)); 
 	}
 
 	/**
