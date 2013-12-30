@@ -245,7 +245,7 @@ public class aiAgent {
 		gmInputTrickInfo trick_info = new gmInputTrickInfo();
 		aiMove moves[] = new aiMove[aiMAX_MOVES];
 		int move_count = 0;
-		int ret_heur;
+		int ret_heur = 0;
 
 		assert (ret_val);
 		ret_val = true;
@@ -260,7 +260,6 @@ public class aiAgent {
 
 		// If node is leaf, estimate heuristic
 		if ((trick_round == 8) || (trick_round >= depth)) {
-			ret_heur = EstimateHeuristic(node);
 			// /#if raAI_LOG_EVALUATE
 			Globals.wxLogDebug("Logging at leaf");
 			Globals.wxLogDebug("-------------------------------");
@@ -376,8 +375,8 @@ public class aiAgent {
 		// TODO To be done by INFM042 F___52 Mihail Stankov ...
 		// TODO To be done by INFM032 F___45 Valentin Popov ...
 		// TODO To be done by INFM042 F___67 Nevena Sirakova ...
-
-		return (0);
+		
+		return 0;
 	}
 
 	/**
